@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { hintTone, toneClassLight } from "@/lib/effect-summary";
 import { formatMetricDelta } from "@/lib/monthly-costs";
 import type { PlayerState } from "@/lib/types";
 
@@ -24,6 +25,11 @@ export function BillsPanel({ state, onConfirm }: BillsPanelProps) {
     const map: Record<string, "pay" | "skip"> = {};
     let remaining = state.dinero;
     for (const bill of bills) {
+      if (bill.id === "pago_deuda") {
+        // Opt-in: debt payment is a conscious choice.
+        map[bill.id] = "skip";
+        continue;
+      }
       if (remaining >= bill.amount) {
         map[bill.id] = "pay";
         remaining -= bill.amount;
@@ -36,10 +42,31 @@ export function BillsPanel({ state, onConfirm }: BillsPanelProps) {
 
   const [decisions, setDecisions] = useState(initial);
 
-  const totalPay = bills
+  const serviceBills = bills.filter((b) => b.id !== "pago_deuda");
+  const debtBill = bills.find((b) => b.id === "pago_deuda");
+
+  const servicesPayTotal = serviceBills
     .filter((b) => decisions[b.id] === "pay")
     .reduce((sum, b) => sum + b.amount, 0);
-  const shortfall = Math.max(0, totalPay - state.dinero);
+
+  const payingDebt = debtBill ? decisions[debtBill.id] === "pay" : false;
+  const cashAfterServices = Math.max(0, state.dinero - servicesPayTotal);
+  const debtPaymentPreview = payingDebt
+    ? Math.min(state.deuda, Math.max(0, state.dinero - Math.min(servicesPayTotal, state.dinero)))
+    : 0;
+
+  // Services shortfall can create more debt; debt payment never does.
+  const servicesShortfall = Math.max(0, servicesPayTotal - state.dinero);
+  const cashAfterAllServices = Math.max(0, state.dinero - servicesPayTotal);
+  const autoSurplusToDebt =
+    !payingDebt && state.deuda > 0
+      ? Math.min(state.deuda, cashAfterAllServices)
+      : payingDebt
+        ? Math.min(
+            Math.max(0, state.deuda - debtPaymentPreview),
+            Math.max(0, cashAfterAllServices - debtPaymentPreview),
+          )
+        : 0;
 
   function setChoice(id: string, choice: "pay" | "skip") {
     setDecisions((prev) => ({ ...prev, [id]: choice }));
@@ -49,6 +76,10 @@ export function BillsPanel({ state, onConfirm }: BillsPanelProps) {
     const map: Record<string, "pay" | "skip"> = {};
     let remaining = state.dinero;
     for (const bill of bills) {
+      if (bill.id === "pago_deuda") {
+        map[bill.id] = remaining > 0 && state.deuda > 0 ? "pay" : "skip";
+        continue;
+      }
       if (remaining >= bill.amount) {
         map[bill.id] = "pay";
         remaining -= bill.amount;
@@ -74,9 +105,9 @@ export function BillsPanel({ state, onConfirm }: BillsPanelProps) {
         ¿Qué pagás este mes?
       </h2>
       <p className="mt-3 text-sm text-stone-600">
-        Cobró el sueldo. Ahora elegí qué servicios cubrís. Si no pagás, duele en
-        salud, estrés, bienestar o capital social. Si te sobra plata y tenés
-        deuda, el sobrante se usa para bajarla.
+        Cobró el sueldo. Elegí qué servicios cubrís. Si tenés deuda, podés
+        abonarla: si no te alcanza, se descuenta todo lo que tengas. Si te sobra
+        plata, el sobrante baja la deuda solo.
       </p>
       <p className="mt-2 font-mono text-sm text-stone-800">
         Disponible: {formatARS(state.dinero)}
@@ -104,19 +135,34 @@ export function BillsPanel({ state, onConfirm }: BillsPanelProps) {
         {bills.map((bill) => {
           const choice = decisions[bill.id] ?? "pay";
           const paying = choice === "pay";
-          const hints = formatMetricDelta(
-            paying ? bill.al_pagar : bill.al_saltear,
-          );
+          const isDebt = bill.id === "pago_deuda";
+          const hints = isDebt
+            ? paying
+              ? [
+                  cashAfterServices >= state.deuda
+                    ? `−${formatARS(state.deuda)} deuda`
+                    : `Se descuenta todo (${formatARS(cashAfterServices)})`,
+                  "−Estrés",
+                ]
+              : ["Sin pago este mes", "El sobrante igual baja la deuda"]
+            : formatMetricDelta(paying ? bill.al_pagar : bill.al_saltear);
+
           return (
             <li
               key={bill.id}
-              className="border border-stone-800/10 bg-white/50 px-3 py-3"
+              className={`border px-3 py-3 ${
+                isDebt
+                  ? "border-amber-800/20 bg-amber-50/70"
+                  : "border-stone-800/10 bg-white/50"
+              }`}
             >
               <div className="flex flex-wrap items-start justify-between gap-2">
                 <div>
                   <p className="font-medium text-stone-900">{bill.label}</p>
                   <p className="font-mono text-xs text-stone-500">
-                    {formatARS(bill.amount)}
+                    {isDebt
+                      ? `Debés ${formatARS(bill.amount)}`
+                      : formatARS(bill.amount)}
                   </p>
                 </div>
                 <div className="flex gap-1.5">
@@ -148,18 +194,19 @@ export function BillsPanel({ state, onConfirm }: BillsPanelProps) {
                 {hints.map((hint) => (
                   <span
                     key={hint}
-                    className={`rounded-sm px-1.5 py-0.5 text-[11px] font-medium ${
-                      hint.startsWith("+")
-                        ? "bg-emerald-100/90 text-emerald-900"
-                        : "bg-red-100/90 text-red-900"
-                    }`}
+                    className={`rounded-sm px-1.5 py-0.5 text-[11px] font-medium ${toneClassLight(hintTone(hint))}`}
                   >
                     {hint}
                   </span>
                 ))}
-                {paying && bill.amount > state.dinero ? (
+                {!isDebt && paying && bill.amount > state.dinero ? (
                   <span className="rounded-sm bg-amber-100/90 px-1.5 py-0.5 text-[11px] font-medium text-amber-950">
                     Si no alcanza, te endeudás
+                  </span>
+                ) : null}
+                {isDebt && paying && state.deuda > cashAfterServices ? (
+                  <span className="rounded-sm bg-emerald-100/90 px-1.5 py-0.5 text-[11px] font-medium text-emerald-900">
+                    No te alcanza el total: se usa toda tu plata
                   </span>
                 ) : null}
               </div>
@@ -170,18 +217,33 @@ export function BillsPanel({ state, onConfirm }: BillsPanelProps) {
 
       <div className="mt-5 border-t border-stone-800/10 pt-4 text-sm text-stone-700">
         <p>
-          A pagar:{" "}
-          <span className="font-mono font-semibold">{formatARS(totalPay)}</span>
-          {shortfall > 0 ? (
+          Servicios:{" "}
+          <span className="font-mono font-semibold">
+            {formatARS(servicesPayTotal)}
+          </span>
+          {servicesShortfall > 0 ? (
             <span className="ml-2 text-red-700">
-              (te faltan {formatARS(shortfall)} → deuda)
-            </span>
-          ) : state.deuda > 0 && state.dinero > totalPay ? (
-            <span className="ml-2 text-teal-800">
-              (sobrante {formatARS(state.dinero - totalPay)} → baja la deuda)
+              (te faltan {formatARS(servicesShortfall)} → más deuda)
             </span>
           ) : null}
         </p>
+        {payingDebt ? (
+          <p className="mt-1 text-teal-800">
+            A la deuda: −{formatARS(debtPaymentPreview)}
+            {debtPaymentPreview < state.deuda
+              ? ` (queda ${formatARS(state.deuda - debtPaymentPreview)})`
+              : " (la saldás)"}
+          </p>
+        ) : null}
+        {autoSurplusToDebt > 0 ? (
+          <p className="mt-1 text-teal-800">
+            Sobrante → deuda: −{formatARS(autoSurplusToDebt)}
+          </p>
+        ) : state.deuda > 0 && !payingDebt && cashAfterAllServices === 0 ? (
+          <p className="mt-1 text-stone-500">
+            Sin sobrante: la deuda sigue (y suma intereses).
+          </p>
+        ) : null}
       </div>
 
       <button

@@ -10,37 +10,32 @@ interface StartScreenProps {
 
 export function StartScreen({ hasSave, onStart, onNewGame }: StartScreenProps) {
   return (
-    <div className="relative flex min-h-dvh flex-col bg-[#2a241c]">
-      <div className="relative min-h-[72dvh] w-full flex-1 sm:min-h-[78dvh]">
+    <div className="relative flex min-h-dvh flex-col overflow-hidden bg-[#1a1612]">
+      <div className="absolute inset-0">
         <Image
           src="/hero-start.png"
-          alt="Cartonero: del barro a la Rosada"
+          alt=""
           fill
           priority
           className="object-cover object-center"
           sizes="100vw"
         />
         <div
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#2a241c] to-transparent"
+          className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/20"
           aria-hidden
         />
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-md px-5 pb-10 pt-4 text-center">
-        <p className="font-display text-3xl tracking-tight text-[#e8e0d4] sm:text-4xl">
-          Cartonero
-        </p>
-        <p className="mt-1 text-sm italic text-[#c4b8a4]">
-          del barro a la Rosada
-        </p>
-        <p className="mx-auto mt-3 max-w-sm text-sm leading-relaxed text-[#a89880]">
-          Arrancás abajo. El mes no perdona. ¿Hasta dónde llegás?
+      <div className="relative z-10 mt-auto mx-auto w-full max-w-md px-5 pb-10 pt-24 text-center">
+        <p className="mx-auto max-w-sm text-base leading-relaxed text-[#e8e0d4] sm:text-lg">
+          Arrancás de abajo. La vida en Argentina no perdona. ¿Hasta dónde
+          llegás?
         </p>
 
         <div className="mt-8 flex flex-col gap-3">
           <button
             type="button"
-            className="advance-btn w-full"
+            className="w-full rounded-xl bg-[#2f9e6b] px-4 py-3.5 text-sm font-black uppercase tracking-wide text-white"
             onClick={onStart}
           >
             {hasSave ? "Continuar partida" : "Arrancar partida"}

@@ -1,6 +1,10 @@
 "use client";
 
-import { hintTone, summarizeEffects } from "@/lib/effect-summary";
+import {
+  hintTone,
+  summarizeEffects,
+  toneClassLight,
+} from "@/lib/effect-summary";
 import type { GameEvent } from "@/lib/types";
 
 interface EventCardProps {
@@ -8,19 +12,6 @@ interface EventCardProps {
   onChoose: (optionId: string) => void;
   disabled?: boolean;
   dinero?: number;
-}
-
-function toneClass(tone: ReturnType<typeof hintTone>): string {
-  switch (tone) {
-    case "good":
-      return "bg-emerald-100/90 text-emerald-900";
-    case "bad":
-      return "bg-red-100/90 text-red-900";
-    case "money":
-      return "bg-amber-100/90 text-amber-950";
-    default:
-      return "bg-stone-200/80 text-stone-700";
-  }
 }
 
 export function EventCard({
@@ -58,7 +49,7 @@ export function EventCard({
                 {hints.map((hint) => (
                   <span
                     key={hint}
-                    className={`inline-block rounded-sm px-1.5 py-0.5 text-[11px] font-medium leading-snug ${toneClass(hintTone(hint))}`}
+                    className={`inline-block rounded-sm px-1.5 py-0.5 text-[11px] font-medium leading-snug ${toneClassLight(hintTone(hint))}`}
                   >
                     {hint}
                   </span>

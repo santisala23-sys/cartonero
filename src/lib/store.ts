@@ -31,10 +31,8 @@ interface GameStore {
   choose: (optionId: string) => void;
   confirmBills: (decisions: Record<string, "pay" | "skip">) => void;
   dismissSummary: () => void;
-  finishTraining: () => void;
-  finishJobStep: () => void;
-  switchJob: (jobId: string) => void;
-  enroll: (credentialId: string) => void;
+  pickTraining: (credentialId: string | null) => void;
+  pickJob: (jobId: string | null) => void;
   reset: () => void;
 }
 
@@ -92,27 +90,27 @@ export const useGameStore = create<GameStore>((set, get) => ({
     set({ state: commit(next, playerKey) });
   },
 
-  finishTraining: () => {
+  pickTraining: (credentialId) => {
     const { state, playerKey } = get();
-    const next = continueFromTraining(state);
+    let next = state;
+    if (credentialId) {
+      next = startCredential(next, credentialId);
+    }
+    next = continueFromTraining(next);
     set({ state: commit(next, playerKey) });
   },
 
-  finishJobStep: () => {
+  pickJob: (jobId) => {
     const { state, playerKey } = get();
-    const next = continueFromJob(state);
-    set({ state: commit(next, playerKey) });
-  },
-
-  switchJob: (jobId: string) => {
-    const { state, playerKey } = get();
-    const next = changeJob(state, jobId);
-    set({ state: commit(next, playerKey) });
-  },
-
-  enroll: (credentialId: string) => {
-    const { state, playerKey } = get();
-    const next = startCredential(state, credentialId);
+    let next = state;
+    if (jobId) {
+      next = changeJob(next, jobId);
+    }
+    if (next.game_over) {
+      set({ state: commit(next, playerKey) });
+      return;
+    }
+    next = continueFromJob(next);
     set({ state: commit(next, playerKey) });
   },
 

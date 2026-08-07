@@ -263,6 +263,18 @@ function conditionalCosts(state: PlayerState): CostLine[] {
     );
   }
 
+  if (state.deuda > 0) {
+    lines.push(
+      line(
+        "pago_deuda",
+        "Pagar la deuda",
+        state.deuda,
+        { estres: -5, bienestar: 4 },
+        {},
+      ),
+    );
+  }
+
   return lines;
 }
 
@@ -271,7 +283,9 @@ export function listMonthlyCosts(state: PlayerState): CostLine[] {
 }
 
 export function estimateMonthlyCosts(state: PlayerState): number {
-  return listMonthlyCosts(state).reduce((sum, row) => sum + row.amount, 0);
+  return listMonthlyCosts(state)
+    .filter((row) => row.id !== "pago_deuda")
+    .reduce((sum, row) => sum + row.amount, 0);
 }
 
 function applyMetricDelta(
@@ -298,6 +312,9 @@ export function formatMetricDelta(delta: MetricDelta): string[] {
     .filter((k) => delta[k] !== undefined && delta[k] !== 0)
     .map((k) => {
       const v = delta[k]!;
+      if (k === "estres") {
+        return v < 0 ? `−${Math.abs(v)} Estrés` : `+${v} Estrés`;
+      }
       return `${v > 0 ? "+" : ""}${v} ${labels[k]}`;
     });
 }
@@ -319,6 +336,7 @@ function applyStoryBeat(
  * Apply player decisions for each pending bill.
  * Paying spends money (debt if short); skipping applies harsh metric hits
  * plus narrative opportunity losses.
+ * Debt payment never creates more debt: it only spends cash you have.
  */
 export function resolveMonthlyBills(
   state: PlayerState,
@@ -339,8 +357,16 @@ export function resolveMonthlyBills(
   let totalPaid = 0;
   let totalSkipped = 0;
   let balanceHistorias = state.last_month_ledger?.balance_historias ?? 0;
+  let pagoDeuda = 0;
 
-  for (const bill of bills) {
+  const regularBills = bills.filter((b) => b.id !== "pago_deuda");
+  const debtBill = bills.find((b) => b.id === "pago_deuda");
+  const payingDebt = debtBill
+    ? (decisions[debtBill.id] ?? "skip") === "pay"
+    : false;
+
+  // 1) Pay regular services first.
+  for (const bill of regularBills) {
     const choice = decisions[bill.id] ?? "pay";
     if (choice === "pay") {
       next = applyMoneySpend(next, bill.amount);
@@ -353,16 +379,41 @@ export function resolveMonthlyBills(
         historias.push(bonus);
         balanceHistorias += bonus.dinero;
       }
-    } else {
-      next = applyMetricDelta(next, bill.al_saltear);
-      totalSkipped += bill.amount;
-      ledgerLines.push({ ...bill, pagado: false });
-      const hit = consequenceForSkippedBill(bill.id, next);
-      if (hit) {
-        next = applyStoryBeat(next, hit);
-        historias.push(hit);
-        balanceHistorias += hit.dinero;
-      }
+    }
+  }
+
+  // 2) Intentional debt payment uses remaining cash (never creates more debt).
+  if (debtBill && payingDebt) {
+    const beforeDebt = next.deuda;
+    const beforeCash = next.dinero;
+    next = payDebt(next, "all");
+    const paid = Math.min(beforeDebt, beforeCash - next.dinero);
+    pagoDeuda += paid;
+    if (paid > 0) {
+      next = applyMetricDelta(next, debtBill.al_pagar);
+    }
+    ledgerLines.push({
+      ...debtBill,
+      amount: paid > 0 ? paid : debtBill.amount,
+      pagado: paid > 0,
+    });
+  } else if (debtBill) {
+    ledgerLines.push({ ...debtBill, pagado: false });
+    totalSkipped += debtBill.amount;
+  }
+
+  // 3) Skipped services — penalties after debt payment so they don't eat the abono.
+  for (const bill of regularBills) {
+    const choice = decisions[bill.id] ?? "pay";
+    if (choice === "pay") continue;
+    next = applyMetricDelta(next, bill.al_saltear);
+    totalSkipped += bill.amount;
+    ledgerLines.push({ ...bill, pagado: false });
+    const hit = consequenceForSkippedBill(bill.id, next);
+    if (hit) {
+      next = applyStoryBeat(next, hit);
+      historias.push(hit);
+      balanceHistorias += hit.dinero;
     }
   }
 
@@ -375,12 +426,11 @@ export function resolveMonthlyBills(
   }
 
   // Leftover cash after bills goes to debt automatically.
-  let pagoDeuda = 0;
   if (next.deuda > 0 && next.dinero > 0) {
     const beforeDebt = next.deuda;
     const beforeCash = next.dinero;
     next = payDebt(next, "all");
-    pagoDeuda = Math.min(beforeDebt, beforeCash - next.dinero);
+    pagoDeuda += Math.min(beforeDebt, beforeCash - next.dinero);
   }
 
   if (pagoDeuda > 0) {

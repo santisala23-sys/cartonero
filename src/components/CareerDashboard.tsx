@@ -41,10 +41,21 @@ function StatTile({
   );
 }
 
+function hadRecentAcv(state: PlayerState): boolean {
+  if (!state.pending_month_summary || state.acv_count <= 0) return false;
+  return Boolean(
+    state.last_month_ledger?.historias?.some((h) => {
+      const t = h.titulo.toLowerCase();
+      return t.includes("acv") || t.includes("bobazo");
+    }),
+  );
+}
+
 export function CareerDashboard({ state }: CareerDashboardProps) {
   const media = computeMedia(state);
   const influ = influenciaProgress(state.influencia);
   const mesNombre = MESES_NOMBRE[state.mes_calendario - 1] ?? "";
+  const showAcv = state.estres >= 100 || hadRecentAcv(state);
 
   return (
     <section className="rounded-2xl bg-[#12161c] p-4 text-[#e8eef5] sm:p-5">
@@ -84,12 +95,28 @@ export function CareerDashboard({ state }: CareerDashboardProps) {
         <StatTile label="Influencia" value={Math.round(state.influencia)} accent="text-[#3d9b6a]" />
       </div>
 
-      <div className="mt-3 grid grid-cols-3 gap-2 sm:grid-cols-5">
+      <div
+        className={`mt-3 grid gap-2 ${
+          showAcv
+            ? "grid-cols-3 sm:grid-cols-5"
+            : "grid-cols-2 sm:grid-cols-4"
+        }`}
+      >
         <StatTile label="Salud" value={Math.round(state.salud)} />
-        <StatTile label="Estrés" value={Math.round(state.estres)} />
+        <StatTile
+          label="Estrés"
+          value={Math.round(state.estres)}
+          accent={state.estres >= 100 ? "text-[#e57373]" : undefined}
+        />
         <StatTile label="Bienestar" value={Math.round(state.bienestar)} />
         <StatTile label="Cap. social" value={Math.round(state.capital_social)} />
-        <StatTile label="ACVs" value={`${state.acv_count}/4`} />
+        {showAcv ? (
+          <StatTile
+            label="ACVs"
+            value={`${state.acv_count}/4`}
+            accent="text-[#e57373]"
+          />
+        ) : null}
       </div>
 
       <div className="mt-5">

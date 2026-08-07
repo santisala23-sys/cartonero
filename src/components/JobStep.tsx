@@ -1,13 +1,12 @@
 "use client";
 
 import { getCredentialById } from "@/lib/credentials";
-import { getEligibleJobs, getJobById, JOBS } from "@/lib/jobs";
-import type { Job, PlayerState } from "@/lib/types";
+import { getEligibleJobs } from "@/lib/jobs";
+import type { PlayerState } from "@/lib/types";
 
 interface JobStepProps {
   state: PlayerState;
-  onSwitchJob: (jobId: string) => void;
-  onContinue: () => void;
+  onPick: (jobId: string | null) => void;
 }
 
 function formatARS(value: number): string {
@@ -18,157 +17,100 @@ function formatARS(value: number): string {
   }).format(value);
 }
 
-function missingHints(state: PlayerState, job: Job): string[] {
-  const req = job.requisitos;
-  const missing: string[] = [];
-
-  if (req.job_previo) {
-    const ok =
-      state.trabajo_actual.id === req.job_previo ||
-      state.flags.includes(`worked_${req.job_previo}`);
-    if (!ok) {
-      missing.push(
-        `experiencia en ${getJobById(req.job_previo)?.titulo ?? req.job_previo}`,
-      );
-    }
-  }
-
-  if (req.credenciales_requeridas?.length) {
-    for (const id of req.credenciales_requeridas) {
-      if (
-        !state.credenciales.includes(id) &&
-        !(id === "curso_n8n" && state.flags.includes("curso_n8n"))
-      ) {
-        missing.push(getCredentialById(id)?.nombre ?? id);
-      }
-    }
-  }
-
-  if (req.credenciales_algunas?.length) {
-    const hasAny = req.credenciales_algunas.some(
-      (id) =>
-        state.credenciales.includes(id) ||
-        (id === "curso_n8n" && state.flags.includes("curso_n8n")),
-    );
-    if (!hasAny) {
-      missing.push(
-        "alguna de: " +
-          req.credenciales_algunas
-            .map((id) => getCredentialById(id)?.nombre ?? id)
-            .join(" / "),
-      );
-    }
-  }
-
-  if (req.dinero_min !== undefined && state.dinero < req.dinero_min) {
-    missing.push(`plata (${formatARS(req.dinero_min)})`);
-  }
-  if (
-    req.capital_social_min !== undefined &&
-    state.capital_social < req.capital_social_min
-  ) {
-    missing.push(`capital social ${req.capital_social_min}+`);
-  }
-
-  return missing;
-}
-
-export function JobStep({ state, onSwitchJob, onContinue }: JobStepProps) {
-  const eligible = getEligibleJobs(state);
-  const eligibleIds = new Set(eligible.map((j) => j.id));
-  const near = JOBS.filter((job) => {
-    if (job.id === state.trabajo_actual.id) return false;
-    if (eligibleIds.has(job.id)) return false;
-    const miss = missingHints(state, job);
-    return miss.length > 0 && miss.length <= 2;
-  })
-    .sort((a, b) => a.sueldo - b.sueldo)
+export function JobStep({ state, onPick }: JobStepProps) {
+  const eligible = getEligibleJobs(state)
+    .sort((a, b) => b.sueldo - a.sueldo)
     .slice(0, 6);
 
   return (
-    <article className="event-card animate-in mx-auto w-full max-w-xl">
-      <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-teal-900/70">
-        Paso 2 · Trabajo
+    <article className="mx-auto w-full max-w-xl animate-in text-[#e8eef5]">
+      <div className="h-1 w-full rounded-full bg-[#2f9e6b]" />
+      <p className="mt-4 text-[11px] font-bold uppercase tracking-[0.22em] text-[#3d9b6a]">
+        Laburo
       </p>
-      <h2 className="font-display text-2xl leading-tight text-stone-950 sm:text-3xl">
-        ¿Cambias de laburo?
+      <h2 className="mt-1 font-display text-3xl leading-tight text-white sm:text-4xl">
+        Oportunidades laborales
       </h2>
-      <p className="mt-2 text-sm text-stone-600">
-        Si te capacitaste, tal vez se abrieron puertas. Si no, podés seguir donde
-        estás.
+      <p className="mt-2 text-sm leading-relaxed text-[#9aabbc]">
+        Ahora sos {state.trabajo_actual.titulo} (
+        {formatARS(state.trabajo_actual.sueldo)}/mes). Elegí un puesto disponible
+        con tus capacitaciones, o seguí donde estás.
       </p>
 
-      <div className="mt-4 border border-stone-800/10 bg-white/60 px-3 py-3">
-        <p className="text-[10px] font-semibold uppercase tracking-wider text-stone-500">
-          Ahora
-        </p>
-        <p className="font-medium text-stone-900">
-          {state.trabajo_actual.titulo}
-        </p>
-        <p className="font-mono text-xs text-stone-500">
-          {formatARS(state.trabajo_actual.sueldo)}/mes · estrés +
-          {state.trabajo_actual.nivel_estres_mensual}
-        </p>
-      </div>
+      <div className="mt-6 grid gap-3 sm:grid-cols-2">
+        {eligible.map((job) => {
+          const reqs = [
+            ...(job.requisitos.credenciales_requeridas ?? []),
+            ...(job.requisitos.credenciales_algunas ?? []),
+          ]
+            .slice(0, 2)
+            .map((id) => getCredentialById(id)?.nombre ?? id);
 
-      {eligible.length === 0 ? (
-        <p className="mt-4 text-sm text-stone-500">
-          Ningún puesto nuevo disponible. Formate el mes que viene o sumá
-          contactos.
-        </p>
-      ) : (
-        <ul className="mt-4 flex max-h-64 flex-col gap-2 overflow-y-auto pr-1">
-          {eligible.map((job) => (
-            <li key={job.id}>
-              <button
-                type="button"
-                onClick={() => onSwitchJob(job.id)}
-                className="job-btn w-full text-left"
-              >
-                <span className="block font-medium text-stone-900">
-                  {job.titulo}
+          return (
+            <button
+              key={job.id}
+              type="button"
+              onClick={() => onPick(job.id)}
+              className="rounded-2xl border border-white/10 bg-[#1a222d] p-4 text-left transition hover:border-[#2f9e6b]/60"
+            >
+              <p className="font-semibold text-white">{job.titulo}</p>
+              <p className="mt-1 text-xs text-[#8a9bac] line-clamp-2">
+                {job.descripcion ?? job.rama}
+              </p>
+              <div className="mt-3 flex flex-wrap gap-1.5">
+                <span className="rounded-full bg-emerald-500/15 px-2 py-0.5 text-[11px] font-medium text-emerald-300">
+                  {formatARS(job.sueldo)}/mes
                 </span>
-                <span className="mt-0.5 block text-xs text-stone-500">
-                  {formatARS(job.sueldo)}/mes · estrés +
-                  {job.nivel_estres_mensual} · {job.rama}
+                <span
+                  className={`rounded-full px-2 py-0.5 text-[11px] font-medium ${
+                    job.nivel_estres_mensual <
+                    state.trabajo_actual.nivel_estres_mensual
+                      ? "bg-emerald-500/15 text-emerald-300"
+                      : job.nivel_estres_mensual >
+                          state.trabajo_actual.nivel_estres_mensual
+                        ? "bg-rose-500/15 text-rose-300"
+                        : "bg-white/10 text-[#9aabbc]"
+                  }`}
+                >
+                  {job.nivel_estres_mensual <
+                  state.trabajo_actual.nivel_estres_mensual
+                    ? `Menos estrés (+${job.nivel_estres_mensual}/mes)`
+                    : job.nivel_estres_mensual >
+                        state.trabajo_actual.nivel_estres_mensual
+                      ? `Más estrés (+${job.nivel_estres_mensual}/mes)`
+                      : `+${job.nivel_estres_mensual} estrés/mes`}
                 </span>
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
+                {reqs.length > 0 ? (
+                  <span className="rounded-full bg-white/10 px-2 py-0.5 text-[11px] text-[#9aabbc]">
+                    {reqs.join(" · ")}
+                  </span>
+                ) : null}
+              </div>
+            </button>
+          );
+        })}
 
-      {near.length > 0 ? (
-        <div className="mt-4">
-          <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-amber-800/80">
-            Casi al alcance
+        {eligible.length === 0 ? (
+          <p className="sm:col-span-2 text-sm text-[#8a9bac]">
+            No hay puestos nuevos con tus capacitaciones actuales.
           </p>
-          <ul className="space-y-1.5">
-            {near.map((job) => (
-              <li
-                key={job.id}
-                className="border border-dashed border-stone-400/40 bg-stone-50/50 px-3 py-2 text-sm"
-              >
-                <span className="font-medium text-stone-600">{job.titulo}</span>
-                <span className="mt-0.5 block text-[11px] text-amber-900/90">
-                  Te falta: {missingHints(state, job).join(" · ")}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : null}
+        ) : null}
 
-      <button
-        type="button"
-        className="advance-btn mt-6 w-full"
-        onClick={onContinue}
-      >
-        Seguir en el mismo laburo
-      </button>
-      <p className="mt-2 text-center text-[11px] text-stone-500">
-        Si cambiaste de puesto, tocá acá para ir a las cuentas del mes.
-      </p>
+        <button
+          type="button"
+          onClick={() => onPick(null)}
+          className="rounded-2xl border border-white/10 bg-[#1a222d] p-4 text-left transition hover:border-white/25 sm:col-span-2"
+        >
+          <p className="font-semibold text-white">Seguir en el mismo laburo</p>
+          <p className="mt-1 text-xs text-[#8a9bac]">
+            {state.trabajo_actual.titulo} ·{" "}
+            {formatARS(state.trabajo_actual.sueldo)}/mes
+          </p>
+          <span className="mt-3 inline-block rounded-full bg-white/10 px-2 py-0.5 text-[11px] text-[#9aabbc]">
+            Sin cambios
+          </span>
+        </button>
+      </div>
     </article>
   );
 }

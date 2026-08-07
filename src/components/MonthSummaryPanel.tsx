@@ -1,6 +1,7 @@
 "use client";
 
 import { getCredentialById } from "@/lib/credentials";
+import { hintTone, toneClassLight } from "@/lib/effect-summary";
 import { formatMetricDelta } from "@/lib/monthly-costs";
 import type { PlayerState } from "@/lib/types";
 
@@ -113,12 +114,17 @@ export function MonthSummaryPanel({
               <p className="mt-1 text-sm leading-relaxed text-stone-700">
                 {beat.texto}
               </p>
-              <p className="mt-2 flex flex-wrap gap-2 font-mono text-[11px] text-red-800">
+              <p className="mt-2 flex flex-wrap gap-2 font-mono text-[11px]">
                 {beat.dinero !== 0 ? (
-                  <span>{formatARS(beat.dinero)}</span>
+                  <span className="text-red-800">{formatARS(beat.dinero)}</span>
                 ) : null}
                 {formatMetricDelta(beat.deltas).map((chip) => (
-                  <span key={chip}>{chip}</span>
+                  <span
+                    key={chip}
+                    className={`rounded-sm px-1.5 py-0.5 ${toneClassLight(hintTone(chip))}`}
+                  >
+                    {chip}
+                  </span>
                 ))}
               </p>
             </article>
@@ -145,12 +151,17 @@ export function MonthSummaryPanel({
               <p className="mt-1 text-sm leading-relaxed text-stone-700">
                 {beat.texto}
               </p>
-              <p className="mt-2 flex flex-wrap gap-2 font-mono text-[11px] text-teal-800">
+              <p className="mt-2 flex flex-wrap gap-2 font-mono text-[11px]">
                 {beat.dinero !== 0 ? (
-                  <span>+{formatARS(beat.dinero)}</span>
+                  <span className="text-teal-800">+{formatARS(beat.dinero)}</span>
                 ) : null}
                 {formatMetricDelta(beat.deltas).map((chip) => (
-                  <span key={chip}>{chip}</span>
+                  <span
+                    key={chip}
+                    className={`rounded-sm px-1.5 py-0.5 ${toneClassLight(hintTone(chip))}`}
+                  >
+                    {chip}
+                  </span>
                 ))}
               </p>
             </article>

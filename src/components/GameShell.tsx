@@ -22,10 +22,8 @@ export function GameShell() {
   const choose = useGameStore((s) => s.choose);
   const confirmBills = useGameStore((s) => s.confirmBills);
   const dismissSummary = useGameStore((s) => s.dismissSummary);
-  const finishTraining = useGameStore((s) => s.finishTraining);
-  const finishJobStep = useGameStore((s) => s.finishJobStep);
-  const switchJob = useGameStore((s) => s.switchJob);
-  const enroll = useGameStore((s) => s.enroll);
+  const pickTraining = useGameStore((s) => s.pickTraining);
+  const pickJob = useGameStore((s) => s.pickJob);
   const reset = useGameStore((s) => s.reset);
 
   const [showTitle, setShowTitle] = useState(true);
@@ -101,15 +99,13 @@ export function GameShell() {
             <TrainingStep
               key={`train-${state.mes}`}
               state={state}
-              onEnroll={enroll}
-              onContinue={finishTraining}
+              onPick={pickTraining}
             />
           ) : inJob ? (
             <JobStep
               key={`job-${state.mes}-${state.trabajo_actual.id}`}
               state={state}
-              onSwitchJob={switchJob}
-              onContinue={finishJobStep}
+              onPick={pickJob}
             />
           ) : payingBills ? (
             <BillsPanel
