@@ -139,6 +139,14 @@ export interface PlayerState {
   active_event_id: string | null;
   game_over: boolean;
   game_over_reason: string | null;
+  /** "victoria" | "derrota" when the run ended. */
+  game_over_kind: "victoria" | "derrota" | null;
+  /** Consecutive months with estrés at 100. */
+  meses_estres_al_tope: number;
+  /** How many strokes (ACV / bobazos) you survived. */
+  acv_count: number;
+  /** Consecutive months with bienestar at 0. */
+  meses_bienestar_roto: number;
   /** Bills waiting for pay/skip decisions this month. */
   pending_bills: {
     id: string;

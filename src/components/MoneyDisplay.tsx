@@ -69,6 +69,23 @@ export function MoneyDisplay({ state }: MoneyDisplayProps) {
       {estres > 90 && !pending_bills ? (
         <p className="mt-3 text-xs font-medium text-red-700">
           Estrés crítico: el psicólogo aparece en las cuentas del mes.
+          {state.meses_estres_al_tope > 0 ? (
+            <>
+              {" "}
+              Llevás {state.meses_estres_al_tope}/6 meses al tope — a los 6 te
+              agarra un ACV
+              {state.acv_count > 0
+                ? ` (ya tuviste ${state.acv_count}/4)`
+                : ""}
+              .
+            </>
+          ) : null}
+        </p>
+      ) : null}
+
+      {state.acv_count > 0 && estres <= 90 ? (
+        <p className="mt-3 text-xs font-medium text-amber-900">
+          ACVs: {state.acv_count}/4. El cuarto te mata.
         </p>
       ) : null}
 

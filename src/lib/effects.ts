@@ -1,4 +1,5 @@
 import { DEBT_GAME_OVER, syncDebtFlags } from "@/lib/debt";
+import { evaluateDefeat, evaluateVictory } from "@/lib/endings";
 import { getJobById, jobToTrabajoActual } from "@/lib/jobs";
 import type { Effect, MetricKey, PlayerState } from "@/lib/types";
 
@@ -161,11 +162,40 @@ export function applyEffects(
 }
 
 export function checkGameOver(state: PlayerState): PlayerState {
+  if (state.game_over) return state;
+
+  const victory = evaluateVictory(state);
+  if (victory) {
+    return {
+      ...state,
+      game_over: true,
+      game_over_kind: victory.kind,
+      game_over_reason: victory.reason,
+      active_event_id: null,
+      pending_bills: null,
+      pending_month_summary: false,
+    };
+  }
+
+  const defeatExtra = evaluateDefeat(state);
+  if (defeatExtra) {
+    return {
+      ...state,
+      game_over: true,
+      game_over_kind: defeatExtra.kind,
+      game_over_reason: defeatExtra.reason,
+      active_event_id: null,
+      pending_bills: null,
+      // Keep month summary so the player sees the ACV beat first.
+    };
+  }
+
   if (state.salud <= 0) {
     return {
       ...state,
       salud: 0,
       game_over: true,
+      game_over_kind: "derrota",
       game_over_reason: "Tu salud llegó a cero. El cuerpo no aguanta más.",
       active_event_id: null,
     };
@@ -175,6 +205,7 @@ export function checkGameOver(state: PlayerState): PlayerState {
     return {
       ...state,
       game_over: true,
+      game_over_kind: "derrota",
       game_over_reason:
         "La deuda te comió vivo. Los cobradores ya no negocian: tu familia desapareció del mapa y vos quedaste como advertencia. Fin del camino.",
       active_event_id: null,
@@ -185,6 +216,7 @@ export function checkGameOver(state: PlayerState): PlayerState {
     return {
       ...state,
       game_over: true,
+      game_over_kind: "derrota",
       game_over_reason:
         "Cruzaste la línea. Ahora laburás para ellos, sin nombre, sin salida. Cartonero terminó: empezó otra cosa peor.",
       active_event_id: null,
@@ -226,6 +258,15 @@ export function normalizePlayerState(
     active_event_id: raw.active_event_id ?? null,
     game_over: Boolean(raw.game_over),
     game_over_reason: raw.game_over_reason ?? null,
+    game_over_kind:
+      raw.game_over_kind === "victoria" || raw.game_over_kind === "derrota"
+        ? raw.game_over_kind
+        : raw.game_over
+          ? "derrota"
+          : null,
+    meses_estres_al_tope: Number(raw.meses_estres_al_tope) || 0,
+    acv_count: Number(raw.acv_count) || 0,
+    meses_bienestar_roto: Number(raw.meses_bienestar_roto) || 0,
     last_month_ledger: raw.last_month_ledger ?? null,
     pending_bills: raw.pending_bills ?? null,
     pending_month_summary: Boolean(raw.pending_month_summary),

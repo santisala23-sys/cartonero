@@ -191,7 +191,7 @@ export function MonthSummaryPanel({
       ) : null}
 
       <button type="button" className="advance-btn mt-8 w-full" onClick={onContinue}>
-        Seguir
+        {state.game_over ? "Ver el final" : "Seguir"}
       </button>
     </div>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { AdvanceMonthButton } from "@/components/AdvanceMonthButton";
 import { BillsPanel } from "@/components/BillsPanel";
 import { EventCard } from "@/components/EventCard";
@@ -8,6 +8,7 @@ import { JobPanel } from "@/components/JobPanel";
 import { MoneyDisplay } from "@/components/MoneyDisplay";
 import { MonthSummaryPanel } from "@/components/MonthSummaryPanel";
 import { SkillsPanel } from "@/components/SkillsPanel";
+import { StartScreen } from "@/components/StartScreen";
 import { StatusBar } from "@/components/StatusBar";
 import { getActiveEvent } from "@/lib/game-engine";
 import { useGameStore } from "@/lib/store";
@@ -24,15 +25,40 @@ export function GameShell() {
   const enroll = useGameStore((s) => s.enroll);
   const reset = useGameStore((s) => s.reset);
 
+  const [showTitle, setShowTitle] = useState(true);
+
   useEffect(() => {
     hydrate();
   }, [hydrate]);
 
   if (!hydrated) {
     return (
-      <div className="flex min-h-dvh items-center justify-center text-stone-500">
-        Cargando partida…
+      <div className="flex min-h-dvh items-center justify-center bg-[#2a241c] text-[#a89880]">
+        Cargando…
       </div>
+    );
+  }
+
+  const hasSave =
+    state.mes > 1 ||
+    state.dinero > 0 ||
+    state.deuda > 0 ||
+    state.credenciales.length > 0 ||
+    state.acv_count > 0 ||
+    Boolean(state.active_event_id) ||
+    Boolean(state.pending_bills) ||
+    state.game_over;
+
+  if (showTitle) {
+    return (
+      <StartScreen
+        hasSave={hasSave}
+        onStart={() => setShowTitle(false)}
+        onNewGame={() => {
+          reset();
+          setShowTitle(false);
+        }}
+      />
     );
   }
 
@@ -51,7 +77,7 @@ export function GameShell() {
             Cartonero
           </p>
           <p className="mt-1 max-w-md text-sm text-stone-600">
-            Simulador de vida. Arrancás abajo. El mes no perdona.
+            del barro a la Rosada. El mes no perdona.
           </p>
         </header>
 
@@ -68,15 +94,7 @@ export function GameShell() {
         </div>
 
         <main className="flex flex-1 flex-col justify-center py-4">
-          {state.game_over ? (
-            <div className="mx-auto max-w-xl text-center">
-              <h2 className="font-display text-3xl text-red-800">Fin del camino</h2>
-              <p className="mt-3 text-stone-700">{state.game_over_reason}</p>
-              <button type="button" className="advance-btn mt-8" onClick={reset}>
-                Empezar de nuevo
-              </button>
-            </div>
-          ) : payingBills ? (
+          {payingBills ? (
             <BillsPanel
               key={`bills-${state.mes}`}
               state={state}
@@ -88,6 +106,37 @@ export function GameShell() {
               state={state}
               onContinue={dismissSummary}
             />
+          ) : state.game_over ? (
+            <div className="mx-auto max-w-xl text-center">
+              <h2
+                className={`font-display text-3xl ${
+                  state.game_over_kind === "victoria"
+                    ? "text-teal-900"
+                    : "text-red-800"
+                }`}
+              >
+                {state.game_over_kind === "victoria"
+                  ? "Lo lograste"
+                  : "Fin del camino"}
+              </h2>
+              <p className="mt-3 text-stone-700">{state.game_over_reason}</p>
+              <p className="mt-2 font-mono text-xs text-stone-500">
+                Mes {state.mes}
+                {state.acv_count > 0
+                  ? ` · ACVs sobrevividos: ${state.acv_count}`
+                  : null}
+              </p>
+              <button
+                type="button"
+                className="advance-btn mt-8"
+                onClick={() => {
+                  reset();
+                  setShowTitle(true);
+                }}
+              >
+                Empezar de nuevo
+              </button>
+            </div>
           ) : activeEvent ? (
             <EventCard
               event={activeEvent}
@@ -134,7 +183,10 @@ export function GameShell() {
             />
             <button
               type="button"
-              onClick={reset}
+              onClick={() => {
+                reset();
+                setShowTitle(true);
+              }}
               className="mt-4 text-xs text-stone-400 underline-offset-2 hover:text-stone-600 hover:underline"
             >
               Reiniciar partida

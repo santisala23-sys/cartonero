@@ -5,7 +5,11 @@ import {
   isStudying,
   meetsCredentialRequirements,
 } from "@/lib/credentials";
-import { applyDebtInterest, isCobranzaEvent } from "@/lib/debt";
+import {
+  applyDebtInterest,
+  isCobranzaEvent,
+} from "@/lib/debt";
+import { tickBodyLimits } from "@/lib/endings";
 import {
   applyEffects,
   applyMoneySpend,
@@ -46,6 +50,10 @@ export function createInitialState(): PlayerState {
     active_event_id: null,
     game_over: false,
     game_over_reason: null,
+    game_over_kind: null,
+    meses_estres_al_tope: 0,
+    acv_count: 0,
+    meses_bienestar_roto: 0,
     pending_bills: null,
     pending_month_summary: false,
     last_month_ledger: null,
@@ -273,13 +281,17 @@ export function resolveBills(
     pending_month_summary: true,
   };
 
+  // Stress streak → ACV hospital week; 4th stroke kills.
+  const body = tickBodyLimits(next);
+  next = body.state;
+
   next = clampMetrics(next);
   return checkGameOver(next);
 }
 
 /** Close the month résumé and roll the random event. */
 export function dismissMonthSummary(state: PlayerState): PlayerState {
-  if (state.game_over || !state.pending_month_summary) {
+  if (!state.pending_month_summary) {
     return state;
   }
 
@@ -287,6 +299,11 @@ export function dismissMonthSummary(state: PlayerState): PlayerState {
     ...state,
     pending_month_summary: false,
   };
+
+  next = checkGameOver(next);
+  if (next.game_over) {
+    return next;
+  }
 
   const event = pickEventForState(next);
   if (event) {
@@ -341,11 +358,11 @@ export function changeJob(state: PlayerState, jobId: string): PlayerState {
     ? state.flags
     : [...state.flags, `worked_${job.id}`];
 
-  return {
+  return checkGameOver({
     ...state,
     trabajo_actual: jobToTrabajoActual(job),
     flags,
-  };
+  });
 }
 
 export function getActiveEvent(state: PlayerState): GameEvent | null {

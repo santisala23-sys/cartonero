@@ -15,9 +15,13 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: "Cartonero",
+  title: "Cartonero — del barro a la Rosada",
   description:
-    "Simulador de vida en texto y tarjetas. Ascendé desde la base de la pirámide social argentina.",
+    "Simulador de vida. Arrancás abajo. El mes no perdona. ¿Hasta la Rosada?",
+  icons: {
+    icon: [{ url: "/favicon.png", type: "image/png" }],
+    apple: [{ url: "/favicon.png" }],
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
