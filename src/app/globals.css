@@ -1,26 +1,133 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #c5cad0;
+  --foreground: #14181d;
+  --surface: rgba(236, 239, 242, 0.82);
+  --accent: #1f6f5b;
+  --accent-dark: #185647;
+  --ink: #14181d;
+  --muted: #5c6570;
+  --danger: #c23030;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), "Segoe UI", sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-display), Georgia, serif;
+}
+
+.game-shell {
+  background:
+    radial-gradient(ellipse 80% 55% at 0% 0%, rgba(31, 111, 91, 0.16), transparent 55%),
+    radial-gradient(ellipse 60% 45% at 100% 10%, rgba(20, 24, 29, 0.1), transparent 50%),
+    linear-gradient(168deg, #d5dae0 0%, #b8c0c8 52%, #9aa3ad 100%);
+}
+
+.noise-overlay {
+  opacity: 0.28;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.45'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  mix-blend-mode: multiply;
+}
+
+.event-card {
+  border-left: 3px solid var(--accent);
+  background: var(--surface);
+  padding: 1.5rem 1.35rem 1.6rem;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 12px 40px rgba(20, 24, 29, 0.1);
+}
+
+@media (min-width: 640px) {
+  .event-card {
+    padding: 2rem 2rem 1.85rem;
+  }
+}
+
+.option-btn {
+  border: 1px solid rgba(20, 24, 29, 0.16);
+  background: rgba(255, 255, 255, 0.55);
+  padding: 0.85rem 1rem;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  color: var(--ink);
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    transform 120ms ease;
+}
+
+.option-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(31, 111, 91, 0.5);
+  transform: translateY(-1px);
+}
+
+.option-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.advance-btn {
+  min-width: 12rem;
+  border: none;
+  background: var(--ink);
+  color: #f4f6f7;
+  padding: 0.95rem 1.75rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition:
+    background 160ms ease,
+    transform 120ms ease;
+}
+
+.advance-btn:hover:not(:disabled) {
+  background: var(--accent-dark);
+  transform: translateY(-1px);
+}
+
+.advance-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.job-btn {
+  border: 1px solid rgba(20, 24, 29, 0.1);
+  background: rgba(255, 255, 255, 0.35);
+  padding: 0.7rem 0.85rem;
+  transition: background 140ms ease, border-color 140ms ease;
+}
+
+.job-btn:hover {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(20, 24, 29, 0.22);
+}
+
+.animate-in {
+  animation: rise 420ms ease-out both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

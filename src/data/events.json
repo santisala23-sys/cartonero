@@ -1,0 +1,2414 @@
+[
+  {
+    "id": "tragedia_barrio",
+    "titulo": "Tragedia en el barrio",
+    "texto": "Mataron a tu mejor amigo por una deuda que en realidad era tuya. Vienen por vos.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "pagar_todo",
+        "label": "Pagar con todo tu dinero",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -999999999 },
+          { "type": "delta", "metric": "estres", "amount": 15 },
+          { "type": "delta", "metric": "bienestar", "amount": -20 }
+        ]
+      },
+      {
+        "id": "escapar",
+        "label": "Escapar y perder todo tu capital social",
+        "efectos": [
+          { "type": "set_metric", "metric": "capital_social", "value": 0 },
+          { "type": "delta", "metric": "estres", "amount": 25 },
+          { "type": "delta", "metric": "bienestar", "amount": -15 }
+        ]
+      },
+      {
+        "id": "enfrentar",
+        "label": "Enfrentarlos y perder mucha salud",
+        "efectos": [
+          { "type": "delta", "metric": "salud", "amount": -45 },
+          { "type": "delta", "metric": "estres", "amount": 20 },
+          { "type": "delta", "metric": "capital_social", "amount": 5 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "burnout_inminente",
+    "titulo": "Burnout Inminente",
+    "texto": "No das más. Sentís una presión en el pecho y no podés dormir.",
+    "peso": 22,
+    "condiciones": [{ "type": "metric_gt", "metric": "estres", "value": 80 }],
+    "opciones": [
+      {
+        "id": "meditacion",
+        "label": "Taller de meditación neuroacústica (8 Hz)",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -80000 },
+          { "type": "delta", "metric": "estres", "amount": -50 },
+          { "type": "delta", "metric": "bienestar", "amount": 25 }
+        ]
+      },
+      {
+        "id": "helado_series",
+        "label": "Cuarto de helado y series",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -8000 },
+          { "type": "delta", "metric": "estres", "amount": -10 },
+          { "type": "delta", "metric": "bienestar", "amount": 5 }
+        ]
+      },
+      {
+        "id": "seguir_adelante",
+        "label": "Seguir dándole para adelante",
+        "efectos": [
+          {
+            "type": "risk",
+            "chance": 0.55,
+            "effects": [
+              { "type": "delta", "metric": "salud", "amount": -35 },
+              { "type": "delta", "metric": "estres", "amount": 10 }
+            ]
+          },
+          { "type": "delta", "metric": "salud", "amount": -10 },
+          { "type": "delta", "metric": "estres", "amount": 8 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "oportunidad_inversion_canos",
+    "titulo": "Oportunidad de Inversión",
+    "texto": "Tenés que renovar los caños del baño de tu departamento. Podés hacerlo vos mismo o pagarle a un plomero.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "hacerlo_vos",
+        "label": "Hacerlo vos",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -15000 },
+          { "type": "delta", "metric": "estres", "amount": 30 },
+          { "type": "remove_flag", "value": "canos_rotos" },
+          { "type": "add_flag", "value": "canos_arreglados" }
+        ]
+      },
+      {
+        "id": "plomero",
+        "label": "Pagarle a un profesional",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -90000 },
+          { "type": "delta", "metric": "bienestar", "amount": 10 },
+          { "type": "remove_flag", "value": "canos_rotos" },
+          { "type": "add_flag", "value": "canos_arreglados" }
+        ]
+      },
+      {
+        "id": "dejarlo",
+        "label": "Dejarlo así",
+        "efectos": [
+          { "type": "add_flag", "value": "canos_rotos" },
+          { "type": "delta", "metric": "bienestar", "amount": -8 },
+          { "type": "delta", "metric": "estres", "amount": 5 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "corrupcion_politica",
+    "titulo": "Corrupción Política",
+    "texto": "Un empresario te ofrece financiar tu campaña si le perdonas una deuda municipal.",
+    "peso": 18,
+    "condiciones": [{ "type": "job_tag", "value": "politico" }],
+    "opciones": [
+      {
+        "id": "aceptar",
+        "label": "Aceptar el trato",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": 500000 },
+          { "type": "delta", "metric": "capital_social", "amount": 15 },
+          { "type": "delta", "metric": "bienestar", "amount": -20 },
+          { "type": "add_flag", "value": "deuda_perdonada" },
+          { "type": "delta", "metric": "estres", "amount": 12 }
+        ]
+      },
+      {
+        "id": "rechazar",
+        "label": "Rechazar y bancártela solo",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": 8 },
+          { "type": "delta", "metric": "bienestar", "amount": 10 },
+          { "type": "delta", "metric": "dinero", "amount": -50000 },
+          { "type": "delta", "metric": "estres", "amount": 8 }
+        ]
+      },
+      {
+        "id": "denunciar",
+        "label": "Denunciar y filtrar a la prensa",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": -10 },
+          { "type": "delta", "metric": "estres", "amount": 20 },
+          { "type": "delta", "metric": "bienestar", "amount": 5 },
+          { "type": "add_flag", "value": "enemigo_empresario" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "el_cursito",
+    "titulo": "El Cursito",
+    "texto": "Ves una publicidad para aprender a hacer automatizaciones con n8n y bases de datos.",
+    "peso": 12,
+    "condiciones": [{ "type": "missing_credential", "value": "curso_n8n" }],
+    "opciones": [
+      {
+        "id": "comprar",
+        "label": "Comprarlo",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -45000 },
+          { "type": "add_credential", "value": "curso_n8n" },
+          { "type": "delta", "metric": "bienestar", "amount": 8 },
+          { "type": "delta", "metric": "estres", "amount": 5 }
+        ]
+      },
+      {
+        "id": "ignorar",
+        "label": "Ignorarlo",
+        "efectos": [{ "type": "delta", "metric": "bienestar", "amount": -2 }]
+      },
+      {
+        "id": "seguir_scrolleando",
+        "label": "Seguir scrolleando",
+        "efectos": []
+      }
+    ]
+  },
+  {
+    "id": "inflacion_almacen",
+    "titulo": "El almacén te mira raro",
+    "texto": "Fuiste a comprar fideos y el precio cambió dos veces mientras estabas en la fila. El almacenero te dice 'es lo que hay'.",
+    "peso": 14,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "comprar_igual",
+        "label": "Comprar igual y bancarte el golpe",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -22000 },
+          { "type": "delta", "metric": "bienestar", "amount": 5 },
+          { "type": "delta", "metric": "estres", "amount": 8 }
+        ]
+      },
+      {
+        "id": "solo_arroz",
+        "label": "Llevar solo arroz y mate",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -6000 },
+          { "type": "delta", "metric": "salud", "amount": -5 },
+          { "type": "delta", "metric": "bienestar", "amount": -6 }
+        ]
+      },
+      {
+        "id": "fiado",
+        "label": "Pedir fiado y prometer 'la semana que viene'",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": -8 },
+          { "type": "delta", "metric": "estres", "amount": 12 },
+          { "type": "add_flag", "value": "deuda_almacen" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "corte_luz",
+    "titulo": "Corte de luz de 14 horas",
+    "texto": "Se fue la luz a las 11 de la mañana. La heladera llora, el celular está al 12% y el vecino prende el generador como si fuera un show.",
+    "peso": 12,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "generador_alquiler",
+        "label": "Alquilar un generador al cuñado del consorcio",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -35000 },
+          { "type": "delta", "metric": "estres", "amount": -10 },
+          { "type": "delta", "metric": "bienestar", "amount": 8 }
+        ]
+      },
+      {
+        "id": "ir_plaza",
+        "label": "Ir a la plaza a cargar el celu y socializar",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": 10 },
+          { "type": "delta", "metric": "estres", "amount": -5 },
+          { "type": "delta", "metric": "dinero", "amount": -2000 }
+        ]
+      },
+      {
+        "id": "aguantar_oscuridad",
+        "label": "Aguantar en la oscuridad y podrirse la comida",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -12000 },
+          { "type": "delta", "metric": "bienestar", "amount": -15 },
+          { "type": "delta", "metric": "estres", "amount": 18 },
+          { "type": "delta", "metric": "salud", "amount": -5 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "asamblea_consorcio",
+    "titulo": "Asamblea de consorcio",
+    "texto": "Proponen subir las expensas 'por la inflación' y pintar la fachada del color de un yate. Alguien menciona 'fondo de reserva' como si fuera magia.",
+    "peso": 9,
+    "condiciones": [{ "type": "dinero_gte", "value": 40000 }],
+    "opciones": [
+      {
+        "id": "pagar_sin_chistar",
+        "label": "Pagar y no pelear",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -55000 },
+          { "type": "delta", "metric": "estres", "amount": 5 },
+          { "type": "delta", "metric": "capital_social", "amount": 5 }
+        ]
+      },
+      {
+        "id": "armar_quilombo",
+        "label": "Armar quilombo con planilla de Excel",
+        "efectos": [
+          { "type": "delta", "metric": "estres", "amount": 20 },
+          { "type": "delta", "metric": "capital_social", "amount": 12 },
+          { "type": "delta", "metric": "bienestar", "amount": -8 }
+        ]
+      },
+      {
+        "id": "no_ir",
+        "label": "No ir y que te cobren igual",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -55000 },
+          { "type": "delta", "metric": "capital_social", "amount": -6 },
+          { "type": "delta", "metric": "bienestar", "amount": -4 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "gripe_barata",
+    "titulo": "Gripe de pobre",
+    "texto": "Te despertás con 38 de fiebre, el cuerpo hecho bolsa y un turno en el hospital público para 'dentro de tres semanas'.",
+    "peso": 11,
+    "condiciones": [{ "type": "metric_lt", "metric": "salud", "value": 70 }],
+    "opciones": [
+      {
+        "id": "particular",
+        "label": "Ir a una clínica particular",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -70000 },
+          { "type": "delta", "metric": "salud", "amount": 25 },
+          { "type": "delta", "metric": "estres", "amount": -8 }
+        ]
+      },
+      {
+        "id": "farmacia",
+        "label": "Automedicarte en la farmacia",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -15000 },
+          { "type": "delta", "metric": "salud", "amount": 10 },
+          {
+            "type": "risk",
+            "chance": 0.3,
+            "effects": [{ "type": "delta", "metric": "salud", "amount": -15 }]
+          }
+        ]
+      },
+      {
+        "id": "laburar_igual",
+        "label": "Laburar igual 'porque si no, no como'",
+        "efectos": [
+          { "type": "delta", "metric": "salud", "amount": -20 },
+          { "type": "delta", "metric": "estres", "amount": 15 },
+          { "type": "delta", "metric": "dinero", "amount": 10000 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "reunion_familiar",
+    "titulo": "El asado del domingo",
+    "texto": "Tu familia te invita. Si no vas, sos un malagradecido. Si vas, te preguntan por el laburo, la pareja y por qué no comprás dólares.",
+    "peso": 11,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "llevar_vino",
+        "label": "Ir y llevar un vino decente",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -18000 },
+          { "type": "delta", "metric": "capital_social", "amount": 12 },
+          { "type": "delta", "metric": "bienestar", "amount": 10 },
+          { "type": "delta", "metric": "estres", "amount": 5 }
+        ]
+      },
+      {
+        "id": "ir_vacio",
+        "label": "Ir con las manos vacías y bancarte el chisme",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": 4 },
+          { "type": "delta", "metric": "estres", "amount": 12 },
+          { "type": "delta", "metric": "bienestar", "amount": 3 }
+        ]
+      },
+      {
+        "id": "inventar_excusa",
+        "label": "Inventar que estás enfermo",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": -10 },
+          { "type": "delta", "metric": "bienestar", "amount": -5 },
+          { "type": "delta", "metric": "estres", "amount": -5 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "control_afip_fantasma",
+    "titulo": "WhatsApp de 'AFIP'",
+    "texto": "Te llega un mensaje: 'Detectamos irregularidades. Pagá este link o embargamos tu CBU'. Tu tía ya reenvió el mismo texto a 40 grupos.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "caer_estafa",
+        "label": "Entrar al link 'por las dudas'",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -80000 },
+          { "type": "delta", "metric": "estres", "amount": 25 },
+          { "type": "delta", "metric": "bienestar", "amount": -15 },
+          { "type": "add_flag", "value": "estafado_whatsapp" }
+        ]
+      },
+      {
+        "id": "bloquear",
+        "label": "Bloquear y seguir con tu vida",
+        "efectos": [
+          { "type": "delta", "metric": "estres", "amount": -3 },
+          { "type": "delta", "metric": "bienestar", "amount": 2 }
+        ]
+      },
+      {
+        "id": "avisar_familia",
+        "label": "Avisar a toda la familia en el grupo",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": 8 },
+          { "type": "delta", "metric": "bienestar", "amount": 5 },
+          { "type": "delta", "metric": "estres", "amount": 4 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "lluvia_carton",
+    "titulo": "Lluvia sobre el carrito",
+    "texto": "Arranca a diluviar justo cuando ibas bien de cartón. El carrito se hace pesado, el cartón se pudre y un colectivo te salpica entero.",
+    "peso": 14,
+    "condiciones": [{ "type": "job_id", "value": "cartonero" }],
+    "opciones": [
+      {
+        "id": "seguir_mojado",
+        "label": "Seguir igual, plata es plata",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": 8000 },
+          { "type": "delta", "metric": "salud", "amount": -12 },
+          { "type": "delta", "metric": "estres", "amount": 15 }
+        ]
+      },
+      {
+        "id": "buscar_techo",
+        "label": "Meterte bajo un techo y esperar",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -5000 },
+          { "type": "delta", "metric": "estres", "amount": 5 },
+          { "type": "delta", "metric": "bienestar", "amount": -4 }
+        ]
+      },
+      {
+        "id": "vender_mojado",
+        "label": "Vender el cartón mojado a mitad de precio",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": 12000 },
+          { "type": "delta", "metric": "capital_social", "amount": -3 },
+          { "type": "delta", "metric": "estres", "amount": 8 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "galpon_robo",
+    "titulo": "Robo en el galpón",
+    "texto": "Entraron de noche. Falta cobre, falta una balanza y alguien dejó una zapatilla como firma. Los muchachos te miran esperando órdenes.",
+    "peso": 13,
+    "condiciones": [{ "type": "job_id", "value": "encargado_galpon" }],
+    "opciones": [
+      {
+        "id": "reponer",
+        "label": "Reponer de tu bolsillo y callar",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -120000 },
+          { "type": "delta", "metric": "capital_social", "amount": 10 },
+          { "type": "delta", "metric": "estres", "amount": 10 }
+        ]
+      },
+      {
+        "id": "echar_sospechosos",
+        "label": "Echar a dos por sospecha",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": -15 },
+          { "type": "delta", "metric": "estres", "amount": 18 },
+          { "type": "delta", "metric": "bienestar", "amount": -8 }
+        ]
+      },
+      {
+        "id": "denuncia_policial",
+        "label": "Hacer la denuncia y comprar un candado nuevo",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -25000 },
+          { "type": "delta", "metric": "estres", "amount": 12 },
+          { "type": "delta", "metric": "capital_social", "amount": 5 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ticket_imposible",
+    "titulo": "Ticket imposible",
+    "texto": "Un usuario jura que 'ayer andaba'. El ticket dice 'urgente'. El VPN no conecta y tu jefe pregunta en el canal general si 'ya está'.",
+    "peso": 13,
+    "condiciones": [{ "type": "job_tag", "value": "tech" }],
+    "opciones": [
+      {
+        "id": "hacer_hora_extra",
+        "label": "Quedarte hasta las 11 arreglándolo",
+        "efectos": [
+          { "type": "delta", "metric": "estres", "amount": 20 },
+          { "type": "delta", "metric": "capital_social", "amount": 8 },
+          { "type": "delta", "metric": "salud", "amount": -8 },
+          { "type": "delta", "metric": "dinero", "amount": 25000 }
+        ]
+      },
+      {
+        "id": "escalar",
+        "label": "Escalarlo y documentar que no era tu culpa",
+        "efectos": [
+          { "type": "delta", "metric": "estres", "amount": 8 },
+          { "type": "delta", "metric": "capital_social", "amount": -5 },
+          { "type": "delta", "metric": "bienestar", "amount": 4 }
+        ]
+      },
+      {
+        "id": "reiniciar_todo",
+        "label": "Reiniciar todo y rezar",
+        "efectos": [
+          {
+            "type": "risk",
+            "chance": 0.4,
+            "effects": [
+              { "type": "delta", "metric": "capital_social", "amount": -12 },
+              { "type": "delta", "metric": "estres", "amount": 15 }
+            ]
+          },
+          { "type": "delta", "metric": "estres", "amount": 5 },
+          { "type": "delta", "metric": "bienestar", "amount": -3 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "olla_popular",
+    "titulo": "Olla popular",
+    "texto": "El barrio organiza una olla. Falta aceite, falta alguien que corte cebolla y sobran opiniones políticas.",
+    "peso": 12,
+    "condiciones": [{ "type": "job_tag", "value": "politico" }],
+    "opciones": [
+      {
+        "id": "poner_plata",
+        "label": "Poner plata de tu campaña",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -60000 },
+          { "type": "delta", "metric": "capital_social", "amount": 18 },
+          { "type": "delta", "metric": "bienestar", "amount": 8 }
+        ]
+      },
+      {
+        "id": "poner_el_cuerpo",
+        "label": "Ir a cocinar y servir",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": 14 },
+          { "type": "delta", "metric": "estres", "amount": 10 },
+          { "type": "delta", "metric": "salud", "amount": -5 },
+          { "type": "delta", "metric": "bienestar", "amount": 12 }
+        ]
+      },
+      {
+        "id": "mandar_foto",
+        "label": "Mandar una caja y pedirle a alguien que suba fotos",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -20000 },
+          { "type": "delta", "metric": "capital_social", "amount": 4 },
+          { "type": "delta", "metric": "bienestar", "amount": -6 },
+          { "type": "add_flag", "value": "militancia_de_foto" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "oferta_dolares",
+    "titulo": "El amigo con dólares",
+    "texto": "Un conocido te ofrece 'blue' a un precio 'de amigo'. Dice que mañana sube. Siempre dice que mañana sube.",
+    "peso": 10,
+    "condiciones": [{ "type": "dinero_gte", "value": 100000 }],
+    "opciones": [
+      {
+        "id": "comprar_blue",
+        "label": "Comprar todo lo que puedas",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -100000 },
+          {
+            "type": "risk",
+            "chance": 0.55,
+            "effects": [{ "type": "delta", "metric": "dinero", "amount": 180000 }]
+          },
+          { "type": "delta", "metric": "estres", "amount": 10 }
+        ]
+      },
+      {
+        "id": "comprar_poco",
+        "label": "Comprar una banda chica",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -40000 },
+          { "type": "delta", "metric": "estres", "amount": 4 },
+          { "type": "delta", "metric": "bienestar", "amount": 3 }
+        ]
+      },
+      {
+        "id": "pasar",
+        "label": "Pasar y quedarte en pesos",
+        "efectos": [
+          { "type": "delta", "metric": "bienestar", "amount": -4 },
+          { "type": "delta", "metric": "estres", "amount": 6 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "noche_de_birra",
+    "titulo": "Una birra que se transforma en siete",
+    "texto": "Salís 'un rato'. Termina en karaoke desafinado, un Uber caro y un audio de 3 minutos a tu ex a las 3 AM.",
+    "peso": 9,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir_full",
+        "label": "Bancarte la noche completa",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -45000 },
+          { "type": "delta", "metric": "bienestar", "amount": 15 },
+          { "type": "delta", "metric": "salud", "amount": -12 },
+          { "type": "delta", "metric": "estres", "amount": -10 },
+          { "type": "delta", "metric": "capital_social", "amount": 6 }
+        ]
+      },
+      {
+        "id": "dos_birras",
+        "label": "Tomarte dos y volverte temprano",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -12000 },
+          { "type": "delta", "metric": "bienestar", "amount": 8 },
+          { "type": "delta", "metric": "estres", "amount": -6 }
+        ]
+      },
+      {
+        "id": "quedarte_casa",
+        "label": "Cancelar y mirar el techo",
+        "efectos": [
+          { "type": "delta", "metric": "bienestar", "amount": -8 },
+          { "type": "delta", "metric": "estres", "amount": 5 },
+          { "type": "delta", "metric": "capital_social", "amount": -4 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "entrevista_inesperada",
+    "titulo": "Llamado de RR.HH.",
+    "texto": "Una agencia te escribe por LinkedIn. El sueldo 'es competitivo'. La entrevista es mañana a las 8 y pedís permiso en tu laburo actual.",
+    "peso": 8,
+    "condiciones": [
+      { "type": "missing_flag", "value": "entrevista_tech_hecha" },
+      { "type": "dinero_gte", "value": 30000 }
+    ],
+    "opciones": [
+      {
+        "id": "prepararte",
+        "label": "Comprar un café, estudiar y presentarte",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -5000 },
+          { "type": "delta", "metric": "estres", "amount": 10 },
+          { "type": "delta", "metric": "capital_social", "amount": 8 },
+          { "type": "add_flag", "value": "entrevista_tech_hecha" },
+          { "type": "add_flag", "value": "worked_soporte_it" }
+        ]
+      },
+      {
+        "id": "mentir_cv",
+        "label": "Inflar el CV y rezar",
+        "efectos": [
+          { "type": "delta", "metric": "estres", "amount": 15 },
+          {
+            "type": "risk",
+            "chance": 0.45,
+            "effects": [
+              { "type": "add_flag", "value": "worked_soporte_it" },
+              { "type": "delta", "metric": "capital_social", "amount": 10 }
+            ]
+          },
+          {
+            "type": "risk",
+            "chance": 0.55,
+            "effects": [
+              { "type": "delta", "metric": "capital_social", "amount": -8 },
+              { "type": "delta", "metric": "bienestar", "amount": -10 }
+            ]
+          },
+          { "type": "add_flag", "value": "entrevista_tech_hecha" }
+        ]
+      },
+      {
+        "id": "ghostear",
+        "label": "Ghostearlos",
+        "efectos": [
+          { "type": "delta", "metric": "bienestar", "amount": -3 },
+          { "type": "add_flag", "value": "entrevista_tech_hecha" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "protesta_esquina",
+    "titulo": "Corte en la avenida",
+    "texto": "Hay protesta. No pasa el bondi, no pasa el auto, y un chabón con un parlante te ofrece un panfleto sobre 'la patria'.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "sumarte",
+        "label": "Sumarte un rato y charlar",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": 10 },
+          { "type": "delta", "metric": "estres", "amount": 6 },
+          { "type": "add_flag", "value": "worked_militante_barrial" },
+          { "type": "delta", "metric": "bienestar", "amount": 4 }
+        ]
+      },
+      {
+        "id": "dar_vuelta",
+        "label": "Dar la vuelta caminando una hora",
+        "efectos": [
+          { "type": "delta", "metric": "salud", "amount": 5 },
+          { "type": "delta", "metric": "estres", "amount": 10 },
+          { "type": "delta", "metric": "dinero", "amount": -3000 }
+        ]
+      },
+      {
+        "id": "puteada_silenciosa",
+        "label": "Puteada silenciosa y quedarte trabado",
+        "efectos": [
+          { "type": "delta", "metric": "estres", "amount": 14 },
+          { "type": "delta", "metric": "bienestar", "amount": -8 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dental_urgencia",
+    "titulo": "Muela asesina",
+    "texto": "Una muela te despierta a las 4 AM. El dolor es político: no respeta ideología ni sueldo.",
+    "peso": 9,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "dentista_ya",
+        "label": "Dentista de urgencia",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -95000 },
+          { "type": "delta", "metric": "salud", "amount": 20 },
+          { "type": "delta", "metric": "estres", "amount": -15 },
+          { "type": "delta", "metric": "bienestar", "amount": 10 }
+        ]
+      },
+      {
+        "id": "ibuprofeno",
+        "label": "Ibuprofeno y aguantar",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -4000 },
+          { "type": "delta", "metric": "salud", "amount": -10 },
+          { "type": "delta", "metric": "estres", "amount": 18 },
+          { "type": "delta", "metric": "bienestar", "amount": -12 }
+        ]
+      },
+      {
+        "id": "facultad_odontologia",
+        "label": "Ir a la facultad de odontología",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -10000 },
+          { "type": "delta", "metric": "salud", "amount": 12 },
+          { "type": "delta", "metric": "estres", "amount": 10 },
+          { "type": "delta", "metric": "bienestar", "amount": -5 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "colectivo_lleno",
+    "titulo": "El 60 no para",
+    "texto": "El colectivo viene a tope. El chofer mira para el costado. Llegás tarde o te jugás el pecho contra la puerta.",
+    "peso": 11,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "empujar",
+        "label": "Empujar y entrar igual",
+        "efectos": [
+          { "type": "delta", "metric": "estres", "amount": 12 },
+          { "type": "delta", "metric": "salud", "amount": -4 },
+          { "type": "delta", "metric": "dinero", "amount": -800 }
+        ]
+      },
+      {
+        "id": "uber",
+        "label": "Pedir un Uber resignado",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -18000 },
+          { "type": "delta", "metric": "estres", "amount": -5 },
+          { "type": "delta", "metric": "bienestar", "amount": 4 }
+        ]
+      },
+      {
+        "id": "caminar",
+        "label": "Caminar 40 cuadras",
+        "efectos": [
+          { "type": "delta", "metric": "salud", "amount": 6 },
+          { "type": "delta", "metric": "estres", "amount": 10 },
+          { "type": "delta", "metric": "bienestar", "amount": -6 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "perro_callejero",
+    "titulo": "Un perro te elige",
+    "texto": "Un mestizo flaco te sigue tres cuadras. Te mira como si firmaras un contrato. No tenés plata, pero tenés corazón (por ahora).",
+    "peso": 9,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "adoptar",
+        "label": "Adoptarlo",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -25000 },
+          { "type": "delta", "metric": "bienestar", "amount": 18 },
+          { "type": "delta", "metric": "estres", "amount": 8 },
+          { "type": "add_flag", "value": "tiene_perro" }
+        ]
+      },
+      {
+        "id": "darle_comida",
+        "label": "Comprarle un kilo de comida y seguir",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -7000 },
+          { "type": "delta", "metric": "bienestar", "amount": 6 },
+          { "type": "delta", "metric": "capital_social", "amount": 3 }
+        ]
+      },
+      {
+        "id": "ignorar_perro",
+        "label": "Ignorarlo y sentir culpa",
+        "efectos": [
+          { "type": "delta", "metric": "bienestar", "amount": -10 },
+          { "type": "delta", "metric": "estres", "amount": 5 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ex_en_instagram",
+    "titulo": "Stories del ex",
+    "texto": "Subió fotos en la costa con alguien nuevo. El algoritmo te lo sirve con sadismo. Tenés el pulgar encima del like.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "stalkear",
+        "label": "Stalkear tres horas",
+        "efectos": [
+          { "type": "delta", "metric": "estres", "amount": 16 },
+          { "type": "delta", "metric": "bienestar", "amount": -14 },
+          { "type": "delta", "metric": "salud", "amount": -3 }
+        ]
+      },
+      {
+        "id": "bloquear_ex",
+        "label": "Bloquear y salir a caminar",
+        "efectos": [
+          { "type": "delta", "metric": "bienestar", "amount": 8 },
+          { "type": "delta", "metric": "estres", "amount": -8 },
+          { "type": "delta", "metric": "salud", "amount": 3 }
+        ]
+      },
+      {
+        "id": "mensaje_borracho",
+        "label": "Mandar un audio a las 2 AM",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": -12 },
+          { "type": "delta", "metric": "bienestar", "amount": -10 },
+          { "type": "delta", "metric": "estres", "amount": 20 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "prepagas_suben",
+    "titulo": "La prepaga aumentó otra vez",
+    "texto": "Te llega el mail: 'ajuste por inflación'. El número duele más que la gripe que no te atienden.",
+    "peso": 10,
+    "condiciones": [{ "type": "dinero_gte", "value": 50000 }],
+    "opciones": [
+      {
+        "id": "pagar_prepaga",
+        "label": "Pagar y bufar",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -85000 },
+          { "type": "delta", "metric": "salud", "amount": 5 },
+          { "type": "delta", "metric": "estres", "amount": 8 },
+          { "type": "remove_flag", "value": "sin_prepaga" }
+        ]
+      },
+      {
+        "id": "bajar_plan",
+        "label": "Bajar de plan",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -35000 },
+          { "type": "delta", "metric": "salud", "amount": -5 },
+          { "type": "delta", "metric": "bienestar", "amount": -6 }
+        ]
+      },
+      {
+        "id": "pasar_publico",
+        "label": "Pasarte al sistema público",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": 20000 },
+          { "type": "delta", "metric": "estres", "amount": 12 },
+          { "type": "delta", "metric": "bienestar", "amount": -8 },
+          { "type": "add_flag", "value": "sin_prepaga" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "vecino_obra",
+    "titulo": "El vecino pone cerámica a las 7 AM",
+    "texto": "Amoladora, radio a todo volumen y un 'dale que arrancamos temprano'. Tu sueño se va por el inodoro.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "pelear_vecino",
+        "label": "Bajar a pelear",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": -8 },
+          { "type": "delta", "metric": "estres", "amount": 15 },
+          { "type": "delta", "metric": "bienestar", "amount": -5 }
+        ]
+      },
+      {
+        "id": "tapones",
+        "label": "Comprar tapones y resignarte",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -5000 },
+          { "type": "delta", "metric": "estres", "amount": 6 },
+          { "type": "delta", "metric": "salud", "amount": -4 }
+        ]
+      },
+      {
+        "id": "cafe_vecino",
+        "label": "Invitarlo un café y negociar horarios",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -3000 },
+          { "type": "delta", "metric": "capital_social", "amount": 10 },
+          { "type": "delta", "metric": "estres", "amount": -6 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "feriado_puente",
+    "titulo": "Feriado puente",
+    "texto": "El país se para. Vos no. O sí. Depende si te dan el día o te hacen laburar 'remoto' con Slack en rojo.",
+    "peso": 9,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "escapada",
+        "label": "Escape barato a la costa",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -110000 },
+          { "type": "delta", "metric": "bienestar", "amount": 22 },
+          { "type": "delta", "metric": "estres", "amount": -20 }
+        ]
+      },
+      {
+        "id": "laburar_feriado",
+        "label": "Laburar igual por unas horas extra",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": 40000 },
+          { "type": "delta", "metric": "estres", "amount": 12 },
+          { "type": "delta", "metric": "bienestar", "amount": -10 }
+        ]
+      },
+      {
+        "id": "siesta_patria",
+        "label": "Siesta patriótica en el sillón",
+        "efectos": [
+          { "type": "delta", "metric": "bienestar", "amount": 12 },
+          { "type": "delta", "metric": "estres", "amount": -12 },
+          { "type": "delta", "metric": "salud", "amount": 4 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "celular_roto",
+    "titulo": "El celular se suicida",
+    "texto": "Se te cae al piso de cerámica. La pantalla queda como un mapa de la CABA. Sin WhatsApp sos un fantasma.",
+    "peso": 11,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "pantalla_nueva",
+        "label": "Cambiar la pantalla en el once",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -55000 },
+          { "type": "delta", "metric": "estres", "amount": -8 },
+          { "type": "delta", "metric": "bienestar", "amount": 6 }
+        ]
+      },
+      {
+        "id": "usado_duda",
+        "label": "Comprar un usado dudoso",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -90000 },
+          {
+            "type": "risk",
+            "chance": 0.35,
+            "effects": [
+              { "type": "delta", "metric": "dinero", "amount": -30000 },
+              { "type": "delta", "metric": "estres", "amount": 15 }
+            ]
+          },
+          { "type": "delta", "metric": "bienestar", "amount": 4 }
+        ]
+      },
+      {
+        "id": "vivir_sin",
+        "label": "Vivir una semana sin celular",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": -10 },
+          { "type": "delta", "metric": "estres", "amount": 10 },
+          { "type": "delta", "metric": "bienestar", "amount": 5 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "lluvia_inundacion",
+    "titulo": "Se inunda la cuadra",
+    "texto": "El agua llega a la rodilla. Flotan bolsas, una zapatilla y la dignidad del municipio. Tu casa huele a sótano.",
+    "peso": 9,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "bomba_agua",
+        "label": "Alquilar una bomba de agua",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -40000 },
+          { "type": "delta", "metric": "estres", "amount": 10 },
+          { "type": "delta", "metric": "bienestar", "amount": -5 }
+        ]
+      },
+      {
+        "id": "ayudar_vecinos",
+        "label": "Ayudar a los vecinos con baldes",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": 15 },
+          { "type": "delta", "metric": "salud", "amount": -8 },
+          { "type": "delta", "metric": "estres", "amount": 8 },
+          { "type": "delta", "metric": "bienestar", "amount": 8 }
+        ]
+      },
+      {
+        "id": "subir_cosas",
+        "label": "Subir lo importante al primer piso y esperar",
+        "efectos": [
+          { "type": "delta", "metric": "estres", "amount": 14 },
+          { "type": "delta", "metric": "bienestar", "amount": -10 },
+          { "type": "delta", "metric": "dinero", "amount": -15000 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "boda_obligada",
+    "titulo": "Casamiento de un primo lejano",
+    "texto": "Te invitan. El dress code es 'elegante sport'. El regalo 'sugerido' cuesta más que tu semana de comida.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir_regalo",
+        "label": "Ir con regalo decente",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -75000 },
+          { "type": "delta", "metric": "capital_social", "amount": 12 },
+          { "type": "delta", "metric": "bienestar", "amount": 6 },
+          { "type": "delta", "metric": "estres", "amount": 6 }
+        ]
+      },
+      {
+        "id": "solo_sobre",
+        "label": "Mandar un sobre y no ir",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -30000 },
+          { "type": "delta", "metric": "capital_social", "amount": -6 },
+          { "type": "delta", "metric": "bienestar", "amount": 2 }
+        ]
+      },
+      {
+        "id": "excusa_laburo",
+        "label": "Inventar que tenés laburo",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": -12 },
+          { "type": "delta", "metric": "estres", "amount": -4 },
+          { "type": "delta", "metric": "bienestar", "amount": -3 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "gym_influencer",
+    "titulo": "Promo de gym con influencer",
+    "texto": "Te ofrecen tres meses a 'precio lanzamiento'. El local huele a ego y proteína. Tu cuerpo pide otra cosa.",
+    "peso": 7,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "anotarte_gym",
+        "label": "Anotarte",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -60000 },
+          { "type": "delta", "metric": "salud", "amount": 12 },
+          { "type": "delta", "metric": "estres", "amount": -8 },
+          { "type": "add_flag", "value": "gym_member" }
+        ]
+      },
+      {
+        "id": "correr_plaza",
+        "label": "Correr gratis en la plaza",
+        "efectos": [
+          { "type": "delta", "metric": "salud", "amount": 8 },
+          { "type": "delta", "metric": "bienestar", "amount": 5 },
+          { "type": "delta", "metric": "estres", "amount": -5 }
+        ]
+      },
+      {
+        "id": "seguir_sofa",
+        "label": "Seguir en el sillón",
+        "efectos": [
+          { "type": "delta", "metric": "salud", "amount": -6 },
+          { "type": "delta", "metric": "bienestar", "amount": -4 },
+          { "type": "delta", "metric": "estres", "amount": 3 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "delivery_propina",
+    "titulo": "El delivery te mira el teléfono",
+    "texto": "La app sugiere propina. El pibe esperó 12 minutos abajo. Vos estás en ojotas calculando el sueldo.",
+    "peso": 10,
+    "condiciones": [{ "type": "dinero_gte", "value": 10000 }],
+    "opciones": [
+      {
+        "id": "propina_generosa",
+        "label": "Dejar propina generosa",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -8000 },
+          { "type": "delta", "metric": "bienestar", "amount": 6 },
+          { "type": "delta", "metric": "capital_social", "amount": 4 }
+        ]
+      },
+      {
+        "id": "propina_minima",
+        "label": "Dejar lo mínimo",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -2000 },
+          { "type": "delta", "metric": "bienestar", "amount": -2 }
+        ]
+      },
+      {
+        "id": "sin_propina",
+        "label": "No dejar nada y sentir el juicio",
+        "efectos": [
+          { "type": "delta", "metric": "bienestar", "amount": -8 },
+          { "type": "delta", "metric": "estres", "amount": 4 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "inspeccion_municipal",
+    "titulo": "Inspección municipal",
+    "texto": "Aparecen dos chalecos naranja. Hablan de habilitaciones, multas y 'arreglarlo amistosamente'.",
+    "peso": 12,
+    "condiciones": [{ "type": "job_id", "value": "encargado_galpon" }],
+    "opciones": [
+      {
+        "id": "coima",
+        "label": "Aceitar la situación",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -150000 },
+          { "type": "delta", "metric": "estres", "amount": 10 },
+          { "type": "delta", "metric": "bienestar", "amount": -12 },
+          { "type": "add_flag", "value": "coima_municipal" }
+        ]
+      },
+      {
+        "id": "pagar_multa",
+        "label": "Pagar la multa en regla",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -200000 },
+          { "type": "delta", "metric": "capital_social", "amount": 5 },
+          { "type": "delta", "metric": "estres", "amount": 8 }
+        ]
+      },
+      {
+        "id": "llamar_concejal",
+        "label": "Llamar a un contacto político",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": -10 },
+          { "type": "delta", "metric": "estres", "amount": 6 },
+          { "type": "add_flag", "value": "favor_politico" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "standup_eterno",
+    "titulo": "Stand-up de 47 minutos",
+    "texto": "Era de 15. El manager pregunta 'quick sync' sobre el quick sync. Tu café se enfría dos veces.",
+    "peso": 12,
+    "condiciones": [{ "type": "job_tag", "value": "tech" }],
+    "opciones": [
+      {
+        "id": "apagar_camara",
+        "label": "Apagar cámara y fingir atención",
+        "efectos": [
+          { "type": "delta", "metric": "estres", "amount": -4 },
+          { "type": "delta", "metric": "bienestar", "amount": 3 },
+          {
+            "type": "risk",
+            "chance": 0.25,
+            "effects": [{ "type": "delta", "metric": "capital_social", "amount": -8 }]
+          }
+        ]
+      },
+      {
+        "id": "hablar_mucho",
+        "label": "Hablar mucho para quedar bien",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": 8 },
+          { "type": "delta", "metric": "estres", "amount": 10 },
+          { "type": "delta", "metric": "bienestar", "amount": -5 }
+        ]
+      },
+      {
+        "id": "proponer_async",
+        "label": "Proponer pasar todo a async",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": 5 },
+          { "type": "delta", "metric": "estres", "amount": 6 },
+          { "type": "delta", "metric": "bienestar", "amount": 4 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "campana_puerta",
+    "titulo": "Puerta a puerta",
+    "texto": "Tenés que golpear departamentos con una lista de vecinos. La mitad no abre. La otra mitad te ofrece mate y te cuenta la vida.",
+    "peso": 13,
+    "condiciones": [{ "type": "job_tag", "value": "politico" }],
+    "opciones": [
+      {
+        "id": "aguantar_mates",
+        "label": "Aguantar mates y escuchar",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": 16 },
+          { "type": "delta", "metric": "estres", "amount": 12 },
+          { "type": "delta", "metric": "salud", "amount": -4 },
+          { "type": "delta", "metric": "bienestar", "amount": 6 }
+        ]
+      },
+      {
+        "id": "volante_rapido",
+        "label": "Dejar volante y salir corriendo",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": 4 },
+          { "type": "delta", "metric": "estres", "amount": 4 },
+          { "type": "delta", "metric": "bienestar", "amount": -3 }
+        ]
+      },
+      {
+        "id": "pagar_pibes",
+        "label": "Pagarle a dos pibes para que lo hagan",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -40000 },
+          { "type": "delta", "metric": "capital_social", "amount": 6 },
+          { "type": "delta", "metric": "bienestar", "amount": -5 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "carton_bueno",
+    "titulo": "Día de oro en la calle",
+    "texto": "Encontrás cartón limpio, una pila de botellas y hasta un microondas que alguien 'no quería más'. Hoy el barrio te sonríe.",
+    "peso": 11,
+    "condiciones": [{ "type": "job_id", "value": "cartonero" }],
+    "opciones": [
+      {
+        "id": "vender_todo",
+        "label": "Vender todo al galpón",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": 35000 },
+          { "type": "delta", "metric": "estres", "amount": 6 },
+          { "type": "delta", "metric": "salud", "amount": -5 }
+        ]
+      },
+      {
+        "id": "guardar_microondas",
+        "label": "Quedarte el microondas",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": 18000 },
+          { "type": "delta", "metric": "bienestar", "amount": 10 },
+          { "type": "delta", "metric": "estres", "amount": 3 }
+        ]
+      },
+      {
+        "id": "compartir_hallazgo",
+        "label": "Compartir el hallazgo con otro cartonero",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": 15000 },
+          { "type": "delta", "metric": "capital_social", "amount": 12 },
+          { "type": "delta", "metric": "bienestar", "amount": 8 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "deuda_almacen_cobra",
+    "titulo": "El almacenero cobra el fiado",
+    "texto": "Te para en la puerta. Sonríe, pero la sonrisa tiene intereses. 'No es por vos, es por el negocio'.",
+    "peso": 16,
+    "condiciones": [{ "type": "has_flag", "value": "deuda_almacen" }],
+    "opciones": [
+      {
+        "id": "pagar_fiado",
+        "label": "Pagar todo el fiado",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -28000 },
+          { "type": "remove_flag", "value": "deuda_almacen" },
+          { "type": "delta", "metric": "capital_social", "amount": 6 },
+          { "type": "delta", "metric": "estres", "amount": -8 }
+        ]
+      },
+      {
+        "id": "pagar_parcial",
+        "label": "Pagar una parte y prometer",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -12000 },
+          { "type": "delta", "metric": "estres", "amount": 8 },
+          { "type": "delta", "metric": "capital_social", "amount": -4 }
+        ]
+      },
+      {
+        "id": "cambiar_almacen",
+        "label": "Cambiar de almacén para siempre",
+        "efectos": [
+          { "type": "remove_flag", "value": "deuda_almacen" },
+          { "type": "delta", "metric": "capital_social", "amount": -12 },
+          { "type": "delta", "metric": "bienestar", "amount": -8 },
+          { "type": "delta", "metric": "estres", "amount": 10 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "perro_veterinario",
+    "titulo": "El perro se enferma",
+    "texto": "No come. Te mira. El veterinario habla de análisis 'para descartar'. Tu cuenta habla de otra cosa.",
+    "peso": 14,
+    "condiciones": [{ "type": "has_flag", "value": "tiene_perro" }],
+    "opciones": [
+      {
+        "id": "vet_completo",
+        "label": "Hacerle todos los estudios",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -120000 },
+          { "type": "delta", "metric": "bienestar", "amount": 15 },
+          { "type": "delta", "metric": "estres", "amount": -5 }
+        ]
+      },
+      {
+        "id": "vet_basico",
+        "label": "Tratamiento básico",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -45000 },
+          { "type": "delta", "metric": "bienestar", "amount": 6 },
+          { "type": "delta", "metric": "estres", "amount": 8 }
+        ]
+      },
+      {
+        "id": "remedio_casa",
+        "label": "Remedio casero y rezar",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -5000 },
+          { "type": "delta", "metric": "estres", "amount": 18 },
+          { "type": "delta", "metric": "bienestar", "amount": -10 },
+          {
+            "type": "risk",
+            "chance": 0.4,
+            "effects": [{ "type": "delta", "metric": "bienestar", "amount": -20 }]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "aumento_sueldo",
+    "titulo": "Charla de aumento",
+    "texto": "Tu jefe dice 'entendemos el contexto país'. Después habla de 'esfuerzo compartido'. El Excel de inflación te mira desde el bolsillo.",
+    "peso": 9,
+    "condiciones": [{ "type": "job_tag", "value": "tech" }],
+    "opciones": [
+      {
+        "id": "pedir_firme",
+        "label": "Pedir aumento en firme",
+        "efectos": [
+          {
+            "type": "risk",
+            "chance": 0.5,
+            "effects": [
+              { "type": "delta", "metric": "dinero", "amount": 80000 },
+              { "type": "delta", "metric": "capital_social", "amount": 8 }
+            ]
+          },
+          {
+            "type": "risk",
+            "chance": 0.5,
+            "effects": [
+              { "type": "delta", "metric": "capital_social", "amount": -6 },
+              { "type": "delta", "metric": "estres", "amount": 12 }
+            ]
+          },
+          { "type": "delta", "metric": "estres", "amount": 8 }
+        ]
+      },
+      {
+        "id": "aceptar_bonus",
+        "label": "Aceptar un bonus único",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": 50000 },
+          { "type": "delta", "metric": "bienestar", "amount": 4 },
+          { "type": "delta", "metric": "estres", "amount": 3 }
+        ]
+      },
+      {
+        "id": "callarte",
+        "label": "Callarte y actualizar LinkedIn",
+        "efectos": [
+          { "type": "delta", "metric": "estres", "amount": 10 },
+          { "type": "delta", "metric": "bienestar", "amount": -8 },
+          { "type": "delta", "metric": "capital_social", "amount": 3 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "escandalo_redes",
+    "titulo": "Te cancelan un audio",
+    "texto": "Alguien filtró un audio tuyo. Fuera de contexto, pero alcanza. Los comentarios son un tribunal sin juez.",
+    "peso": 11,
+    "condiciones": [{ "type": "job_tag", "value": "politico" }],
+    "opciones": [
+      {
+        "id": "disculpa_publica",
+        "label": "Disculpa pública en cámara",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": -5 },
+          { "type": "delta", "metric": "bienestar", "amount": -10 },
+          { "type": "delta", "metric": "estres", "amount": 15 },
+          { "type": "delta", "metric": "dinero", "amount": -20000 }
+        ]
+      },
+      {
+        "id": "ignorar_haters",
+        "label": "Ignorar y seguir la agenda",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": -15 },
+          { "type": "delta", "metric": "estres", "amount": 10 },
+          { "type": "delta", "metric": "bienestar", "amount": -5 }
+        ]
+      },
+      {
+        "id": "contraataque",
+        "label": "Contraatacar con otro audio",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": 8 },
+          { "type": "delta", "metric": "bienestar", "amount": -15 },
+          { "type": "delta", "metric": "estres", "amount": 20 },
+          { "type": "add_flag", "value": "guerra_redes" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "blackout_internet",
+    "titulo": "Se cae internet del edificio",
+    "texto": "El router parpadea rojo. El proveedor dice 'incidente masivo'. Tu laburo remoto se convierte en laburo imaginario.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "cafe_wifi",
+        "label": "Ir a un café con WiFi",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -12000 },
+          { "type": "delta", "metric": "estres", "amount": 6 },
+          { "type": "delta", "metric": "bienestar", "amount": 3 }
+        ]
+      },
+      {
+        "id": "datos_moviles",
+        "label": "Quemar datos móviles",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -9000 },
+          { "type": "delta", "metric": "estres", "amount": 10 },
+          { "type": "delta", "metric": "salud", "amount": -2 }
+        ]
+      },
+      {
+        "id": "dia_libre_forzado",
+        "label": "Declarar día perdido y descansar",
+        "efectos": [
+          { "type": "delta", "metric": "bienestar", "amount": 10 },
+          { "type": "delta", "metric": "capital_social", "amount": -6 },
+          { "type": "delta", "metric": "estres", "amount": -8 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "herencia_pelea",
+    "titulo": "Pelea por una herencia chica",
+    "texto": "Murió un tío. Dejó un TV viejo, deudas y opiniones. La familia se parte en bandos como si fuera una PASO.",
+    "peso": 7,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "renunciar_parte",
+        "label": "Renunciar a tu parte por paz",
+        "efectos": [
+          { "type": "delta", "metric": "bienestar", "amount": 8 },
+          { "type": "delta", "metric": "capital_social", "amount": 10 },
+          { "type": "delta", "metric": "dinero", "amount": -5000 }
+        ]
+      },
+      {
+        "id": "pelear_abogado",
+        "label": "Pelear con abogado",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -70000 },
+          {
+            "type": "risk",
+            "chance": 0.4,
+            "effects": [{ "type": "delta", "metric": "dinero", "amount": 150000 }]
+          },
+          { "type": "delta", "metric": "estres", "amount": 20 },
+          { "type": "delta", "metric": "capital_social", "amount": -15 }
+        ]
+      },
+      {
+        "id": "quedarte_tv",
+        "label": "Quedarte el TV y cortar relación",
+        "efectos": [
+          { "type": "delta", "metric": "bienestar", "amount": -6 },
+          { "type": "delta", "metric": "capital_social", "amount": -10 },
+          { "type": "delta", "metric": "estres", "amount": 8 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "comida_envenenada",
+    "titulo": "El delivery llegó raro",
+    "texto": "El pollo tiene gusto a nevera olvidada. A las 2 AM negociás con el inodoro un tratado de paz.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "medico_urgencia",
+        "label": "Ir a guardia",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -30000 },
+          { "type": "delta", "metric": "salud", "amount": 15 },
+          { "type": "delta", "metric": "estres", "amount": 8 }
+        ]
+      },
+      {
+        "id": "suero_casa",
+        "label": "Suero casero y ayuno",
+        "efectos": [
+          { "type": "delta", "metric": "salud", "amount": -8 },
+          { "type": "delta", "metric": "bienestar", "amount": -12 },
+          { "type": "delta", "metric": "estres", "amount": 10 }
+        ]
+      },
+      {
+        "id": "reclamar_app",
+        "label": "Reclamar en la app hasta obtener reintegro",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": 15000 },
+          { "type": "delta", "metric": "estres", "amount": 14 },
+          { "type": "delta", "metric": "salud", "amount": -6 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "oferta_cripto",
+    "titulo": "El primo crypto",
+    "texto": "Te mete un PDF de 40 páginas. Dice 'esta vez es distinto'. El gráfico sube para arriba como un cohete dibujado en Paint.",
+    "peso": 8,
+    "condiciones": [{ "type": "dinero_gte", "value": 80000 }],
+    "opciones": [
+      {
+        "id": "all_in_cripto",
+        "label": "Meter una buena parte",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -80000 },
+          {
+            "type": "risk",
+            "chance": 0.3,
+            "effects": [{ "type": "delta", "metric": "dinero", "amount": 200000 }]
+          },
+          { "type": "delta", "metric": "estres", "amount": 15 },
+          { "type": "add_flag", "value": "cripto_bagholder" }
+        ]
+      },
+      {
+        "id": "plata_juego",
+        "label": "Meter solo plata de juego",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -20000 },
+          { "type": "delta", "metric": "estres", "amount": 5 },
+          { "type": "delta", "metric": "bienestar", "amount": 2 }
+        ]
+      },
+      {
+        "id": "decir_no",
+        "label": "Decirle que no y cambiar de tema",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": -3 },
+          { "type": "delta", "metric": "bienestar", "amount": 4 },
+          { "type": "delta", "metric": "estres", "amount": -2 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "apagones_emocionales",
+    "titulo": "Domingo vacío",
+    "texto": "No hay plan. El televisor habla solo. Sentís que la vida es un loading infinito sin barra de progreso.",
+    "peso": 9,
+    "condiciones": [{ "type": "metric_lt", "metric": "bienestar", "value": 40 }],
+    "opciones": [
+      {
+        "id": "llamar_amigo",
+        "label": "Llamar a un amigo de verdad",
+        "efectos": [
+          { "type": "delta", "metric": "bienestar", "amount": 14 },
+          { "type": "delta", "metric": "capital_social", "amount": 6 },
+          { "type": "delta", "metric": "estres", "amount": -8 }
+        ]
+      },
+      {
+        "id": "terapia",
+        "label": "Sacar turno con psicólogo",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -35000 },
+          { "type": "delta", "metric": "bienestar", "amount": 12 },
+          { "type": "delta", "metric": "estres", "amount": -12 },
+          { "type": "add_flag", "value": "en_terapia" }
+        ]
+      },
+      {
+        "id": "scroll_infinito",
+        "label": "Scroll infinito hasta dormirte",
+        "efectos": [
+          { "type": "delta", "metric": "bienestar", "amount": -8 },
+          { "type": "delta", "metric": "estres", "amount": 6 },
+          { "type": "delta", "metric": "salud", "amount": -4 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "multa_transito",
+    "titulo": "Fotocámara en la avenida",
+    "texto": "Te llega una multa por 'exceso' que ni viste. La foto sos vos con cara de dormido. El QR pide sangre.",
+    "peso": 8,
+    "condiciones": [{ "type": "dinero_gte", "value": 20000 }],
+    "opciones": [
+      {
+        "id": "pagar_multa_ya",
+        "label": "Pagar con descuento",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -45000 },
+          { "type": "delta", "metric": "estres", "amount": -5 }
+        ]
+      },
+      {
+        "id": "impugnar",
+        "label": "Impugnar por deporte",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -10000 },
+          { "type": "delta", "metric": "estres", "amount": 16 },
+          {
+            "type": "risk",
+            "chance": 0.35,
+            "effects": [{ "type": "delta", "metric": "dinero", "amount": 35000 }]
+          }
+        ]
+      },
+      {
+        "id": "ignorar_multa",
+        "label": "Ignorarla hasta que duela más",
+        "efectos": [
+          { "type": "add_flag", "value": "multa_pendiente" },
+          { "type": "delta", "metric": "estres", "amount": 8 },
+          { "type": "delta", "metric": "bienestar", "amount": -4 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "multa_cobra_despues",
+    "titulo": "La multa volvió con intereses",
+    "texto": "Aquella fotocámara no te olvidó. Ahora el monto parece una cuota de TV 4K.",
+    "peso": 18,
+    "condiciones": [{ "type": "has_flag", "value": "multa_pendiente" }],
+    "opciones": [
+      {
+        "id": "pagar_con_interes",
+        "label": "Pagar de una",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -90000 },
+          { "type": "remove_flag", "value": "multa_pendiente" },
+          { "type": "delta", "metric": "estres", "amount": -10 }
+        ]
+      },
+      {
+        "id": "plan_cuotas",
+        "label": "Plan de pagos en 6 cuotas",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -20000 },
+          { "type": "remove_flag", "value": "multa_pendiente" },
+          { "type": "add_flag", "value": "cuotas_multa" },
+          { "type": "delta", "metric": "estres", "amount": 5 }
+        ]
+      },
+      {
+        "id": "seguir_debiendo",
+        "label": "Seguir debiendo",
+        "efectos": [
+          { "type": "delta", "metric": "estres", "amount": 15 },
+          { "type": "delta", "metric": "bienestar", "amount": -10 },
+          { "type": "delta", "metric": "capital_social", "amount": -5 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "noche_insomnio",
+    "titulo": "Insomnio de domingo",
+    "texto": "Son las 3:40. Pensás en deudas, en el laburo y en un mensaje que no mandaste en 2019.",
+    "peso": 10,
+    "condiciones": [{ "type": "metric_gt", "metric": "estres", "value": 55 }],
+    "opciones": [
+      {
+        "id": "melatonina",
+        "label": "Comprar melatonina en la 24hs",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -9000 },
+          { "type": "delta", "metric": "estres", "amount": -15 },
+          { "type": "delta", "metric": "salud", "amount": 4 }
+        ]
+      },
+      {
+        "id": "series_otra_vez",
+        "label": "Otra temporada entera",
+        "efectos": [
+          { "type": "delta", "metric": "estres", "amount": -5 },
+          { "type": "delta", "metric": "salud", "amount": -8 },
+          { "type": "delta", "metric": "bienestar", "amount": -4 }
+        ]
+      },
+      {
+        "id": "anotar_preocupaciones",
+        "label": "Anotar preocupaciones en un papel",
+        "efectos": [
+          { "type": "delta", "metric": "estres", "amount": -12 },
+          { "type": "delta", "metric": "bienestar", "amount": 6 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "beneficio_social",
+    "titulo": "Trámite eterno",
+    "texto": "Te mandan de ventanilla en ventanilla. Falta un papel que nadie avisó. El número 47 se salteó al 52.",
+    "peso": 9,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "gestor",
+        "label": "Pagar un gestor",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -50000 },
+          { "type": "delta", "metric": "estres", "amount": -10 },
+          { "type": "delta", "metric": "bienestar", "amount": 5 }
+        ]
+      },
+      {
+        "id": "aguantar_fila",
+        "label": "Aguantar la fila como un adulto",
+        "efectos": [
+          { "type": "delta", "metric": "estres", "amount": 18 },
+          { "type": "delta", "metric": "bienestar", "amount": -10 },
+          { "type": "delta", "metric": "salud", "amount": -4 },
+          {
+            "type": "risk",
+            "chance": 0.5,
+            "effects": [{ "type": "delta", "metric": "dinero", "amount": 40000 }]
+          }
+        ]
+      },
+      {
+        "id": "abandonar_tramite",
+        "label": "Abandonar el trámite",
+        "efectos": [
+          { "type": "delta", "metric": "estres", "amount": -5 },
+          { "type": "delta", "metric": "bienestar", "amount": -8 },
+          { "type": "delta", "metric": "dinero", "amount": -5000 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "compadre_presta",
+    "titulo": "Un amigo pide un préstamo",
+    "texto": "Te escribe: 'es por una semana'. Los dos saben que las semanas argentinas son elásticas.",
+    "peso": 10,
+    "condiciones": [{ "type": "dinero_gte", "value": 60000 }],
+    "opciones": [
+      {
+        "id": "prestar",
+        "label": "Prestarle",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -60000 },
+          { "type": "delta", "metric": "capital_social", "amount": 12 },
+          { "type": "delta", "metric": "estres", "amount": 8 },
+          { "type": "add_flag", "value": "prestamo_amigo" }
+        ]
+      },
+      {
+        "id": "prestar_poco",
+        "label": "Prestarle la mitad",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -30000 },
+          { "type": "delta", "metric": "capital_social", "amount": 6 },
+          { "type": "delta", "metric": "estres", "amount": 4 }
+        ]
+      },
+      {
+        "id": "no_prestar",
+        "label": "Decirle que no podés",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": -8 },
+          { "type": "delta", "metric": "bienestar", "amount": -6 },
+          { "type": "delta", "metric": "estres", "amount": 5 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "amigo_devuelve",
+    "titulo": "El amigo aparece con plata",
+    "texto": "Te invita un café. Sacá la billetera. 'Te traje lo que te debía'. Casi llorás de la sorpresa.",
+    "peso": 15,
+    "condiciones": [{ "type": "has_flag", "value": "prestamo_amigo" }],
+    "opciones": [
+      {
+        "id": "aceptar_devolucion",
+        "label": "Aceptar la plata",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": 60000 },
+          { "type": "remove_flag", "value": "prestamo_amigo" },
+          { "type": "delta", "metric": "capital_social", "amount": 5 },
+          { "type": "delta", "metric": "bienestar", "amount": 10 }
+        ]
+      },
+      {
+        "id": "perdonar_deuda",
+        "label": "Decirle que se la quede",
+        "efectos": [
+          { "type": "remove_flag", "value": "prestamo_amigo" },
+          { "type": "delta", "metric": "capital_social", "amount": 15 },
+          { "type": "delta", "metric": "bienestar", "amount": 12 }
+        ]
+      },
+      {
+        "id": "invitar_cerveza",
+        "label": "Cobrarle e invitar cerveza",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": 50000 },
+          { "type": "remove_flag", "value": "prestamo_amigo" },
+          { "type": "delta", "metric": "bienestar", "amount": 8 },
+          { "type": "delta", "metric": "capital_social", "amount": 8 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ola_calor",
+    "titulo": "Ola de calor asesina",
+    "texto": "37 grados a la sombra. El ventilador solo mueve aire caliente. Tu depto es un horno con WiFi.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "aire_split",
+        "label": "Comprar un aire usado",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -180000 },
+          { "type": "delta", "metric": "bienestar", "amount": 18 },
+          { "type": "delta", "metric": "estres", "amount": -12 },
+          { "type": "add_flag", "value": "tiene_aire" }
+        ]
+      },
+      {
+        "id": "pileta_club",
+        "label": "Día de pileta en un club",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -15000 },
+          { "type": "delta", "metric": "bienestar", "amount": 10 },
+          { "type": "delta", "metric": "salud", "amount": 4 }
+        ]
+      },
+      {
+        "id": "duchas_frias",
+        "label": "Duchas frías y sobrevivir",
+        "efectos": [
+          { "type": "delta", "metric": "salud", "amount": -6 },
+          { "type": "delta", "metric": "estres", "amount": 12 },
+          { "type": "delta", "metric": "bienestar", "amount": -10 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "jefe_domingo",
+    "titulo": "Mensaje del jefe domingo 21:00",
+    "texto": "'¿Podemos hablar 5 minutos?'. Los 5 minutos nunca son 5. El domingo se convierte en lunes temprano.",
+    "peso": 11,
+    "condiciones": [{ "type": "job_tag", "value": "tech" }],
+    "opciones": [
+      {
+        "id": "contestar_ya",
+        "label": "Contestar ya",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": 8 },
+          { "type": "delta", "metric": "estres", "amount": 14 },
+          { "type": "delta", "metric": "bienestar", "amount": -10 }
+        ]
+      },
+      {
+        "id": "lunes",
+        "label": "Responder que lo ves el lunes",
+        "efectos": [
+          { "type": "delta", "metric": "bienestar", "amount": 6 },
+          { "type": "delta", "metric": "capital_social", "amount": -6 },
+          { "type": "delta", "metric": "estres", "amount": 4 }
+        ]
+      },
+      {
+        "id": "silenciar",
+        "label": "Silenciar y fingir que no viste",
+        "efectos": [
+          { "type": "delta", "metric": "estres", "amount": 8 },
+          { "type": "delta", "metric": "bienestar", "amount": 2 },
+          {
+            "type": "risk",
+            "chance": 0.4,
+            "effects": [{ "type": "delta", "metric": "capital_social", "amount": -12 }]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "acta_congreso",
+    "titulo": "Te piden una foto en el Congreso",
+    "texto": "Un operador te dice que 'hace falta presencia'. No votás nada, pero tenés que aplaudir en el momento correcto.",
+    "peso": 10,
+    "condiciones": [
+      { "type": "job_tag", "value": "politico" },
+      { "type": "metric_gte", "metric": "capital_social", "value": 35 }
+    ],
+    "opciones": [
+      {
+        "id": "ir_aplaudir",
+        "label": "Ir y aplaudir",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": 12 },
+          { "type": "delta", "metric": "estres", "amount": 8 },
+          { "type": "delta", "metric": "bienestar", "amount": -6 },
+          { "type": "delta", "metric": "dinero", "amount": -8000 }
+        ]
+      },
+      {
+        "id": "mandar_asesor",
+        "label": "Mandar a un asesor en tu lugar",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -15000 },
+          { "type": "delta", "metric": "capital_social", "amount": 4 },
+          { "type": "delta", "metric": "bienestar", "amount": 4 }
+        ]
+      },
+      {
+        "id": "no_ir_congreso",
+        "label": "No ir y bancarte el corte",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": -12 },
+          { "type": "delta", "metric": "estres", "amount": 10 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dejar_terapia",
+    "titulo": "¿Seguís con el psicólogo?",
+    "texto": "El estrés bajó un poco. Podés seguir pagando sesiones todos los meses o cortar y bancártela solo otra vez.",
+    "peso": 12,
+    "condiciones": [
+      { "type": "has_flag", "value": "en_terapia" },
+      { "type": "metric_lt", "metric": "estres", "value": 70 }
+    ],
+    "opciones": [
+      {
+        "id": "seguir_terapia",
+        "label": "Seguir yendo",
+        "efectos": [
+          { "type": "delta", "metric": "bienestar", "amount": 6 },
+          { "type": "delta", "metric": "estres", "amount": -5 }
+        ]
+      },
+      {
+        "id": "cortar_terapia",
+        "label": "Cortar la terapia",
+        "efectos": [
+          { "type": "remove_flag", "value": "en_terapia" },
+          { "type": "delta", "metric": "dinero", "amount": 5000 },
+          { "type": "delta", "metric": "estres", "amount": 8 }
+        ]
+      },
+      {
+        "id": "espaciar",
+        "label": "Espaciar a una vez por mes",
+        "efectos": [
+          { "type": "delta", "metric": "estres", "amount": 3 },
+          { "type": "delta", "metric": "bienestar", "amount": 2 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "cobranza_llamadas_familia",
+    "titulo": "Llamaron a tu familia",
+    "texto": "Tu mamá te escribe llorando: 'unos tipos preguntaron por vos y por la plata'. Todavía no amenazan. Todavía. Te dan 'una semana de buena voluntad'.",
+    "peso": 40,
+    "condiciones": [
+      { "type": "deuda_tier_gte", "value": 1 },
+      { "type": "deuda_tier_lte", "value": 1 }
+    ],
+    "opciones": [
+      {
+        "id": "pagar_lo_que_pueda",
+        "label": "Transferir todo lo que tengas a cuenta",
+        "efectos": [
+          { "type": "pay_debt", "amount": "all" },
+          { "type": "delta", "metric": "estres", "amount": -8 },
+          { "type": "delta", "metric": "bienestar", "amount": 4 }
+        ]
+      },
+      {
+        "id": "prometer_cuota",
+        "label": "Prometer una cuota y pedir tiempo",
+        "efectos": [
+          { "type": "delta", "metric": "deuda", "amount": 25000 },
+          { "type": "delta", "metric": "estres", "amount": 12 },
+          { "type": "delta", "metric": "capital_social", "amount": -6 }
+        ]
+      },
+      {
+        "id": "ignorar_cobranza",
+        "label": "Ignorarlos y cambiar el chip",
+        "efectos": [
+          { "type": "delta", "metric": "deuda", "amount": 40000 },
+          { "type": "delta", "metric": "estres", "amount": 18 },
+          { "type": "delta", "metric": "bienestar", "amount": -10 },
+          { "type": "delta", "metric": "capital_social", "amount": -8 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "cobranza_amenazas",
+    "titulo": "Amenazas con nombre y apellido",
+    "texto": "Te mandan un audio: saben dónde laburás, a qué hora llega tu hermano, y la escuela de tu sobrina. 'No somos el banco. El banco espera. Nosotros no'.",
+    "peso": 55,
+    "condiciones": [
+      { "type": "deuda_tier_gte", "value": 2 },
+      { "type": "deuda_tier_lte", "value": 2 }
+    ],
+    "opciones": [
+      {
+        "id": "pagar_urgente",
+        "label": "Pagar una parte gorda ya",
+        "efectos": [
+          { "type": "pay_debt", "amount": 120000 },
+          { "type": "delta", "metric": "estres", "amount": -5 },
+          { "type": "delta", "metric": "bienestar", "amount": -4 }
+        ]
+      },
+      {
+        "id": "denunciar_policia",
+        "label": "Ir a denunciar",
+        "efectos": [
+          { "type": "delta", "metric": "deuda", "amount": 80000 },
+          { "type": "delta", "metric": "estres", "amount": 22 },
+          { "type": "delta", "metric": "salud", "amount": -8 },
+          { "type": "delta", "metric": "capital_social", "amount": -10 },
+          { "type": "add_flag", "value": "denuncio_cobradores" }
+        ]
+      },
+      {
+        "id": "esconder_familia",
+        "label": "Mudar a tu familia una temporada",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -70000 },
+          { "type": "delta", "metric": "estres", "amount": 15 },
+          { "type": "delta", "metric": "bienestar", "amount": -8 },
+          { "type": "delta", "metric": "capital_social", "amount": 4 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "cobranza_visita_casa",
+    "titulo": "Visita en tu puerta",
+    "texto": "Tres tipos. Uno sonríe de más. Otro filma. El tercero habla bajito: 'hoy se paga, o mañana hablamos con huesos'. Te muestran fotos de tu casa de día y de noche.",
+    "peso": 70,
+    "condiciones": [
+      { "type": "deuda_tier_gte", "value": 3 },
+      { "type": "deuda_tier_lte", "value": 3 }
+    ],
+    "opciones": [
+      {
+        "id": "pagar_visita",
+        "label": "Entregarles toda la plata de la casa",
+        "efectos": [
+          { "type": "pay_debt", "amount": "all" },
+          { "type": "delta", "metric": "estres", "amount": 10 },
+          { "type": "delta", "metric": "bienestar", "amount": -12 },
+          { "type": "delta", "metric": "salud", "amount": -5 }
+        ]
+      },
+      {
+        "id": "pelear_visita",
+        "label": "Bancártela a los golpes",
+        "efectos": [
+          { "type": "delta", "metric": "salud", "amount": -35 },
+          { "type": "delta", "metric": "deuda", "amount": 100000 },
+          { "type": "delta", "metric": "estres", "amount": 25 },
+          { "type": "delta", "metric": "capital_social", "amount": -5 }
+        ]
+      },
+      {
+        "id": "firmar_pagare",
+        "label": "Firmar un pagaré más grande",
+        "efectos": [
+          { "type": "delta", "metric": "deuda", "amount": 200000 },
+          { "type": "delta", "metric": "estres", "amount": 18 },
+          { "type": "delta", "metric": "bienestar", "amount": -15 },
+          { "type": "add_flag", "value": "pagare_cobradores" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "cobranza_secuestro_familiar",
+    "titulo": "Se llevaron a alguien tuyo",
+    "texto": "No contestan el teléfono. Después llega un video: una habitación sin ventanas, una voz conocida temblando. 'Traé la plata o el próximo video es peor'.",
+    "peso": 90,
+    "condiciones": [
+      { "type": "deuda_tier_gte", "value": 4 },
+      { "type": "deuda_tier_lte", "value": 4 }
+    ],
+    "opciones": [
+      {
+        "id": "rescate_todo",
+        "label": "Vaciarte por el rescate",
+        "efectos": [
+          { "type": "pay_debt", "amount": "all" },
+          { "type": "delta", "metric": "dinero", "amount": -200000 },
+          { "type": "delta", "metric": "estres", "amount": 20 },
+          { "type": "delta", "metric": "bienestar", "amount": -25 },
+          { "type": "delta", "metric": "capital_social", "amount": -10 },
+          { "type": "add_flag", "value": "familia_secuestrada_resuelta" }
+        ]
+      },
+      {
+        "id": "negociar_plazo",
+        "label": "Negociar 72 horas más",
+        "efectos": [
+          { "type": "delta", "metric": "deuda", "amount": 250000 },
+          { "type": "delta", "metric": "estres", "amount": 30 },
+          { "type": "delta", "metric": "bienestar", "amount": -20 },
+          { "type": "delta", "metric": "salud", "amount": -10 }
+        ]
+      },
+      {
+        "id": "buscar_ayuda_barrio",
+        "label": "Pedir ayuda al barrio / milicos / quien sea",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": -15 },
+          { "type": "delta", "metric": "estres", "amount": 25 },
+          {
+            "type": "risk",
+            "chance": 0.4,
+            "effects": [
+              { "type": "delta", "metric": "deuda", "amount": -150000 },
+              { "type": "delta", "metric": "bienestar", "amount": 10 }
+            ]
+          },
+          {
+            "type": "risk",
+            "chance": 0.6,
+            "effects": [
+              { "type": "delta", "metric": "salud", "amount": -25 },
+              { "type": "delta", "metric": "deuda", "amount": 150000 },
+              { "type": "delta", "metric": "bienestar", "amount": -20 }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "cobranza_prueba_dolor",
+    "titulo": "Prueba de dolor",
+    "texto": "Te llevan a un galpón. No para matarte: para que entiendas. Un dedo, un diente, un mensaje. 'La deuda no se olvida. El cuerpo sí se acuerda'.",
+    "peso": 100,
+    "condiciones": [
+      { "type": "deuda_tier_gte", "value": 5 },
+      { "type": "deuda_tier_lte", "value": 5 }
+    ],
+    "opciones": [
+      {
+        "id": "aguantar_y_pagar",
+        "label": "Aguantar y prometer pago total",
+        "efectos": [
+          { "type": "delta", "metric": "salud", "amount": -40 },
+          { "type": "pay_debt", "amount": "all" },
+          { "type": "delta", "metric": "estres", "amount": 25 },
+          { "type": "delta", "metric": "bienestar", "amount": -30 }
+        ]
+      },
+      {
+        "id": "venderte",
+        "label": "Ofrecerte como mano de obra para ellos",
+        "efectos": [
+          { "type": "delta", "metric": "deuda", "amount": -300000 },
+          { "type": "delta", "metric": "salud", "amount": -20 },
+          { "type": "delta", "metric": "bienestar", "amount": -25 },
+          { "type": "delta", "metric": "capital_social", "amount": -20 },
+          { "type": "add_flag", "value": "muleto_cobradores" }
+        ]
+      },
+      {
+        "id": "resistir_galpon",
+        "label": "Resistirte y buscar una salida",
+        "efectos": [
+          { "type": "delta", "metric": "salud", "amount": -55 },
+          { "type": "delta", "metric": "deuda", "amount": 200000 },
+          { "type": "delta", "metric": "estres", "amount": 30 },
+          {
+            "type": "risk",
+            "chance": 0.3,
+            "effects": [{ "type": "delta", "metric": "deuda", "amount": -400000 }]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "cobranza_muleto",
+    "titulo": "Ya no laburás para vos",
+    "texto": "Te mandan a mover paquetes, a cobrar a otros, a sonreír en lugares donde no querés estar. La deuda baja despacio. Tu vida, más rápido.",
+    "peso": 110,
+    "condiciones": [
+      { "type": "deuda_tier_gte", "value": 6 },
+      { "type": "deuda_tier_lte", "value": 6 }
+    ],
+    "opciones": [
+      {
+        "id": "obedecer",
+        "label": "Obedecer y bajar deuda con sangre ajena",
+        "efectos": [
+          { "type": "delta", "metric": "deuda", "amount": -250000 },
+          { "type": "delta", "metric": "bienestar", "amount": -20 },
+          { "type": "delta", "metric": "estres", "amount": 15 },
+          { "type": "delta", "metric": "capital_social", "amount": -15 },
+          { "type": "add_flag", "value": "muleto_cobradores" }
+        ]
+      },
+      {
+        "id": "huir_pais",
+        "label": "Intentar fugarte del país",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -150000 },
+          {
+            "type": "risk",
+            "chance": 0.35,
+            "effects": [
+              { "type": "delta", "metric": "deuda", "amount": -999999999 },
+              { "type": "delta", "metric": "capital_social", "amount": -30 },
+              { "type": "set_metric", "metric": "bienestar", "value": 20 }
+            ]
+          },
+          {
+            "type": "risk",
+            "chance": 0.65,
+            "effects": [
+              { "type": "delta", "metric": "salud", "amount": -40 },
+              { "type": "delta", "metric": "deuda", "amount": 400000 },
+              { "type": "delta", "metric": "estres", "amount": 25 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "entregarte_fin",
+        "label": "Entregarte del todo",
+        "efectos": [
+          { "type": "add_flag", "value": "cobranza_fin" },
+          { "type": "delta", "metric": "bienestar", "amount": -40 },
+          { "type": "delta", "metric": "salud", "amount": -15 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "cobranza_punto_final",
+    "titulo": "Punto final",
+    "texto": "Ya no hay cuotas. Hay una decisión: laburás para ellos hasta que te sequen, o desaparecés como ejemplo. Tu deuda es una sentencia. El interés es tu vida.",
+    "peso": 120,
+    "condiciones": [{ "type": "deuda_tier_gte", "value": 7 }],
+    "opciones": [
+      {
+        "id": "ultimo_pago",
+        "label": "Último intento de pago total",
+        "efectos": [
+          { "type": "pay_debt", "amount": "all" },
+          { "type": "delta", "metric": "deuda", "amount": -300000 },
+          { "type": "delta", "metric": "salud", "amount": -20 },
+          { "type": "delta", "metric": "bienestar", "amount": -25 },
+          {
+            "type": "risk",
+            "chance": 0.5,
+            "effects": [
+              { "type": "delta", "metric": "deuda", "amount": 800000 },
+              { "type": "add_flag", "value": "cobranza_fin" }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sacrificio",
+        "label": "Sacrificarte para que suelten a los tuyos",
+        "efectos": [
+          { "type": "add_flag", "value": "cobranza_fin" },
+          { "type": "set_metric", "metric": "salud", "value": 5 },
+          { "type": "set_metric", "metric": "bienestar", "value": 0 },
+          { "type": "delta", "metric": "deuda", "amount": -1000000 }
+        ]
+      },
+      {
+        "id": "guerra_total",
+        "label": "Ir a la guerra total contra ellos",
+        "efectos": [
+          { "type": "delta", "metric": "salud", "amount": -70 },
+          { "type": "delta", "metric": "estres", "amount": 40 },
+          {
+            "type": "risk",
+            "chance": 0.25,
+            "effects": [
+              { "type": "delta", "metric": "deuda", "amount": -999999999 },
+              { "type": "delta", "metric": "capital_social", "amount": -40 },
+              { "type": "delta", "metric": "bienestar", "amount": -20 }
+            ]
+          },
+          {
+            "type": "risk",
+            "chance": 0.75,
+            "effects": [
+              { "type": "add_flag", "value": "cobranza_fin" },
+              { "type": "set_metric", "metric": "salud", "value": 0 }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

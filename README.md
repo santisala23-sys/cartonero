@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Cartonero
 
-## Getting Started
+Simulador de vida en texto y tarjetas. Arrancás como cartonero en la base de la pirámide social argentina y podés subir por el rubro, meterte en política o pasar a tech.
 
-First, run the development server:
+## Stack
+
+- Next.js App Router + TypeScript + Tailwind
+- Motor de juego en el cliente (Zustand + `localStorage`)
+- Neon Postgres opcional vía Drizzle (`/api/save`)
+- Deploy en Vercel
+
+## Desarrollo
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abrí [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+La partida se guarda sola en `localStorage`. Sin `DATABASE_URL` el sync a Neon responde 503 y el juego sigue igual.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Neon (opcional)
 
-## Learn More
+1. En Vercel: `vercel integration add neon` (o creá un proyecto en [Neon](https://neon.tech) y copiá la connection string).
+2. Copiá `.env.example` → `.env.local` y seteá `DATABASE_URL`.
+3. Creá la tabla:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run db:push
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+O ejecutá el SQL en [`drizzle/0000_game_saves.sql`](drizzle/0000_game_saves.sql).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Endpoints:
 
-## Deploy on Vercel
+- `GET /api/save?player_key=...`
+- `POST /api/save` con `{ "player_key": "...", "state": { ... } }`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deploy en Vercel
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npx vercel
+```
+
+Agregá `DATABASE_URL` en Project Settings → Environment Variables si querés cloud save. Sin eso, el MVP funciona solo con almacenamiento local del browser.
+
+## Cómo se juega
+
+1. **Avanzar Mes** — cobrás el sueldo, sube el estrés y cae un evento.
+2. Elegí una de las **3 opciones** de la tarjeta.
+3. En el pie, **Cambiar trabajo** cuando cumplas requisitos (plata, capital social, flags como `curso_n8n`).
+
+## Contenido MVP
+
+- Ramas en `src/data/jobs.json`: cartonero, política, tech
+- Eventos en `src/data/events.json`: tragedia, burnout, caños, corrupción, cursito n8n
+
+## Estructura
+
+```
+src/
+  app/           # UI + API save
+  components/    # StatusBar, EventCard, JobPanel…
+  data/          # jobs.json, events.json
+  lib/           # motor, store, db
+```
