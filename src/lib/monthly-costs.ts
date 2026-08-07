@@ -1,3 +1,8 @@
+import {
+  bonusForPaidBill,
+  consequenceForSkippedBill,
+  type MonthStoryBeat,
+} from "@/lib/bill-consequences";
 import { applyMoneySpend, clampMetrics } from "@/lib/effects";
 import type { MetricKey, PlayerState } from "@/lib/types";
 
@@ -23,6 +28,10 @@ export interface MonthLedger {
   total_gastos: number;
   total_salteado: number;
   neto: number;
+  historias: MonthStoryBeat[];
+  estudios_completados: string[];
+  interes_deuda: number;
+  balance_historias: number;
 }
 
 function has(state: PlayerState, flag: string): boolean {
@@ -279,9 +288,23 @@ export function formatMetricDelta(delta: MetricDelta): string[] {
     });
 }
 
+function applyStoryBeat(
+  state: PlayerState,
+  beat: MonthStoryBeat,
+): PlayerState {
+  let next = applyMetricDelta(state, beat.deltas);
+  if (beat.dinero < 0) {
+    next = applyMoneySpend(next, -beat.dinero);
+  } else if (beat.dinero > 0) {
+    next = { ...next, dinero: next.dinero + beat.dinero };
+  }
+  return next;
+}
+
 /**
  * Apply player decisions for each pending bill.
- * Paying spends money (debt if short); skipping applies harsh metric hits.
+ * Paying spends money (debt if short); skipping applies harsh metric hits
+ * plus narrative opportunity losses.
  */
 export function resolveMonthlyBills(
   state: PlayerState,
@@ -295,8 +318,10 @@ export function resolveMonthlyBills(
   }
 
   const ledgerLines: MonthLedgerLine[] = [];
+  const historias: MonthStoryBeat[] = [];
   let totalPaid = 0;
   let totalSkipped = 0;
+  let balanceHistorias = 0;
 
   for (const bill of bills) {
     const choice = decisions[bill.id] ?? "pay";
@@ -305,10 +330,22 @@ export function resolveMonthlyBills(
       next = applyMetricDelta(next, bill.al_pagar);
       totalPaid += bill.amount;
       ledgerLines.push({ ...bill, pagado: true });
+      const bonus = bonusForPaidBill(bill.id, next);
+      if (bonus) {
+        next = applyStoryBeat(next, bonus);
+        historias.push(bonus);
+        balanceHistorias += bonus.dinero;
+      }
     } else {
       next = applyMetricDelta(next, bill.al_saltear);
       totalSkipped += bill.amount;
       ledgerLines.push({ ...bill, pagado: false });
+      const hit = consequenceForSkippedBill(bill.id, next);
+      if (hit) {
+        next = applyStoryBeat(next, hit);
+        historias.push(hit);
+        balanceHistorias += hit.dinero;
+      }
     }
   }
 
@@ -326,7 +363,11 @@ export function resolveMonthlyBills(
     lines: ledgerLines,
     total_gastos: totalPaid,
     total_salteado: totalSkipped,
-    neto: sueldo - totalPaid,
+    neto: sueldo - totalPaid + balanceHistorias,
+    historias,
+    estudios_completados: [],
+    interes_deuda: 0,
+    balance_historias: balanceHistorias,
   };
 
   next = {

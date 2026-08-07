@@ -47,6 +47,7 @@ export function createInitialState(): PlayerState {
     game_over: false,
     game_over_reason: null,
     pending_bills: null,
+    pending_month_summary: false,
     last_month_ledger: null,
   };
 }
@@ -57,8 +58,13 @@ function grantCredential(state: PlayerState, id: string): PlayerState {
   return applyEffects(state, [{ type: "add_credential", value: id }]);
 }
 
-function tickStudies(state: PlayerState): PlayerState {
-  if (state.estudios_en_curso.length === 0) return state;
+function tickStudies(state: PlayerState): {
+  state: PlayerState;
+  completed: string[];
+} {
+  if (state.estudios_en_curso.length === 0) {
+    return { state, completed: [] };
+  }
 
   let next = { ...state };
   const remaining = [];
@@ -88,7 +94,16 @@ function tickStudies(state: PlayerState): PlayerState {
     };
   }
 
-  return next;
+  return { state: next, completed };
+}
+
+function isBusy(state: PlayerState): boolean {
+  return Boolean(
+    state.game_over ||
+      state.active_event_id ||
+      state.pending_bills ||
+      state.pending_month_summary,
+  );
 }
 
 /** Enroll in a course / degree. Pays upfront; may complete instantly. */
@@ -96,7 +111,7 @@ export function startCredential(
   state: PlayerState,
   credentialId: string,
 ): PlayerState {
-  if (state.game_over || state.active_event_id || state.pending_bills) {
+  if (isBusy(state)) {
     return state;
   }
 
@@ -191,7 +206,7 @@ function pickEventForState(state: PlayerState): GameEvent | null {
 }
 
 export function advanceMonth(state: PlayerState): PlayerState {
-  if (state.game_over || state.active_event_id || state.pending_bills) {
+  if (isBusy(state)) {
     return state;
   }
 
@@ -208,6 +223,10 @@ export function advanceMonth(state: PlayerState): PlayerState {
       total_gastos: 0,
       total_salteado: 0,
       neto: sueldo,
+      historias: [],
+      estudios_completados: [],
+      interes_deuda: 0,
+      balance_historias: 0,
     },
   };
 
@@ -220,7 +239,7 @@ export function advanceMonth(state: PlayerState): PlayerState {
   return clampMetrics(next);
 }
 
-/** After the player chooses pay/skip for each bill, finish the month. */
+/** After the player chooses pay/skip for each bill, finish the month and show summary. */
 export function resolveBills(
   state: PlayerState,
   decisions: Record<string, "pay" | "skip">,
@@ -229,12 +248,40 @@ export function resolveBills(
     return state;
   }
 
-  const { state: afterBills } = resolveMonthlyBills(state, decisions);
-  let next = tickStudies(afterBills);
-  next = applyPassiveEffects(next);
+  const { state: afterBills, ledger } = resolveMonthlyBills(state, decisions);
+  const { state: afterStudies, completed } = tickStudies(afterBills);
+
+  const deudaBefore = afterStudies.deuda;
+  let next = applyPassiveEffects(afterStudies);
+  const interes = Math.max(0, next.deuda - deudaBefore);
+
+  const enrichedLedger = {
+    ...ledger,
+    estudios_completados: completed,
+    interes_deuda: interes,
+    neto: ledger.sueldo - ledger.total_gastos + ledger.balance_historias,
+  };
+
+  next = {
+    ...next,
+    last_month_ledger: enrichedLedger,
+    pending_month_summary: true,
+  };
+
   next = clampMetrics(next);
-  next = checkGameOver(next);
-  if (next.game_over) return next;
+  return checkGameOver(next);
+}
+
+/** Close the month résumé and roll the random event. */
+export function dismissMonthSummary(state: PlayerState): PlayerState {
+  if (state.game_over || !state.pending_month_summary) {
+    return state;
+  }
+
+  let next: PlayerState = {
+    ...state,
+    pending_month_summary: false,
+  };
 
   const event = pickEventForState(next);
   if (event) {
@@ -251,7 +298,7 @@ export function applyChoice(
   state: PlayerState,
   optionId: string,
 ): PlayerState {
-  if (state.game_over || !state.active_event_id || state.pending_bills) {
+  if (state.game_over || !state.active_event_id || state.pending_bills || state.pending_month_summary) {
     return state;
   }
 
@@ -276,7 +323,7 @@ export function applyChoice(
 }
 
 export function changeJob(state: PlayerState, jobId: string): PlayerState {
-  if (state.game_over || state.active_event_id || state.pending_bills) {
+  if (isBusy(state)) {
     return state;
   }
 

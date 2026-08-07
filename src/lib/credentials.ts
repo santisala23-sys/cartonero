@@ -86,4 +86,6 @@ export const CATEGORY_LABELS: Record<string, string> = {
   seguridad: "Seguridad",
   politica: "Política",
   cartonero: "Reciclaje",
+  comercio: "Comercio",
+  campo: "Campo",
 };

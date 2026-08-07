@@ -5,8 +5,13 @@
     "sueldo": 45000,
     "nivel_estres_mensual": 12,
     "rama": "cartonero",
-    "tags": ["informal", "calle"],
-    "requisitos": { "job_previo": null },
+    "tags": [
+      "informal",
+      "calle"
+    ],
+    "requisitos": {
+      "job_previo": null
+    },
     "descripcion": "Recorrés las calles con el carrito. Plata corta, espalda rota."
   },
   {
@@ -15,10 +20,15 @@
     "sueldo": 95000,
     "nivel_estres_mensual": 14,
     "rama": "cartonero",
-    "tags": ["informal", "cooperativa"],
+    "tags": [
+      "informal",
+      "cooperativa"
+    ],
     "requisitos": {
       "job_previo": "cartonero",
-      "credenciales_requeridas": ["curso_reciclaje_cooperativa"],
+      "credenciales_requeridas": [
+        "curso_reciclaje_cooperativa"
+      ],
       "capital_social_min": 20
     },
     "descripcion": "Mismo cartón, más organización y un poco más de dignidad."
@@ -29,10 +39,18 @@
     "sueldo": 180000,
     "nivel_estres_mensual": 18,
     "rama": "cartonero",
-    "tags": ["informal", "gestion"],
+    "tags": [
+      "informal",
+      "gestion"
+    ],
     "requisitos": {
       "job_previo": "cartonero",
-      "credenciales_algunas": ["curso_reciclaje_cooperativa", "curso_logistica", "curso_ventas"],
+      "credenciales_algunas": [
+        "curso_reciclaje_cooperativa",
+        "curso_logistica",
+        "curso_ventas",
+        "aptitud_liderazgo"
+      ],
       "dinero_min": 50000,
       "capital_social_min": 25
     },
@@ -44,7 +62,10 @@
     "sueldo": 60000,
     "nivel_estres_mensual": 15,
     "rama": "politica",
-    "tags": ["politico", "territorio"],
+    "tags": [
+      "politico",
+      "territorio"
+    ],
     "requisitos": {
       "job_previo": null,
       "capital_social_min": 15
@@ -57,10 +78,16 @@
     "sueldo": 180000,
     "nivel_estres_mensual": 18,
     "rama": "politica",
-    "tags": ["politico", "territorio"],
+    "tags": [
+      "politico",
+      "territorio"
+    ],
     "requisitos": {
       "job_previo": "militante_barrial",
-      "credenciales_algunas": ["aptitud_gestion_territorial", "aptitud_oratoria"],
+      "credenciales_algunas": [
+        "aptitud_gestion_territorial",
+        "aptitud_oratoria"
+      ],
       "capital_social_min": 30
     },
     "descripcion": "Armás listas, favores y el mapa humano del distrito."
@@ -71,10 +98,17 @@
     "sueldo": 450000,
     "nivel_estres_mensual": 22,
     "rama": "politica",
-    "tags": ["politico", "municipio"],
+    "tags": [
+      "politico",
+      "municipio"
+    ],
     "requisitos": {
       "job_previo": "operador_territorial",
-      "credenciales_algunas": ["aptitud_oratoria", "ciencia_politica", "abogacia"],
+      "credenciales_algunas": [
+        "aptitud_oratoria",
+        "ciencia_politica",
+        "abogacia"
+      ],
       "capital_social_min": 40,
       "dinero_min": 100000
     },
@@ -86,7 +120,11 @@
     "sueldo": 900000,
     "nivel_estres_mensual": 28,
     "rama": "politica",
-    "tags": ["politico", "municipio", "ejecutivo"],
+    "tags": [
+      "politico",
+      "municipio",
+      "ejecutivo"
+    ],
     "requisitos": {
       "job_previo": "concejal",
       "capital_social_min": 55,
@@ -100,10 +138,18 @@
     "sueldo": 1500000,
     "nivel_estres_mensual": 32,
     "rama": "politica",
-    "tags": ["politico", "provincial", "ejecutivo"],
+    "tags": [
+      "politico",
+      "provincial",
+      "ejecutivo"
+    ],
     "requisitos": {
       "job_previo": "intendente",
-      "credenciales_algunas": ["ciencia_politica", "abogacia", "administracion_empresas"],
+      "credenciales_algunas": [
+        "ciencia_politica",
+        "abogacia",
+        "administracion_empresas"
+      ],
       "capital_social_min": 70,
       "dinero_min": 800000
     },
@@ -115,7 +161,11 @@
     "sueldo": 2500000,
     "nivel_estres_mensual": 40,
     "rama": "politica",
-    "tags": ["politico", "nacional", "ejecutivo"],
+    "tags": [
+      "politico",
+      "nacional",
+      "ejecutivo"
+    ],
     "requisitos": {
       "job_previo": "gobernador",
       "capital_social_min": 85,
@@ -129,10 +179,18 @@
     "sueldo": 160000,
     "nivel_estres_mensual": 16,
     "rama": "comercio",
-    "tags": ["comercio", "atencion"],
+    "tags": [
+      "comercio",
+      "atencion"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["curso_caja_comercio"],
-      "credenciales_algunas": ["secundaria", "primaria"]
+      "credenciales_requeridas": [
+        "curso_caja_comercio"
+      ],
+      "credenciales_algunas": [
+        "secundaria",
+        "primaria"
+      ]
     },
     "descripcion": "Beep. Beep. Cola. Beep."
   },
@@ -142,10 +200,21 @@
     "sueldo": 175000,
     "nivel_estres_mensual": 15,
     "rama": "comercio",
-    "tags": ["comercio", "ventas"],
+    "tags": [
+      "comercio",
+      "ventas"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["curso_ventas"],
-      "credenciales_algunas": ["curso_atencion_cliente", "secundaria"]
+      "credenciales_requeridas": [
+        "curso_ventas"
+      ],
+      "credenciales_algunas": [
+        "curso_atencion_cliente",
+        "secundaria",
+        "curso_ventas",
+        "aptitud_venta_calle",
+        "aptitud_negociacion"
+      ]
     },
     "descripcion": "Metas, comisiones y '¿lo envuelvo?'."
   },
@@ -155,9 +224,14 @@
     "sueldo": 140000,
     "nivel_estres_mensual": 14,
     "rama": "comercio",
-    "tags": ["comercio", "deposito"],
+    "tags": [
+      "comercio",
+      "deposito"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["primaria"]
+      "credenciales_requeridas": [
+        "primaria"
+      ]
     },
     "descripcion": "Góndolas, cajas pesadas y música del súper."
   },
@@ -167,9 +241,15 @@
     "sueldo": 150000,
     "nivel_estres_mensual": 20,
     "rama": "transporte",
-    "tags": ["transporte", "informal"],
+    "tags": [
+      "transporte",
+      "informal"
+    ],
     "requisitos": {
-      "credenciales_algunas": ["licencia_moto", "licencia_conducir_b"]
+      "credenciales_algunas": [
+        "licencia_moto",
+        "licencia_conducir_b"
+      ]
     },
     "descripcion": "Lluvia, propina y el GPS que te odia."
   },
@@ -179,9 +259,13 @@
     "sueldo": 220000,
     "nivel_estres_mensual": 18,
     "rama": "transporte",
-    "tags": ["transporte"],
+    "tags": [
+      "transporte"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["licencia_conducir_b"],
+      "credenciales_requeridas": [
+        "licencia_conducir_b"
+      ],
       "dinero_min": 40000
     },
     "descripcion": "Combustible, rating y pasajeros raros."
@@ -192,10 +276,17 @@
     "sueldo": 380000,
     "nivel_estres_mensual": 22,
     "rama": "transporte",
-    "tags": ["transporte", "logistica"],
+    "tags": [
+      "transporte",
+      "logistica"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["licencia_profesional"],
-      "credenciales_algunas": ["curso_logistica"]
+      "credenciales_requeridas": [
+        "licencia_profesional"
+      ],
+      "credenciales_algunas": [
+        "curso_logistica"
+      ]
     },
     "descripcion": "Ruta nacional, café termito y espalda de piedra."
   },
@@ -205,9 +296,15 @@
     "sueldo": 1800000,
     "nivel_estres_mensual": 28,
     "rama": "transporte",
-    "tags": ["transporte", "elite"],
+    "tags": [
+      "transporte",
+      "elite"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["piloto_comercial", "ingles_b2"],
+      "credenciales_requeridas": [
+        "piloto_comercial",
+        "ingles_b2"
+      ],
       "salud_min": 70
     },
     "descripcion": "Cielo, uniforme y deudas de formación eternas."
@@ -218,9 +315,14 @@
     "sueldo": 170000,
     "nivel_estres_mensual": 20,
     "rama": "gastronomia",
-    "tags": ["gastronomia", "cocina"],
+    "tags": [
+      "gastronomia",
+      "cocina"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["curso_cocina_basica"]
+      "credenciales_requeridas": [
+        "curso_cocina_basica"
+      ]
     },
     "descripcion": "Pelar, limpiar y que te griten en francés mal pronunciado."
   },
@@ -230,10 +332,16 @@
     "sueldo": 280000,
     "nivel_estres_mensual": 24,
     "rama": "gastronomia",
-    "tags": ["gastronomia", "cocina"],
+    "tags": [
+      "gastronomia",
+      "cocina"
+    ],
     "requisitos": {
       "job_previo": "ayudante_cocina",
-      "credenciales_algunas": ["tecnicatura_gastronomia", "curso_panaderia"]
+      "credenciales_algunas": [
+        "tecnicatura_gastronomia",
+        "curso_panaderia"
+      ]
     },
     "descripcion": "Servicio, quemaduras y el plato que vuelve."
   },
@@ -243,10 +351,15 @@
     "sueldo": 520000,
     "nivel_estres_mensual": 30,
     "rama": "gastronomia",
-    "tags": ["gastronomia", "liderazgo"],
+    "tags": [
+      "gastronomia",
+      "liderazgo"
+    ],
     "requisitos": {
       "job_previo": "cocinero",
-      "credenciales_requeridas": ["tecnicatura_gastronomia"],
+      "credenciales_requeridas": [
+        "tecnicatura_gastronomia"
+      ],
       "capital_social_min": 30
     },
     "descripcion": "La brigada te mira. El dueño también."
@@ -257,9 +370,14 @@
     "sueldo": 210000,
     "nivel_estres_mensual": 18,
     "rama": "gastronomia",
-    "tags": ["gastronomia", "barra"],
+    "tags": [
+      "gastronomia",
+      "barra"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["curso_bartender"]
+      "credenciales_requeridas": [
+        "curso_bartender"
+      ]
     },
     "descripcion": "Noche, hielo y secretos ajenos."
   },
@@ -269,9 +387,13 @@
     "sueldo": 340000,
     "nivel_estres_mensual": 16,
     "rama": "gastronomia",
-    "tags": ["gastronomia"],
+    "tags": [
+      "gastronomia"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["curso_sommelier"]
+      "credenciales_requeridas": [
+        "curso_sommelier"
+      ]
     },
     "descripcion": "Cartas de vino y propinas con acento."
   },
@@ -281,9 +403,13 @@
     "sueldo": 230000,
     "nivel_estres_mensual": 22,
     "rama": "gastronomia",
-    "tags": ["gastronomia"],
+    "tags": [
+      "gastronomia"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["curso_panaderia"]
+      "credenciales_requeridas": [
+        "curso_panaderia"
+      ]
     },
     "descripcion": "Madrugada, harina en el pelo, olor a hogar ajeno."
   },
@@ -293,10 +419,18 @@
     "sueldo": 280000,
     "nivel_estres_mensual": 20,
     "rama": "tech",
-    "tags": ["tech", "oficina"],
+    "tags": [
+      "tech",
+      "oficina"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["curso_office"],
-      "credenciales_algunas": ["curso_alfabetizacion_digital", "secundaria"],
+      "credenciales_requeridas": [
+        "curso_office"
+      ],
+      "credenciales_algunas": [
+        "curso_alfabetizacion_digital",
+        "secundaria"
+      ],
       "dinero_min": 30000
     },
     "descripcion": "Tickets, impresoras y reinicios sagrados."
@@ -307,11 +441,19 @@
     "sueldo": 650000,
     "nivel_estres_mensual": 25,
     "rama": "tech",
-    "tags": ["tech", "datos"],
+    "tags": [
+      "tech",
+      "datos"
+    ],
     "requisitos": {
       "job_previo": "soporte_it",
-      "credenciales_algunas": ["curso_n8n", "curso_sql"],
-      "credenciales_requeridas": ["curso_python"],
+      "credenciales_algunas": [
+        "curso_n8n",
+        "curso_sql"
+      ],
+      "credenciales_requeridas": [
+        "curso_python"
+      ],
       "dinero_min": 100000
     },
     "descripcion": "Pipelines, n8n y bases que fallan viernes 18:00."
@@ -322,10 +464,18 @@
     "sueldo": 580000,
     "nivel_estres_mensual": 24,
     "rama": "tech",
-    "tags": ["tech", "dev"],
+    "tags": [
+      "tech",
+      "dev"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["curso_web_frontend"],
-      "credenciales_algunas": ["ingles_a2", "secundaria"]
+      "credenciales_requeridas": [
+        "curso_web_frontend"
+      ],
+      "credenciales_algunas": [
+        "ingles_a2",
+        "secundaria"
+      ]
     },
     "descripcion": "Componentes, diseño que cambia y deploy con miedo."
   },
@@ -335,10 +485,19 @@
     "sueldo": 520000,
     "nivel_estres_mensual": 22,
     "rama": "tech",
-    "tags": ["tech", "datos"],
+    "tags": [
+      "tech",
+      "datos"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["curso_sql", "curso_data_viz"],
-      "credenciales_algunas": ["curso_python", "ingles_a2"]
+      "credenciales_requeridas": [
+        "curso_sql",
+        "curso_data_viz"
+      ],
+      "credenciales_algunas": [
+        "curso_python",
+        "ingles_a2"
+      ]
     },
     "descripcion": "Dashboards, stakeholders y '¿podés bajarlo a Excel?'."
   },
@@ -348,10 +507,18 @@
     "sueldo": 700000,
     "nivel_estres_mensual": 26,
     "rama": "tech",
-    "tags": ["tech", "seguridad"],
+    "tags": [
+      "tech",
+      "seguridad"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["curso_ciberseguridad"],
-      "credenciales_algunas": ["curso_python", "licenciatura_sistemas"]
+      "credenciales_requeridas": [
+        "curso_ciberseguridad"
+      ],
+      "credenciales_algunas": [
+        "curso_python",
+        "licenciatura_sistemas"
+      ]
     },
     "descripcion": "Incidentes, logs y paranoia laboral saludable."
   },
@@ -361,10 +528,17 @@
     "sueldo": 1200000,
     "nivel_estres_mensual": 30,
     "rama": "tech",
-    "tags": ["tech", "liderazgo"],
+    "tags": [
+      "tech",
+      "liderazgo"
+    ],
     "requisitos": {
       "job_previo": "data_engineer",
-      "credenciales_algunas": ["administracion_empresas", "mba", "curso_rrhh"],
+      "credenciales_algunas": [
+        "administracion_empresas",
+        "mba",
+        "curso_rrhh"
+      ],
       "capital_social_min": 45,
       "dinero_min": 400000
     },
@@ -376,10 +550,19 @@
     "sueldo": 900000,
     "nivel_estres_mensual": 26,
     "rama": "tech",
-    "tags": ["tech", "ia"],
+    "tags": [
+      "tech",
+      "ia"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["curso_ia_aplicada", "curso_python"],
-      "credenciales_algunas": ["ingles_b2", "licenciatura_sistemas"]
+      "credenciales_requeridas": [
+        "curso_ia_aplicada",
+        "curso_python"
+      ],
+      "credenciales_algunas": [
+        "ingles_b2",
+        "licenciatura_sistemas"
+      ]
     },
     "descripcion": "Modelos, demos y promesas de productividad."
   },
@@ -389,9 +572,13 @@
     "sueldo": 260000,
     "nivel_estres_mensual": 18,
     "rama": "oficios",
-    "tags": ["oficio"],
+    "tags": [
+      "oficio"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["curso_electricidad"]
+      "credenciales_requeridas": [
+        "curso_electricidad"
+      ]
     },
     "descripcion": "Trabajos por zona, peligro real, efectivo en mano."
   },
@@ -401,9 +588,13 @@
     "sueldo": 250000,
     "nivel_estres_mensual": 17,
     "rama": "oficios",
-    "tags": ["oficio"],
+    "tags": [
+      "oficio"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["curso_plomeria"]
+      "credenciales_requeridas": [
+        "curso_plomeria"
+      ]
     },
     "descripcion": "Emergencias a las 23:00 y caños que lloran."
   },
@@ -413,9 +604,14 @@
     "sueldo": 240000,
     "nivel_estres_mensual": 20,
     "rama": "oficios",
-    "tags": ["oficio", "obra"],
+    "tags": [
+      "oficio",
+      "obra"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["curso_albanileria"]
+      "credenciales_requeridas": [
+        "curso_albanileria"
+      ]
     },
     "descripcion": "Obra, sol y el capataz con silbato invisible."
   },
@@ -425,9 +621,13 @@
     "sueldo": 290000,
     "nivel_estres_mensual": 21,
     "rama": "oficios",
-    "tags": ["oficio"],
+    "tags": [
+      "oficio"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["curso_soldadura"]
+      "credenciales_requeridas": [
+        "curso_soldadura"
+      ]
     },
     "descripcion": "Metal, calor y laburo que se ve."
   },
@@ -437,9 +637,13 @@
     "sueldo": 270000,
     "nivel_estres_mensual": 19,
     "rama": "oficios",
-    "tags": ["oficio"],
+    "tags": [
+      "oficio"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["curso_mecanica_autos"]
+      "credenciales_requeridas": [
+        "curso_mecanica_autos"
+      ]
     },
     "descripcion": "Aceite, diagnóstico y 'vino así'."
   },
@@ -449,9 +653,13 @@
     "sueldo": 300000,
     "nivel_estres_mensual": 18,
     "rama": "oficios",
-    "tags": ["oficio"],
+    "tags": [
+      "oficio"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["curso_refrigeracion"]
+      "credenciales_requeridas": [
+        "curso_refrigeracion"
+      ]
     },
     "descripcion": "Verano dorado. Invierno sobrevivís."
   },
@@ -461,10 +669,18 @@
     "sueldo": 420000,
     "nivel_estres_mensual": 24,
     "rama": "oficios",
-    "tags": ["oficio", "liderazgo"],
+    "tags": [
+      "oficio",
+      "liderazgo"
+    ],
     "requisitos": {
       "job_previo": "albanil",
-      "credenciales_algunas": ["curso_albanileria", "arquitectura"],
+      "credenciales_algunas": [
+        "curso_albanileria",
+        "arquitectura",
+        "aptitud_liderazgo",
+        "curso_seguridad_higiene"
+      ],
       "capital_social_min": 25
     },
     "descripcion": "Mandás gente, pelea con el arquitecto, cobrás mejor."
@@ -475,9 +691,13 @@
     "sueldo": 650000,
     "nivel_estres_mensual": 26,
     "rama": "oficios",
-    "tags": ["profesion"],
+    "tags": [
+      "profesion"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["arquitectura"]
+      "credenciales_requeridas": [
+        "arquitectura"
+      ]
     },
     "descripcion": "Render lindo, obra caótica."
   },
@@ -487,9 +707,13 @@
     "sueldo": 210000,
     "nivel_estres_mensual": 22,
     "rama": "salud",
-    "tags": ["salud"],
+    "tags": [
+      "salud"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["curso_aux_enfermeria"]
+      "credenciales_requeridas": [
+        "curso_aux_enfermeria"
+      ]
     },
     "descripcion": "Hospital público, pasillos y humanidad cruda."
   },
@@ -499,9 +723,13 @@
     "sueldo": 360000,
     "nivel_estres_mensual": 26,
     "rama": "salud",
-    "tags": ["salud"],
+    "tags": [
+      "salud"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["curso_enfermeria_profesional"]
+      "credenciales_requeridas": [
+        "curso_enfermeria_profesional"
+      ]
     },
     "descripcion": "Guardias, responsabilidades y poco sueño."
   },
@@ -511,9 +739,13 @@
     "sueldo": 320000,
     "nivel_estres_mensual": 18,
     "rama": "salud",
-    "tags": ["salud"],
+    "tags": [
+      "salud"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["tecnicatura_radiologia"]
+      "credenciales_requeridas": [
+        "tecnicatura_radiologia"
+      ]
     },
     "descripcion": "Placas, turnos y delantal pesado."
   },
@@ -523,9 +755,14 @@
     "sueldo": 190000,
     "nivel_estres_mensual": 20,
     "rama": "salud",
-    "tags": ["salud", "cuidado"],
+    "tags": [
+      "salud",
+      "cuidado"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["curso_cuidado_mayores"]
+      "credenciales_requeridas": [
+        "curso_cuidado_mayores"
+      ]
     },
     "descripcion": "Casas ajenas, historias largas, paciencia infinita."
   },
@@ -535,9 +772,14 @@
     "sueldo": 900000,
     "nivel_estres_mensual": 32,
     "rama": "salud",
-    "tags": ["salud", "profesion"],
+    "tags": [
+      "salud",
+      "profesion"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["medicina"],
+      "credenciales_requeridas": [
+        "medicina"
+      ],
       "salud_min": 50
     },
     "descripcion": "Guardia, bata y el peso de decidir."
@@ -548,9 +790,14 @@
     "sueldo": 420000,
     "nivel_estres_mensual": 20,
     "rama": "salud",
-    "tags": ["salud", "profesion"],
+    "tags": [
+      "salud",
+      "profesion"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["psicologia"]
+      "credenciales_requeridas": [
+        "psicologia"
+      ]
     },
     "descripcion": "Consultorio, escucha y tu propia cabeza en paralelo."
   },
@@ -560,9 +807,13 @@
     "sueldo": 280000,
     "nivel_estres_mensual": 22,
     "rama": "educacion",
-    "tags": ["educacion"],
+    "tags": [
+      "educacion"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["profesorado"]
+      "credenciales_requeridas": [
+        "profesorado"
+      ]
     },
     "descripcion": "Aula, vocación y sueldo que discute con la inflación."
   },
@@ -572,9 +823,14 @@
     "sueldo": 230000,
     "nivel_estres_mensual": 16,
     "rama": "comercio",
-    "tags": ["oficina"],
+    "tags": [
+      "oficina"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["curso_office", "secundaria"]
+      "credenciales_requeridas": [
+        "curso_office",
+        "secundaria"
+      ]
     },
     "descripcion": "Expedientes, sellos y el café de la oficina."
   },
@@ -584,10 +840,21 @@
     "sueldo": 380000,
     "nivel_estres_mensual": 18,
     "rama": "comercio",
-    "tags": ["oficina", "rrhh"],
+    "tags": [
+      "oficina",
+      "rrhh"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["curso_rrhh"],
-      "credenciales_algunas": ["secundaria", "administracion_empresas"]
+      "credenciales_requeridas": [
+        "curso_rrhh"
+      ],
+      "credenciales_algunas": [
+        "secundaria",
+        "administracion_empresas",
+        "curso_rrhh",
+        "aptitud_empatia",
+        "aptitud_organizacion"
+      ]
     },
     "descripcion": "Liquidás sueldos y eufemismos."
   },
@@ -597,9 +864,17 @@
     "sueldo": 300000,
     "nivel_estres_mensual": 21,
     "rama": "comercio",
-    "tags": ["marketing"],
+    "tags": [
+      "marketing"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["curso_marketing_digital"]
+      "credenciales_requeridas": [
+        "curso_marketing_digital"
+      ],
+      "credenciales_algunas": [
+        "curso_marketing_digital",
+        "aptitud_networking"
+      ]
     },
     "descripcion": "Posts, haters y el cliente que responde a las 23."
   },
@@ -609,9 +884,13 @@
     "sueldo": 480000,
     "nivel_estres_mensual": 24,
     "rama": "legal",
-    "tags": ["profesion"],
+    "tags": [
+      "profesion"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["contador"]
+      "credenciales_requeridas": [
+        "contador"
+      ]
     },
     "descripcion": "AFIP, balances y clientes asustados."
   },
@@ -621,9 +900,14 @@
     "sueldo": 500000,
     "nivel_estres_mensual": 26,
     "rama": "legal",
-    "tags": ["profesion", "legal"],
+    "tags": [
+      "profesion",
+      "legal"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["abogacia"]
+      "credenciales_requeridas": [
+        "abogacia"
+      ]
     },
     "descripcion": "Juzgados, demoras y honorarios discutidos."
   },
@@ -633,9 +917,14 @@
     "sueldo": 750000,
     "nivel_estres_mensual": 18,
     "rama": "legal",
-    "tags": ["profesion", "legal"],
+    "tags": [
+      "profesion",
+      "legal"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["escribania"]
+      "credenciales_requeridas": [
+        "escribania"
+      ]
     },
     "descripcion": "Protocolo, firmas y un escritorio muy caro."
   },
@@ -645,9 +934,16 @@
     "sueldo": 1100000,
     "nivel_estres_mensual": 30,
     "rama": "comercio",
-    "tags": ["liderazgo"],
+    "tags": [
+      "liderazgo"
+    ],
     "requisitos": {
-      "credenciales_algunas": ["mba", "administracion_empresas"],
+      "credenciales_algunas": [
+        "mba",
+        "administracion_empresas",
+        "aptitud_liderazgo",
+        "aptitud_negociacion"
+      ],
       "capital_social_min": 50,
       "dinero_min": 300000
     },
@@ -659,9 +955,13 @@
     "sueldo": 220000,
     "nivel_estres_mensual": 15,
     "rama": "servicios",
-    "tags": ["servicios"],
+    "tags": [
+      "servicios"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["curso_peluqueria"]
+      "credenciales_requeridas": [
+        "curso_peluqueria"
+      ]
     },
     "descripcion": "Tijera, chisme y clientes eternos."
   },
@@ -671,9 +971,13 @@
     "sueldo": 230000,
     "nivel_estres_mensual": 14,
     "rama": "servicios",
-    "tags": ["servicios"],
+    "tags": [
+      "servicios"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["curso_estetica"]
+      "credenciales_requeridas": [
+        "curso_estetica"
+      ]
     },
     "descripcion": "Turnos, productos y antes/después."
   },
@@ -683,9 +987,14 @@
     "sueldo": 250000,
     "nivel_estres_mensual": 16,
     "rama": "arte",
-    "tags": ["arte", "freelance"],
+    "tags": [
+      "arte",
+      "freelance"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["curso_fotografia"]
+      "credenciales_requeridas": [
+        "curso_fotografia"
+      ]
     },
     "descripcion": "Casamientos, eventos y cobro a 60 días."
   },
@@ -695,9 +1004,14 @@
     "sueldo": 320000,
     "nivel_estres_mensual": 18,
     "rama": "arte",
-    "tags": ["arte", "oficina"],
+    "tags": [
+      "arte",
+      "oficina"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["curso_diseno_grafico"]
+      "credenciales_requeridas": [
+        "curso_diseno_grafico"
+      ]
     },
     "descripcion": "Briefs eternos y 'hacelo más cool'."
   },
@@ -707,10 +1021,18 @@
     "sueldo": 270000,
     "nivel_estres_mensual": 22,
     "rama": "arte",
-    "tags": ["arte", "medios"],
+    "tags": [
+      "arte",
+      "medios"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["curso_periodismo"],
-      "credenciales_algunas": ["ingles_a2", "secundaria"]
+      "credenciales_requeridas": [
+        "curso_periodismo"
+      ],
+      "credenciales_algunas": [
+        "ingles_a2",
+        "secundaria"
+      ]
     },
     "descripcion": "Noticias, deadlines y redacción que sangra."
   },
@@ -720,9 +1042,14 @@
     "sueldo": 180000,
     "nivel_estres_mensual": 17,
     "rama": "arte",
-    "tags": ["arte", "informal"],
+    "tags": [
+      "arte",
+      "informal"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["curso_musica"]
+      "credenciales_requeridas": [
+        "curso_musica"
+      ]
     },
     "descripcion": "Tocadas, ensayos y plata inestable."
   },
@@ -732,9 +1059,13 @@
     "sueldo": 200000,
     "nivel_estres_mensual": 16,
     "rama": "seguridad",
-    "tags": ["seguridad"],
+    "tags": [
+      "seguridad"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["curso_seguridad_privada"]
+      "credenciales_requeridas": [
+        "curso_seguridad_privada"
+      ]
     },
     "descripcion": "Ronda nocturna y café de termos."
   },
@@ -744,9 +1075,13 @@
     "sueldo": 240000,
     "nivel_estres_mensual": 28,
     "rama": "seguridad",
-    "tags": ["seguridad"],
+    "tags": [
+      "seguridad"
+    ],
     "requisitos": {
-      "credenciales_requeridas": ["curso_bomberos_voluntarios"],
+      "credenciales_requeridas": [
+        "curso_bomberos_voluntarios"
+      ],
       "salud_min": 60
     },
     "descripcion": "Sirenas, humo y adrenalina que no pediste."
@@ -757,9 +1092,14 @@
     "sueldo": 170000,
     "nivel_estres_mensual": 18,
     "rama": "campo",
-    "tags": ["campo"],
+    "tags": [
+      "campo"
+    ],
     "requisitos": {
-      "credenciales_algunas": ["curso_agro", "primaria"]
+      "credenciales_algunas": [
+        "curso_agro",
+        "primaria"
+      ]
     },
     "descripcion": "Amanecer, tierra y patrones lejanos."
   },
@@ -769,12 +1109,516 @@
     "sueldo": 350000,
     "nivel_estres_mensual": 20,
     "rama": "campo",
-    "tags": ["campo", "liderazgo"],
+    "tags": [
+      "campo",
+      "liderazgo"
+    ],
     "requisitos": {
       "job_previo": "peon_rural",
-      "credenciales_requeridas": ["curso_agro"],
+      "credenciales_requeridas": [
+        "curso_agro"
+      ],
       "capital_social_min": 20
     },
     "descripcion": "Decidís siembras, peones y el clima te humilla igual."
+  },
+  {
+    "id": "vendedor_ambulante",
+    "titulo": "Vendedor ambulante",
+    "sueldo": 70000,
+    "nivel_estres_mensual": 16,
+    "rama": "comercio",
+    "tags": [
+      "informal",
+      "calle",
+      "comercio"
+    ],
+    "requisitos": {
+      "credenciales_algunas": [
+        "aptitud_venta_calle",
+        "curso_ventas"
+      ]
+    },
+    "descripcion": "Calle, voz y mercadería que se te moja si llueve."
+  },
+  {
+    "id": "call_center",
+    "titulo": "Operador de call center",
+    "sueldo": 220000,
+    "nivel_estres_mensual": 20,
+    "rama": "servicios",
+    "tags": [
+      "oficina",
+      "servicios"
+    ],
+    "requisitos": {
+      "credenciales_requeridas": [
+        "curso_call_center"
+      ],
+      "credenciales_algunas": [
+        "aptitud_empatia",
+        "curso_atencion_cliente"
+      ]
+    },
+    "descripcion": "Scripts, métricas y clientes que te gritan el nombre."
+  },
+  {
+    "id": "supervisor_call",
+    "titulo": "Supervisor de call center",
+    "sueldo": 380000,
+    "nivel_estres_mensual": 22,
+    "rama": "servicios",
+    "tags": [
+      "oficina",
+      "liderazgo"
+    ],
+    "requisitos": {
+      "job_previo": "call_center",
+      "credenciales_requeridas": [
+        "aptitud_liderazgo"
+      ],
+      "capital_social_min": 25
+    },
+    "descripcion": "Métricas ajenas, tu estrés propio."
+  },
+  {
+    "id": "recepcionista",
+    "titulo": "Recepcionista",
+    "sueldo": 240000,
+    "nivel_estres_mensual": 14,
+    "rama": "servicios",
+    "tags": [
+      "oficina",
+      "servicios"
+    ],
+    "requisitos": {
+      "credenciales_requeridas": [
+        "curso_atencion_cliente"
+      ],
+      "credenciales_algunas": [
+        "curso_hoteleria",
+        "curso_office",
+        "aptitud_organizacion"
+      ]
+    },
+    "descripcion": "Primera cara de la empresa. La última en irse."
+  },
+  {
+    "id": "cajero_banco",
+    "titulo": "Cajero bancario",
+    "sueldo": 420000,
+    "nivel_estres_mensual": 18,
+    "rama": "comercio",
+    "tags": [
+      "oficina",
+      "comercio"
+    ],
+    "requisitos": {
+      "credenciales_requeridas": [
+        "curso_banco_caja"
+      ],
+      "capital_social_min": 20,
+      "dinero_min": 50000
+    },
+    "descripcion": "Filas, alarmas y plata que no es tuya."
+  },
+  {
+    "id": "asesor_comercial",
+    "titulo": "Asesor comercial",
+    "sueldo": 350000,
+    "nivel_estres_mensual": 17,
+    "rama": "comercio",
+    "tags": [
+      "comercio",
+      "oficina"
+    ],
+    "requisitos": {
+      "credenciales_requeridas": [
+        "curso_ventas",
+        "aptitud_negociacion"
+      ],
+      "capital_social_min": 22
+    },
+    "descripcion": "Metas, CRM y el “te llamo mañana” eterno."
+  },
+  {
+    "id": "agente_inmobiliario",
+    "titulo": "Agente inmobiliario",
+    "sueldo": 280000,
+    "nivel_estres_mensual": 16,
+    "rama": "comercio",
+    "tags": [
+      "comercio"
+    ],
+    "requisitos": {
+      "credenciales_requeridas": [
+        "curso_inmobiliario"
+      ],
+      "credenciales_algunas": [
+        "aptitud_negociacion",
+        "aptitud_networking"
+      ]
+    },
+    "descripcion": "Llaves, visitas y comisiones que llegan tarde."
+  },
+  {
+    "id": "tecnico_pc",
+    "titulo": "Técnico de PC / armado",
+    "sueldo": 260000,
+    "nivel_estres_mensual": 14,
+    "rama": "tech",
+    "tags": [
+      "tech",
+      "oficio"
+    ],
+    "requisitos": {
+      "credenciales_requeridas": [
+        "curso_alfabetizacion_digital"
+      ],
+      "credenciales_algunas": [
+        "curso_office",
+        "aptitud_detalle"
+      ]
+    },
+    "descripcion": "“No toqué nada” y el CPU lleno de tierra."
+  },
+  {
+    "id": "ux_designer",
+    "titulo": "Diseñador UX/UI",
+    "sueldo": 520000,
+    "nivel_estres_mensual": 16,
+    "rama": "tech",
+    "tags": [
+      "tech",
+      "oficina"
+    ],
+    "requisitos": {
+      "credenciales_requeridas": [
+        "curso_ux"
+      ],
+      "capital_social_min": 18
+    },
+    "descripcion": "Figma, stakeholders y “¿podés hacer un cambio chiquito?”."
+  },
+  {
+    "id": "mobile_dev",
+    "titulo": "Desarrollador mobile",
+    "sueldo": 580000,
+    "nivel_estres_mensual": 18,
+    "rama": "tech",
+    "tags": [
+      "tech"
+    ],
+    "requisitos": {
+      "credenciales_requeridas": [
+        "curso_mobile"
+      ],
+      "job_previo": "desarrollador_frontend"
+    },
+    "descripcion": "Stores, crashes y versiones que nadie actualiza."
+  },
+  {
+    "id": "aux_farmacia",
+    "titulo": "Auxiliar de farmacia",
+    "sueldo": 280000,
+    "nivel_estres_mensual": 14,
+    "rama": "salud",
+    "tags": [
+      "salud"
+    ],
+    "requisitos": {
+      "credenciales_requeridas": [
+        "curso_farmacia_aux"
+      ],
+      "credenciales_algunas": [
+        "aptitud_detalle",
+        "aptitud_empatia"
+      ]
+    },
+    "descripcion": "Mostrador, obras sociales y “¿tiene más barato?”."
+  },
+  {
+    "id": "tecnico_laboratorio",
+    "titulo": "Técnico de laboratorio",
+    "sueldo": 340000,
+    "nivel_estres_mensual": 15,
+    "rama": "salud",
+    "tags": [
+      "salud"
+    ],
+    "requisitos": {
+      "credenciales_requeridas": [
+        "curso_laboratorio"
+      ]
+    },
+    "descripcion": "Extracciones, turnos y muestras que no esperan."
+  },
+  {
+    "id": "kinesiologo",
+    "titulo": "Kinesiólogo",
+    "sueldo": 480000,
+    "nivel_estres_mensual": 14,
+    "rama": "salud",
+    "tags": [
+      "salud"
+    ],
+    "requisitos": {
+      "credenciales_requeridas": [
+        "kinesiologia"
+      ],
+      "capital_social_min": 20
+    },
+    "descripcion": "Camillas, obras sociales y cuerpos rotos por el laburo."
+  },
+  {
+    "id": "profesor_secundario",
+    "titulo": "Profesor de secundaria",
+    "sueldo": 320000,
+    "nivel_estres_mensual": 18,
+    "rama": "educacion",
+    "tags": [
+      "educacion"
+    ],
+    "requisitos": {
+      "credenciales_requeridas": [
+        "profesorado_secundario"
+      ],
+      "credenciales_algunas": [
+        "aptitud_oratoria",
+        "aptitud_empatia"
+      ]
+    },
+    "descripcion": "Horas cátedra, actas y pibes que te educan a vos."
+  },
+  {
+    "id": "director_escuela",
+    "titulo": "Director de escuela",
+    "sueldo": 520000,
+    "nivel_estres_mensual": 22,
+    "rama": "educacion",
+    "tags": [
+      "educacion",
+      "liderazgo"
+    ],
+    "requisitos": {
+      "job_previo": "profesor_secundario",
+      "credenciales_requeridas": [
+        "aptitud_liderazgo"
+      ],
+      "capital_social_min": 35
+    },
+    "descripcion": "Padres, ministerios y el techo que gotea."
+  },
+  {
+    "id": "pintor_obra",
+    "titulo": "Pintor",
+    "sueldo": 230000,
+    "nivel_estres_mensual": 15,
+    "rama": "oficios",
+    "tags": [
+      "oficio",
+      "obra"
+    ],
+    "requisitos": {
+      "credenciales_requeridas": [
+        "curso_pintura"
+      ],
+      "credenciales_algunas": [
+        "aptitud_resistencia",
+        "aptitud_detalle"
+      ]
+    },
+    "descripcion": "Andamios, olor a thinner y “¿queda parejo?”."
+  },
+  {
+    "id": "gasista",
+    "titulo": "Gasista",
+    "sueldo": 320000,
+    "nivel_estres_mensual": 17,
+    "rama": "oficios",
+    "tags": [
+      "oficio"
+    ],
+    "requisitos": {
+      "credenciales_requeridas": [
+        "curso_gasista"
+      ]
+    },
+    "descripcion": "Matrícula, fugas y clientes asustados."
+  },
+  {
+    "id": "electricista_industrial",
+    "titulo": "Electricista industrial",
+    "sueldo": 400000,
+    "nivel_estres_mensual": 20,
+    "rama": "oficios",
+    "tags": [
+      "oficio",
+      "industria"
+    ],
+    "requisitos": {
+      "job_previo": "electricista",
+      "credenciales_requeridas": [
+        "curso_electricidad_industrial"
+      ],
+      "salud_min": 50
+    },
+    "descripcion": "Plantas, tableros y cortes que cuestan millones."
+  },
+  {
+    "id": "jardinero",
+    "titulo": "Jardinero / mantenimiento",
+    "sueldo": 190000,
+    "nivel_estres_mensual": 12,
+    "rama": "campo",
+    "tags": [
+      "campo",
+      "servicios"
+    ],
+    "requisitos": {
+      "credenciales_requeridas": [
+        "curso_jardineria"
+      ]
+    },
+    "descripcion": "Pasto ajeno, sol propio."
+  },
+  {
+    "id": "recepcion_hotel",
+    "titulo": "Recepción de hotel",
+    "sueldo": 270000,
+    "nivel_estres_mensual": 15,
+    "rama": "servicios",
+    "tags": [
+      "servicios",
+      "turismo"
+    ],
+    "requisitos": {
+      "credenciales_requeridas": [
+        "curso_hoteleria"
+      ],
+      "credenciales_algunas": [
+        "ingles_a2",
+        "frances_basico",
+        "aptitud_empatia"
+      ]
+    },
+    "descripcion": "Huéspedes a las 2 AM y reviews de una estrella."
+  },
+  {
+    "id": "guia_turismo",
+    "titulo": "Guía de turismo",
+    "sueldo": 250000,
+    "nivel_estres_mensual": 13,
+    "rama": "servicios",
+    "tags": [
+      "turismo",
+      "servicios"
+    ],
+    "requisitos": {
+      "credenciales_requeridas": [
+        "curso_turismo"
+      ],
+      "capital_social_min": 18
+    },
+    "descripcion": "Grupos, fotos y el mismo chiste diez veces."
+  },
+  {
+    "id": "rrpp",
+    "titulo": "Relaciones públicas",
+    "sueldo": 360000,
+    "nivel_estres_mensual": 16,
+    "rama": "arte",
+    "tags": [
+      "medios",
+      "oficina"
+    ],
+    "requisitos": {
+      "credenciales_requeridas": [
+        "curso_rrpp"
+      ],
+      "capital_social_min": 28
+    },
+    "descripcion": "Eventos, influencers y favores con traje."
+  },
+  {
+    "id": "inspector_hygiene",
+    "titulo": "Inspector de seguridad e higiene",
+    "sueldo": 390000,
+    "nivel_estres_mensual": 15,
+    "rama": "seguridad",
+    "tags": [
+      "seguridad",
+      "oficina"
+    ],
+    "requisitos": {
+      "credenciales_requeridas": [
+        "curso_seguridad_higiene"
+      ],
+      "credenciales_algunas": [
+        "aptitud_detalle",
+        "aptitud_crisis"
+      ]
+    },
+    "descripcion": "Actas, cascos y gerentes que te miran mal."
+  },
+  {
+    "id": "operador_deposito",
+    "titulo": "Operador de depósito / autoelevador",
+    "sueldo": 280000,
+    "nivel_estres_mensual": 16,
+    "rama": "transporte",
+    "tags": [
+      "logistica",
+      "deposito"
+    ],
+    "requisitos": {
+      "credenciales_requeridas": [
+        "licencia_autoelevador",
+        "curso_logistica"
+      ],
+      "salud_min": 45
+    },
+    "descripcion": "Pallets, picos y el pitido eterno de marcha atrás."
+  },
+  {
+    "id": "asistente_contable",
+    "titulo": "Asistente contable",
+    "sueldo": 300000,
+    "nivel_estres_mensual": 14,
+    "rama": "legal",
+    "tags": [
+      "oficina",
+      "legal"
+    ],
+    "requisitos": {
+      "credenciales_requeridas": [
+        "curso_contabilidad_basica"
+      ],
+      "credenciales_algunas": [
+        "aptitud_detalle",
+        "curso_office"
+      ]
+    },
+    "descripcion": "Excel, vencimientos y el contador que llega tarde."
+  },
+  {
+    "id": "maestro_inicial",
+    "titulo": "Maestro/a de grado",
+    "sueldo": 290000,
+    "nivel_estres_mensual": 17,
+    "rama": "educacion",
+    "tags": [
+      "educacion"
+    ],
+    "requisitos": {
+      "credenciales_requeridas": [
+        "profesorado"
+      ],
+      "credenciales_algunas": [
+        "aptitud_empatia",
+        "aptitud_equipo"
+      ]
+    },
+    "descripcion": "Cuadernos, reuniones de padres y poco sueño."
   }
 ]

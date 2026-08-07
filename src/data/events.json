@@ -2410,5 +2410,675 @@
         ]
       }
     ]
+  },
+  {
+    "id": "balacera_esquina",
+    "titulo": "Balacera en la esquina",
+    "texto": "Estás comprando un pan. Suenan tres tiros. La gente se tira al piso. El kiosquero cierra la persiana con vos adentro. Afirma: 'esto es todos los putos días'.",
+    "peso": 11,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "quedarte_piso",
+        "label": "Quedarte en el piso hasta que pase",
+        "efectos": [
+          { "type": "delta", "metric": "estres", "amount": 20 },
+          { "type": "delta", "metric": "bienestar", "amount": -12 },
+          { "type": "delta", "metric": "salud", "amount": -3 }
+        ]
+      },
+      {
+        "id": "salir_corriendo",
+        "label": "Salir corriendo entre los tiros",
+        "efectos": [
+          { "type": "delta", "metric": "salud", "amount": -15 },
+          { "type": "delta", "metric": "estres", "amount": 25 },
+          {
+            "type": "risk",
+            "chance": 0.2,
+            "effects": [{ "type": "delta", "metric": "salud", "amount": -40 }]
+          }
+        ]
+      },
+      {
+        "id": "filmar_todo",
+        "label": "Filmar y subir a redes",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": 8 },
+          { "type": "delta", "metric": "estres", "amount": 18 },
+          { "type": "delta", "metric": "bienestar", "amount": -10 },
+          { "type": "add_flag", "value": "filmo_balacera" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "laburo_en_negro",
+    "titulo": "Te ofrecen laburo en negro",
+    "texto": "Un tipo de camioneta te para: 'diez horas, plata en mano, sin recibo'. El sueldo es decente. Los ojos, no.",
+    "peso": 12,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "aceptar_negro",
+        "label": "Aceptar y cobrar en negro",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": 120000 },
+          { "type": "delta", "metric": "estres", "amount": 15 },
+          { "type": "delta", "metric": "bienestar", "amount": -8 },
+          { "type": "add_flag", "value": "laburo_negro" }
+        ]
+      },
+      {
+        "id": "pedir_blanco",
+        "label": "Pedir que te anoten en blanco",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": 4 },
+          { "type": "delta", "metric": "dinero", "amount": -5000 },
+          {
+            "type": "risk",
+            "chance": 0.6,
+            "effects": [
+              { "type": "delta", "metric": "capital_social", "amount": -8 },
+              { "type": "delta", "metric": "estres", "amount": 10 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "rechazar_negro",
+        "label": "Rechazar y seguir tu camino",
+        "efectos": [
+          { "type": "delta", "metric": "bienestar", "amount": 4 },
+          { "type": "delta", "metric": "dinero", "amount": -8000 },
+          { "type": "delta", "metric": "estres", "amount": 4 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "extorsion_kiosco",
+    "titulo": "La 'protección' del barrio",
+    "texto": "Dos pibes te paran: 'acá se paga para que no pase nada'. Sonríen como si fuera un servicio de streaming.",
+    "peso": 10,
+    "condiciones": [{ "type": "dinero_gte", "value": 20000 }],
+    "opciones": [
+      {
+        "id": "pagar_proteccion",
+        "label": "Pagar la protección",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -35000 },
+          { "type": "delta", "metric": "estres", "amount": 8 },
+          { "type": "delta", "metric": "bienestar", "amount": -10 },
+          { "type": "add_flag", "value": "paga_proteccion" }
+        ]
+      },
+      {
+        "id": "plantarte",
+        "label": "Plantarte y decir que no",
+        "efectos": [
+          { "type": "delta", "metric": "salud", "amount": -25 },
+          { "type": "delta", "metric": "estres", "amount": 22 },
+          { "type": "delta", "metric": "capital_social", "amount": 6 },
+          { "type": "delta", "metric": "bienestar", "amount": -8 }
+        ]
+      },
+      {
+        "id": "avisar_policia_local",
+        "label": "Avisar a la comisaría",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": -12 },
+          { "type": "delta", "metric": "estres", "amount": 18 },
+          { "type": "delta", "metric": "bienestar", "amount": -6 },
+          { "type": "add_flag", "value": "enemigo_esquina" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "droga_en_mochila",
+    "titulo": "Te plantan algo en la mochila",
+    "texto": "Un control. Un policía saca una bolsa de tu mochila que vos no pusiste. Te mira y espera tu oferta.",
+    "peso": 9,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "coima_rapida",
+        "label": "Aceitar y salir",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -80000 },
+          { "type": "delta", "metric": "estres", "amount": 15 },
+          { "type": "delta", "metric": "bienestar", "amount": -12 },
+          { "type": "add_flag", "value": "coima_policial" }
+        ]
+      },
+      {
+        "id": "gritar_inocente",
+        "label": "Gritar que es un armado",
+        "efectos": [
+          { "type": "delta", "metric": "salud", "amount": -20 },
+          { "type": "delta", "metric": "capital_social", "amount": -10 },
+          { "type": "delta", "metric": "estres", "amount": 25 },
+          { "type": "delta", "metric": "dinero", "amount": -20000 }
+        ]
+      },
+      {
+        "id": "llamar_abogado_ya",
+        "label": "Pedir un abogado ya",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -100000 },
+          { "type": "delta", "metric": "estres", "amount": 20 },
+          { "type": "delta", "metric": "capital_social", "amount": 5 },
+          { "type": "delta", "metric": "bienestar", "amount": -8 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "fosa_basura",
+    "titulo": "Encontrás algo en la basura",
+    "texto": "Entre bolsas hay un celular ensangrentado y una billetera con documento. Alguien lo tiró apurado. El barrio mira para otro lado.",
+    "peso": 10,
+    "condiciones": [{ "type": "job_id", "value": "cartonero" }],
+    "opciones": [
+      {
+        "id": "entregar_comisaria",
+        "label": "Llevarlo a la comisaría",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": 6 },
+          { "type": "delta", "metric": "estres", "amount": 12 },
+          { "type": "delta", "metric": "bienestar", "amount": 4 },
+          {
+            "type": "risk",
+            "chance": 0.35,
+            "effects": [
+              { "type": "delta", "metric": "salud", "amount": -15 },
+              { "type": "delta", "metric": "estres", "amount": 15 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "vender_partes",
+        "label": "Vender el celular por partes",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": 45000 },
+          { "type": "delta", "metric": "bienestar", "amount": -15 },
+          { "type": "delta", "metric": "estres", "amount": 10 },
+          { "type": "add_flag", "value": "vende_robado" }
+        ]
+      },
+      {
+        "id": "dejarlo_ahi",
+        "label": "Dejarlo y olvidarte",
+        "efectos": [
+          { "type": "delta", "metric": "estres", "amount": 8 },
+          { "type": "delta", "metric": "bienestar", "amount": -6 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "jefe_te_toca",
+    "titulo": "El jefe se pasa de vivo",
+    "texto": "Te retiene después de hora. Habla de 'oportunidades' mientras te mira el cuerpo. La puerta está detrás tuyo.",
+    "peso": 11,
+    "condiciones": [{ "type": "job_tag", "value": "oficina" }],
+    "opciones": [
+      {
+        "id": "plantarte_rrhh",
+        "label": "Plantarte y denunciar a RR.HH.",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": -8 },
+          { "type": "delta", "metric": "estres", "amount": 20 },
+          { "type": "delta", "metric": "bienestar", "amount": 5 },
+          { "type": "add_flag", "value": "denuncio_acoso" }
+        ]
+      },
+      {
+        "id": "irse_laburo",
+        "label": "Renunciar esa misma noche",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -50000 },
+          { "type": "delta", "metric": "estres", "amount": 10 },
+          { "type": "delta", "metric": "bienestar", "amount": 8 },
+          { "type": "delta", "metric": "capital_social", "amount": -5 }
+        ]
+      },
+      {
+        "id": "aguantar_asco",
+        "label": "Aguantar el asco por el sueldo",
+        "efectos": [
+          { "type": "delta", "metric": "bienestar", "amount": -25 },
+          { "type": "delta", "metric": "estres", "amount": 22 },
+          { "type": "delta", "metric": "salud", "amount": -8 },
+          { "type": "delta", "metric": "dinero", "amount": 30000 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "venta_organos_chiste",
+    "titulo": "Una oferta que no es chiste",
+    "texto": "En un bar, un desconocido te habla de 'viajes médicos a otro país' y 'compensación generosa'. Te pasa un número. No parpadea.",
+    "peso": 7,
+    "condiciones": [{ "type": "dinero_lt", "value": 80000 }],
+    "opciones": [
+      {
+        "id": "irse_ya",
+        "label": "Levantarte e irte",
+        "efectos": [
+          { "type": "delta", "metric": "estres", "amount": 12 },
+          { "type": "delta", "metric": "bienestar", "amount": -5 }
+        ]
+      },
+      {
+        "id": "escuchar_monto",
+        "label": "Preguntar el monto 'por curiosidad'",
+        "efectos": [
+          { "type": "delta", "metric": "estres", "amount": 18 },
+          { "type": "delta", "metric": "bienestar", "amount": -12 },
+          { "type": "add_flag", "value": "hablo_con_traficante" }
+        ]
+      },
+      {
+        "id": "denunciar_anonimo",
+        "label": "Denunciar anónimo después",
+        "efectos": [
+          { "type": "delta", "metric": "estres", "amount": 15 },
+          { "type": "delta", "metric": "capital_social", "amount": 4 },
+          { "type": "delta", "metric": "bienestar", "amount": 2 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "desaparecido_conocido",
+    "titulo": "Un conocido no aparece",
+    "texto": "Hace tres días que no contesta. Su mamá te llama llorando. En el barrio dicen que 'se fue a laburar al norte'. Nadie te mira a los ojos.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "buscarlo",
+        "label": "Salir a preguntar casa por casa",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": 10 },
+          { "type": "delta", "metric": "estres", "amount": 18 },
+          { "type": "delta", "metric": "bienestar", "amount": -8 },
+          { "type": "delta", "metric": "dinero", "amount": -10000 }
+        ]
+      },
+      {
+        "id": "ayudar_familia",
+        "label": "Ayudar a la familia con plata y trámites",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -40000 },
+          { "type": "delta", "metric": "capital_social", "amount": 12 },
+          { "type": "delta", "metric": "estres", "amount": 10 },
+          { "type": "delta", "metric": "bienestar", "amount": 4 }
+        ]
+      },
+      {
+        "id": "cerrar_ojos",
+        "label": "Cerrar los ojos y seguir",
+        "efectos": [
+          { "type": "delta", "metric": "bienestar", "amount": -18 },
+          { "type": "delta", "metric": "estres", "amount": 8 },
+          { "type": "delta", "metric": "capital_social", "amount": -10 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "fraude_obra_publica",
+    "titulo": "La obra fantasma",
+    "texto": "Te muestran un presupuesto por una plaza que nunca se construyó. Hay firmas. Hay fotos falsas. Te ofrecen 'entrar en la tanda'.",
+    "peso": 14,
+    "condiciones": [{ "type": "job_tag", "value": "politico" }],
+    "opciones": [
+      {
+        "id": "entrar_tanda",
+        "label": "Entrar y cobrar tu parte",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": 400000 },
+          { "type": "delta", "metric": "bienestar", "amount": -20 },
+          { "type": "delta", "metric": "estres", "amount": 15 },
+          { "type": "add_flag", "value": "fraude_obra" }
+        ]
+      },
+      {
+        "id": "filtrar_prensa",
+        "label": "Filtrar todo a la prensa",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": -15 },
+          { "type": "delta", "metric": "estres", "amount": 22 },
+          { "type": "delta", "metric": "bienestar", "amount": 8 },
+          { "type": "add_flag", "value": "enemigo_partido" }
+        ]
+      },
+      {
+        "id": "salir_silencio",
+        "label": "Salir sin firmar y fingir demencia",
+        "efectos": [
+          { "type": "delta", "metric": "estres", "amount": 12 },
+          { "type": "delta", "metric": "bienestar", "amount": -6 },
+          { "type": "delta", "metric": "capital_social", "amount": -5 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "data_leak_venta",
+    "titulo": "Te piden filtrar una base",
+    "texto": "Un contacto te ofrece plata por 'un CSV interno'. Son datos de clientes. Dice que 'nadie se va a enterar'.",
+    "peso": 13,
+    "condiciones": [{ "type": "job_tag", "value": "tech" }],
+    "opciones": [
+      {
+        "id": "vender_base",
+        "label": "Vender la base",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": 250000 },
+          { "type": "delta", "metric": "bienestar", "amount": -22 },
+          { "type": "delta", "metric": "estres", "amount": 20 },
+          { "type": "add_flag", "value": "filtro_datos" }
+        ]
+      },
+      {
+        "id": "reportar_interno",
+        "label": "Reportarlo por canales internos",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": 8 },
+          { "type": "delta", "metric": "estres", "amount": 14 },
+          { "type": "delta", "metric": "bienestar", "amount": 6 },
+          {
+            "type": "risk",
+            "chance": 0.4,
+            "effects": [{ "type": "delta", "metric": "capital_social", "amount": -12 }]
+          }
+        ]
+      },
+      {
+        "id": "borrar_chat",
+        "label": "Borrar el chat y fingir que no viste",
+        "efectos": [
+          { "type": "delta", "metric": "estres", "amount": 10 },
+          { "type": "delta", "metric": "bienestar", "amount": -8 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "incendio_intencional",
+    "titulo": "Huele a nafta a las 3 AM",
+    "texto": "Bajás. Hay un tipo junto a un contenedor con una botella. Te ve. Te pregunta si 'viste algo'.",
+    "peso": 9,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "intervenir",
+        "label": "Intervenir y gritar",
+        "efectos": [
+          { "type": "delta", "metric": "salud", "amount": -20 },
+          { "type": "delta", "metric": "capital_social", "amount": 10 },
+          { "type": "delta", "metric": "estres", "amount": 20 },
+          { "type": "delta", "metric": "bienestar", "amount": 4 }
+        ]
+      },
+      {
+        "id": "llamar_bomberos",
+        "label": "Llamar bomberos desde lejos",
+        "efectos": [
+          { "type": "delta", "metric": "estres", "amount": 12 },
+          { "type": "delta", "metric": "capital_social", "amount": 6 },
+          { "type": "delta", "metric": "bienestar", "amount": 2 }
+        ]
+      },
+      {
+        "id": "subir_y_callar",
+        "label": "Subir y cerrar la puerta con llave",
+        "efectos": [
+          { "type": "delta", "metric": "bienestar", "amount": -16 },
+          { "type": "delta", "metric": "estres", "amount": 14 },
+          { "type": "delta", "metric": "capital_social", "amount": -6 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "trata_aviso",
+    "titulo": "Un aviso demasiado raro",
+    "texto": "Una piba te pide 'laburo de modelo' con viaje pago y sin CV. El WhatsApp es nuevo. El tono, ensayado.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "bloquear_aviso",
+        "label": "Bloquear y denunciar el número",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": 5 },
+          { "type": "delta", "metric": "bienestar", "amount": 3 },
+          { "type": "delta", "metric": "estres", "amount": 6 }
+        ]
+      },
+      {
+        "id": "avisar_amigues",
+        "label": "Pasar el aviso a grupos para que nadie caiga",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": 10 },
+          { "type": "delta", "metric": "estres", "amount": 8 },
+          { "type": "delta", "metric": "bienestar", "amount": 5 }
+        ]
+      },
+      {
+        "id": "responder_sarcasmo",
+        "label": "Responder con sarcasmo y seguir",
+        "efectos": [
+          { "type": "delta", "metric": "estres", "amount": 4 },
+          { "type": "delta", "metric": "bienestar", "amount": -2 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "caja_nala",
+    "titulo": "La caja negra del galpón",
+    "texto": "Encontrás una caja con plata sin contar y un arma envuelta en trapo. Nadie debería saber que la viste. Todos lo saben.",
+    "peso": 12,
+    "condiciones": [{ "type": "job_id", "value": "encargado_galpon" }],
+    "opciones": [
+      {
+        "id": "devolver_silencio",
+        "label": "Devolverla y no preguntar",
+        "efectos": [
+          { "type": "delta", "metric": "estres", "amount": 16 },
+          { "type": "delta", "metric": "bienestar", "amount": -10 },
+          { "type": "delta", "metric": "capital_social", "amount": 5 }
+        ]
+      },
+      {
+        "id": "quedarte_parte",
+        "label": "Quedarte una parte 'por el susto'",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": 180000 },
+          { "type": "delta", "metric": "salud", "amount": -10 },
+          { "type": "delta", "metric": "estres", "amount": 22 },
+          { "type": "delta", "metric": "bienestar", "amount": -18 },
+          { "type": "add_flag", "value": "robo_caja_negra" }
+        ]
+      },
+      {
+        "id": "denunciar_todo",
+        "label": "Denunciar todo",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": -20 },
+          { "type": "delta", "metric": "estres", "amount": 25 },
+          { "type": "delta", "metric": "salud", "amount": -15 },
+          { "type": "delta", "metric": "bienestar", "amount": -5 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "hospital_cola_muerte",
+    "titulo": "Guardia que no da abasto",
+    "texto": "Un hombre se desmaya en la fila. La enfermera dice 'no hay camilla'. Alguien filma. Vos estás adelante, con fiebre, calculando si ceder el lugar te mata a vos.",
+    "peso": 10,
+    "condiciones": [{ "type": "metric_lt", "metric": "salud", "value": 55 }],
+    "opciones": [
+      {
+        "id": "ceder_lugar",
+        "label": "Ceder tu lugar",
+        "efectos": [
+          { "type": "delta", "metric": "salud", "amount": -12 },
+          { "type": "delta", "metric": "capital_social", "amount": 12 },
+          { "type": "delta", "metric": "bienestar", "amount": 6 },
+          { "type": "delta", "metric": "estres", "amount": 8 }
+        ]
+      },
+      {
+        "id": "quedarte_turno",
+        "label": "Quedarte el turno igual",
+        "efectos": [
+          { "type": "delta", "metric": "salud", "amount": 10 },
+          { "type": "delta", "metric": "bienestar", "amount": -14 },
+          { "type": "delta", "metric": "capital_social", "amount": -8 },
+          { "type": "delta", "metric": "estres", "amount": 10 }
+        ]
+      },
+      {
+        "id": "pagar_particular_ya",
+        "label": "Irte a una clínica particular",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -90000 },
+          { "type": "delta", "metric": "salud", "amount": 20 },
+          { "type": "delta", "metric": "estres", "amount": -5 },
+          { "type": "delta", "metric": "bienestar", "amount": -4 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chantaje_foto",
+    "titulo": "Chantaje con fotos",
+    "texto": "Te llega un mensaje: fotos tuyas borrachx, fuera de contexto, listas para el grupo familiar y el laburo. Piden plata 'para borrarlas'.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "pagar_chantaje",
+        "label": "Pagar para que las borren",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -70000 },
+          { "type": "delta", "metric": "estres", "amount": 12 },
+          { "type": "delta", "metric": "bienestar", "amount": -10 },
+          {
+            "type": "risk",
+            "chance": 0.5,
+            "effects": [
+              { "type": "delta", "metric": "dinero", "amount": -40000 },
+              { "type": "delta", "metric": "estres", "amount": 10 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exponerlos",
+        "label": "Exponer el chantaje públicamente",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": -12 },
+          { "type": "delta", "metric": "estres", "amount": 18 },
+          { "type": "delta", "metric": "bienestar", "amount": -8 },
+          { "type": "delta", "metric": "capital_social", "amount": 6 }
+        ]
+      },
+      {
+        "id": "ignorar_chantaje",
+        "label": "Ignorar y endurecerte",
+        "efectos": [
+          { "type": "delta", "metric": "estres", "amount": 16 },
+          { "type": "delta", "metric": "bienestar", "amount": -12 },
+          { "type": "delta", "metric": "capital_social", "amount": -6 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "eleccion_compra_votos",
+    "titulo": "Compra de votos",
+    "texto": "Te dan bolsones y una lista: 'estos tienen que ir a votar bien'. Plata chica. Presión grande.",
+    "peso": 13,
+    "condiciones": [{ "type": "job_tag", "value": "politico" }],
+    "opciones": [
+      {
+        "id": "distribuir_bolsones",
+        "label": "Distribuir los bolsones",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": 80000 },
+          { "type": "delta", "metric": "capital_social", "amount": 12 },
+          { "type": "delta", "metric": "bienestar", "amount": -18 },
+          { "type": "add_flag", "value": "compra_votos" }
+        ]
+      },
+      {
+        "id": "devolver_bolsones",
+        "label": "Devolver todo y plantarte",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": -10 },
+          { "type": "delta", "metric": "bienestar", "amount": 10 },
+          { "type": "delta", "metric": "estres", "amount": 14 }
+        ]
+      },
+      {
+        "id": "quedarte_bolson_vos",
+        "label": "Quedarte un bolsón y desaparecer",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": 15000 },
+          { "type": "delta", "metric": "capital_social", "amount": -15 },
+          { "type": "delta", "metric": "estres", "amount": 12 },
+          { "type": "delta", "metric": "bienestar", "amount": -6 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "accidente_obra_tapado",
+    "titulo": "Accidente en la obra",
+    "texto": "Un peón se cae. El capataz dice 'no hubo nada'. Te pide que firmes que estaba con casco. No lo estaba.",
+    "peso": 12,
+    "condiciones": [{ "type": "job_tag", "value": "obra" }],
+    "opciones": [
+      {
+        "id": "firmar_mentira",
+        "label": "Firmar la mentira",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": 60000 },
+          { "type": "delta", "metric": "bienestar", "amount": -22 },
+          { "type": "delta", "metric": "estres", "amount": 18 },
+          { "type": "add_flag", "value": "tapo_accidente" }
+        ]
+      },
+      {
+        "id": "decir_verdad",
+        "label": "Decir la verdad",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": -12 },
+          { "type": "delta", "metric": "estres", "amount": 16 },
+          { "type": "delta", "metric": "bienestar", "amount": 8 },
+          { "type": "delta", "metric": "dinero", "amount": -20000 }
+        ]
+      },
+      {
+        "id": "ayudar_herido",
+        "label": "Priorizar al herido y bancarte el quilombo",
+        "efectos": [
+          { "type": "delta", "metric": "estres", "amount": 14 },
+          { "type": "delta", "metric": "capital_social", "amount": 8 },
+          { "type": "delta", "metric": "bienestar", "amount": 6 },
+          { "type": "delta", "metric": "salud", "amount": -5 }
+        ]
+      }
+    ]
   }
 ]

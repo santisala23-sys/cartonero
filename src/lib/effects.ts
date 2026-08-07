@@ -228,5 +228,6 @@ export function normalizePlayerState(
     game_over_reason: raw.game_over_reason ?? null,
     last_month_ledger: raw.last_month_ledger ?? null,
     pending_bills: raw.pending_bills ?? null,
+    pending_month_summary: Boolean(raw.pending_month_summary),
   });
 }

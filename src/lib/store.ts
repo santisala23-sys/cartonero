@@ -6,6 +6,7 @@ import {
   applyChoice,
   changeJob,
   createInitialState,
+  dismissMonthSummary,
   normalizePlayerState,
   resolveBills,
   startCredential,
@@ -25,6 +26,7 @@ interface GameStore {
   advance: () => void;
   choose: (optionId: string) => void;
   confirmBills: (decisions: Record<string, "pay" | "skip">) => void;
+  dismissSummary: () => void;
   switchJob: (jobId: string) => void;
   enroll: (credentialId: string) => void;
   reset: () => void;
@@ -69,6 +71,12 @@ export const useGameStore = create<GameStore>((set, get) => ({
   confirmBills: (decisions) => {
     const { state, playerKey } = get();
     const next = resolveBills(state, decisions);
+    set({ state: commit(next, playerKey) });
+  },
+
+  dismissSummary: () => {
+    const { state, playerKey } = get();
+    const next = dismissMonthSummary(state);
     set({ state: commit(next, playerKey) });
   },
 

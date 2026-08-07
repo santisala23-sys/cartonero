@@ -147,6 +147,8 @@ export interface PlayerState {
     al_pagar: Partial<Record<MetricKey, number>>;
     al_saltear: Partial<Record<MetricKey, number>>;
   }[] | null;
+  /** After bills resolve, show month résumé before the random event. */
+  pending_month_summary: boolean;
   last_month_ledger: {
     sueldo: number;
     lines: {
@@ -160,6 +162,19 @@ export interface PlayerState {
     total_gastos: number;
     total_salteado?: number;
     neto: number;
+    /** Narrative beats from paying / skipping bills. */
+    historias?: {
+      bill_id: string | null;
+      titulo: string;
+      texto: string;
+      dinero: number;
+      deltas: Partial<Record<MetricKey, number>>;
+      tono: "malo" | "bueno" | "neutro";
+    }[];
+    estudios_completados?: string[];
+    interes_deuda?: number;
+    /** Extra money from story beats (can be negative). */
+    balance_historias?: number;
   } | null;
 }
 

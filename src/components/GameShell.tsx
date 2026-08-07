@@ -6,6 +6,7 @@ import { BillsPanel } from "@/components/BillsPanel";
 import { EventCard } from "@/components/EventCard";
 import { JobPanel } from "@/components/JobPanel";
 import { MoneyDisplay } from "@/components/MoneyDisplay";
+import { MonthSummaryPanel } from "@/components/MonthSummaryPanel";
 import { SkillsPanel } from "@/components/SkillsPanel";
 import { StatusBar } from "@/components/StatusBar";
 import { getActiveEvent } from "@/lib/game-engine";
@@ -18,6 +19,7 @@ export function GameShell() {
   const advance = useGameStore((s) => s.advance);
   const choose = useGameStore((s) => s.choose);
   const confirmBills = useGameStore((s) => s.confirmBills);
+  const dismissSummary = useGameStore((s) => s.dismissSummary);
   const switchJob = useGameStore((s) => s.switchJob);
   const enroll = useGameStore((s) => s.enroll);
   const reset = useGameStore((s) => s.reset);
@@ -36,7 +38,9 @@ export function GameShell() {
 
   const activeEvent = getActiveEvent(state);
   const payingBills = Boolean(state.pending_bills?.length);
-  const blocked = Boolean(activeEvent) || payingBills || state.game_over;
+  const showingSummary = Boolean(state.pending_month_summary);
+  const blocked =
+    Boolean(activeEvent) || payingBills || showingSummary || state.game_over;
 
   return (
     <div className="game-shell relative min-h-dvh">
@@ -78,6 +82,12 @@ export function GameShell() {
               state={state}
               onConfirm={confirmBills}
             />
+          ) : showingSummary ? (
+            <MonthSummaryPanel
+              key={`summary-${state.mes}`}
+              state={state}
+              onContinue={dismissSummary}
+            />
           ) : activeEvent ? (
             <EventCard
               event={activeEvent}
@@ -105,7 +115,7 @@ export function GameShell() {
 
         {!state.game_over ? (
           <footer className="mt-auto border-t border-stone-800/10 pt-5">
-            {activeEvent || payingBills ? (
+            {activeEvent || payingBills || showingSummary ? (
               <AdvanceMonthButton
                 onClick={advance}
                 disabled
