@@ -75,10 +75,16 @@ export function BillsPanel({ state, onConfirm }: BillsPanelProps) {
       </h2>
       <p className="mt-3 text-sm text-stone-600">
         Cobró el sueldo. Ahora elegí qué servicios cubrís. Si no pagás, duele en
-        salud, estrés, bienestar o capital social.
+        salud, estrés, bienestar o capital social. Si te sobra plata y tenés
+        deuda, el sobrante se usa para bajarla.
       </p>
       <p className="mt-2 font-mono text-sm text-stone-800">
         Disponible: {formatARS(state.dinero)}
+        {state.deuda > 0 ? (
+          <span className="ml-2 text-red-700">
+            · Deuda {formatARS(state.deuda)}
+          </span>
+        ) : null}
       </p>
 
       <div className="mt-4 flex flex-wrap gap-2">
@@ -169,6 +175,10 @@ export function BillsPanel({ state, onConfirm }: BillsPanelProps) {
           {shortfall > 0 ? (
             <span className="ml-2 text-red-700">
               (te faltan {formatARS(shortfall)} → deuda)
+            </span>
+          ) : state.deuda > 0 && state.dinero > totalPay ? (
+            <span className="ml-2 text-teal-800">
+              (sobrante {formatARS(state.dinero - totalPay)} → baja la deuda)
             </span>
           ) : null}
         </p>

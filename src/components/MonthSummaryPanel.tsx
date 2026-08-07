@@ -29,6 +29,7 @@ export function MonthSummaryPanel({
   const buenas = historias.filter((h) => h.tono === "bueno");
   const estudios = ledger.estudios_completados ?? [];
   const interes = ledger.interes_deuda ?? 0;
+  const pagoDeuda = ledger.pago_deuda ?? 0;
 
   return (
     <div className="mx-auto w-full max-w-xl">
@@ -165,6 +166,21 @@ export function MonthSummaryPanel({
               .map((id) => getCredentialById(id)?.nombre ?? id)
               .join(", ")}
           </span>
+        </p>
+      ) : null}
+
+      {pagoDeuda > 0 ? (
+        <p className="mt-3 text-sm font-medium text-teal-800">
+          Abonaste a la deuda: −{formatARS(pagoDeuda)}
+          {state.deuda > 0 ? (
+            <span className="ml-1 font-normal text-stone-600">
+              (sigue debiendo {formatARS(state.deuda)})
+            </span>
+          ) : (
+            <span className="ml-1 font-normal text-stone-600">
+              (deuda en cero)
+            </span>
+          )}
         </p>
       ) : null}
 

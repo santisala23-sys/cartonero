@@ -173,6 +173,8 @@ export interface PlayerState {
     }[];
     estudios_completados?: string[];
     interes_deuda?: number;
+    /** Cash leftover after bills applied to outstanding debt. */
+    pago_deuda?: number;
     /** Extra money from story beats (can be negative). */
     balance_historias?: number;
   } | null;

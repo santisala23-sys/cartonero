@@ -226,6 +226,7 @@ export function advanceMonth(state: PlayerState): PlayerState {
       historias: [],
       estudios_completados: [],
       interes_deuda: 0,
+      pago_deuda: 0,
       balance_historias: 0,
     },
   };
@@ -259,7 +260,11 @@ export function resolveBills(
     ...ledger,
     estudios_completados: completed,
     interes_deuda: interes,
-    neto: ledger.sueldo - ledger.total_gastos + ledger.balance_historias,
+    neto:
+      ledger.sueldo -
+      ledger.total_gastos +
+      ledger.balance_historias -
+      (ledger.pago_deuda ?? 0),
   };
 
   next = {

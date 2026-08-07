@@ -3,7 +3,7 @@ import {
   consequenceForSkippedBill,
   type MonthStoryBeat,
 } from "@/lib/bill-consequences";
-import { applyMoneySpend, clampMetrics } from "@/lib/effects";
+import { applyMoneySpend, clampMetrics, payDebt } from "@/lib/effects";
 import type { MetricKey, PlayerState } from "@/lib/types";
 
 export type MetricDelta = Partial<Record<MetricKey, number>>;
@@ -31,6 +31,7 @@ export interface MonthLedger {
   historias: MonthStoryBeat[];
   estudios_completados: string[];
   interes_deuda: number;
+  pago_deuda: number;
   balance_historias: number;
 }
 
@@ -357,16 +358,34 @@ export function resolveMonthlyBills(
     };
   }
 
+  // Leftover cash after bills goes to debt automatically.
+  let pagoDeuda = 0;
+  if (next.deuda > 0 && next.dinero > 0) {
+    const beforeDebt = next.deuda;
+    const beforeCash = next.dinero;
+    next = payDebt(next, "all");
+    pagoDeuda = Math.min(beforeDebt, beforeCash - next.dinero);
+  }
+
+  if (pagoDeuda > 0) {
+    next = {
+      ...next,
+      estres: next.estres - Math.min(6, 2 + Math.floor(pagoDeuda / 100000)),
+      bienestar: next.bienestar + 2,
+    };
+  }
+
   const sueldo = state.last_month_ledger?.sueldo ?? state.trabajo_actual.sueldo;
   const ledger: MonthLedger = {
     sueldo,
     lines: ledgerLines,
     total_gastos: totalPaid,
     total_salteado: totalSkipped,
-    neto: sueldo - totalPaid + balanceHistorias,
+    neto: sueldo - totalPaid + balanceHistorias - pagoDeuda,
     historias,
     estudios_completados: [],
     interes_deuda: 0,
+    pago_deuda: pagoDeuda,
     balance_historias: balanceHistorias,
   };
 
