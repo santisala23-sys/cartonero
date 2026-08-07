@@ -8,6 +8,7 @@ const METRICS: MetricKey[] = [
   "estres",
   "bienestar",
   "capital_social",
+  "influencia",
 ];
 
 export function clamp(value: number, min: number, max: number): number {
@@ -23,6 +24,11 @@ export function clampMetrics(state: PlayerState): PlayerState {
     estres: clamp(state.estres, 0, 100),
     bienestar: clamp(state.bienestar, 0, 100),
     capital_social: clamp(state.capital_social, 0, 100),
+    influencia: clamp(state.influencia ?? 0, 0, 100),
+    edad: Math.max(16, Math.round(state.edad ?? 18)),
+    hijos: Math.max(0, Math.round(state.hijos ?? 0)),
+    mes_nacimiento: clamp(state.mes_nacimiento || 1, 1, 12),
+    mes_calendario: clamp(state.mes_calendario || 1, 1, 12),
   };
   return syncDebtFlags(next);
 }
@@ -139,6 +145,13 @@ export function applyEffect(state: PlayerState, effect: Effect): PlayerState {
     }
     case "pay_debt":
       return payDebt(state, effect.amount);
+    case "set_estado_civil":
+      return { ...state, estado_civil: effect.value };
+    case "add_hijo":
+      return {
+        ...state,
+        hijos: state.hijos + Math.max(1, effect.amount ?? 1),
+      };
     case "risk": {
       if (Math.random() < effect.chance) {
         return applyEffects(state, effect.effects);
@@ -237,6 +250,20 @@ export function normalizePlayerState(
   if (!raw.trabajo_actual) return null;
 
   return clampMetrics({
+    nombre: typeof raw.nombre === "string" ? raw.nombre : "",
+    mes_nacimiento: Number(raw.mes_nacimiento) || 1,
+    edad: Number(raw.edad) || 18,
+    anio_calendario: Number(raw.anio_calendario) || 2026,
+    mes_calendario: Number(raw.mes_calendario) || 1,
+    perfil_creado: Boolean(raw.perfil_creado),
+    influencia: Number(raw.influencia) || 0,
+    estado_civil:
+      raw.estado_civil === "en_pareja" ||
+      raw.estado_civil === "casado" ||
+      raw.estado_civil === "gatero"
+        ? raw.estado_civil
+        : "soltero",
+    hijos: Number(raw.hijos) || 0,
     dinero: Number(raw.dinero) || 0,
     deuda: Number(raw.deuda) || 0,
     salud: Number(raw.salud) || 0,
@@ -267,8 +294,28 @@ export function normalizePlayerState(
     meses_estres_al_tope: Number(raw.meses_estres_al_tope) || 0,
     acv_count: Number(raw.acv_count) || 0,
     meses_bienestar_roto: Number(raw.meses_bienestar_roto) || 0,
+    month_phase: normalizeMonthPhase(raw),
     last_month_ledger: raw.last_month_ledger ?? null,
     pending_bills: raw.pending_bills ?? null,
     pending_month_summary: Boolean(raw.pending_month_summary),
   });
+}
+
+function normalizeMonthPhase(
+  raw: Partial<PlayerState>,
+): PlayerState["month_phase"] {
+  const phase = raw.month_phase;
+  if (
+    phase === "idle" ||
+    phase === "capacitacion" ||
+    phase === "trabajo" ||
+    phase === "cuentas"
+  ) {
+    return phase;
+  }
+  // Migrate old saves mid-bills
+  if (raw.pending_bills?.length) return "cuentas";
+  if (raw.pending_month_summary) return "idle";
+  if (raw.active_event_id) return "idle";
+  return "idle";
 }

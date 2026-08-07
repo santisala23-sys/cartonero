@@ -42,6 +42,16 @@ export function evaluateCondition(
       return getDebtTier(state.deuda) >= condition.value;
     case "deuda_tier_lte":
       return getDebtTier(state.deuda) <= condition.value;
+    case "estado_civil":
+      return state.estado_civil === condition.value;
+    case "edad_gte":
+      return state.edad >= condition.value;
+    case "hijos_gte":
+      return state.hijos >= condition.value;
+    case "hijos_lt":
+      return state.hijos < condition.value;
+    case "influencia_gte":
+      return state.influencia >= condition.value;
     default:
       return true;
   }

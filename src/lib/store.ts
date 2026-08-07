@@ -5,7 +5,10 @@ import {
   advanceMonth,
   applyChoice,
   changeJob,
+  continueFromJob,
+  continueFromTraining,
   createInitialState,
+  createProfile,
   dismissMonthSummary,
   normalizePlayerState,
   resolveBills,
@@ -23,10 +26,13 @@ interface GameStore {
   hydrated: boolean;
   playerKey: string | null;
   hydrate: () => void;
+  createCharacter: (nombre: string, mesNacimiento: number) => void;
   advance: () => void;
   choose: (optionId: string) => void;
   confirmBills: (decisions: Record<string, "pay" | "skip">) => void;
   dismissSummary: () => void;
+  finishTraining: () => void;
+  finishJobStep: () => void;
   switchJob: (jobId: string) => void;
   enroll: (credentialId: string) => void;
   reset: () => void;
@@ -56,6 +62,12 @@ export const useGameStore = create<GameStore>((set, get) => ({
     });
   },
 
+  createCharacter: (nombre, mesNacimiento) => {
+    const { state, playerKey } = get();
+    const next = createProfile(state, nombre, mesNacimiento);
+    set({ state: commit(next, playerKey) });
+  },
+
   advance: () => {
     const { state, playerKey } = get();
     const next = advanceMonth(state);
@@ -77,6 +89,18 @@ export const useGameStore = create<GameStore>((set, get) => ({
   dismissSummary: () => {
     const { state, playerKey } = get();
     const next = dismissMonthSummary(state);
+    set({ state: commit(next, playerKey) });
+  },
+
+  finishTraining: () => {
+    const { state, playerKey } = get();
+    const next = continueFromTraining(state);
+    set({ state: commit(next, playerKey) });
+  },
+
+  finishJobStep: () => {
+    const { state, playerKey } = get();
+    const next = continueFromJob(state);
     set({ state: commit(next, playerKey) });
   },
 

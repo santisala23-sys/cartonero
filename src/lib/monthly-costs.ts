@@ -237,6 +237,18 @@ function conditionalCosts(state: PlayerState): CostLine[] {
     );
   }
 
+  if (state.hijos > 0) {
+    lines.push(
+      line(
+        "hijos",
+        state.hijos === 1 ? "Gastos del hijo" : `Gastos de ${state.hijos} hijos`,
+        28000 * state.hijos,
+        { bienestar: 4, estres: -2 },
+        { bienestar: -12, estres: 10, capital_social: -6, salud: -3 },
+      ),
+    );
+  }
+
   if (state.estres > 90 || has(state, "en_terapia")) {
     lines.push(
       line(
@@ -280,6 +292,7 @@ export function formatMetricDelta(delta: MetricDelta): string[] {
     estres: "Estrés",
     bienestar: "Bienestar",
     capital_social: "Capital social",
+    influencia: "Influencia",
   };
   return (Object.keys(labels) as MetricKey[])
     .filter((k) => delta[k] !== undefined && delta[k] !== 0)
@@ -319,10 +332,13 @@ export function resolveMonthlyBills(
   }
 
   const ledgerLines: MonthLedgerLine[] = [];
-  const historias: MonthStoryBeat[] = [];
+  const historias: MonthStoryBeat[] = [
+    ...((state.last_month_ledger?.historias as MonthStoryBeat[] | undefined) ??
+      []),
+  ];
   let totalPaid = 0;
   let totalSkipped = 0;
-  let balanceHistorias = 0;
+  let balanceHistorias = state.last_month_ledger?.balance_historias ?? 0;
 
   for (const bill of bills) {
     const choice = decisions[bill.id] ?? "pay";

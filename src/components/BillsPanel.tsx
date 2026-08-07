@@ -67,8 +67,8 @@ export function BillsPanel({ state, onConfirm }: BillsPanelProps) {
 
   return (
     <article className="event-card animate-in mx-auto w-full max-w-xl">
-      <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.25em] text-teal-900/70">
-        Cuentas del mes
+      <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-teal-900/70">
+        Paso 3 · Cuentas
       </p>
       <h2 className="font-display text-2xl leading-tight text-stone-950 sm:text-3xl">
         ¿Qué pagás este mes?

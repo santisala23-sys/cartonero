@@ -1,16 +1,20 @@
+import { checkGameOver } from "../src/lib/effects";
+import { ACV_FATAL_COUNT, STRESS_STREAK_FOR_ACV } from "../src/lib/endings";
 import {
   advanceMonth,
+  continueFromJob,
+  continueFromTraining,
   createInitialState,
+  createProfile,
   dismissMonthSummary,
   resolveBills,
 } from "../src/lib/game-engine";
-import { checkGameOver } from "../src/lib/effects";
-import { ACV_FATAL_COUNT, STRESS_STREAK_FOR_ACV } from "../src/lib/endings";
 
-/** Keep stress at 100: skip psychologist so it doesn't break the streak. */
 function finishMonthMaxStress(state: ReturnType<typeof createInitialState>) {
   let s = { ...state, estres: 100, dinero: Math.max(state.dinero, 800000) };
   s = advanceMonth(s);
+  s = continueFromTraining(s);
+  s = continueFromJob(s);
   const decisions: Record<string, "pay" | "skip"> = {};
   for (const bill of s.pending_bills ?? []) {
     decisions[bill.id] = bill.id === "psicologo" ? "skip" : "pay";
@@ -19,15 +23,10 @@ function finishMonthMaxStress(state: ReturnType<typeof createInitialState>) {
   return s;
 }
 
-let s = createInitialState();
+let s = createProfile(createInitialState(), "Toli", 3);
 
 for (let i = 0; i < STRESS_STREAK_FOR_ACV; i++) {
   s = finishMonthMaxStress(s);
-  console.log("month", i + 1, {
-    streak: s.meses_estres_al_tope,
-    acv: s.acv_count,
-    estres: s.estres,
-  });
   if (s.pending_month_summary) s = dismissMonthSummary(s);
   s = {
     ...s,
@@ -38,14 +37,7 @@ for (let i = 0; i < STRESS_STREAK_FOR_ACV; i++) {
   };
 }
 
-if (s.acv_count < 1) {
-  throw new Error("expected first ACV after 6 max-stress months");
-}
-console.log("after first acv", {
-  acv: s.acv_count,
-  streak: s.meses_estres_al_tope,
-  estres: s.estres,
-});
+if (s.acv_count < 1) throw new Error("expected first ACV");
 
 while (s.acv_count < ACV_FATAL_COUNT) {
   for (let i = 0; i < STRESS_STREAK_FOR_ACV; i++) {
@@ -64,18 +56,12 @@ while (s.acv_count < ACV_FATAL_COUNT) {
 }
 
 s = checkGameOver(s);
-console.log("fatal", {
-  acv: s.acv_count,
-  game_over: s.game_over,
-  kind: s.game_over_kind,
-});
-
 if (!s.game_over || s.acv_count < ACV_FATAL_COUNT) {
   throw new Error("expected death on 4th ACV");
 }
 
 s = checkGameOver({
-  ...createInitialState(),
+  ...createProfile(createInitialState(), "Toli", 3),
   dinero: 3_000_000,
   deuda: 0,
   bienestar: 70,

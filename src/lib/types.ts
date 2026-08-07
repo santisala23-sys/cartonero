@@ -1,4 +1,11 @@
-export type MetricKey = "salud" | "estres" | "bienestar" | "capital_social";
+export type MetricKey =
+  | "salud"
+  | "estres"
+  | "bienestar"
+  | "capital_social"
+  | "influencia";
+
+export type EstadoCivil = "soltero" | "en_pareja" | "casado" | "gatero";
 
 export type JobRama =
   | "cartonero"
@@ -38,9 +45,7 @@ export interface JobRequisitos {
   capital_social_min?: number;
   flags_requeridos?: string[];
   salud_min?: number;
-  /** All of these credentials are required. */
   credenciales_requeridas?: string[];
-  /** At least one of these credentials is required (if non-empty). */
   credenciales_algunas?: string[];
 }
 
@@ -94,16 +99,27 @@ export type Condition =
   | { type: "deuda_gte"; value: number }
   | { type: "deuda_lt"; value: number }
   | { type: "deuda_tier_gte"; value: number }
-  | { type: "deuda_tier_lte"; value: number };
+  | { type: "deuda_tier_lte"; value: number }
+  | { type: "estado_civil"; value: EstadoCivil }
+  | { type: "edad_gte"; value: number }
+  | { type: "hijos_gte"; value: number }
+  | { type: "hijos_lt"; value: number }
+  | { type: "influencia_gte"; value: number };
 
 export type Effect =
-  | { type: "delta"; metric: MetricKey | "dinero" | "deuda"; amount: number }
+  | {
+      type: "delta";
+      metric: MetricKey | "dinero" | "deuda";
+      amount: number;
+    }
   | { type: "set_metric"; metric: MetricKey; value: number }
   | { type: "add_flag"; value: string }
   | { type: "remove_flag"; value: string }
   | { type: "add_credential"; value: string }
   | { type: "set_job"; job_id: string }
   | { type: "pay_debt"; amount: number | "all" }
+  | { type: "set_estado_civil"; value: EstadoCivil }
+  | { type: "add_hijo"; amount?: number }
   | { type: "risk"; chance: number; effects: Effect[] };
 
 export interface EventOption {
@@ -121,7 +137,18 @@ export interface GameEvent {
   opciones: EventOption[];
 }
 
+export type MonthPhase = "idle" | "capacitacion" | "trabajo" | "cuentas";
+
 export interface PlayerState {
+  nombre: string;
+  mes_nacimiento: number;
+  edad: number;
+  anio_calendario: number;
+  mes_calendario: number;
+  perfil_creado: boolean;
+  influencia: number;
+  estado_civil: EstadoCivil;
+  hijos: number;
   dinero: number;
   deuda: number;
   salud: number;
@@ -131,23 +158,17 @@ export interface PlayerState {
   trabajo_actual: TrabajoActual;
   mes: number;
   flags: string[];
-  /** Unlocked credentials / aptitudes. */
   credenciales: string[];
-  /** Formal studies still in progress. */
   estudios_en_curso: EstudioEnCurso[];
   last_event_id: string | null;
   active_event_id: string | null;
   game_over: boolean;
   game_over_reason: string | null;
-  /** "victoria" | "derrota" when the run ended. */
   game_over_kind: "victoria" | "derrota" | null;
-  /** Consecutive months with estrés at 100. */
   meses_estres_al_tope: number;
-  /** How many strokes (ACV / bobazos) you survived. */
   acv_count: number;
-  /** Consecutive months with bienestar at 0. */
   meses_bienestar_roto: number;
-  /** Bills waiting for pay/skip decisions this month. */
+  month_phase: MonthPhase;
   pending_bills: {
     id: string;
     label: string;
@@ -155,7 +176,6 @@ export interface PlayerState {
     al_pagar: Partial<Record<MetricKey, number>>;
     al_saltear: Partial<Record<MetricKey, number>>;
   }[] | null;
-  /** After bills resolve, show month résumé before the random event. */
   pending_month_summary: boolean;
   last_month_ledger: {
     sueldo: number;
@@ -170,7 +190,6 @@ export interface PlayerState {
     total_gastos: number;
     total_salteado?: number;
     neto: number;
-    /** Narrative beats from paying / skipping bills. */
     historias?: {
       bill_id: string | null;
       titulo: string;
@@ -181,9 +200,7 @@ export interface PlayerState {
     }[];
     estudios_completados?: string[];
     interes_deuda?: number;
-    /** Cash leftover after bills applied to outstanding debt. */
     pago_deuda?: number;
-    /** Extra money from story beats (can be negative). */
     balance_historias?: number;
   } | null;
 }

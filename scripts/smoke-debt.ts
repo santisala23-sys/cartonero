@@ -1,39 +1,28 @@
 import {
   advanceMonth,
   applyChoice,
+  continueFromJob,
+  continueFromTraining,
   createInitialState,
+  createProfile,
+  dismissMonthSummary,
   getActiveEvent,
+  resolveBills,
 } from "../src/lib/game-engine";
 import { applyEffects } from "../src/lib/effects";
 import { getDebtTier } from "../src/lib/debt";
 
-let s = createInitialState();
+let s = createProfile(createInitialState(), "Toli", 3);
 s = applyEffects(s, [{ type: "delta", metric: "dinero", amount: -120000 }]);
-console.log("after overspend", {
-  dinero: s.dinero,
-  deuda: s.deuda,
-  tier: getDebtTier(s.deuda),
-});
-
 if (s.deuda < 100000) throw new Error("expected debt from overspend");
-
-s = { ...s, active_event_id: null };
+s = { ...s, active_event_id: null, dinero: 500000 };
 s = advanceMonth(s);
-console.log("after month", {
-  mes: s.mes,
-  deuda: s.deuda,
-  event: s.active_event_id,
-});
-
+s = continueFromTraining(s);
+s = continueFromJob(s);
+const decisions: Record<string, "pay" | "skip"> = {};
+for (const bill of s.pending_bills ?? []) decisions[bill.id] = "pay";
+s = resolveBills(s, decisions);
+s = dismissMonthSummary(s);
 const ev = getActiveEvent(s);
-if (ev) {
-  console.log("event", ev.titulo);
-  s = applyChoice(s, ev.opciones[0].id);
-  console.log("after choice", {
-    deuda: s.deuda,
-    dinero: s.dinero,
-    game_over: s.game_over,
-  });
-}
-
-console.log("DEBT_OK");
+if (ev) s = applyChoice(s, ev.opciones[0].id);
+console.log("DEBT_OK", getDebtTier(s.deuda));

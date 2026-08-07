@@ -10,6 +10,7 @@ import {
   isCobranzaEvent,
 } from "@/lib/debt";
 import { tickBodyLimits } from "@/lib/endings";
+import { birthdayGiftFor } from "@/lib/identity";
 import {
   applyEffects,
   applyMoneySpend,
@@ -35,6 +36,15 @@ const MAX_STUDIES = 2;
 
 export function createInitialState(): PlayerState {
   return {
+    nombre: "",
+    mes_nacimiento: 1,
+    edad: 18,
+    anio_calendario: 2026,
+    mes_calendario: 1,
+    perfil_creado: false,
+    influencia: 5,
+    estado_civil: "soltero",
+    hijos: 0,
     dinero: 0,
     deuda: 0,
     salud: 80,
@@ -54,6 +64,7 @@ export function createInitialState(): PlayerState {
     meses_estres_al_tope: 0,
     acv_count: 0,
     meses_bienestar_roto: 0,
+    month_phase: "idle",
     pending_bills: null,
     pending_month_summary: false,
     last_month_ledger: null,
@@ -110,16 +121,25 @@ function isBusy(state: PlayerState): boolean {
     state.game_over ||
       state.active_event_id ||
       state.pending_bills ||
-      state.pending_month_summary,
+      state.pending_month_summary ||
+      state.month_phase === "capacitacion" ||
+      state.month_phase === "trabajo" ||
+      state.month_phase === "cuentas",
   );
 }
 
-/** Enroll in a course / degree. Pays upfront; may complete instantly. */
+/** Enroll in a course / degree. Only during the capacitación step. */
 export function startCredential(
   state: PlayerState,
   credentialId: string,
 ): PlayerState {
-  if (isBusy(state)) {
+  if (
+    state.game_over ||
+    state.active_event_id ||
+    state.pending_bills ||
+    state.pending_month_summary ||
+    state.month_phase !== "capacitacion"
+  ) {
     return state;
   }
 
@@ -213,18 +233,52 @@ function pickEventForState(state: PlayerState): GameEvent | null {
   return pickWeightedEvent(eligible);
 }
 
+export function createProfile(
+  state: PlayerState,
+  nombre: string,
+  mesNacimiento: number,
+): PlayerState {
+  const clean = nombre.trim().slice(0, 24);
+  if (!clean) return state;
+  const mes = Math.min(12, Math.max(1, Math.round(mesNacimiento)));
+  return clampMetrics({
+    ...state,
+    nombre: clean,
+    mes_nacimiento: mes,
+    edad: 18,
+    anio_calendario: 2026,
+    mes_calendario: mes,
+    perfil_creado: true,
+  });
+}
+
 export function advanceMonth(state: PlayerState): PlayerState {
-  if (isBusy(state)) {
+  if (state.game_over || state.active_event_id || state.pending_month_summary) {
+    return state;
+  }
+  if (!state.perfil_creado) return state;
+  if (state.month_phase !== "idle") {
     return state;
   }
 
   const sueldo = state.trabajo_actual.sueldo;
+
+  let mesCal = state.mes_calendario + 1;
+  let anio = state.anio_calendario;
+  if (mesCal > 12) {
+    mesCal = 1;
+    anio += 1;
+  }
 
   let next: PlayerState = {
     ...state,
     dinero: state.dinero + sueldo,
     estres: state.estres + state.trabajo_actual.nivel_estres_mensual,
     mes: state.mes + 1,
+    mes_calendario: mesCal,
+    anio_calendario: anio,
+    month_phase: "capacitacion",
+    pending_bills: null,
     last_month_ledger: {
       sueldo,
       lines: [],
@@ -239,13 +293,66 @@ export function advanceMonth(state: PlayerState): PlayerState {
     },
   };
 
-  const bills = listMonthlyCosts(next);
-  next = {
-    ...next,
-    pending_bills: bills,
-  };
+  // Birthday when calendar month hits birth month
+  if (mesCal === next.mes_nacimiento) {
+    const gift = birthdayGiftFor(next);
+    next = {
+      ...next,
+      edad: next.edad + 1,
+      dinero: next.dinero + Math.max(0, gift.dinero),
+      salud: next.salud + (gift.deltas.salud ?? 0),
+      estres: next.estres + (gift.deltas.estres ?? 0),
+      bienestar: next.bienestar + (gift.deltas.bienestar ?? 0),
+      capital_social: next.capital_social + (gift.deltas.capital_social ?? 0),
+      influencia: next.influencia + (gift.deltas.influencia ?? 0),
+      last_month_ledger: {
+        ...next.last_month_ledger!,
+        historias: [
+          {
+            bill_id: null,
+            titulo: gift.titulo,
+            texto: gift.texto,
+            dinero: gift.dinero,
+            deltas: gift.deltas,
+            tono: gift.dinero > 0 || (gift.deltas.bienestar ?? 0) > 0 ? "bueno" : "malo",
+          },
+        ],
+        balance_historias: gift.dinero,
+      },
+    };
+  }
+
+  // Soft influence drift from social capital / politics
+  const job = getJobById(next.trabajo_actual.id);
+  let influBump = 0;
+  if (job?.rama === "politica") influBump += 2;
+  if (next.capital_social >= 50) influBump += 1;
+  if (influBump) {
+    next = { ...next, influencia: next.influencia + influBump };
+  }
 
   return clampMetrics(next);
+}
+
+/** Skip or finish capacitación → job step. */
+export function continueFromTraining(state: PlayerState): PlayerState {
+  if (state.game_over || state.month_phase !== "capacitacion") {
+    return state;
+  }
+  return { ...state, month_phase: "trabajo" };
+}
+
+/** Skip or finish job choice → bills step. */
+export function continueFromJob(state: PlayerState): PlayerState {
+  if (state.game_over || state.month_phase !== "trabajo") {
+    return state;
+  }
+  const bills = listMonthlyCosts(state);
+  return {
+    ...state,
+    month_phase: "cuentas",
+    pending_bills: bills,
+  };
 }
 
 /** After the player chooses pay/skip for each bill, finish the month and show summary. */
@@ -253,7 +360,11 @@ export function resolveBills(
   state: PlayerState,
   decisions: Record<string, "pay" | "skip">,
 ): PlayerState {
-  if (state.game_over || !state.pending_bills?.length) {
+  if (
+    state.game_over ||
+    state.month_phase !== "cuentas" ||
+    !state.pending_bills?.length
+  ) {
     return state;
   }
 
@@ -279,9 +390,9 @@ export function resolveBills(
     ...next,
     last_month_ledger: enrichedLedger,
     pending_month_summary: true,
+    month_phase: "idle",
   };
 
-  // Stress streak → ACV hospital week; 4th stroke kills.
   const body = tickBodyLimits(next);
   next = body.state;
 
@@ -345,7 +456,13 @@ export function applyChoice(
 }
 
 export function changeJob(state: PlayerState, jobId: string): PlayerState {
-  if (isBusy(state)) {
+  if (
+    state.game_over ||
+    state.active_event_id ||
+    state.pending_bills ||
+    state.pending_month_summary ||
+    state.month_phase !== "trabajo"
+  ) {
     return state;
   }
 

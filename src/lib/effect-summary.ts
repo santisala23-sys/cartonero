@@ -7,6 +7,7 @@ const METRIC_LABELS: Record<string, string> = {
   estres: "Estrés",
   bienestar: "Bienestar",
   capital_social: "Capital social",
+  influencia: "Influencia",
 };
 
 function formatARS(value: number): string {
@@ -93,6 +94,12 @@ function collectHints(
             ? `${riskPrefix}Pagás toda la deuda posible`
             : `${riskPrefix}Pagás ${formatARS(effect.amount)} de deuda`,
         );
+        break;
+      case "set_estado_civil":
+        into.push(`${riskPrefix}Estado: ${effect.value.replaceAll("_", " ")}`);
+        break;
+      case "add_hijo":
+        into.push(`${riskPrefix}+${effect.amount ?? 1} hijo/a`);
         break;
       case "risk": {
         const pct = Math.round(effect.chance * 100);
