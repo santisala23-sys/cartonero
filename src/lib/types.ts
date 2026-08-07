@@ -7,6 +7,10 @@ export type MetricKey =
 
 export type EstadoCivil = "soltero" | "en_pareja" | "casado" | "gatero";
 
+export type Genero = "hombre" | "mujer";
+
+export type Vivienda = "villa" | "pieza" | "alquiler" | "barrio_cerrado";
+
 export type JobRama =
   | "cartonero"
   | "politica"
@@ -104,7 +108,9 @@ export type Condition =
   | { type: "edad_gte"; value: number }
   | { type: "hijos_gte"; value: number }
   | { type: "hijos_lt"; value: number }
-  | { type: "influencia_gte"; value: number };
+  | { type: "influencia_gte"; value: number }
+  | { type: "vivienda"; value: Vivienda }
+  | { type: "genero"; value: Genero };
 
 export type Effect =
   | {
@@ -141,6 +147,7 @@ export type MonthPhase = "idle" | "capacitacion" | "trabajo" | "cuentas";
 
 export interface PlayerState {
   nombre: string;
+  genero: Genero;
   mes_nacimiento: number;
   edad: number;
   anio_calendario: number;
@@ -149,6 +156,9 @@ export interface PlayerState {
   influencia: number;
   estado_civil: EstadoCivil;
   hijos: number;
+  vivienda: Vivienda;
+  /** Months living with stolen electricity in the villa. */
+  meses_luz_colgada: number;
   dinero: number;
   deuda: number;
   salud: number;

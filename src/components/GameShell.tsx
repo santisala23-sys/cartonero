@@ -58,8 +58,8 @@ export function GameShell() {
   if (!state.perfil_creado) {
     return (
       <CharacterCreate
-        onConfirm={(nombre, mes) => {
-          createCharacter(nombre, mes);
+        onConfirm={(nombre, mes, genero) => {
+          createCharacter(nombre, mes, genero);
         }}
       />
     );

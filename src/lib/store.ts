@@ -14,7 +14,7 @@ import {
   resolveBills,
   startCredential,
 } from "@/lib/game-engine";
-import type { PlayerState } from "@/lib/types";
+import type { Genero, PlayerState } from "@/lib/types";
 import {
   getOrCreatePlayerKey,
   loadLocalState,
@@ -26,7 +26,7 @@ interface GameStore {
   hydrated: boolean;
   playerKey: string | null;
   hydrate: () => void;
-  createCharacter: (nombre: string, mesNacimiento: number) => void;
+  createCharacter: (nombre: string, mesNacimiento: number, genero: Genero) => void;
   advance: () => void;
   choose: (optionId: string) => void;
   confirmBills: (decisions: Record<string, "pay" | "skip">) => void;
@@ -60,9 +60,9 @@ export const useGameStore = create<GameStore>((set, get) => ({
     });
   },
 
-  createCharacter: (nombre, mesNacimiento) => {
+  createCharacter: (nombre, mesNacimiento, genero) => {
     const { state, playerKey } = get();
-    const next = createProfile(state, nombre, mesNacimiento);
+    const next = createProfile(state, nombre, mesNacimiento, genero);
     set({ state: commit(next, playerKey) });
   },
 

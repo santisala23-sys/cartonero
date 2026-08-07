@@ -8,6 +8,13 @@ import type { MetricKey, PlayerState } from "@/lib/types";
 
 export type MetricDelta = Partial<Record<MetricKey, number>>;
 
+/** Lose cash without creating new debt (for opportunity-cost story beats). */
+function loseCashOnly(state: PlayerState, amount: number): PlayerState {
+  const cost = Math.max(0, Math.round(amount));
+  if (cost <= 0 || state.dinero <= 0) return state;
+  return { ...state, dinero: Math.max(0, state.dinero - cost) };
+}
+
 export interface CostLine {
   id: string;
   label: string;
@@ -49,25 +56,27 @@ function line(
   return { id, label, amount, al_pagar, al_saltear };
 }
 
-/** Baseline cost of living — always on. Scales with income bracket. */
+/** Baseline cost of living — scales with vivienda / income. */
 function baseServiceCosts(state: PlayerState): CostLine[] {
+  const vivienda = state.vivienda ?? "villa";
   const sueldo = state.trabajo_actual.sueldo;
+  const hasSec = state.credenciales.includes("secundaria");
 
-  if (sueldo < 100000) {
-    return [
+  if (vivienda === "villa") {
+    const lines: CostLine[] = [
       line(
         "alquiler",
-        "Pieza / techo",
-        12000,
-        { bienestar: 4, estres: -2 },
-        { bienestar: -12, estres: 10, capital_social: -6, salud: -3 },
+        "Techo en la villa",
+        5000,
+        { bienestar: 3, estres: -1 },
+        { bienestar: -14, estres: 12, capital_social: -8, salud: -4 },
       ),
       line(
-        "servicios",
-        "Luz / agua",
-        8000,
-        { bienestar: 3, estres: -1 },
-        { bienestar: -8, estres: 8, salud: -4 },
+        "agua_villa",
+        "Agua (tanque / manguera)",
+        2500,
+        { bienestar: 2, salud: 2 },
+        { bienestar: -6, salud: -5, estres: 5 },
       ),
       line(
         "celular",
@@ -79,7 +88,7 @@ function baseServiceCosts(state: PlayerState): CostLine[] {
       line(
         "comida",
         "Comida básica",
-        22000,
+        20000,
         { salud: 6, bienestar: 5, estres: -2 },
         { salud: -14, bienestar: -12, estres: 10 },
       ),
@@ -91,97 +100,152 @@ function baseServiceCosts(state: PlayerState): CostLine[] {
         { estres: 8, salud: -3, bienestar: -5, capital_social: -2 },
       ),
     ];
+    // Colgado de la luz: no bill — until municipality cuts you.
+    if (has(state, "corte_muni_luz")) {
+      lines.push(
+        line(
+          "luz_deuda_muni",
+          "Deuda de luz (muni)",
+          45000,
+          { bienestar: 4, estres: -6, salud: 2 },
+          { bienestar: -12, estres: 14, salud: -6, capital_social: -5 },
+        ),
+      );
+    }
+    return lines;
   }
 
-  if (sueldo < 400000) {
+  if (vivienda === "pieza") {
     return [
       line(
         "alquiler",
-        "Alquiler",
-        70000,
+        "Pieza / pensión",
+        28000,
+        { bienestar: 5, estres: -2 },
+        { bienestar: -12, estres: 10, capital_social: -6, salud: -3 },
+      ),
+      line(
+        "servicios",
+        "Luz / agua",
+        10000,
+        { bienestar: 3, estres: -1 },
+        { bienestar: -8, estres: 8, salud: -4 },
+      ),
+      line(
+        "celular",
+        "Celular / datos",
+        7000,
+        { capital_social: 2, estres: -1 },
+        { capital_social: -8, estres: 6, bienestar: -4 },
+      ),
+      line(
+        "comida",
+        "Comida",
+        32000,
+        { salud: 6, bienestar: 5, estres: -2 },
+        { salud: -12, bienestar: -10, estres: 9 },
+      ),
+      line(
+        "transporte",
+        "Bondi / SUBE",
+        6000,
+        { estres: -2, bienestar: 2 },
+        { estres: 8, salud: -3, bienestar: -5 },
+      ),
+    ];
+  }
+
+  if (vivienda === "alquiler") {
+    const alquiler = hasSec || sueldo >= 200000 ? 95000 : 70000;
+    return [
+      line(
+        "alquiler",
+        hasSec ? "Alquiler (con recibo)" : "Alquiler",
+        alquiler,
         { bienestar: 6, estres: -3, capital_social: 2 },
         { bienestar: -14, estres: 12, capital_social: -10, salud: -4 },
       ),
       line(
         "luz",
         "Luz",
-        has(state, "tiene_aire") ? 25000 : 14000,
+        has(state, "tiene_aire") ? 25000 : 16000,
         { bienestar: 4, estres: -2 },
         { bienestar: -10, estres: 9, salud: -3 },
       ),
       line(
         "agua_gas",
         "Agua y gas",
-        10000,
+        12000,
         { bienestar: 3, salud: 2 },
         { bienestar: -7, salud: -5, estres: 6 },
       ),
       line(
         "celular",
         "Celular / datos",
-        12000,
+        14000,
         { capital_social: 3, estres: -1 },
         { capital_social: -10, estres: 7, bienestar: -5 },
       ),
       line(
         "comida",
         "Comida",
-        50000,
-        { salud: 8, bienestar: 6, estres: -3 },
-        { salud: -16, bienestar: -14, estres: 12 },
+        55000,
+        { salud: 7, bienestar: 6, estres: -3 },
+        { salud: -12, bienestar: -10, estres: 9 },
       ),
       line(
         "transporte",
         "Transporte",
-        12000,
-        { estres: -3, bienestar: 3 },
-        { estres: 10, salud: -4, bienestar: -6 },
+        15000,
+        { estres: -3, bienestar: 2 },
+        { estres: 8, capital_social: -4 },
       ),
     ];
   }
 
+  // barrio_cerrado
   return [
     line(
       "alquiler",
-      "Alquiler / expensas",
-      150000,
-      { bienestar: 8, estres: -4, capital_social: 3 },
-      { bienestar: -16, estres: 14, capital_social: -12, salud: -5 },
+      "Expensas / cuota barrio",
+      180000,
+      { bienestar: 8, estres: -4, capital_social: 4 },
+      { bienestar: -16, estres: 14, capital_social: -12 },
     ),
     line(
       "luz",
       "Luz",
-      has(state, "tiene_aire") ? 40000 : 22000,
-      { bienestar: 5, estres: -2 },
-      { bienestar: -12, estres: 10, salud: -4 },
+      35000,
+      { bienestar: 4, estres: -2 },
+      { bienestar: -10, estres: 9 },
     ),
     line(
       "agua_gas",
       "Agua y gas",
-      18000,
-      { bienestar: 4, salud: 2 },
-      { bienestar: -8, salud: -6, estres: 7 },
+      20000,
+      { bienestar: 3, salud: 2 },
+      { bienestar: -7, salud: -4, estres: 5 },
     ),
     line(
       "celular",
-      "Celular / fibra",
-      20000,
+      "Abono premium",
+      25000,
       { capital_social: 4, estres: -2 },
-      { capital_social: -12, estres: 8, bienestar: -6 },
+      { capital_social: -8, estres: 6 },
     ),
     line(
       "comida",
-      "Comida",
+      "Comida / delivery",
       90000,
-      { salud: 10, bienestar: 8, estres: -4 },
-      { salud: -18, bienestar: -16, estres: 14 },
+      { salud: 6, bienestar: 5, estres: -3 },
+      { salud: -8, bienestar: -8, estres: 8 },
     ),
     line(
       "transporte",
-      "Transporte / Uber",
-      35000,
-      { estres: -4, bienestar: 4, capital_social: 2 },
-      { estres: 12, salud: -5, bienestar: -8, capital_social: -4 },
+      "Auto / Uber",
+      45000,
+      { estres: -4, capital_social: 2 },
+      { estres: 10, capital_social: -5 },
     ),
   ];
 }
@@ -325,7 +389,8 @@ function applyStoryBeat(
 ): PlayerState {
   let next = applyMetricDelta(state, beat.deltas);
   if (beat.dinero < 0) {
-    next = applyMoneySpend(next, -beat.dinero);
+    // Opportunity losses never invent new debt — only cash you still have.
+    next = loseCashOnly(next, -beat.dinero);
   } else if (beat.dinero > 0) {
     next = { ...next, dinero: next.dinero + beat.dinero };
   }
@@ -366,9 +431,11 @@ export function resolveMonthlyBills(
     : false;
 
   // 1) Pay regular services first.
+  let paidAnyService = false;
   for (const bill of regularBills) {
     const choice = decisions[bill.id] ?? "pay";
     if (choice === "pay") {
+      paidAnyService = true;
       next = applyMoneySpend(next, bill.amount);
       next = applyMetricDelta(next, bill.al_pagar);
       totalPaid += bill.amount;
@@ -417,6 +484,18 @@ export function resolveMonthlyBills(
     }
   }
 
+  if (
+    paidAnyService &&
+    decisions["luz_deuda_muni"] === "pay" &&
+    next.flags.includes("corte_muni_luz")
+  ) {
+    next = {
+      ...next,
+      flags: next.flags.filter((f) => f !== "corte_muni_luz"),
+      meses_luz_colgada: 0,
+    };
+  }
+
   if (next.flags.includes("canos_rotos")) {
     next = {
       ...next,
@@ -425,8 +504,9 @@ export function resolveMonthlyBills(
     };
   }
 
-  // Leftover cash after bills goes to debt automatically.
-  if (next.deuda > 0 && next.dinero > 0) {
+  // Leftover → debt only if you paid something or chose to abonar.
+  // "No pagar nada" keeps the cash so you can sobrevivir.
+  if (next.deuda > 0 && next.dinero > 0 && (paidAnyService || payingDebt)) {
     const beforeDebt = next.deuda;
     const beforeCash = next.dinero;
     next = payDebt(next, "all");

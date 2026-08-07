@@ -1096,12 +1096,28 @@
       "campo"
     ],
     "requisitos": {
-      "credenciales_algunas": [
-        "curso_agro",
-        "primaria"
+      "credenciales_requeridas": [
+        "secundaria"
       ]
     },
     "descripcion": "Amanecer, tierra y patrones lejanos."
+  },
+  {
+    "id": "peon_obra",
+    "titulo": "Peón de obra",
+    "sueldo": 165000,
+    "nivel_estres_mensual": 20,
+    "rama": "oficios",
+    "tags": [
+      "oficios",
+      "construccion"
+    ],
+    "requisitos": {
+      "credenciales_requeridas": [
+        "secundaria"
+      ]
+    },
+    "descripcion": "Casco, andamio y el capataz gritándote. Secundario abre la puerta."
   },
   {
     "id": "encargado_campo",

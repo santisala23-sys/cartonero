@@ -251,6 +251,7 @@ export function normalizePlayerState(
 
   return clampMetrics({
     nombre: typeof raw.nombre === "string" ? raw.nombre : "",
+    genero: raw.genero === "mujer" ? "mujer" : "hombre",
     mes_nacimiento: Number(raw.mes_nacimiento) || 1,
     edad: Number(raw.edad) || 18,
     anio_calendario: Number(raw.anio_calendario) || 2026,
@@ -264,6 +265,13 @@ export function normalizePlayerState(
         ? raw.estado_civil
         : "soltero",
     hijos: Number(raw.hijos) || 0,
+    vivienda:
+      raw.vivienda === "pieza" ||
+      raw.vivienda === "alquiler" ||
+      raw.vivienda === "barrio_cerrado"
+        ? raw.vivienda
+        : "villa",
+    meses_luz_colgada: Number(raw.meses_luz_colgada) || 0,
     dinero: Number(raw.dinero) || 0,
     deuda: Number(raw.deuda) || 0,
     salud: Number(raw.salud) || 0,

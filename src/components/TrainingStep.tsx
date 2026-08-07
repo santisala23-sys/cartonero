@@ -1,6 +1,10 @@
 "use client";
 
-import { getAvailableCredentials, getCredentialById } from "@/lib/credentials";
+import {
+  credentialCapitalSocialGain,
+  getAvailableCredentials,
+  getCredentialById,
+} from "@/lib/credentials";
 import type { PlayerState } from "@/lib/types";
 
 interface TrainingStepProps {
@@ -33,8 +37,8 @@ export function TrainingStep({ state, onPick }: TrainingStepProps) {
         Momento de capacitarte
       </h2>
       <p className="mt-2 text-sm leading-relaxed text-[#9aabbc]">
-        Tenés {formatARS(state.dinero)}. Elegí un curso o seguí así sin
-        capacitarte este mes.
+        Tenés {formatARS(state.dinero)}. Cursos y títulos suman capital social
+        al completarlos. Los eventos también pueden bajártelo.
       </p>
 
       {studying.length > 0 ? (
@@ -49,6 +53,7 @@ export function TrainingStep({ state, onPick }: TrainingStepProps) {
       <div className="mt-6 grid gap-3 sm:grid-cols-2">
         {available.map((c) => {
           const canPay = c.costo <= 0 || state.dinero >= c.costo;
+          const csGain = credentialCapitalSocialGain(c);
           return (
             <button
               key={c.id}
@@ -64,6 +69,9 @@ export function TrainingStep({ state, onPick }: TrainingStepProps) {
               <div className="mt-3 flex flex-wrap gap-1.5">
                 <span className="rounded-full bg-amber-500/15 px-2 py-0.5 text-[11px] font-medium text-amber-200">
                   {c.costo <= 0 ? "Gratis" : formatARS(c.costo)}
+                </span>
+                <span className="rounded-full bg-sky-500/15 px-2 py-0.5 text-[11px] font-medium text-sky-300">
+                  +{csGain} cap. social
                 </span>
                 <span className="rounded-full bg-white/10 px-2 py-0.5 text-[11px] text-[#9aabbc]">
                   {c.duracion_meses > 0

@@ -48,6 +48,9 @@ export function BillsPanel({ state, onConfirm }: BillsPanelProps) {
   const servicesPayTotal = serviceBills
     .filter((b) => decisions[b.id] === "pay")
     .reduce((sum, b) => sum + b.amount, 0);
+  const paidAnyServicePreview = serviceBills.some(
+    (b) => decisions[b.id] === "pay",
+  );
 
   const payingDebt = debtBill ? decisions[debtBill.id] === "pay" : false;
   const cashAfterServices = Math.max(0, state.dinero - servicesPayTotal);
@@ -59,7 +62,7 @@ export function BillsPanel({ state, onConfirm }: BillsPanelProps) {
   const servicesShortfall = Math.max(0, servicesPayTotal - state.dinero);
   const cashAfterAllServices = Math.max(0, state.dinero - servicesPayTotal);
   const autoSurplusToDebt =
-    !payingDebt && state.deuda > 0
+    paidAnyServicePreview && state.deuda > 0 && !payingDebt
       ? Math.min(state.deuda, cashAfterAllServices)
       : payingDebt
         ? Math.min(
@@ -105,9 +108,10 @@ export function BillsPanel({ state, onConfirm }: BillsPanelProps) {
         ¿Qué pagás este mes?
       </h2>
       <p className="mt-3 text-sm text-stone-600">
-        Cobró el sueldo. Elegí qué servicios cubrís. Si tenés deuda, podés
-        abonarla: si no te alcanza, se descuenta todo lo que tengas. Si te sobra
-        plata, el sobrante baja la deuda solo.
+        Cobró el sueldo. Elegí qué servicios cubrís. Si no pagás nada, te
+        quedás la plata (duele en salud/estrés) y la deuda no se cobra sola. Si
+        pagás algo y te sobra, el sobrante baja la deuda. También podés elegir
+        abonar la deuda a propósito.
       </p>
       <p className="mt-2 font-mono text-sm text-stone-800">
         Disponible: {formatARS(state.dinero)}
@@ -144,7 +148,7 @@ export function BillsPanel({ state, onConfirm }: BillsPanelProps) {
                     : `Se descuenta todo (${formatARS(cashAfterServices)})`,
                   "−Estrés",
                 ]
-              : ["Sin pago este mes", "El sobrante igual baja la deuda"]
+              : ["Sin pago este mes", "Te quedás la plata"]
             : formatMetricDelta(paying ? bill.al_pagar : bill.al_saltear);
 
           return (

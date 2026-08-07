@@ -6,6 +6,7 @@ import {
   influenciaProgress,
   MESES_NOMBRE,
 } from "@/lib/identity";
+import { VIVIENDA_LABEL } from "@/lib/housing";
 import type { PlayerState } from "@/lib/types";
 
 interface CareerDashboardProps {
@@ -78,8 +79,11 @@ export function CareerDashboard({ state }: CareerDashboardProps) {
             {mesNombre} · mes de juego {state.mes}
           </p>
           <p className="mt-1 text-[11px] text-[#8a9bac]">
+            {state.genero === "mujer" ? "Mujer" : "Hombre"} ·{" "}
             {estadoCivilLabel(state.estado_civil)}
             {state.hijos > 0 ? ` · ${state.hijos} hijo${state.hijos > 1 ? "s" : ""}` : ""}
+            {" · "}
+            {VIVIENDA_LABEL[state.vivienda]}
           </p>
         </div>
       </div>

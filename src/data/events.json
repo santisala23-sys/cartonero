@@ -7462,5 +7462,704 @@
         ]
       }
     ]
+  },
+  {
+    "id": "muni_luz_colgada",
+    "titulo": "La muni te bajó la luz",
+    "texto": "Llevás meses colgado en la villa. Apareció un camión de la municipalidad, cortaron el cable y te dejaron a oscuras. Para reconectar hay que pagar la deuda de luz… o seguir a pila.",
+    "peso": 14,
+    "condiciones": [
+      {
+        "type": "vivienda",
+        "value": "villa"
+      },
+      {
+        "type": "has_flag",
+        "value": "riesgo_corte_luz"
+      },
+      {
+        "type": "missing_flag",
+        "value": "corte_muni_luz"
+      }
+    ],
+    "opciones": [
+      {
+        "id": "aceptar_corte",
+        "label": "Bancártela a oscuras",
+        "efectos": [
+          {
+            "type": "add_flag",
+            "value": "corte_muni_luz"
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 18
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": -14
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -6
+          }
+        ]
+      },
+      {
+        "id": "laburar_por_cable",
+        "label": "Pedirle al vecino que te vuelva a colgar",
+        "efectos": [
+          {
+            "type": "risk",
+            "chance": 0.55,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "capital_social",
+                "amount": -8
+              },
+              {
+                "type": "delta",
+                "metric": "estres",
+                "amount": 10
+              }
+            ]
+          },
+          {
+            "type": "risk",
+            "chance": 0.45,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "bienestar",
+                "amount": 4
+              },
+              {
+                "type": "delta",
+                "metric": "estres",
+                "amount": -4
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "reunion_radical",
+    "titulo": "Reunión del Radicalismo",
+    "texto": "Te enterás que cerca de tu casa hay una reunión del partido radical. Hay mate, panfletos y un puntero que mira quién aparece. ¿Vas o te hacés el boludo?",
+    "peso": 10,
+    "condiciones": [
+      {
+        "type": "metric_gte",
+        "metric": "capital_social",
+        "value": 8
+      },
+      {
+        "type": "missing_flag",
+        "value": "partido_propio"
+      }
+    ],
+    "opciones": [
+      {
+        "id": "ir_reunion",
+        "label": "Ir y presentarte",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "militancia_radical"
+          }
+        ]
+      },
+      {
+        "id": "no_ir",
+        "label": "No ir",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tranzar_sindicato",
+    "titulo": "El sindicato te llama",
+    "texto": "Un gremialista te invita a hablar. Hay un sobre sobre la mesa. Si estás en política o subiendo, esto es el precio del pasaje.",
+    "peso": 9,
+    "condiciones": [
+      {
+        "type": "influencia_gte",
+        "value": 20
+      },
+      {
+        "type": "job_tag",
+        "value": "politico"
+      }
+    ],
+    "opciones": [
+      {
+        "id": "aceptar_sobre",
+        "label": "Aceptar el arreglo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": 120000
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 10
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -6
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 12
+          },
+          {
+            "type": "add_flag",
+            "value": "coimero"
+          }
+        ]
+      },
+      {
+        "id": "rechazar_sobre",
+        "label": "Rechazar y bancártela",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": -4
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 8
+          },
+          {
+            "type": "add_flag",
+            "value": "limpio_gremio"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "armar_partido",
+    "titulo": "¿Tu propio partido?",
+    "texto": "Ya no bancás a nadie. Tenés gente, un local prestado y un nombre en la servilleta. Abrirte es poder… o suicidio político.",
+    "peso": 7,
+    "condiciones": [
+      {
+        "type": "influencia_gte",
+        "value": 35
+      },
+      {
+        "type": "has_flag",
+        "value": "militancia_radical"
+      },
+      {
+        "type": "missing_flag",
+        "value": "partido_propio"
+      }
+    ],
+    "opciones": [
+      {
+        "id": "lanzar_partido",
+        "label": "Armar tu espacio",
+        "efectos": [
+          {
+            "type": "add_flag",
+            "value": "partido_propio"
+          },
+          {
+            "type": "remove_flag",
+            "value": "militancia_radical"
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 15
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 10
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -80000
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 16
+          }
+        ]
+      },
+      {
+        "id": "quedarse",
+        "label": "Seguir en la estructura",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 3
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": -2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "hermano_paco",
+    "titulo": "Tu hermano y el paco",
+    "texto": "Tu hermano está hecho mierda. La familia te pide que lo acompañes a rehabilitación. Cuesta plata, tiempo y nervios… pero es sangre.",
+    "peso": 11,
+    "condiciones": [
+      {
+        "type": "vivienda",
+        "value": "villa"
+      },
+      {
+        "type": "edad_gte",
+        "value": 18
+      }
+    ],
+    "opciones": [
+      {
+        "id": "acompanar_rehab",
+        "label": "Acompañarlo y poner plata",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -60000
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 14
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": -6
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 8
+          },
+          {
+            "type": "add_flag",
+            "value": "hermano_rehab"
+          }
+        ]
+      },
+      {
+        "id": "no_puedo",
+        "label": "Decir que no podés",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 10
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": -12
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -10
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "villa_bala",
+    "titulo": "Balacera en la manzana",
+    "texto": "Se agarran a tiros dos bandas. Tenés que decidir si te metés a sacar a un pibe herido o te escondés abajo de la cama.",
+    "peso": 12,
+    "condiciones": [
+      {
+        "type": "vivienda",
+        "value": "villa"
+      }
+    ],
+    "opciones": [
+      {
+        "id": "sacar_pibe",
+        "label": "Sacar al pibe",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 12
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -8
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 16
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 4
+          }
+        ]
+      },
+      {
+        "id": "esconderse",
+        "label": "Esconderte",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 12
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": -8
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -4
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "alcolemia",
+    "titulo": "Alcoholemia",
+    "texto": "Saliste de joda. Control de alcoholemia. El oficial te mira como si ya supiera tu historia.",
+    "peso": 8,
+    "condiciones": [
+      {
+        "type": "dinero_gte",
+        "value": 40000
+      },
+      {
+        "type": "metric_gte",
+        "metric": "capital_social",
+        "value": 15
+      }
+    ],
+    "opciones": [
+      {
+        "id": "coima_alco",
+        "label": "Ofrecer una coima",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -35000
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 8
+          },
+          {
+            "type": "risk",
+            "chance": 0.35,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": -8
+              },
+              {
+                "type": "delta",
+                "metric": "capital_social",
+                "amount": -10
+              },
+              {
+                "type": "add_flag",
+                "value": "causa_transito"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "bancarsela",
+        "label": "Bancártela limpio",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -50000
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 14
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": -6
+          },
+          {
+            "type": "add_flag",
+            "value": "multa_alcoholemia"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "fiesta_escandalo",
+    "titulo": "Fiesta y escándalo",
+    "texto": "Te invitan a una fiesta de gente con poder. Hay cámaras, copas de más y alguien que no debería estar ahí. La noche puede subir tu nombre… o quemarlo.",
+    "peso": 8,
+    "condiciones": [
+      {
+        "type": "influencia_gte",
+        "value": 40
+      },
+      {
+        "type": "vivienda",
+        "value": "alquiler"
+      }
+    ],
+    "opciones": [
+      {
+        "id": "escandalo",
+        "label": "Pasarte de copas",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": -12
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -8
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 10
+          },
+          {
+            "type": "add_flag",
+            "value": "escandalo_mediatico"
+          }
+        ]
+      },
+      {
+        "id": "perfil_bajo",
+        "label": "Perfil bajo y networking",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "asado_messi",
+    "titulo": "Messi te invita a un asado",
+    "texto": "No es joda: un contacto del barrio dice que Messi arma un asado chiquito y alguien te nombró porque sos buena onda y no rompés las bolas. ¿Vas?",
+    "peso": 5,
+    "condiciones": [
+      {
+        "type": "metric_gte",
+        "metric": "capital_social",
+        "value": 45
+      },
+      {
+        "type": "metric_gte",
+        "metric": "bienestar",
+        "value": 40
+      },
+      {
+        "type": "missing_flag",
+        "value": "conocio_messi"
+      }
+    ],
+    "opciones": [
+      {
+        "id": "ir_asado",
+        "label": "Ir al asado",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 20
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 12
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 15
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": -8
+          },
+          {
+            "type": "add_flag",
+            "value": "conocio_messi"
+          }
+        ]
+      },
+      {
+        "id": "no_ir_asado",
+        "label": "Declinar (¿en serio?)",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": -6
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -4
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "puntero_te_pide",
+    "titulo": "El puntero te pide un favor",
+    "texto": "Quiere que armes una cola de gente para una foto con bolsones. Plata chica, compromiso grande. Así se hace territorio.",
+    "peso": 10,
+    "condiciones": [
+      {
+        "type": "vivienda",
+        "value": "villa"
+      },
+      {
+        "type": "metric_gte",
+        "metric": "capital_social",
+        "value": 12
+      }
+    ],
+    "opciones": [
+      {
+        "id": "armar_cola",
+        "label": "Armar la cola",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": 25000
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 6
+          },
+          {
+            "type": "add_flag",
+            "value": "laburo_puntero"
+          }
+        ]
+      },
+      {
+        "id": "no_puntero",
+        "label": "Mandarlo a freír churros",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -6
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": -3
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 3
+          }
+        ]
+      }
+    ]
   }
 ]

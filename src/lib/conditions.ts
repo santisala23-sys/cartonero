@@ -52,6 +52,10 @@ export function evaluateCondition(
       return state.hijos < condition.value;
     case "influencia_gte":
       return state.influencia >= condition.value;
+    case "vivienda":
+      return state.vivienda === condition.value;
+    case "genero":
+      return state.genero === condition.value;
     default:
       return true;
   }

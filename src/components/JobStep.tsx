@@ -1,7 +1,7 @@
 "use client";
 
 import { getCredentialById } from "@/lib/credentials";
-import { getEligibleJobs } from "@/lib/jobs";
+import { getEligibleJobs, monthlyJobCapitalSocial } from "@/lib/jobs";
 import type { PlayerState } from "@/lib/types";
 
 interface JobStepProps {
@@ -33,8 +33,8 @@ export function JobStep({ state, onPick }: JobStepProps) {
       </h2>
       <p className="mt-2 text-sm leading-relaxed text-[#9aabbc]">
         Ahora sos {state.trabajo_actual.titulo} (
-        {formatARS(state.trabajo_actual.sueldo)}/mes). Elegí un puesto disponible
-        con tus capacitaciones, o seguí donde estás.
+        {formatARS(state.trabajo_actual.sueldo)}/mes). Con secundario, mejores
+        puestos te van sumando capital social cada mes. Cartonero no suma.
       </p>
 
       <div className="mt-6 grid gap-3 sm:grid-cols-2">
@@ -45,6 +45,7 @@ export function JobStep({ state, onPick }: JobStepProps) {
           ]
             .slice(0, 2)
             .map((id) => getCredentialById(id)?.nombre ?? id);
+          const csMes = monthlyJobCapitalSocial(state, job);
 
           return (
             <button
@@ -61,6 +62,15 @@ export function JobStep({ state, onPick }: JobStepProps) {
                 <span className="rounded-full bg-emerald-500/15 px-2 py-0.5 text-[11px] font-medium text-emerald-300">
                   {formatARS(job.sueldo)}/mes
                 </span>
+                {csMes > 0 ? (
+                  <span className="rounded-full bg-emerald-500/15 px-2 py-0.5 text-[11px] font-medium text-emerald-300">
+                    +{csMes} cap. social/mes
+                  </span>
+                ) : (
+                  <span className="rounded-full bg-white/10 px-2 py-0.5 text-[11px] text-[#9aabbc]">
+                    Sin cap. social/mes
+                  </span>
+                )}
                 <span
                   className={`rounded-full px-2 py-0.5 text-[11px] font-medium ${
                     job.nivel_estres_mensual <

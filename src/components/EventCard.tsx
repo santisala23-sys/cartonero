@@ -3,7 +3,7 @@
 import {
   hintTone,
   summarizeEffects,
-  toneClassLight,
+  toneClass,
 } from "@/lib/effect-summary";
 import type { GameEvent } from "@/lib/types";
 
@@ -20,18 +20,24 @@ export function EventCard({
   disabled,
   dinero = 0,
 }: EventCardProps) {
+  const twoCols = event.opciones.length === 2;
+
   return (
-    <article className="event-card animate-in mx-auto w-full max-w-xl">
-      <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.25em] text-teal-900/70">
-        Evento
+    <article className="mx-auto w-full max-w-xl animate-in text-[#e8eef5]">
+      <div className="h-1 w-full rounded-full bg-[#2f9e6b]" />
+      <p className="mt-4 text-[11px] font-bold uppercase tracking-[0.22em] text-[#3d9b6a]">
+        Pasan cosas
       </p>
-      <h2 className="font-display text-2xl leading-tight text-stone-950 sm:text-3xl">
+      <h2 className="mt-1 font-display text-3xl leading-tight text-white sm:text-4xl">
         {event.titulo}
       </h2>
-      <p className="mt-4 text-base leading-relaxed text-stone-700 sm:text-lg">
+      <p className="mt-3 text-sm leading-relaxed text-[#9aabbc] sm:text-base">
         {event.texto}
       </p>
-      <div className="mt-8 flex flex-col gap-2.5">
+
+      <div
+        className={`mt-6 grid gap-3 ${twoCols ? "sm:grid-cols-2" : "grid-cols-1"}`}
+      >
         {event.opciones.map((option) => {
           const hints = summarizeEffects(option.efectos, dinero);
           return (
@@ -40,16 +46,16 @@ export function EventCard({
               type="button"
               disabled={disabled}
               onClick={() => onChoose(option.id)}
-              className="option-btn text-left"
+              className="rounded-2xl border border-white/10 bg-[#1a222d] p-4 text-left transition hover:border-[#2f9e6b]/60 disabled:cursor-not-allowed disabled:opacity-40"
             >
-              <span className="block font-medium text-stone-900">
+              <span className="block font-semibold text-white">
                 {option.label}
               </span>
-              <span className="mt-2 flex flex-wrap gap-1.5">
+              <span className="mt-3 flex flex-wrap gap-1.5">
                 {hints.map((hint) => (
                   <span
                     key={hint}
-                    className={`inline-block rounded-sm px-1.5 py-0.5 text-[11px] font-medium leading-snug ${toneClassLight(hintTone(hint))}`}
+                    className={`inline-block rounded-full px-2 py-0.5 text-[11px] font-medium leading-snug ${toneClass(hintTone(hint))}`}
                   >
                     {hint}
                   </span>

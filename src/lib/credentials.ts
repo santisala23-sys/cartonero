@@ -89,3 +89,39 @@ export const CATEGORY_LABELS: Record<string, string> = {
   comercio: "Comercio",
   campo: "Campo",
 };
+
+/** Capital social gained when you finish a credential / validation. */
+export function credentialCapitalSocialGain(credential: Credential): number {
+  switch (credential.tipo) {
+    case "titulo":
+      if (credential.id === "primaria") return 1;
+      if (credential.id === "secundaria") return 5;
+      if (
+        credential.id.includes("licenciatura") ||
+        credential.id.includes("ingenier") ||
+        credential.id.includes("medicina") ||
+        credential.id.includes("abogac") ||
+        credential.categoria === "educacion"
+      ) {
+        return credential.costo >= 80000 || credential.duracion_meses >= 6
+          ? 8
+          : 6;
+      }
+      return 5;
+    case "certificacion":
+      return 4;
+    case "licencia":
+      return 3;
+    case "oficio":
+      return 3;
+    case "idioma":
+      return credential.id.includes("b2") || credential.id.includes("c1")
+        ? 4
+        : 2;
+    case "aptitud":
+      return 2;
+    case "curso":
+    default:
+      return 2;
+  }
+}

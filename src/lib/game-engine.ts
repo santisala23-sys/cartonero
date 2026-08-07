@@ -4,6 +4,7 @@ import {
   hasCredential,
   isStudying,
   meetsCredentialRequirements,
+  credentialCapitalSocialGain,
 } from "@/lib/credentials";
 import {
   applyDebtInterest,
@@ -11,6 +12,7 @@ import {
 } from "@/lib/debt";
 import { tickBodyLimits } from "@/lib/endings";
 import { birthdayGiftFor } from "@/lib/identity";
+import { syncVivienda, tickViviendaMonth } from "@/lib/housing";
 import {
   applyEffects,
   applyMoneySpend,
@@ -24,19 +26,21 @@ import {
   getJobById,
   jobToTrabajoActual,
   meetsJobRequirements,
+  monthlyJobCapitalSocial,
 } from "@/lib/jobs";
 import {
   estimateMonthlyCosts,
   listMonthlyCosts,
   resolveMonthlyBills,
 } from "@/lib/monthly-costs";
-import type { GameEvent, PlayerState } from "@/lib/types";
+import type { Genero, GameEvent, PlayerState } from "@/lib/types";
 
 const MAX_STUDIES = 2;
 
 export function createInitialState(): PlayerState {
   return {
     nombre: "",
+    genero: "hombre",
     mes_nacimiento: 1,
     edad: 18,
     anio_calendario: 2026,
@@ -45,6 +49,8 @@ export function createInitialState(): PlayerState {
     influencia: 5,
     estado_civil: "soltero",
     hijos: 0,
+    vivienda: "villa",
+    meses_luz_colgada: 0,
     dinero: 0,
     deuda: 0,
     salud: 80,
@@ -53,7 +59,7 @@ export function createInitialState(): PlayerState {
     capital_social: 10,
     trabajo_actual: createInitialTrabajo(),
     mes: 1,
-    flags: ["worked_cartonero", "sin_prepaga"],
+    flags: ["worked_cartonero", "sin_prepaga", "vivienda_villa", "luz_colgada"],
     credenciales: [],
     estudios_en_curso: [],
     last_event_id: null,
@@ -105,11 +111,13 @@ function tickStudies(state: PlayerState): {
 
   next = { ...next, estudios_en_curso: remaining };
   for (const id of completed) {
+    const cred = getCredentialById(id);
+    const csGain = cred ? credentialCapitalSocialGain(cred) : 2;
     next = grantCredential(next, id);
     next = {
       ...next,
       bienestar: next.bienestar + 4,
-      capital_social: next.capital_social + 2,
+      capital_social: next.capital_social + csGain,
     };
   }
 
@@ -157,10 +165,12 @@ export function startCredential(
   };
 
   if (credential.duracion_meses <= 0) {
+    const csGain = credentialCapitalSocialGain(credential);
     next = grantCredential(next, credential.id);
     next = {
       ...next,
       bienestar: next.bienestar + 3,
+      capital_social: next.capital_social + csGain,
     };
     return clampMetrics(next);
   }
@@ -237,19 +247,23 @@ export function createProfile(
   state: PlayerState,
   nombre: string,
   mesNacimiento: number,
+  genero: Genero = "hombre",
 ): PlayerState {
   const clean = nombre.trim().slice(0, 24);
   if (!clean) return state;
   const mes = Math.min(12, Math.max(1, Math.round(mesNacimiento)));
-  return clampMetrics({
-    ...state,
-    nombre: clean,
-    mes_nacimiento: mes,
-    edad: 18,
-    anio_calendario: 2026,
-    mes_calendario: mes,
-    perfil_creado: true,
-  });
+  return clampMetrics(
+    syncVivienda({
+      ...state,
+      nombre: clean,
+      genero: genero === "mujer" ? "mujer" : "hombre",
+      mes_nacimiento: mes,
+      edad: 18,
+      anio_calendario: 2026,
+      mes_calendario: mes,
+      perfil_creado: true,
+    }),
+  );
 }
 
 export function advanceMonth(state: PlayerState): PlayerState {
@@ -292,6 +306,17 @@ export function advanceMonth(state: PlayerState): PlayerState {
       balance_historias: 0,
     },
   };
+
+  // Cap. social mensual del puesto (cartonero = 0; post-secundario escala)
+  const jobCs = monthlyJobCapitalSocial(next, next.trabajo_actual);
+  if (jobCs > 0) {
+    next = {
+      ...next,
+      capital_social: next.capital_social + jobCs,
+    };
+  }
+
+  next = tickViviendaMonth(next);
 
   // Birthday when calendar month hits birth month
   if (mesCal === next.mes_nacimiento) {
@@ -475,11 +500,13 @@ export function changeJob(state: PlayerState, jobId: string): PlayerState {
     ? state.flags
     : [...state.flags, `worked_${job.id}`];
 
-  return checkGameOver({
-    ...state,
-    trabajo_actual: jobToTrabajoActual(job),
-    flags,
-  });
+  return checkGameOver(
+    syncVivienda({
+      ...state,
+      trabajo_actual: jobToTrabajoActual(job),
+      flags,
+    }),
+  );
 }
 
 export function getActiveEvent(state: PlayerState): GameEvent | null {
