@@ -1,8 +1,8 @@
 import type { PlayerState } from "@/lib/types";
 
-/** Consecutive months at max stress before a stroke. */
-export const STRESS_STREAK_FOR_ACV = 6;
-/** Strokes before death. */
+/** Trimestres seguidos al tope de estrés antes de un ACV. */
+export const STRESS_STREAK_FOR_ACV = 4;
+/** ACVs antes de morir. */
 export const ACV_FATAL_COUNT = 4;
 
 export type EndingKind = "victoria" | "derrota";
@@ -29,99 +29,42 @@ function spendCash(state: PlayerState, cost: number): PlayerState {
   };
 }
 
-/** Positive closures — climbing out or lasting. */
+/** Solo se gana llegando a Presidente. */
 export function evaluateVictory(state: PlayerState): EndingResult | null {
-  if (hasJob(state, ["presidente"])) {
-    if (state.flags.includes("victoria_manchada")) {
-      return {
-        kind: "victoria",
-        reason:
-          "Llegaste a Presidente con el escrutinio oloroso a quilombo. La Rosada es tuya; la historia va a discutir cómo. Desde el carrito hasta la banda: victoria manchada, pero victoria.",
-      };
-    }
-    if (state.flags.includes("debate_origen") || state.flags.includes("relato_origen")) {
-      return {
-        kind: "victoria",
-        reason:
-          "Presidente. El país vio de dónde saliste y te compró el relato. Cartonero, militante, Rosada. Fin — victoria.",
-      };
-    }
+  if (!hasJob(state, ["presidente"])) return null;
+
+  if (state.flags.includes("victoria_manchada")) {
     return {
       kind: "victoria",
       reason:
-        "Llegaste a Presidente. Desde el cartonero hasta la Rosada: la ciudad ya no te come, la gobernás. Fin — victoria.",
+        "Llegaste a Presidente con el escrutinio oloroso a quilombo. La Rosada es tuya; la historia va a discutir cómo. Desde el carrito hasta la banda: victoria manchada, pero victoria.",
     };
   }
-
-  // Gobernador ya no cierra el juego al asumir: es trampolín a la campaña.
-  // Cierras en provincia si concediste digno o si perdiste y te quedaste laburando el territorio.
-  if (hasJob(state, ["gobernador"]) && state.flags.includes("derrota_digna")) {
-    return {
-      kind: "victoria",
-      reason:
-        "Concediste temprano y saliste parado. No hay Rosada, pero la provincia y el barrio te respetan. Victoria de pulso.",
-    };
-  }
-
   if (
-    hasJob(state, ["gobernador"]) &&
-    state.flags.includes("derrota_electoral") &&
-    !state.flags.includes("victoria_electoral") &&
-    state.mes >= 28 &&
-    state.capital_social >= 65
+    state.flags.includes("debate_origen") ||
+    state.flags.includes("relato_origen")
   ) {
     return {
       kind: "victoria",
       reason:
-        "No llegaste a la Rosada, pero la provincia te reconoce. Gobernás, bancás el temporal y el barrio que te vio con el carrito ahora te ve en el peaje. Victoria de provincia.",
+        "Presidente. El país vio de dónde saliste y te compró el relato. Cartonero, militante, Rosada. Fin — victoria.",
     };
   }
-
-  if (
-    state.dinero >= 2_500_000 &&
-    state.deuda <= 0 &&
-    state.bienestar >= 55 &&
-    state.salud >= 50
-  ) {
+  if (state.flags.includes("ballotage_ganado")) {
     return {
       kind: "victoria",
       reason:
-        "Juntaste plata, saldiste la deuda y te queda cuerpo. Te mudás lejos del quilombo. Cartonero termina: empezó otra vida.",
+        "Ballotage en vivo, internas bancadas y la banda presidencial. Del changuito a la Rosada: victoria.",
     };
   }
-
-  if (
-    state.mes >= 16 &&
-    state.deuda <= 0 &&
-    state.estres < 55 &&
-    state.salud >= 45 &&
-    state.bienestar >= 40
-  ) {
-    return {
-      kind: "victoria",
-      reason:
-        "Cuatro años bancándola sin quebrarte del todo. No sos millonario, pero seguís en pie. Eso también es ganar.",
-    };
-  }
-
-  if (
-    hasJob(state, ["intendente", "gerente_general", "director_agencia"]) &&
-    state.capital_social >= 70 &&
-    state.deuda <= 50_000 &&
-    state.mes >= 12 &&
-    !state.flags.includes("campana_gobernador")
-  ) {
-    return {
-      kind: "victoria",
-      reason:
-        "Construiste poder, contactos y un laburo que te sostiene. El juego cierra: ya no sos el de abajo.",
-    };
-  }
-
-  return null;
+  return {
+    kind: "victoria",
+    reason:
+      "Llegaste a Presidente. Desde el cartonero hasta la Rosada: la ciudad ya no te come, la gobernás. Fin — victoria.",
+  };
 }
 
-/** Fatal / collapse endings beyond basic salud/deuda checks. */
+/** Derrotas fatales / colapso (además de salud/deuda en checkGameOver). */
 export function evaluateDefeat(state: PlayerState): EndingResult | null {
   if (state.flags.includes("fuga_exterior")) {
     return {
@@ -155,11 +98,11 @@ export function evaluateDefeat(state: PlayerState): EndingResult | null {
     };
   }
 
-  if (state.bienestar <= 0 && state.meses_bienestar_roto >= 6) {
+  if (state.bienestar <= 0 && state.meses_bienestar_roto >= 4) {
     return {
       kind: "derrota",
       reason:
-        "Seis meses sin un gramo de bienestar. Dejaste de pelear. La ciudad sigue; vos no. Fin del camino.",
+        "Cuatro trimestres sin un gramo de bienestar. Dejaste de pelear. La ciudad sigue; vos no. Fin del camino.",
     };
   }
 
@@ -167,7 +110,8 @@ export function evaluateDefeat(state: PlayerState): EndingResult | null {
 }
 
 /**
- * Track stress streak / bienestar collapse; fire ACV hospital week when due.
+ * Track stress streak / bienestar collapse; fire ACV when due.
+ * Contadores avanzan 1 por turno (= 1 trimestre).
  */
 export function tickBodyLimits(state: PlayerState): {
   state: PlayerState;
@@ -220,8 +164,8 @@ export function tickBodyLimits(state: PlayerState): {
     if (ledger) {
       const texto =
         acvCount >= ACV_FATAL_COUNT
-          ? `Llevabas ${STRESS_STREAK_FOR_ACV} meses al borde. Te agarró el bobazo número ${acvCount}. Esta vez no volvés.`
-          : `Llevabas ${STRESS_STREAK_FOR_ACV} meses con el estrés al mango. Te agarró un ACV (bobazo #${acvCount}/${ACV_FATAL_COUNT}). Una semana en el hospital: cuenta de $${hospitalBill.toLocaleString("es-AR")}, el cuerpo hecho mierda, y un aviso claro.`;
+          ? `Llevabas ${STRESS_STREAK_FOR_ACV} trimestres al borde. Te agarró el bobazo número ${acvCount}. Esta vez no volvés.`
+          : `Llevabas ${STRESS_STREAK_FOR_ACV} trimestres con el estrés al mango. Te agarró un ACV (bobazo #${acvCount}/${ACV_FATAL_COUNT}). Una semana en el hospital: cuenta de $${hospitalBill.toLocaleString("es-AR")}, el cuerpo hecho mierda, y un aviso claro.`;
 
       next = {
         ...next,

@@ -2,13 +2,11 @@
 
 import { useState } from "react";
 import {
-  applyLikertToScores,
+  applyOptionToScores,
   BRUJULA_QUESTIONS,
   emptyAfinidades,
-  LIKERT_OPTIONS,
   rankPartidos,
   topPartido,
-  type BrujulaLikert,
   type PartidoAfinidades,
 } from "@/lib/brujula";
 import { PARTIDOS, type PartidoId } from "@/lib/partidos";
@@ -31,9 +29,11 @@ export function BrujulaPanel({ onFinish }: BrujulaPanelProps) {
   const winner = topPartido(scores);
   const winnerDef = PARTIDOS.find((p) => p.id === winner);
 
-  function answer(likert: BrujulaLikert) {
+  function choose(optionId: string) {
     if (!q) return;
-    const nextScores = applyLikertToScores(scores, q, likert);
+    const option = q.opciones.find((o) => o.id === optionId);
+    if (!option) return;
+    const nextScores = applyOptionToScores(scores, option);
     setScores(nextScores);
     if (index + 1 >= total) {
       setDone(true);
@@ -50,11 +50,11 @@ export function BrujulaPanel({ onFinish }: BrujulaPanelProps) {
           Brújula política · resultado
         </p>
         <h2 className="mt-1 font-display text-3xl italic text-white">
-          Tu mapa salió así
+          Tus decisiones te acercaron a
         </h2>
         <p className="mt-2 text-sm text-[#b0bec8]">
-          Según tus reacciones a quilombos medianamente reales, el espacio más
-          cerca de tu cabeza es:
+          Según cómo te moviste en estos quilombos, el espacio más cerca de tu
+          carrera es:
         </p>
         <p className="mt-4 font-display text-2xl text-[#5fd4a0]">
           {winnerDef?.nombre ?? winner}
@@ -67,7 +67,11 @@ export function BrujulaPanel({ onFinish }: BrujulaPanelProps) {
               key={row.id}
               className="flex items-center justify-between rounded-xl bg-[#12161c] px-3 py-2 text-sm"
             >
-              <span className={i === 0 ? "font-semibold text-white" : "text-[#9aabbc]"}>
+              <span
+                className={
+                  i === 0 ? "font-semibold text-white" : "text-[#9aabbc]"
+                }
+              >
                 {i + 1}. {row.nombre}
               </span>
               <span className="font-mono tabular-nums text-[#7a8b9c]">
@@ -97,38 +101,35 @@ export function BrujulaPanel({ onFinish }: BrujulaPanelProps) {
   }
 
   return (
-    <article className="mx-auto w-full max-w-xl animate-in rounded-2xl bg-[#f4f1ea] p-5 text-[#1a1a1a]">
-      <p className="text-center text-[12px] font-semibold tracking-wide text-[#6b6b6b]">
+    <article className="mx-auto w-full max-w-xl animate-in rounded-2xl bg-[#1a222d] p-5 text-[#e8eef5]">
+      <p className="text-center text-[12px] font-semibold tracking-wide text-[#8a9bac]">
         {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
       </p>
-      <div className="mx-auto mt-2 h-px w-16 bg-[#cfcfcf]" />
-      <h2 className="mt-6 text-center font-display text-2xl leading-snug text-[#111] sm:text-3xl">
+      <div className="mx-auto mt-2 h-px w-16 bg-white/15" />
+      <p className="mt-5 text-center text-[11px] font-bold uppercase tracking-[0.2em] text-[#c9a227]">
+        Decisión política
+      </p>
+      <h2 className="mt-3 text-center font-display text-xl leading-snug text-white sm:text-2xl">
         {q?.texto}
       </h2>
-      <p className="mt-3 text-center text-[11px] font-bold uppercase tracking-[0.2em] text-[#8a8a8a]">
-        ¿Qué opinás?
+      <p className="mt-3 text-center text-sm text-[#9aabbc]">
+        ¿Qué hacés?
       </p>
 
-      <div className="mt-6 divide-y divide-[#ddd]">
-        {LIKERT_OPTIONS.map((opt) => (
+      <div className="mt-5 space-y-2">
+        {q?.opciones.map((opt) => (
           <button
             key={opt.id}
             type="button"
-            onClick={() => answer(opt.id)}
-            className="flex w-full items-center justify-between gap-3 py-3.5 text-left transition hover:bg-black/[0.03]"
+            onClick={() => choose(opt.id)}
+            className="w-full rounded-xl border border-white/10 bg-[#12161c] px-4 py-3.5 text-left text-[15px] font-medium text-[#e8eef5] transition hover:border-[#3d9b6a]/50 hover:bg-[#151b24]"
           >
-            <span className="text-[15px] font-medium text-[#222]">{opt.label}</span>
-            <span
-              className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-lg ${opt.tone}`}
-              aria-hidden
-            >
-              {opt.emoji}
-            </span>
+            {opt.label}
           </button>
         ))}
       </div>
-      <p className="mt-4 text-center text-[10px] text-[#9a9a9a]">
-        Respuestas absurdas, consecuencias partidarias. Estilo Cartonero.
+      <p className="mt-4 text-center text-[10px] text-[#6b7c8f]">
+        Cada elección te acerca a un espacio u otro.
       </p>
     </article>
   );

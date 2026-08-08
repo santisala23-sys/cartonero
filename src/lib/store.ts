@@ -12,7 +12,9 @@ import {
   createProfile,
   dismissMonthSummary,
   dismissRiskReveal as clearRiskReveal,
+  finishBallotage,
   finishBrujula,
+  finishInternas,
   normalizePlayerState,
   resolveBills,
   startCredential,
@@ -42,6 +44,8 @@ interface GameStore {
     scores: PartidoAfinidades,
     joinPartidoId: PartidoId | "skip",
   ) => void;
+  finishInternas: (scores: PartidoAfinidades, won: boolean) => void;
+  finishBallotage: (puntos: number, won: boolean) => void;
   pickTraining: (credentialId: string | null) => void;
   pickJob: (jobId: string | null) => void;
   reset: () => void;
@@ -116,6 +120,18 @@ export const useGameStore = create<GameStore>((set, get) => ({
   finishBrujula: (scores, joinPartidoId) => {
     const { state, playerKey } = get();
     const next = finishBrujula(state, scores, joinPartidoId);
+    set({ state: commit(next, playerKey) });
+  },
+
+  finishInternas: (scores, won) => {
+    const { state, playerKey } = get();
+    const next = finishInternas(state, scores, won);
+    set({ state: commit(next, playerKey) });
+  },
+
+  finishBallotage: (puntos, won) => {
+    const { state, playerKey } = get();
+    const next = finishBallotage(state, puntos, won);
     set({ state: commit(next, playerKey) });
   },
 

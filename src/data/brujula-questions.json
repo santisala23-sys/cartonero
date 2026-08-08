@@ -1,62 +1,227 @@
 [
   {
-    "id": "motosierra_iphone",
-    "texto": "Milei presenta la motosierra en el lanzamiento del iPhone frente al Obelisco. Hay gente aplaudiendo y un pibe filmando para TikTok.",
-    "pesos": { "lla": 3, "pro": 1, "ucr": -1, "pj": -2, "izquierda": -3 }
+    "id": "motosierra_obelisco",
+    "texto": "Te invitan a un acto en el Obelisco: Milei saca la motosierra en vivo y el aparatito pide caras nuevas gritando atrás. Si aparecés, te etiquetan de un lado.",
+    "opciones": [
+      {
+        "id": "subirse",
+        "label": "Me pongo atrás con un cartel de cartón que dice '¡VIVA LA LIBERTAD, CARAJO!' y grito hasta quedar ronco",
+        "pesos": { "lla": 3, "pro": 1, "ucr": -1, "pj": -2, "izquierda": -3 }
+      },
+      {
+        "id": "filmar_ironico",
+        "label": "Filmo todo con cara de poker y lo subo con el audio de un cumbia triste",
+        "pesos": { "izquierda": 1, "pj": 1, "ucr": 1, "pro": 0, "lla": -1 }
+      },
+      {
+        "id": "contra",
+        "label": "Armo un fogón del otro lado de la plaza y reparto panfletos contra la motosierra",
+        "pesos": { "izquierda": 3, "pj": 2, "ucr": 0, "pro": -2, "lla": -3 }
+      },
+      {
+        "id": "laburo",
+        "label": "Mando un audio de 'llegué tarde al laburo' y me borro",
+        "pesos": { "ucr": 1, "pro": 1, "pj": 0, "lla": -1, "izquierda": 0 }
+      }
+    ]
   },
   {
-    "id": "myriam_asado",
-    "texto": "Myriam Bregman arma un asado vegano anti-FMI en la 9 de Julio. Te ofrecen una bandeja y un panfleto de 14 páginas.",
-    "pesos": { "izquierda": 3, "pj": 1, "ucr": 0, "pro": -2, "lla": -3 }
+    "id": "myriam_comedor",
+    "texto": "Myriam arma un acto en el comedor: te piden llevar gente y tirar dos minutos contra el FMI. Hay lentejas y un parlante que no anda.",
+    "opciones": [
+      {
+        "id": "hablar",
+        "label": "Llevo a la peña completa, hablo y hasta canto la consigna aunque desafine",
+        "pesos": { "izquierda": 3, "pj": 1, "ucr": -1, "pro": -2, "lla": -3 }
+      },
+      {
+        "id": "solo_mate",
+        "label": "Voy, cebó mate, asiento con la cabeza y no toco el micrófono ni muerto",
+        "pesos": { "izquierda": 1, "pj": 1, "ucr": 0, "pro": -1, "lla": -1 }
+      },
+      {
+        "id": "rechazar",
+        "label": "Les digo que el comedor no es un set de campaña y me voy con el tupper vacío",
+        "pesos": { "lla": 2, "pro": 2, "ucr": 1, "pj": -1, "izquierda": -3 }
+      }
+    ]
   },
   {
-    "id": "cristina_tiktok",
-    "texto": "Cristina vuelve con un live de TikTok desde el Patria. El chat pide 'V' y un filtro de corona.",
-    "pesos": { "pj": 3, "izquierda": 1, "ucr": -1, "pro": -2, "lla": -3 }
+    "id": "unidad_basica",
+    "texto": "En la unidad básica te ofrecen un cargo chico: juntar firmas, bancar la interna y 'un reconocimiento' en un sobre manila.",
+    "opciones": [
+      {
+        "id": "aceptar",
+        "label": "Acepto el cargo, el sobre y hasta el sticker del intendente en el changuito",
+        "pesos": { "pj": 3, "izquierda": 1, "ucr": 0, "pro": -1, "lla": -2 }
+      },
+      {
+        "id": "sin_sobre",
+        "label": "Acepto militar, pero el sobre lo dejo sobre la mesa: 'yo cobro en blanco o no cobro'",
+        "pesos": { "pj": 2, "izquierda": 2, "ucr": 1, "pro": 0, "lla": -1 }
+      },
+      {
+        "id": "no",
+        "label": "Les digo que mi estructura es otra y me voy silbando la marcha que no es la de ellos",
+        "pesos": { "lla": 2, "pro": 1, "ucr": 1, "pj": -2, "izquierda": -1 }
+      }
+    ]
   },
   {
-    "id": "bullrich_taser",
-    "texto": "Bullrich propone taser en el bondi para 'ordenar la convivencia'. El chofer ya tiene opinión.",
-    "pesos": { "pro": 2, "lla": 2, "ucr": 1, "pj": -2, "izquierda": -3 }
+    "id": "seguridad_barrio",
+    "texto": "Robaron tres veces en la cuadra. Un referente con traje propone marcha por más policía; del otro lado dicen que es mano dura con perfume caro.",
+    "opciones": [
+      {
+        "id": "marchar",
+        "label": "Organizo la marcha, pido patrulleros y un cartel que diga 'BASTA DE CHORROS'",
+        "pesos": { "pro": 3, "lla": 2, "ucr": 1, "pj": -1, "izquierda": -3 }
+      },
+      {
+        "id": "mesa",
+        "label": "Armao una mesa con vecinos, cura, policía y facturas de luz: sin eslogan, con planilla",
+        "pesos": { "ucr": 2, "pj": 1, "pro": 1, "izquierda": 0, "lla": 0 }
+      },
+      {
+        "id": "rechazo_mano",
+        "label": "Me sumo al acto contra la mano dura y cuelgo un trapo que dice 'LA INSEGURIDAD ES SOCIAL'",
+        "pesos": { "izquierda": 3, "pj": 1, "ucr": 0, "pro": -2, "lla": -3 }
+      }
+    ]
   },
   {
-    "id": "caputo_sticker",
-    "texto": "Caputo te manda un sticker de león por WhatsApp: 'ordená el relato del barrio o quedás afuera'.",
-    "pesos": { "lla": 3, "pro": 1, "ucr": -1, "pj": -2, "izquierda": -2 }
+    "id": "lista_ucr",
+    "texto": "Un radical con reloj antiguo te ofrece lugar en la lista municipal: 'necesitamos gente joven que no grite ni rompa cosas'.",
+    "opciones": [
+      {
+        "id": "lista",
+        "label": "Me anoto, me compro un saco usado y practico decir 'institucionalidad' sin reírme",
+        "pesos": { "ucr": 3, "pro": 1, "pj": 0, "lla": -1, "izquierda": -1 }
+      },
+      {
+        "id": "solo_apoyo",
+        "label": "Les doy likes a los posts y voy a dos peñas, pero no firmo la ficha",
+        "pesos": { "ucr": 1, "pro": 1, "pj": 0, "lla": 0, "izquierda": 0 }
+      },
+      {
+        "id": "otro",
+        "label": "Les digo que prefiero un espacio que todavía pelee, aunque sea a los bifes",
+        "pesos": { "izquierda": 2, "pj": 2, "lla": 1, "ucr": -2, "pro": -1 }
+      }
+    ]
   },
   {
-    "id": "grabois_country",
-    "texto": "Grabois te invita a una toma simbólica de un country. Hay mate, drones y un abogado nervioso.",
-    "pesos": { "izquierda": 2, "pj": 2, "ucr": -1, "pro": -3, "lla": -3 }
+    "id": "plan_social",
+    "texto": "Te ofrecen gestionar un plan en el barrio: vos armás la lista, la gente te mira feo o te pide, y en el municipio te llaman 'referente'.",
+    "opciones": [
+      {
+        "id": "gestionar",
+        "label": "Lo tomo: territorio es poder, aunque me lluevan WhatsApps a las 2 AM",
+        "pesos": { "pj": 3, "izquierda": 1, "ucr": -1, "pro": -2, "lla": -3 }
+      },
+      {
+        "id": "transparencia",
+        "label": "Lo tomo, pero cuelgo la lista en la pared del club y un criterio escrito a mano",
+        "pesos": { "ucr": 2, "pj": 1, "izquierda": 1, "pro": 0, "lla": -1 }
+      },
+      {
+        "id": "rechazo",
+        "label": "Lo rechazo en voz alta: 'eso es clientelismo con WiFi'",
+        "pesos": { "lla": 3, "pro": 2, "ucr": 1, "pj": -2, "izquierda": -2 }
+      }
+    ]
   },
   {
-    "id": "larreta_bici",
-    "texto": "Larreta anuncia bici eléctrica obligatoria en la villa 'para la transición verde'. El changuito no entra en el carril.",
-    "pesos": { "pro": 3, "ucr": 1, "lla": 0, "pj": -2, "izquierda": -1 }
+    "id": "empresa_amigo",
+    "texto": "Un empresario amigo del PRO te ofrece laburo en una fundación 'de innovación urbana'. El precio: sonreír en actos y no bardear al jefe.",
+    "opciones": [
+      {
+        "id": "aceptar",
+        "label": "Acepto: plata, café de máquina y foto con el edifício de vidrio",
+        "pesos": { "pro": 3, "ucr": 1, "lla": 1, "pj": -1, "izquierda": -2 }
+      },
+      {
+        "id": "negociar",
+        "label": "Acepto el sueldo, pero sin actos: 'yo codeo, no aplaudo'",
+        "pesos": { "pro": 1, "ucr": 2, "lla": 0, "pj": 0, "izquierda": 0 }
+      },
+      {
+        "id": "no",
+        "label": "Les mando un sticker de 'no gracias' y un hilo sobre el extractivismo urbano",
+        "pesos": { "izquierda": 2, "pj": 2, "lla": 0, "pro": -3, "ucr": -1 }
+      }
+    ]
   },
   {
-    "id": "massa_blue",
-    "texto": "Massa dice en TV que el dólar blue es un constructo y que 'hay que mirar el agregado'. El kiosquero cambia el precio dos veces.",
-    "pesos": { "pj": 2, "ucr": 1, "pro": -1, "lla": -2, "izquierda": 0 }
+    "id": "toma_terreno",
+    "texto": "Hay una toma al lado del barrio. Te piden bancar a las familias. La policía está en la esquina mirando el celular.",
+    "opciones": [
+      {
+        "id": "bancar",
+        "label": "Voy con carpas, agua y un parlante: me quedo a dormir si hace falta",
+        "pesos": { "izquierda": 3, "pj": 2, "ucr": -1, "pro": -2, "lla": -3 }
+      },
+      {
+        "id": "mediar",
+        "label": "Armao una ronda: vecinos, toma y un tipo del municipio que llega tarde",
+        "pesos": { "ucr": 2, "pj": 1, "pro": 0, "izquierda": 1, "lla": -1 }
+      },
+      {
+        "id": "orden",
+        "label": "Pido desalojar: 'acá no se puede vivir a los bifes con el catastro'",
+        "pesos": { "lla": 3, "pro": 2, "ucr": 1, "pj": -2, "izquierda": -3 }
+      }
+    ]
   },
   {
-    "id": "scioli_sonrisa",
-    "texto": "Scioli sonríe 40 minutos sin parpadear en un acto. Alguien susurra 'esa es la política'.",
-    "pesos": { "pj": 2, "ucr": 1, "pro": 1, "lla": -1, "izquierda": -1 }
+    "id": "dolarizar_kiosco",
+    "texto": "En la reunión de comerciantes alguien propone cobrar el café en dólares 'para ordenar'. Todos te miran: sos el que tiene llegada política.",
+    "opciones": [
+      {
+        "id": "dolar",
+        "label": "Bancamos: 'si el peso es un meme, que el kiosco cobre en verde'",
+        "pesos": { "lla": 3, "pro": 1, "ucr": -1, "pj": -2, "izquierda": -3 }
+      },
+      {
+        "id": "precios",
+        "label": "Propongo mesa de precios con el municipio y un Excel que nadie entiende",
+        "pesos": { "pj": 2, "ucr": 1, "izquierda": 1, "pro": 0, "lla": -2 }
+      },
+      {
+        "id": "nada",
+        "label": "Que cada uno se arregle: el Estado que no meta la cuchara en el kiosco",
+        "pesos": { "lla": 2, "pro": 2, "ucr": 1, "pj": -1, "izquierda": -2 }
+      }
+    ]
   },
   {
-    "id": "dolar_kiosco",
-    "texto": "Proponen pagar el café del kiosco en USDT. El almacenero pregunta si también acepta huevos.",
-    "pesos": { "lla": 3, "pro": 1, "ucr": -1, "pj": -2, "izquierda": -3 }
-  },
-  {
-    "id": "pena_lista",
-    "texto": "Una peña de fútbol decide la lista de concejales entre choripán y himno. La política entra por la cantina.",
-    "pesos": { "pj": 2, "izquierda": 1, "ucr": 1, "pro": 0, "lla": -1 }
-  },
-  {
-    "id": "impuesto_al_asado",
-    "texto": "Sale el rumor de un impuesto al asado 'para financiar la transición'. El vecino ya escondió la parrilla.",
-    "pesos": { "izquierda": 2, "pj": 1, "ucr": -1, "pro": -2, "lla": -3 }
+    "id": "candidato_local",
+    "texto": "Te ofrecen ser precandidato a concejal. Hay que elegir con qué sello salís a pedir el voto puerta por puerta.",
+    "opciones": [
+      {
+        "id": "pj",
+        "label": "Con el PJ: hay estructura, choripán y alguien que ya sabe dónde está cada boleta",
+        "pesos": { "pj": 4, "izquierda": 0, "ucr": -1, "pro": -1, "lla": -2 }
+      },
+      {
+        "id": "lla",
+        "label": "Con LLA: es la ola, hay cámaras y un león de peluche en el standing",
+        "pesos": { "lla": 4, "pro": 1, "ucr": -1, "pj": -2, "izquierda": -3 }
+      },
+      {
+        "id": "pro",
+        "label": "Con el PRO: plata de campaña, canva prolijo y saco que no es mío",
+        "pesos": { "pro": 4, "ucr": 1, "lla": 0, "pj": -1, "izquierda": -2 }
+      },
+      {
+        "id": "izq",
+        "label": "Con la izquierda: sin aparato, pero con coherencia y un flyer fotocopiado",
+        "pesos": { "izquierda": 4, "pj": 0, "ucr": -1, "pro": -2, "lla": -3 }
+      },
+      {
+        "id": "ucr",
+        "label": "Con la UCR: menos grito, más comité y café de termos compartido",
+        "pesos": { "ucr": 4, "pro": 1, "pj": 0, "lla": -1, "izquierda": -1 }
+      }
+    ]
   }
 ]

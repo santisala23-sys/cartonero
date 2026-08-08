@@ -352,6 +352,12 @@ export function normalizePlayerState(
     partido_nombre:
       typeof raw.partido_nombre === "string" ? raw.partido_nombre : null,
     partido_afinidades: normalizeAfinidades(raw.partido_afinidades),
+    mes_internas_fail:
+      raw.mes_internas_fail == null ? null : Number(raw.mes_internas_fail) || null,
+    mes_ballotage_fail:
+      raw.mes_ballotage_fail == null
+        ? null
+        : Number(raw.mes_ballotage_fail) || null,
     trabajo_actual: raw.trabajo_actual,
     month_start_snapshot: raw.month_start_snapshot ?? null,
     mes: Number(raw.mes) || 1,
@@ -412,7 +418,9 @@ function normalizeMonthPhase(
     phase === "trabajo" ||
     phase === "cuentas" ||
     phase === "brujula" ||
-    phase === "partido"
+    phase === "partido" ||
+    phase === "internas" ||
+    phase === "ballotage"
   ) {
     return phase;
   }

@@ -1,0 +1,168 @@
+[
+  {
+    "id": "apertura_interna",
+    "texto": "Primera pregunta de la interna: ¿cómo arrancás el discurso frente a la mesa chica del partido?",
+    "opciones": [
+      {
+        "id": "doctrina",
+        "label": "Empiezo con Evita, el pueblo y un 'compañeros' que dura ocho segundos",
+        "pesos": { "pj": 3, "izquierda": 1, "ucr": 0, "pro": -1, "lla": -2 }
+      },
+      {
+        "id": "libertad",
+        "label": "Saco una motosierra de juguete y digo que el ajuste empieza por el coffee break",
+        "pesos": { "lla": 3, "pro": 1, "ucr": -1, "pj": -2, "izquierda": -3 }
+      },
+      {
+        "id": "gestion",
+        "label": "Abro un PDF de 40 slides: 'diagnóstico, quick wins, KPIs del barrio'",
+        "pesos": { "pro": 3, "ucr": 2, "lla": 0, "pj": -1, "izquierda": -1 }
+      },
+      {
+        "id": "asamblea",
+        "label": "Propongo votar hasta el orden del día y que nadie hable más de tres minutos",
+        "pesos": { "izquierda": 3, "pj": 1, "ucr": 1, "pro": -2, "lla": -2 }
+      },
+      {
+        "id": "historia",
+        "label": "Cito a Alem, Yrigoyen y un comité que todavía huele a naftalina",
+        "pesos": { "ucr": 3, "pro": 1, "pj": 0, "lla": -1, "izquierda": 0 }
+      }
+    ]
+  },
+  {
+    "id": "plata_campana",
+    "texto": "Aparece un empresario con valija. Pregunta de la mesa: ¿qué hacés con esa plata?",
+    "opciones": [
+      {
+        "id": "negro",
+        "label": "La meto en negro, pago pintada y asado, y después vemos",
+        "pesos": { "pj": 2, "pro": 1, "lla": 1, "ucr": -2, "izquierda": -2 }
+      },
+      {
+        "id": "rechazo",
+        "label": "La rechazo en cámara: 'mi campaña se financia con militancia y empanadas'",
+        "pesos": { "izquierda": 3, "ucr": 1, "pj": 0, "pro": -1, "lla": -1 }
+      },
+      {
+        "id": "fundacion",
+        "label": "La paso por una fundación amiga con factura y sonrisa",
+        "pesos": { "pro": 3, "ucr": 1, "lla": 1, "pj": 0, "izquierda": -2 }
+      },
+      {
+        "id": "cripto",
+        "label": "La paso a cripto 'por transparencia blockchain' y un hilo de 14 tuits",
+        "pesos": { "lla": 3, "pro": 1, "ucr": -1, "pj": -1, "izquierda": -2 }
+      }
+    ]
+  },
+  {
+    "id": "medios",
+    "texto": "Te llaman de un streaming picante. ¿Qué relato llevás?",
+    "opciones": [
+      {
+        "id": "origen",
+        "label": "Cuento el changuito, la villa y que vine a pelearla por los de abajo",
+        "pesos": { "pj": 2, "izquierda": 2, "ucr": 0, "pro": -1, "lla": -1 }
+      },
+      {
+        "id": "casta",
+        "label": "Bardeo a toda la casta, incluido el conductor si se pone denso",
+        "pesos": { "lla": 3, "pro": 0, "ucr": -1, "pj": -2, "izquierda": 1 }
+      },
+      {
+        "id": "datos",
+        "label": "Llevo planillas, gráficos y un 'hay que dialogar' cada dos frases",
+        "pesos": { "ucr": 2, "pro": 2, "pj": 0, "lla": -1, "izquierda": 0 }
+      },
+      {
+        "id": "denuncia",
+        "label": "Denuncio al sistema entero y regalo el libro de la editorial chiquita",
+        "pesos": { "izquierda": 3, "pj": 1, "ucr": -1, "pro": -2, "lla": -1 }
+      }
+    ]
+  },
+  {
+    "id": "interna_rival",
+    "texto": "Tu rival interno te acusa de 'poco puro'. La mesa quiere ver sangre o estilo.",
+    "opciones": [
+      {
+        "id": "vertical",
+        "label": "Pido disciplina: el que no banca la lista se queda afuera del choripán",
+        "pesos": { "pj": 3, "pro": 1, "lla": 1, "ucr": 0, "izquierda": -2 }
+      },
+      {
+        "id": "debate",
+        "label": "Propongo debate abierto con reloj y sin insultos (spoiler: hay insultos)",
+        "pesos": { "ucr": 3, "izquierda": 1, "pro": 1, "pj": 0, "lla": -1 }
+      },
+      {
+        "id": "meme",
+        "label": "Le armo un meme cruel y lo dejo viral antes del comité",
+        "pesos": { "lla": 2, "pro": 1, "pj": 1, "ucr": -1, "izquierda": 0 }
+      },
+      {
+        "id": "abrazo",
+        "label": "Lo abrazo en público y después le saco el lugar en la boleta",
+        "pesos": { "pj": 2, "pro": 2, "ucr": 0, "lla": 0, "izquierda": -1 }
+      }
+    ]
+  },
+  {
+    "id": "territorio",
+    "texto": "Última de la interna: ¿dónde ponés el cuerpo esta semana?",
+    "opciones": [
+      {
+        "id": "unidad",
+        "label": "En la unidad básica, fichando y tomando mate hasta que duela la mandíbula",
+        "pesos": { "pj": 3, "izquierda": 1, "ucr": 1, "pro": -1, "lla": -1 }
+      },
+      {
+        "id": "redes",
+        "label": "En vivo desde el Obelisco con filtro de león y un grito cada 20 segundos",
+        "pesos": { "lla": 3, "pro": 1, "ucr": -1, "pj": -1, "izquierda": -2 }
+      },
+      {
+        "id": "country",
+        "label": "En un brunch de zona norte explicando 'el modelo de ciudad'",
+        "pesos": { "pro": 3, "ucr": 1, "lla": 0, "pj": -1, "izquierda": -2 }
+      },
+      {
+        "id": "piquete",
+        "label": "En un piquete con termos y una consigna que no entra en un tuit",
+        "pesos": { "izquierda": 3, "pj": 1, "ucr": -1, "pro": -2, "lla": -3 }
+      },
+      {
+        "id": "comite",
+        "label": "En el comité, ordenando actas y saludando a los que ya no caminan",
+        "pesos": { "ucr": 3, "pj": 1, "pro": 1, "lla": -1, "izquierda": 0 }
+      }
+    ]
+  },
+  {
+    "id": "cierre_voto",
+    "texto": "Cierre: te preguntan por qué la militancia debería darte el voto interno.",
+    "opciones": [
+      {
+        "id": "pueblo",
+        "label": "'Porque vengo del barrio y no me olvido quién me parió políticamente'",
+        "pesos": { "pj": 3, "izquierda": 2, "ucr": 0, "pro": -1, "lla": -2 }
+      },
+      {
+        "id": "romper",
+        "label": "'Porque vine a romper el status quo, aunque duela y aunque grite'",
+        "pesos": { "lla": 3, "izquierda": 1, "pro": 0, "pj": -1, "ucr": -1 }
+      },
+      {
+        "id": "hacer",
+        "label": "'Porque sé gestionar: menos épica, más resultados medibles'",
+        "pesos": { "pro": 3, "ucr": 2, "pj": 0, "lla": 0, "izquierda": -1 }
+      },
+      {
+        "id": "coherencia",
+        "label": "'Porque no vendo el discurso el lunes y el traje el martes'",
+        "pesos": { "izquierda": 3, "ucr": 1, "pj": 1, "pro": -2, "lla": -1 }
+      }
+    ]
+  }
+]

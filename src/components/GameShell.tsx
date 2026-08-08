@@ -2,11 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { AdvanceMonthButton } from "@/components/AdvanceMonthButton";
+import { BallotagePanel } from "@/components/BallotagePanel";
 import { BillsPanel } from "@/components/BillsPanel";
 import { BrujulaPanel } from "@/components/BrujulaPanel";
 import { CareerDashboard } from "@/components/CareerDashboard";
 import { CharacterCreate } from "@/components/CharacterCreate";
 import { EventCard } from "@/components/EventCard";
+import { InternasPanel } from "@/components/InternasPanel";
 import { JobStep } from "@/components/JobStep";
 import { MonthSummaryPanel } from "@/components/MonthSummaryPanel";
 import { PartyPanel } from "@/components/PartyPanel";
@@ -30,6 +32,8 @@ export function GameShell() {
   const pickJob = useGameStore((s) => s.pickJob);
   const chooseParty = useGameStore((s) => s.chooseParty);
   const finishBrujula = useGameStore((s) => s.finishBrujula);
+  const finishInternas = useGameStore((s) => s.finishInternas);
+  const finishBallotage = useGameStore((s) => s.finishBallotage);
   const reset = useGameStore((s) => s.reset);
 
   const [showTitle, setShowTitle] = useState(true);
@@ -81,6 +85,8 @@ export function GameShell() {
   const showingRiskReveal = Boolean(state.pending_risk_reveal);
   const inParty = phase === "partido";
   const inBrujula = phase === "brujula";
+  const inInternas = phase === "internas";
+  const inBallotage = phase === "ballotage";
   const partyMode = inParty ? partyOfferMode(state) : "none";
   const midMonth =
     inTraining ||
@@ -89,6 +95,8 @@ export function GameShell() {
     showingRiskReveal ||
     showingSummary ||
     inBrujula ||
+    inInternas ||
+    inBallotage ||
     inParty;
   const blocked = Boolean(activeEvent) || midMonth || state.game_over;
 
@@ -152,6 +160,17 @@ export function GameShell() {
             <BrujulaPanel
               key={`brujula-${state.mes}`}
               onFinish={finishBrujula}
+            />
+          ) : inInternas ? (
+            <InternasPanel
+              key={`internas-${state.mes}`}
+              state={state}
+              onFinish={finishInternas}
+            />
+          ) : inBallotage ? (
+            <BallotagePanel
+              key={`ballotage-${state.mes}`}
+              onFinish={finishBallotage}
             />
           ) : inParty && partyMode !== "none" ? (
             <PartyPanel

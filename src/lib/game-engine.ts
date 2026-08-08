@@ -19,6 +19,10 @@ import {
 } from "@/lib/debt";
 import { shouldOfferBrujula } from "@/lib/brujula";
 import type { PartidoAfinidades } from "@/lib/brujula";
+import {
+  shouldOfferBallotage,
+  shouldOfferInternas,
+} from "@/lib/elecciones";
 import { summarizeOptionBranches } from "@/lib/effect-summary";
 import { tickBodyLimits } from "@/lib/endings";
 import { birthdayGiftFor } from "@/lib/identity";
@@ -97,6 +101,8 @@ export function createInitialState(): PlayerState {
     partido: null,
     partido_nombre: null,
     partido_afinidades: null,
+    mes_internas_fail: null,
+    mes_ballotage_fail: null,
     trabajo_actual: createInitialTrabajo(),
     mes: 1,
     flags: ["worked_cartonero", "sin_prepaga", "vivienda_villa", "luz_colgada"],
@@ -575,7 +581,48 @@ function maybeEnterPartyPhase(state: PlayerState): PlayerState {
   if (needsJoin || canCreate) {
     return { ...state, month_phase: "partido" };
   }
+
+  // Ya afiliado: internas del partido, después ballotage en vivo
+  if (shouldOfferBallotage(state)) {
+    return { ...state, month_phase: "ballotage" };
+  }
+  if (shouldOfferInternas(state)) {
+    return { ...state, month_phase: "internas" };
+  }
+
   return { ...state, month_phase: "idle" };
+}
+
+const POLITICAL_LADDER = [
+  "militante_barrial",
+  "operador_territorial",
+  "concejal",
+  "intendente",
+  "gobernador",
+  "presidente",
+] as const;
+
+function promotePoliticalJob(state: PlayerState): PlayerState {
+  const idx = POLITICAL_LADDER.indexOf(
+    state.trabajo_actual.id as (typeof POLITICAL_LADDER)[number],
+  );
+  const nextId =
+    idx >= 0 && idx < POLITICAL_LADDER.length - 1
+      ? POLITICAL_LADDER[idx + 1]
+      : idx < 0
+        ? "militante_barrial"
+        : null;
+  if (!nextId) return state;
+  const job = getJobById(nextId);
+  if (!job) return state;
+  const flags = state.flags.includes(`worked_${nextId}`)
+    ? state.flags
+    : [...state.flags, `worked_${nextId}`];
+  return {
+    ...state,
+    trabajo_actual: jobToTrabajoActual(job),
+    flags,
+  };
 }
 
 /** Cierra la brújula: guarda afinidades y opcionalmente afilia al top. */
@@ -614,6 +661,103 @@ export function finishBrujula(
 
   // Ver todos → panel de partidos
   return { ...next, month_phase: "partido" };
+}
+
+export function finishInternas(
+  state: PlayerState,
+  _scores: PartidoAfinidades,
+  won: boolean,
+): PlayerState {
+  if (state.game_over || state.month_phase !== "internas") {
+    return state;
+  }
+
+  let next: PlayerState = { ...state, month_phase: "idle" };
+
+  if (won) {
+    const flags = [
+      ...next.flags.filter((f) => f !== "internas_perdidas"),
+      ...(next.flags.includes("internas_ganadas")
+        ? []
+        : ["internas_ganadas"]),
+      ...(next.flags.includes("candidato_partido")
+        ? []
+        : ["candidato_partido"]),
+    ];
+    next = clampMetrics({
+      ...next,
+      flags,
+      influencia: next.influencia + 8,
+      capital_social: next.capital_social + 6,
+      estres: next.estres + 4,
+      mes_internas_fail: null,
+    });
+  } else {
+    const flags = next.flags.includes("internas_perdidas")
+      ? next.flags
+      : [...next.flags, "internas_perdidas"];
+    next = clampMetrics({
+      ...next,
+      flags,
+      influencia: Math.max(0, next.influencia - 6),
+      capital_social: Math.max(0, next.capital_social - 4),
+      estres: next.estres + 8,
+      mes_internas_fail: next.mes,
+    });
+  }
+
+  return checkGameOver(next);
+}
+
+export function finishBallotage(
+  state: PlayerState,
+  _puntos: number,
+  won: boolean,
+): PlayerState {
+  if (state.game_over || state.month_phase !== "ballotage") {
+    return state;
+  }
+
+  let next: PlayerState = { ...state, month_phase: "idle" };
+
+  if (won) {
+    let flags = [
+      ...next.flags.filter((f) => f !== "ballotage_perdido"),
+      ...(next.flags.includes("ballotage_ganado")
+        ? []
+        : ["ballotage_ganado"]),
+      ...(next.flags.includes("victoria_electoral")
+        ? []
+        : ["victoria_electoral"]),
+    ];
+    next = clampMetrics({
+      ...next,
+      flags,
+      influencia: next.influencia + 12,
+      capital_social: next.capital_social + 8,
+      estres: next.estres + 6,
+      mes_ballotage_fail: null,
+    });
+    // Un escalón político por ganar el ballotage
+    next = promotePoliticalJob(next);
+    next = checkGameOver(next);
+    return next;
+  }
+
+  const flags = next.flags.includes("ballotage_perdido")
+    ? next.flags
+    : [...next.flags, "ballotage_perdido"];
+  next = clampMetrics({
+    ...next,
+    flags: next.flags.includes("derrota_electoral")
+      ? flags
+      : [...flags, "derrota_electoral"],
+    influencia: Math.max(0, next.influencia - 8),
+    bienestar: Math.max(0, next.bienestar - 6),
+    estres: next.estres + 10,
+    mes_ballotage_fail: next.mes,
+  });
+  return checkGameOver(next);
 }
 
 /** Close the month résumé; offer party join/create when thresholds hit. */

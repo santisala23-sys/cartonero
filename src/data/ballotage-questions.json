@@ -1,0 +1,152 @@
+[
+  {
+    "id": "apertura_tv",
+    "texto": "Ballotage en vivo. El conductor dice: 'Usted viene del barro. ¿Por qué confiarle el país?' Cámaras en la cara. ¿Qué tirás?",
+    "opciones": [
+      {
+        "id": "origen_firme",
+        "label": "Miro a cámara: 'Porque sé lo que pesa un changuito y lo que pesa una decisión'",
+        "puntos": 3,
+        "tono": "bueno"
+      },
+      {
+        "id": "ataque",
+        "label": "Salto al rival: 'Este tipo nunca laburó; yo sí. Punto.'",
+        "puntos": 2,
+        "tono": "neutro"
+      },
+      {
+        "id": "nervios",
+        "label": "Me trabo, miro el piso y digo 'eh… hay que dialogar…'",
+        "puntos": 0,
+        "tono": "malo"
+      },
+      {
+        "id": "meme",
+        "label": "Saco un meme impreso y se lo muestro al conductor. El país no entiende nada",
+        "puntos": 1,
+        "tono": "malo"
+      }
+    ]
+  },
+  {
+    "id": "economia",
+    "texto": "Te piden un plan económico en 40 segundos. El rival sonríe como si tuviera Excel en la sangre.",
+    "opciones": [
+      {
+        "id": "claro",
+        "label": "Tres ejes claros: laburo, precios y no mentir con el dólar. Sin poesía",
+        "puntos": 3,
+        "tono": "bueno"
+      },
+      {
+        "id": "humo",
+        "label": "Hablo de 'sinergias', 'transición' y 'nuevo paradigma' hasta que pitan",
+        "puntos": 1,
+        "tono": "malo"
+      },
+      {
+        "id": "motosierra",
+        "label": "Grito '¡AFUERA!' tres veces y muestro una tijera de cocina",
+        "puntos": 2,
+        "tono": "neutro"
+      },
+      {
+        "id": "callar",
+        "label": "Miro el reloj y digo que 'el detalle está en el whitepaper'",
+        "puntos": 0,
+        "tono": "malo"
+      }
+    ]
+  },
+  {
+    "id": "gotcha",
+    "texto": "Gotcha: te muestran un video viejo tuyo contradiciéndote. El público hace 'oooh'.",
+    "opciones": [
+      {
+        "id": "banco",
+        "label": "Bancás: 'Cambié porque el país cambió. Mentir sería seguir con esa frase'",
+        "puntos": 3,
+        "tono": "bueno"
+      },
+      {
+        "id": "negar",
+        "label": "Negás: 'Eso está editado' aunque se te ve la oreja",
+        "puntos": 0,
+        "tono": "malo"
+      },
+      {
+        "id": "ataque_medio",
+        "label": "Atacás al medio: 'Ustedes viven del quilombo, yo del barrio'",
+        "puntos": 2,
+        "tono": "neutro"
+      },
+      {
+        "id": "chiste",
+        "label": "Hacés un chiste flojo. Nadie ríe. El rival aplaude lento",
+        "puntos": 1,
+        "tono": "malo"
+      }
+    ]
+  },
+  {
+    "id": "seguridad",
+    "texto": "Tema seguridad. Una madre en el público pregunta qué vas a hacer con los chorros de su cuadra.",
+    "opciones": [
+      {
+        "id": "concreto",
+        "label": "Respuesta concreta: más presencia, más laburo y no vender humo de mano dura mágica",
+        "puntos": 3,
+        "tono": "bueno"
+      },
+      {
+        "id": "mano",
+        "label": "Prometés bala y taser en el bondi. El rating sube, la coherencia baja",
+        "puntos": 2,
+        "tono": "neutro"
+      },
+      {
+        "id": "humo_social",
+        "label": "Solo hablás de 'causas estructurales' sin decir qué hacés mañana",
+        "puntos": 1,
+        "tono": "malo"
+      },
+      {
+        "id": "evasiva",
+        "label": "Cambias de tema al FMI. La madre te mira como si le hubieras robado el mate",
+        "puntos": 0,
+        "tono": "malo"
+      }
+    ]
+  },
+  {
+    "id": "cierre_vivo",
+    "texto": "Cierre del ballotage. Tenés 20 segundos. El país está en el sillón con el control en la mano.",
+    "opciones": [
+      {
+        "id": "cierre_fuerte",
+        "label": "Cierre limpio: de dónde venís, qué vas a hacer, y un 'los voy a cuidar' sin llorar",
+        "puntos": 3,
+        "tono": "bueno"
+      },
+      {
+        "id": "grito",
+        "label": "Gritás una consigna hasta quedarte sin voz. Viral, pero flojo de contenido",
+        "puntos": 2,
+        "tono": "neutro"
+      },
+      {
+        "id": "leer",
+        "label": "Leés un papel temblando. Se te cae. Fin",
+        "puntos": 0,
+        "tono": "malo"
+      },
+      {
+        "id": "insulto",
+        "label": "Insultás al rival con nombre y apellido. El hashtag explota… en tu contra",
+        "puntos": 1,
+        "tono": "malo"
+      }
+    ]
+  }
+]

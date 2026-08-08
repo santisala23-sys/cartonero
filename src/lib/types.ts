@@ -156,7 +156,9 @@ export type MonthPhase =
   | "trabajo"
   | "cuentas"
   | "brujula"
-  | "partido";
+  | "partido"
+  | "internas"
+  | "ballotage";
 
 export interface MonthSnapshot {
   dinero: number;
@@ -227,6 +229,10 @@ export interface PlayerState {
     pro: number;
     izquierda: number;
   } | null;
+  /** Turno en que perdiste la última interna (cooldown). */
+  mes_internas_fail: number | null;
+  /** Turno en que perdiste el último ballotage (cooldown). */
+  mes_ballotage_fail: number | null;
   trabajo_actual: TrabajoActual;
   mes: number;
   flags: string[];
