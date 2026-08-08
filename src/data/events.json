@@ -165,7 +165,16 @@
     "titulo": "Oportunidad de Inversión",
     "texto": "Tenés que renovar los caños del baño de tu departamento. Podés hacerlo vos mismo o pagarle a un plomero.",
     "peso": 10,
-    "condiciones": [],
+    "condiciones": [
+      {
+        "type": "viviendas_any",
+        "values": ["pieza", "alquiler", "barrio_cerrado"]
+      },
+      {
+        "type": "has_flag",
+        "value": "canos_rotos"
+      }
+    ],
     "opciones": [
       {
         "id": "hacerlo_vos",
@@ -1352,8 +1361,8 @@
         "value": 30000
       },
       {
-        "type": "has_credential",
-        "value": "primaria"
+        "type": "job_tags_any",
+        "values": ["tech", "oficina", "comercio"]
       }
     ],
     "opciones": [
@@ -1912,7 +1921,12 @@
     "titulo": "El vecino pone cerámica a las 7 AM",
     "texto": "Amoladora, radio a todo volumen y un 'dale que arrancamos temprano'. Tu sueño se va por el inodoro.",
     "peso": 10,
-    "condiciones": [],
+    "condiciones": [
+      {
+        "type": "viviendas_any",
+        "values": ["pieza", "alquiler", "barrio_cerrado"]
+      }
+    ],
     "opciones": [
       {
         "id": "pelear_vecino",
@@ -4005,7 +4019,12 @@
     "titulo": "Ola de calor asesina",
     "texto": "37 grados a la sombra. El ventilador solo mueve aire caliente. Tu depto es un horno con WiFi.",
     "peso": 10,
-    "condiciones": [],
+    "condiciones": [
+      {
+        "type": "viviendas_any",
+        "values": ["pieza", "alquiler", "barrio_cerrado"]
+      }
+    ],
     "opciones": [
       {
         "id": "aire_split",
@@ -5078,7 +5097,12 @@
     "titulo": "Balacera en la esquina",
     "texto": "Estás comprando un pan. Suenan tres tiros. La gente se tira al piso. El kiosquero cierra la persiana con vos adentro. Afirma: 'esto es todos los putos días'.",
     "peso": 11,
-    "condiciones": [],
+    "condiciones": [
+      {
+        "type": "viviendas_any",
+        "values": ["villa", "pieza"]
+      }
+    ],
     "opciones": [
       {
         "id": "quedarte_piso",

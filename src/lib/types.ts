@@ -111,6 +111,7 @@ export type Condition =
   | { type: "hijos_lt"; value: number }
   | { type: "influencia_gte"; value: number }
   | { type: "vivienda"; value: Vivienda }
+  | { type: "viviendas_any"; values: Vivienda[] }
   | { type: "genero"; value: Genero };
 
 export type Effect =

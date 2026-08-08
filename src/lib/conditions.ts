@@ -59,6 +59,8 @@ export function evaluateCondition(
       return state.influencia >= condition.value;
     case "vivienda":
       return state.vivienda === condition.value;
+    case "viviendas_any":
+      return condition.values.includes(state.vivienda);
     case "genero":
       return state.genero === condition.value;
     default:

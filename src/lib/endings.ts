@@ -32,6 +32,20 @@ function spendCash(state: PlayerState, cost: number): PlayerState {
 /** Positive closures — climbing out or lasting. */
 export function evaluateVictory(state: PlayerState): EndingResult | null {
   if (hasJob(state, ["presidente"])) {
+    if (state.flags.includes("victoria_manchada")) {
+      return {
+        kind: "victoria",
+        reason:
+          "Llegaste a Presidente con el escrutinio oloroso a quilombo. La Rosada es tuya; la historia va a discutir cómo. Desde el carrito hasta la banda: victoria manchada, pero victoria.",
+      };
+    }
+    if (state.flags.includes("debate_origen") || state.flags.includes("relato_origen")) {
+      return {
+        kind: "victoria",
+        reason:
+          "Presidente. El país vio de dónde saliste y te compró el relato. Cartonero, militante, Rosada. Fin — victoria.",
+      };
+    }
     return {
       kind: "victoria",
       reason:
@@ -39,11 +53,27 @@ export function evaluateVictory(state: PlayerState): EndingResult | null {
     };
   }
 
-  if (hasJob(state, ["gobernador"])) {
+  // Gobernador ya no cierra el juego al asumir: es trampolín a la campaña.
+  // Cierras en provincia si concediste digno o si perdiste y te quedaste laburando el territorio.
+  if (hasJob(state, ["gobernador"]) && state.flags.includes("derrota_digna")) {
     return {
       kind: "victoria",
       reason:
-        "Sos Gobernador. El barrio que te vio con el carrito ahora te ve en el peaje de la provincia. Fin — victoria.",
+        "Concediste temprano y saliste parado. No hay Rosada, pero la provincia y el barrio te respetan. Victoria de pulso.",
+    };
+  }
+
+  if (
+    hasJob(state, ["gobernador"]) &&
+    state.flags.includes("derrota_electoral") &&
+    !state.flags.includes("victoria_electoral") &&
+    state.mes >= 40 &&
+    state.capital_social >= 65
+  ) {
+    return {
+      kind: "victoria",
+      reason:
+        "No llegaste a la Rosada, pero la provincia te reconoce. Gobernás, bancás el temporal y el barrio que te vio con el carrito ahora te ve en el peaje. Victoria de provincia.",
     };
   }
 
@@ -78,7 +108,8 @@ export function evaluateVictory(state: PlayerState): EndingResult | null {
     hasJob(state, ["intendente", "gerente_general", "director_agencia"]) &&
     state.capital_social >= 70 &&
     state.deuda <= 50_000 &&
-    state.mes >= 24
+    state.mes >= 24 &&
+    !state.flags.includes("campana_gobernador")
   ) {
     return {
       kind: "victoria",
@@ -92,6 +123,30 @@ export function evaluateVictory(state: PlayerState): EndingResult | null {
 
 /** Fatal / collapse endings beyond basic salud/deuda checks. */
 export function evaluateDefeat(state: PlayerState): EndingResult | null {
+  if (state.flags.includes("fuga_exterior")) {
+    return {
+      kind: "derrota",
+      reason:
+        "Te fuiste del país 'a dar una conferencia'. Los titulares te alcanzaron igual. Fin del camino: prófugo con valija.",
+    };
+  }
+
+  if (state.flags.includes("juicio_politico_perdido")) {
+    return {
+      kind: "derrota",
+      reason:
+        "El juicio político te destituyó. Los que aplaudían ayer hoy miran para otro lado. Fin del camino político.",
+    };
+  }
+
+  if (state.flags.includes("renuncia_forzada")) {
+    return {
+      kind: "derrota",
+      reason:
+        "Renunciaste bajo fuego. Salvaste el cuerpo, no el relato. La política te escupió y seguiste vivo: derrota parcial, pero derrota.",
+    };
+  }
+
   if (state.acv_count >= ACV_FATAL_COUNT) {
     return {
       kind: "derrota",

@@ -1,5 +1,93 @@
 [
   {
+    "id": "pol_oferta_militante",
+    "titulo": "Te ofrecen el chaleco",
+    "texto": "El referente del barrio te reconoce: 'dejá el carrito un rato y labujá con nosotros'. Hay vianda, un mango y la puerta a otra vida.",
+    "peso": 14,
+    "condiciones": [
+      {
+        "type": "has_flag",
+        "value": "interes_militancia"
+      },
+      {
+        "type": "missing_flag",
+        "value": "worked_militante_barrial"
+      },
+      {
+        "type": "metric_gte",
+        "metric": "capital_social",
+        "value": 12
+      }
+    ],
+    "opciones": [
+      {
+        "id": "aceptar",
+        "label": "Aceptar y militar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 6
+          },
+          {
+            "type": "add_flag",
+            "value": "interes_militancia"
+          },
+          {
+            "type": "set_job",
+            "job_id": "militante_barrial"
+          }
+        ]
+      },
+      {
+        "id": "mitad",
+        "label": "Ayudar sin dejar el laburo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 3
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "militancia_parcial"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Seguir con lo tuyo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "pol_mision_urna",
     "titulo": "Misión: la urna blanda",
     "texto": "El puntero te llama de madrugada. Hay que 'cuidar' una urna en el barrio. Plata chica, riesgo grande, y la promesa de que 'después hay más'.",
@@ -211,6 +299,460 @@
     ]
   },
   {
+    "id": "pol_mision_padron",
+    "titulo": "Misión: el padrón hinchado",
+    "texto": "Hay que 'actualizar' el padrón del centro comunitario. Nombres de gente que se mudó... o que nunca existió.",
+    "peso": 14,
+    "condiciones": [
+      {
+        "type": "job_id",
+        "value": "militante_barrial"
+      }
+    ],
+    "opciones": [
+      {
+        "id": "hinchar",
+        "label": "Hinchar el padrón",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": 55000
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -11
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 13
+          },
+          {
+            "type": "add_flag",
+            "value": "padron_trucho"
+          }
+        ]
+      },
+      {
+        "id": "limpio",
+        "label": "Padrón limpio",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_mision_bondi_militante",
+    "titulo": "Misión: el bondi a la plaza",
+    "texto": "Hay que llenar la plaza. Te dan un bondi, vianda y la orden: que no se vea vacío en la tele.",
+    "peso": 13,
+    "condiciones": [
+      {
+        "type": "job_tags_any",
+        "values": [
+          "politico",
+          "territorio"
+        ]
+      }
+    ],
+    "opciones": [
+      {
+        "id": "llenar",
+        "label": "Llenar la plaza",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": 35000
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 9
+          },
+          {
+            "type": "add_flag",
+            "value": "lleno_plaza"
+          }
+        ]
+      },
+      {
+        "id": "fallar",
+        "label": "Fallar a propósito",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": -6
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 3
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_mision_volanteada",
+    "titulo": "Misión: volanteada hasta las 2",
+    "texto": "Hay que tapizar el barrio antes del acto. Lluvia fina, pies mojados y la promesa de 'mañana te anotan'.",
+    "peso": 13,
+    "condiciones": [
+      {
+        "type": "job_id",
+        "value": "militante_barrial"
+      }
+    ],
+    "opciones": [
+      {
+        "id": "full",
+        "label": "Volantear hasta que no quede papel",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -4
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 8
+          },
+          {
+            "type": "add_flag",
+            "value": "volanteada_heroica"
+          },
+          {
+            "type": "risk",
+            "chance": 0.3,
+            "effects": [
+              {
+                "type": "add_credential",
+                "value": "aptitud_gestion_territorial"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "zafarte",
+        "label": "Distribuir la mitad y decir que listo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": 8000
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 2
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -3
+          },
+          {
+            "type": "add_flag",
+            "value": "militancia_vaga"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_mision_caja_social",
+    "titulo": "Misión: la caja 'social'",
+    "texto": "Te dan cajas de comida para repartir. El referente se queda con un tercio 'para gastos'. Te mira esperando que entiendas.",
+    "peso": 14,
+    "condiciones": [
+      {
+        "type": "job_id",
+        "value": "militante_barrial"
+      }
+    ],
+    "opciones": [
+      {
+        "id": "repartir_todo",
+        "label": "Repartir todo al barrio",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 14
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 3
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 7
+          },
+          {
+            "type": "add_flag",
+            "value": "caja_limpia"
+          },
+          {
+            "type": "risk",
+            "chance": 0.35,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": -8
+              },
+              {
+                "type": "add_flag",
+                "value": "marcado_por_puntero"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "entender",
+        "label": "Entender el sistema",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": 40000
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -9
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 10
+          },
+          {
+            "type": "add_flag",
+            "value": "caja_trucha"
+          },
+          {
+            "type": "add_flag",
+            "value": "tranza_social"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_mision_local_pelea",
+    "titulo": "Misión: pelea por el local",
+    "texto": "Otra unidad básica quiere el mismo local. Hay mate, gritos y la chance de que termine a las piñas.",
+    "peso": 12,
+    "condiciones": [
+      {
+        "type": "job_id",
+        "value": "militante_barrial"
+      }
+    ],
+    "opciones": [
+      {
+        "id": "negociar",
+        "label": "Negociar turno y cartel compartido",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 6
+          },
+          {
+            "type": "add_flag",
+            "value": "pacto_unidades"
+          }
+        ]
+      },
+      {
+        "id": "quedarse",
+        "label": "Quedarte el local a la fuerza",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -8
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 12
+          },
+          {
+            "type": "add_flag",
+            "value": "guerra_interna"
+          },
+          {
+            "type": "risk",
+            "chance": 0.25,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "salud",
+                "amount": -12
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_mision_reclutar",
+    "titulo": "Misión: sumar pibes",
+    "texto": "Hay que reclutar veinte voluntarios para el acto. Algunos vienen por la causa; otros por la vianda y el bondi.",
+    "peso": 13,
+    "condiciones": [
+      {
+        "type": "job_id",
+        "value": "militante_barrial"
+      }
+    ],
+    "opciones": [
+      {
+        "id": "discurso",
+        "label": "Discurso y mate en la esquina",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 10
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 5
+          },
+          {
+            "type": "add_flag",
+            "value": "reclutador_barrial"
+          },
+          {
+            "type": "risk",
+            "chance": 0.25,
+            "effects": [
+              {
+                "type": "add_credential",
+                "value": "aptitud_oratoria"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "plata",
+        "label": "Prometer changas y un mango",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -25000
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -4
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 7
+          },
+          {
+            "type": "add_flag",
+            "value": "clientelismo_activo"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "pol_massa_te_ofrece",
     "titulo": "Massa te mide",
     "texto": "Aparece un operador cercano a Massa. Si 'resolvés' tres manzanas de votos blandos, hay laburo en la estructura y un sobre para gastos.",
@@ -259,7 +801,7 @@
           },
           {
             "type": "risk",
-            "chance": 0.35,
+            "chance": 0.45,
             "effects": [
               {
                 "type": "set_job",
@@ -667,7 +1209,7 @@
               },
               {
                 "type": "add_flag",
-                "value": "díscolo"
+                "value": "discolo"
               }
             ]
           }
@@ -992,10 +1534,6 @@
                 "value": "escandalo_susana"
               }
             ]
-          },
-          {
-            "type": "remove_flag",
-            "value": "llamado_susana_pendiente"
           }
         ]
       },
@@ -1017,10 +1555,521 @@
             "type": "delta",
             "metric": "capital_social",
             "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_scioli_consejo",
+    "titulo": "Consejo Scioli",
+    "texto": "Daniel Scioli te da un consejo en un pasillo: 'en política hay que sonreír siempre'. Después te pide un favor chiquito que no es chiquito.",
+    "peso": 10,
+    "condiciones": [
+      {
+        "type": "job_tag",
+        "value": "politico"
+      }
+    ],
+    "opciones": [
+      {
+        "id": "favor",
+        "label": "Hacer el favor",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 7
           },
           {
-            "type": "remove_flag",
-            "value": "llamado_susana_pendiente"
+            "type": "delta",
+            "metric": "dinero",
+            "amount": 40000
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 7
+          },
+          {
+            "type": "add_flag",
+            "value": "favor_scioli"
+          }
+        ]
+      },
+      {
+        "id": "sonreir",
+        "label": "Sonreír y no comprometerte",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 3
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_pichetto_realpolitik",
+    "titulo": "Realpolitik Pichetto",
+    "texto": "Miguel Ángel Pichetto habla sin filtro. Te ofrece un mapa de alianzas imposibles: 'hoy con este, mañana con el otro'.",
+    "peso": 10,
+    "condiciones": [
+      {
+        "type": "job_tag",
+        "value": "politico"
+      },
+      {
+        "type": "influencia_gte",
+        "value": 25
+      }
+    ],
+    "opciones": [
+      {
+        "id": "aprender",
+        "label": "Anotar y aplicar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 4
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 5
+          },
+          {
+            "type": "add_flag",
+            "value": "realpolitik"
+          }
+        ]
+      },
+      {
+        "id": "idealista",
+        "label": "Quedarte idealista",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_maximo_unidad",
+    "titulo": "Máximo y la unidad",
+    "texto": "Máximo Kirchner manda a decir que 'la unidad no se discute'. Te piden bajar un conflicto interno... o inventar uno útil contra el rival.",
+    "peso": 11,
+    "condiciones": [
+      {
+        "type": "job_tag",
+        "value": "politico"
+      },
+      {
+        "type": "influencia_gte",
+        "value": 28
+      }
+    ],
+    "opciones": [
+      {
+        "id": "bajar",
+        "label": "Bajar el conflicto",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 6
+          },
+          {
+            "type": "add_flag",
+            "value": "unidad_maximo"
+          }
+        ]
+      },
+      {
+        "id": "inventar",
+        "label": "Inventar el rival perfecto",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 10
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -7
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 11
+          },
+          {
+            "type": "add_flag",
+            "value": "operacion_interna"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_wado_interior",
+    "titulo": "Wado y el Interior",
+    "texto": "Wado de Pedro necesita alguien que 'entienda el Interior'. Hay viaje, hotel mediocre y la chance de volver con una red de intendentes amigos.",
+    "peso": 11,
+    "condiciones": [
+      {
+        "type": "job_tag",
+        "value": "politico"
+      },
+      {
+        "type": "influencia_gte",
+        "value": 32
+      }
+    ],
+    "opciones": [
+      {
+        "id": "viajar",
+        "label": "Armar la red",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": 55000
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 11
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 10
+          },
+          {
+            "type": "add_flag",
+            "value": "red_interior"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Quedarte en el conurbano",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_villarruel_senado",
+    "titulo": "Villarruel te mide",
+    "texto": "Victoria Villarruel quiere perfiles 'firmes' para un discurso de memoria y seguridad. Te preguntan si bancás la línea sin temblar.",
+    "peso": 11,
+    "condiciones": [
+      {
+        "type": "job_tag",
+        "value": "politico"
+      },
+      {
+        "type": "influencia_gte",
+        "value": 35
+      }
+    ],
+    "opciones": [
+      {
+        "id": "firmar",
+        "label": "Bancarla sin fisuras",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 10
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -5
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 9
+          },
+          {
+            "type": "add_flag",
+            "value": "orbita_villarruel"
+          }
+        ]
+      },
+      {
+        "id": "dudar",
+        "label": "Pedir matices",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 4
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": -3
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_espert_ajuste",
+    "titulo": "Espert y el Excel",
+    "texto": "José Luis Espert te tira un monólogo de ajuste, déficit y 'no hay plata'. Después pregunta si sabés leer un presupuesto.",
+    "peso": 10,
+    "condiciones": [
+      {
+        "type": "has_credential",
+        "value": "secundaria"
+      },
+      {
+        "type": "influencia_gte",
+        "value": 22
+      }
+    ],
+    "opciones": [
+      {
+        "id": "leer",
+        "label": "Leer el presupuesto en voz alta",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 3
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 7
+          },
+          {
+            "type": "add_flag",
+            "value": "orbita_espert"
+          },
+          {
+            "type": "risk",
+            "chance": 0.3,
+            "effects": [
+              {
+                "type": "add_credential",
+                "value": "ciencia_politica"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "pasarla",
+        "label": "Asentir y mirar el reloj",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_mayra_conurbano",
+    "titulo": "Mayra y el conurbano",
+    "texto": "Mayra Mendoza arma una jornada de gestión en el sur. Te ofrecen mostrar un centro barrial... o maquillar los números de asistencia.",
+    "peso": 11,
+    "condiciones": [
+      {
+        "type": "job_tags_any",
+        "values": [
+          "politico",
+          "territorio"
+        ]
+      }
+    ],
+    "opciones": [
+      {
+        "id": "mostrar",
+        "label": "Mostrar el centro como está",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 5
+          },
+          {
+            "type": "add_flag",
+            "value": "gestion_mayra"
+          }
+        ]
+      },
+      {
+        "id": "maquillar",
+        "label": "Maquillar asistencia",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": 45000
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -8
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 10
+          },
+          {
+            "type": "add_flag",
+            "value": "numeros_truchos"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_lousteau_radical",
+    "titulo": "Lousteau y la foto radical",
+    "texto": "Martín Lousteau busca caras nuevas para una foto de 'renovación'. Hay café carísimo y la pregunta de si sabés sonreír sin parecer operador.",
+    "peso": 10,
+    "condiciones": [
+      {
+        "type": "has_credential",
+        "value": "secundaria"
+      },
+      {
+        "type": "influencia_gte",
+        "value": 18
+      }
+    ],
+    "opciones": [
+      {
+        "id": "sonreir",
+        "label": "Sonreír y sumarte",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": 25000
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 5
+          },
+          {
+            "type": "add_flag",
+            "value": "orbita_lousteau"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Decir que no sos decorado",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 3
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": -2
           }
         ]
       }
@@ -1298,332 +2347,6 @@
     ]
   },
   {
-    "id": "pol_scioli_consejo",
-    "titulo": "Consejo Scioli",
-    "texto": "Daniel Scioli te da un consejo en un pasillo: 'en política hay que sonreír siempre'. Después te pide un favor chiquito que no es chiquito.",
-    "peso": 10,
-    "condiciones": [
-      {
-        "type": "job_tag",
-        "value": "politico"
-      }
-    ],
-    "opciones": [
-      {
-        "id": "favor",
-        "label": "Hacer el favor",
-        "efectos": [
-          {
-            "type": "delta",
-            "metric": "influencia",
-            "amount": 7
-          },
-          {
-            "type": "delta",
-            "metric": "dinero",
-            "amount": 40000
-          },
-          {
-            "type": "delta",
-            "metric": "estres",
-            "amount": 7
-          },
-          {
-            "type": "add_flag",
-            "value": "favor_scioli"
-          }
-        ]
-      },
-      {
-        "id": "sonreir",
-        "label": "Sonreír y no comprometerte",
-        "efectos": [
-          {
-            "type": "delta",
-            "metric": "capital_social",
-            "amount": 3
-          },
-          {
-            "type": "delta",
-            "metric": "bienestar",
-            "amount": 2
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "pol_pichetto_realpolitik",
-    "titulo": "Realpolitik Pichetto",
-    "texto": "Miguel Ángel Pichetto habla sin filtro. Te ofrece un mapa de alianzas imposibles: 'hoy con este, mañana con el otro'.",
-    "peso": 10,
-    "condiciones": [
-      {
-        "type": "job_tag",
-        "value": "politico"
-      },
-      {
-        "type": "influencia_gte",
-        "value": 25
-      }
-    ],
-    "opciones": [
-      {
-        "id": "aprender",
-        "label": "Anotar y aplicar",
-        "efectos": [
-          {
-            "type": "delta",
-            "metric": "influencia",
-            "amount": 9
-          },
-          {
-            "type": "delta",
-            "metric": "capital_social",
-            "amount": 4
-          },
-          {
-            "type": "delta",
-            "metric": "estres",
-            "amount": 5
-          },
-          {
-            "type": "add_flag",
-            "value": "realpolitik"
-          }
-        ]
-      },
-      {
-        "id": "idealista",
-        "label": "Quedarte idealista",
-        "efectos": [
-          {
-            "type": "delta",
-            "metric": "capital_social",
-            "amount": 6
-          },
-          {
-            "type": "delta",
-            "metric": "influencia",
-            "amount": -2
-          },
-          {
-            "type": "delta",
-            "metric": "bienestar",
-            "amount": 3
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "pol_mision_padron",
-    "titulo": "Misión: el padrón hinchado",
-    "texto": "Hay que 'actualizar' el padrón del centro comunitario. Nombres de gente que se mudó... o que nunca existió.",
-    "peso": 14,
-    "condiciones": [
-      {
-        "type": "job_id",
-        "value": "militante_barrial"
-      }
-    ],
-    "opciones": [
-      {
-        "id": "hinchar",
-        "label": "Hinchar el padrón",
-        "efectos": [
-          {
-            "type": "delta",
-            "metric": "dinero",
-            "amount": 55000
-          },
-          {
-            "type": "delta",
-            "metric": "influencia",
-            "amount": 8
-          },
-          {
-            "type": "delta",
-            "metric": "capital_social",
-            "amount": -11
-          },
-          {
-            "type": "delta",
-            "metric": "estres",
-            "amount": 13
-          },
-          {
-            "type": "add_flag",
-            "value": "padron_trucho"
-          }
-        ]
-      },
-      {
-        "id": "limpio",
-        "label": "Padron limpio",
-        "efectos": [
-          {
-            "type": "delta",
-            "metric": "capital_social",
-            "amount": 7
-          },
-          {
-            "type": "delta",
-            "metric": "influencia",
-            "amount": 2
-          },
-          {
-            "type": "delta",
-            "metric": "estres",
-            "amount": 4
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "pol_mision_bondi_militante",
-    "titulo": "Misión: el bondi a la plaza",
-    "texto": "Hay que llenar la plaza. Te dan un bondi, vianda y la orden: que no se vea vacío en la tele.",
-    "peso": 13,
-    "condiciones": [
-      {
-        "type": "job_tags_any",
-        "values": [
-          "politico",
-          "territorio"
-        ]
-      }
-    ],
-    "opciones": [
-      {
-        "id": "llenar",
-        "label": "Llenar la plaza",
-        "efectos": [
-          {
-            "type": "delta",
-            "metric": "dinero",
-            "amount": 35000
-          },
-          {
-            "type": "delta",
-            "metric": "influencia",
-            "amount": 7
-          },
-          {
-            "type": "delta",
-            "metric": "capital_social",
-            "amount": 5
-          },
-          {
-            "type": "delta",
-            "metric": "estres",
-            "amount": 9
-          },
-          {
-            "type": "add_flag",
-            "value": "lleno_plaza"
-          }
-        ]
-      },
-      {
-        "id": "fallar",
-        "label": "Fallar a propósito",
-        "efectos": [
-          {
-            "type": "delta",
-            "metric": "influencia",
-            "amount": -6
-          },
-          {
-            "type": "delta",
-            "metric": "capital_social",
-            "amount": 3
-          },
-          {
-            "type": "delta",
-            "metric": "bienestar",
-            "amount": 2
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "pol_oferta_concejal",
-    "titulo": "Te tiran concejal",
-    "texto": "Si cerrás dos tranzas barriales esta semana, el partido te pone en la boleta de concejal. Sucio, rápido, efectivo.",
-    "peso": 14,
-    "condiciones": [
-      {
-        "type": "job_id",
-        "value": "operador_territorial"
-      },
-      {
-        "type": "influencia_gte",
-        "value": 30
-      }
-    ],
-    "opciones": [
-      {
-        "id": "cerrar",
-        "label": "Cerrar las tranzas",
-        "efectos": [
-          {
-            "type": "delta",
-            "metric": "dinero",
-            "amount": 100000
-          },
-          {
-            "type": "delta",
-            "metric": "influencia",
-            "amount": 12
-          },
-          {
-            "type": "delta",
-            "metric": "capital_social",
-            "amount": -7
-          },
-          {
-            "type": "delta",
-            "metric": "estres",
-            "amount": 14
-          },
-          {
-            "type": "add_flag",
-            "value": "tranzas_barriales"
-          },
-          {
-            "type": "risk",
-            "chance": 0.5,
-            "effects": [
-              {
-                "type": "set_job",
-                "job_id": "concejal"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "no",
-        "label": "No a ese precio",
-        "efectos": [
-          {
-            "type": "delta",
-            "metric": "capital_social",
-            "amount": 6
-          },
-          {
-            "type": "delta",
-            "metric": "influencia",
-            "amount": -3
-          }
-        ]
-      }
-    ]
-  },
-  {
     "id": "pol_amenaza_oppositor",
     "titulo": "El mensaje anónimo",
     "texto": "Te llega un mensaje: 'dejá de joder el territorio'. Puede ser bluff... o no. La política argentina no perdona a los molestos.",
@@ -1714,6 +2437,2999 @@
           {
             "type": "add_flag",
             "value": "denuncia_amenaza"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_periodista_filtracion",
+    "titulo": "El periodista tiene chats",
+    "texto": "Un periodista de investigación dice tener capturas tuyas. Ofrece 'contexto' a cambio de una exclusiva amable... o te quema.",
+    "peso": 13,
+    "condiciones": [
+      {
+        "type": "job_tag",
+        "value": "politico"
+      },
+      {
+        "type": "influencia_gte",
+        "value": 40
+      }
+    ],
+    "opciones": [
+      {
+        "id": "exclusiva",
+        "label": "Dar la exclusiva amable",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 4
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -30000
+          },
+          {
+            "type": "add_flag",
+            "value": "pacto_prensa"
+          }
+        ]
+      },
+      {
+        "id": "negar",
+        "label": "Negar todo y bancar el temporal",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 16
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -10
+          },
+          {
+            "type": "risk",
+            "chance": 0.45,
+            "effects": [
+              {
+                "type": "add_flag",
+                "value": "escandalo_mediatico"
+              },
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": -12
+              }
+            ]
+          },
+          {
+            "type": "risk",
+            "chance": 0.2,
+            "effects": [
+              {
+                "type": "add_flag",
+                "value": "juicio_politico_inicio"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "coima_silencio",
+        "label": "Comprar silencio",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -180000
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 12
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -4
+          },
+          {
+            "type": "add_flag",
+            "value": "coima_prensa"
+          },
+          {
+            "type": "add_flag",
+            "value": "coimero"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_oferta_concejal",
+    "titulo": "Te tiran concejal",
+    "texto": "Si cerrás dos tranzas barriales esta semana, el partido te pone en la boleta de concejal. Sucio, rápido, efectivo.",
+    "peso": 14,
+    "condiciones": [
+      {
+        "type": "job_id",
+        "value": "operador_territorial"
+      },
+      {
+        "type": "influencia_gte",
+        "value": 30
+      }
+    ],
+    "opciones": [
+      {
+        "id": "cerrar",
+        "label": "Cerrar las tranzas",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": 100000
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 12
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -7
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 14
+          },
+          {
+            "type": "add_flag",
+            "value": "tranzas_barriales"
+          },
+          {
+            "type": "risk",
+            "chance": 0.55,
+            "effects": [
+              {
+                "type": "set_job",
+                "job_id": "concejal"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "No a ese precio",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": -3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_op_armado_lista",
+    "titulo": "Armado de lista",
+    "texto": "Hay que armar la lista del distrito: nombres propios, testaferros y un lugar 'para los que laburan'. Todos te miran.",
+    "peso": 14,
+    "condiciones": [
+      {
+        "type": "job_id",
+        "value": "operador_territorial"
+      }
+    ],
+    "opciones": [
+      {
+        "id": "meritocracia",
+        "label": "Priorizar a los que laburan",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 10
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 8
+          },
+          {
+            "type": "add_flag",
+            "value": "lista_limpia"
+          }
+        ]
+      },
+      {
+        "id": "equilibrio",
+        "label": "Equilibrar favores y mérito",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 3
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 7
+          },
+          {
+            "type": "add_flag",
+            "value": "lista_equilibrada"
+          }
+        ]
+      },
+      {
+        "id": "vender",
+        "label": "Vender lugares al mejor postor",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": 220000
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -14
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 12
+          },
+          {
+            "type": "add_flag",
+            "value": "lista_vendida"
+          },
+          {
+            "type": "add_flag",
+            "value": "coimero"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_op_mesa_dinero",
+    "titulo": "La mesa del dinero",
+    "texto": "En un departamento sin cartel hay una mesa con fajos. Hay que 'mover' aportes de campaña sin que existan en papel.",
+    "peso": 13,
+    "condiciones": [
+      {
+        "type": "job_id",
+        "value": "operador_territorial"
+      },
+      {
+        "type": "influencia_gte",
+        "value": 28
+      }
+    ],
+    "opciones": [
+      {
+        "id": "mover",
+        "label": "Mover la plata",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": 120000
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 10
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -10
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 15
+          },
+          {
+            "type": "add_flag",
+            "value": "caja_campana_negra"
+          },
+          {
+            "type": "add_flag",
+            "value": "tranza_electoral"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Salir antes de ver de más",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 3
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": -4
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_op_espionaje",
+    "titulo": "Espionaje de campaña",
+    "texto": "Te piden infiltrar un acto rival y grabar promesas. Si te agarran, sos 'el operador sucio' del titular.",
+    "peso": 13,
+    "condiciones": [
+      {
+        "type": "job_id",
+        "value": "operador_territorial"
+      }
+    ],
+    "opciones": [
+      {
+        "id": "infiltrar",
+        "label": "Infiltrar y grabar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 11
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -6
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 13
+          },
+          {
+            "type": "add_flag",
+            "value": "espionaje_campana"
+          },
+          {
+            "type": "risk",
+            "chance": 0.3,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": -10
+              },
+              {
+                "type": "add_flag",
+                "value": "quemado_publico"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "rechazar",
+        "label": "Rechazar el método",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": -3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_op_media_training",
+    "titulo": "Media training express",
+    "texto": "Te meten en un sótano con luces: mirá a cámara, no titubees, nunca digas 'no sé'. El coach cobra en dólares emocionales.",
+    "peso": 12,
+    "condiciones": [
+      {
+        "type": "job_id",
+        "value": "operador_territorial"
+      }
+    ],
+    "opciones": [
+      {
+        "id": "entrenar",
+        "label": "Bancarte el entrenamiento",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -35000
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 5
+          },
+          {
+            "type": "add_credential",
+            "value": "aptitud_oratoria"
+          },
+          {
+            "type": "add_flag",
+            "value": "media_training"
+          }
+        ]
+      },
+      {
+        "id": "improvisar",
+        "label": "Improvisar siempre",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          },
+          {
+            "type": "risk",
+            "chance": 0.4,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "capital_social",
+                "amount": -6
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_op_iglesia",
+    "titulo": "Pacto con la iglesia del barrio",
+    "texto": "Un pastor evangélico ofrece votos a cambio de un subsidio 'cultural' y que no los molesten con ruidos.",
+    "peso": 12,
+    "condiciones": [
+      {
+        "type": "job_id",
+        "value": "operador_territorial"
+      }
+    ],
+    "opciones": [
+      {
+        "id": "pacto",
+        "label": "Cerrar el pacto",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -40000
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 12
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 4
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 6
+          },
+          {
+            "type": "add_flag",
+            "value": "pacto_religioso"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "No mezclar púlpito y urna",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": -3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_op_ascenso_limpio",
+    "titulo": "Ascenso por gestión",
+    "texto": "El partido dice: si traés tres unidades nuevas sin quilombo mediático, vas a la boleta de concejal. Limpio... en teoría.",
+    "peso": 13,
+    "condiciones": [
+      {
+        "type": "job_id",
+        "value": "operador_territorial"
+      },
+      {
+        "type": "influencia_gte",
+        "value": 35
+      }
+    ],
+    "opciones": [
+      {
+        "id": "traer",
+        "label": "Traer las unidades",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 12
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 10
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -20000
+          },
+          {
+            "type": "add_flag",
+            "value": "unidades_nuevas"
+          },
+          {
+            "type": "risk",
+            "chance": 0.5,
+            "effects": [
+              {
+                "type": "set_job",
+                "job_id": "concejal"
+              },
+              {
+                "type": "add_flag",
+                "value": "concejal_por_gestion"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "atajo",
+        "label": "Comprar adhesiones",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -90000
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -5
+          },
+          {
+            "type": "add_flag",
+            "value": "adhesiones_compradas"
+          },
+          {
+            "type": "risk",
+            "chance": 0.35,
+            "effects": [
+              {
+                "type": "set_job",
+                "job_id": "concejal"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_con_comision_obras",
+    "titulo": "Comisión de obras",
+    "texto": "Te toca la comisión de obras. Un constructor amigo del bloque te invita a almorzar. El menú incluye un sobre.",
+    "peso": 14,
+    "condiciones": [
+      {
+        "type": "job_id",
+        "value": "concejal"
+      }
+    ],
+    "opciones": [
+      {
+        "id": "sobre",
+        "label": "Aceptar el sobre",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": 280000
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -12
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 14
+          },
+          {
+            "type": "add_flag",
+            "value": "coima_concejal"
+          },
+          {
+            "type": "add_flag",
+            "value": "coimero"
+          }
+        ]
+      },
+      {
+        "id": "rechazar",
+        "label": "Rechazar y pedir expediente limpio",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 4
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 8
+          },
+          {
+            "type": "add_flag",
+            "value": "concejal_intachable"
+          }
+        ]
+      },
+      {
+        "id": "grabar",
+        "label": "Grabar y guardar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 16
+          },
+          {
+            "type": "add_flag",
+            "value": "carpeta_comprometedora"
+          },
+          {
+            "type": "risk",
+            "chance": 0.35,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "salud",
+                "amount": -8
+              },
+              {
+                "type": "add_flag",
+                "value": "amenaza_politica_flag"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_con_pelea_recinto",
+    "titulo": "Pelea en el recinto",
+    "texto": "Sesión caliente. Hay insultos, carteles y un micrófono abierto. Te piden que hagas el show o que bajes el tono.",
+    "peso": 13,
+    "condiciones": [
+      {
+        "type": "job_id",
+        "value": "concejal"
+      }
+    ],
+    "opciones": [
+      {
+        "id": "show",
+        "label": "Hacer el show",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 10
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 11
+          },
+          {
+            "type": "add_flag",
+            "value": "showman_recinto"
+          }
+        ]
+      },
+      {
+        "id": "bajar",
+        "label": "Bajar el tono y negociar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "negociador_bloque"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_con_denuncia_medio",
+    "titulo": "Te nombran en una nota",
+    "texto": "Un portal local titula que 'el concejal del barrio' tiene contratos familiares. Puede ser mentira... o no del todo.",
+    "peso": 13,
+    "condiciones": [
+      {
+        "type": "job_id",
+        "value": "concejal"
+      }
+    ],
+    "opciones": [
+      {
+        "id": "demandar",
+        "label": "Demandar al medio",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -70000
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 12
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "demanda_prensa"
+          }
+        ]
+      },
+      {
+        "id": "explicar",
+        "label": "Explicar en redes",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 10
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 5
+          },
+          {
+            "type": "risk",
+            "chance": 0.4,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "capital_social",
+                "amount": -10
+              },
+              {
+                "type": "add_flag",
+                "value": "escandalo_mediatico"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "silencio",
+        "label": "Perfil bajo una semana",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": -4
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": -3
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_con_aliados_bloque",
+    "titulo": "El bloque te prueba",
+    "texto": "El jefe de bloque quiere saber si sos soldado o candidato. Te ofrece un proyecto visible... a cambio de callarte tres votaciones.",
+    "peso": 13,
+    "condiciones": [
+      {
+        "type": "job_id",
+        "value": "concejal"
+      }
+    ],
+    "opciones": [
+      {
+        "id": "soldado",
+        "label": "Ser soldado tres meses",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -3
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 7
+          },
+          {
+            "type": "add_flag",
+            "value": "soldado_bloque"
+          }
+        ]
+      },
+      {
+        "id": "candidato",
+        "label": "Negociar tu propio proyecto",
+        "efectos": [
+          {
+            "type": "risk",
+            "chance": 0.5,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": 12
+              },
+              {
+                "type": "delta",
+                "metric": "capital_social",
+                "amount": 7
+              },
+              {
+                "type": "add_flag",
+                "value": "proyecto_propio"
+              }
+            ]
+          },
+          {
+            "type": "risk",
+            "chance": 0.5,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": -8
+              },
+              {
+                "type": "add_flag",
+                "value": "aislado_bloque"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_con_campana_intendente",
+    "titulo": "Corrés a intendente",
+    "texto": "Los números del distrito dan. El partido te tienta: campaña a intendente. Hay que juntar plata, foto y un poco de alma.",
+    "peso": 15,
+    "condiciones": [
+      {
+        "type": "job_id",
+        "value": "concejal"
+      },
+      {
+        "type": "influencia_gte",
+        "value": 42
+      }
+    ],
+    "opciones": [
+      {
+        "id": "lanzar",
+        "label": "Lanzar la campaña",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -200000
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 14
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 16
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 6
+          },
+          {
+            "type": "add_flag",
+            "value": "campana_intendente"
+          },
+          {
+            "type": "risk",
+            "chance": 0.5,
+            "effects": [
+              {
+                "type": "set_job",
+                "job_id": "intendente"
+              },
+              {
+                "type": "add_flag",
+                "value": "electo_intendente"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "tranza",
+        "label": "Campana con plata negra",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -80000
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 12
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -9
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 18
+          },
+          {
+            "type": "add_flag",
+            "value": "campana_intendente"
+          },
+          {
+            "type": "add_flag",
+            "value": "caja_campana_negra"
+          },
+          {
+            "type": "risk",
+            "chance": 0.6,
+            "effects": [
+              {
+                "type": "set_job",
+                "job_id": "intendente"
+              },
+              {
+                "type": "add_flag",
+                "value": "electo_intendente"
+              }
+            ]
+          },
+          {
+            "type": "risk",
+            "chance": 0.2,
+            "effects": [
+              {
+                "type": "add_flag",
+                "value": "causa_electoral"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "esperar",
+        "label": "Esperar otro turno",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 4
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": -2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_con_presupuesto_fantasma",
+    "titulo": "Partida fantasma",
+    "texto": "En el presupuesto municipal hay una partida que nadie sabe explicar. Te piden que la votes 'por disciplina'.",
+    "peso": 12,
+    "condiciones": [
+      {
+        "type": "job_id",
+        "value": "concejal"
+      }
+    ],
+    "opciones": [
+      {
+        "id": "votar",
+        "label": "Votar por disciplina",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": 60000
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -8
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 9
+          },
+          {
+            "type": "add_flag",
+            "value": "voto_fantasma"
+          }
+        ]
+      },
+      {
+        "id": "pedir",
+        "label": "Pedir informes",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": -5
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 10
+          },
+          {
+            "type": "add_flag",
+            "value": "fiscalizador"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_int_obra_faraonica",
+    "titulo": "La obra faraónica",
+    "texto": "Querés una obra que se vea desde el satélite. El costo se infla. El contratista sonríe. La oposición ya tiene el título listo.",
+    "peso": 14,
+    "condiciones": [
+      {
+        "type": "job_id",
+        "value": "intendente"
+      }
+    ],
+    "opciones": [
+      {
+        "id": "obra",
+        "label": "Hacer la obra igual",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -150000
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 12
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 14
+          },
+          {
+            "type": "add_flag",
+            "value": "obra_faraonica"
+          },
+          {
+            "type": "risk",
+            "chance": 0.35,
+            "effects": [
+              {
+                "type": "add_flag",
+                "value": "sobreprecio_obra"
+              },
+              {
+                "type": "delta",
+                "metric": "capital_social",
+                "amount": -10
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "modesta",
+        "label": "Obra modesta y contable",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 10
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 6
+          },
+          {
+            "type": "add_flag",
+            "value": "gestion_austeridad"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_int_crisis_basura",
+    "titulo": "Crisis de la basura",
+    "texto": "Los camiones no pasan. El barrio huele a fin de ciclo. El gremio quiere un aumento; vos querés no perder la reelección.",
+    "peso": 14,
+    "condiciones": [
+      {
+        "type": "job_id",
+        "value": "intendente"
+      }
+    ],
+    "opciones": [
+      {
+        "id": "pagar",
+        "label": "Cerrar con el gremio",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -120000
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 10
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 6
+          },
+          {
+            "type": "add_flag",
+            "value": "pacto_basura"
+          }
+        ]
+      },
+      {
+        "id": "pelear",
+        "label": "Bancarte el conflicto",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -12
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 16
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "guerra_basura"
+          },
+          {
+            "type": "risk",
+            "chance": 0.3,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "bienestar",
+                "amount": -10
+              },
+              {
+                "type": "add_flag",
+                "value": "escandalo_mediatico"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_int_policia_municipal",
+    "titulo": "Policía municipal",
+    "texto": "Te ofrecen armar una fuerza municipal 'para el orden'. Hay uniformes nuevos y la tentación de usarlos en la campaña.",
+    "peso": 12,
+    "condiciones": [
+      {
+        "type": "job_id",
+        "value": "intendente"
+      }
+    ],
+    "opciones": [
+      {
+        "id": "armar",
+        "label": "Armar la fuerza",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -180000
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 11
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -6
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 12
+          },
+          {
+            "type": "add_flag",
+            "value": "policia_municipal"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "No militarizar el municipio",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_int_contrataciones",
+    "titulo": "Contrataciones amigas",
+    "texto": "Hay que llenar cargos. Primas, cuñados y el hijo del referente aparecen en la lista. La prensa también.",
+    "peso": 13,
+    "condiciones": [
+      {
+        "type": "job_id",
+        "value": "intendente"
+      }
+    ],
+    "opciones": [
+      {
+        "id": "amigos",
+        "label": "Acomodar a los amigos",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 10
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": 90000
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -11
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 11
+          },
+          {
+            "type": "add_flag",
+            "value": "nepotismo_municipal"
+          },
+          {
+            "type": "add_flag",
+            "value": "coimero"
+          }
+        ]
+      },
+      {
+        "id": "concurso",
+        "label": "Concurso público de verdad",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 12
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 3
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 9
+          },
+          {
+            "type": "add_flag",
+            "value": "concurso_limpio"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_int_visita_gobernador",
+    "titulo": "Visita del gobernador",
+    "texto": "El gobernador baja al municipio. Quiere foto con tu obra... y que le 'facilites' un padrón para la interna.",
+    "peso": 13,
+    "condiciones": [
+      {
+        "type": "job_id",
+        "value": "intendente"
+      }
+    ],
+    "opciones": [
+      {
+        "id": "facilitar",
+        "label": "Facilitar el padrón",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 12
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -7
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 10
+          },
+          {
+            "type": "add_flag",
+            "value": "favor_gobernador"
+          },
+          {
+            "type": "add_flag",
+            "value": "padron_trucho"
+          }
+        ]
+      },
+      {
+        "id": "solo_foto",
+        "label": "Solo la foto y el café",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 4
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_int_campana_gobernador",
+    "titulo": "Salto a la provincia",
+    "texto": "Los sondeos te ponen competitivo. Hay que decidir: campaña a gobernador con deuda política... o quedarte rey del distrito.",
+    "peso": 16,
+    "condiciones": [
+      {
+        "type": "job_id",
+        "value": "intendente"
+      },
+      {
+        "type": "influencia_gte",
+        "value": 55
+      }
+    ],
+    "opciones": [
+      {
+        "id": "saltar",
+        "label": "Saltar a gobernador",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -400000
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 16
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 18
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 5
+          },
+          {
+            "type": "add_flag",
+            "value": "campana_gobernador"
+          },
+          {
+            "type": "risk",
+            "chance": 0.45,
+            "effects": [
+              {
+                "type": "set_job",
+                "job_id": "gobernador"
+              },
+              {
+                "type": "add_flag",
+                "value": "electo_gobernador"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sucio",
+        "label": "Campaña con caja negra y padrones",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -150000
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 14
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -12
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 20
+          },
+          {
+            "type": "add_flag",
+            "value": "campana_gobernador"
+          },
+          {
+            "type": "add_flag",
+            "value": "caja_campana_negra"
+          },
+          {
+            "type": "add_flag",
+            "value": "tranza_electoral"
+          },
+          {
+            "type": "risk",
+            "chance": 0.55,
+            "effects": [
+              {
+                "type": "set_job",
+                "job_id": "gobernador"
+              },
+              {
+                "type": "add_flag",
+                "value": "electo_gobernador"
+              }
+            ]
+          },
+          {
+            "type": "risk",
+            "chance": 0.25,
+            "effects": [
+              {
+                "type": "add_flag",
+                "value": "causa_electoral"
+              },
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": -15
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "rey",
+        "label": "Quedarte rey del distrito",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 3
+          },
+          {
+            "type": "add_flag",
+            "value": "rey_distrito"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_gob_ajuste_vs_gasto",
+    "titulo": "Ajuste vs gasto",
+    "texto": "La caja provincial sangra. El ministro de Economía pide ajuste; los intendentes piden obra. Vos tenés que elegir el relato.",
+    "peso": 14,
+    "condiciones": [
+      {
+        "type": "job_id",
+        "value": "gobernador"
+      }
+    ],
+    "opciones": [
+      {
+        "id": "ajuste",
+        "label": "Ajuste con relato duro",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -10
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 14
+          },
+          {
+            "type": "add_flag",
+            "value": "gobernador_ajuste"
+          }
+        ]
+      },
+      {
+        "id": "gasto",
+        "label": "Gasto y presencia territorial",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -250000
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 12
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 12
+          },
+          {
+            "type": "add_flag",
+            "value": "gobernador_gasto"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_gob_pelea_nacion",
+    "titulo": "Pelea con Nación",
+    "texto": "Casa Rosada corta fondos. En Twitter te pelean. En el interior te piden que 'les digas de todo'.",
+    "peso": 14,
+    "condiciones": [
+      {
+        "type": "job_id",
+        "value": "gobernador"
+      }
+    ],
+    "opciones": [
+      {
+        "id": "pelear",
+        "label": "Pelear en vivo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 12
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 15
+          },
+          {
+            "type": "add_flag",
+            "value": "pelea_nacion"
+          }
+        ]
+      },
+      {
+        "id": "negociar",
+        "label": "Negociar en silencio",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": 180000
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -3
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 8
+          },
+          {
+            "type": "add_flag",
+            "value": "pacto_nacion"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_gob_medios_nacionales",
+    "titulo": "Los medios nacionales",
+    "texto": "Te citan a un ciclo de entrevistas. Un periodista trae carpeta. Otro trae elogios. El rating no perdona.",
+    "peso": 13,
+    "condiciones": [
+      {
+        "type": "job_id",
+        "value": "gobernador"
+      }
+    ],
+    "opciones": [
+      {
+        "id": "carpeta",
+        "label": "Enfrentar la carpeta",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 16
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 10
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 5
+          },
+          {
+            "type": "risk",
+            "chance": 0.35,
+            "effects": [
+              {
+                "type": "add_flag",
+                "value": "escandalo_mediatico"
+              },
+              {
+                "type": "delta",
+                "metric": "capital_social",
+                "amount": -12
+              }
+            ]
+          },
+          {
+            "type": "risk",
+            "chance": 0.2,
+            "effects": [
+              {
+                "type": "add_flag",
+                "value": "juicio_politico_inicio"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "elogios",
+        "label": "Bancarte el ciclo amable",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 10
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 6
+          },
+          {
+            "type": "add_flag",
+            "value": "honeymoon_medios"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_gob_lanza_campana",
+    "titulo": "Lanzamiento presidencial",
+    "texto": "En un estadio chico, con humo y LED, lanzás la precandidatura. El partido tiembla. La oposición sonríe. Empieza el juego grande.",
+    "peso": 16,
+    "condiciones": [
+      {
+        "type": "job_id",
+        "value": "gobernador"
+      },
+      {
+        "type": "influencia_gte",
+        "value": 65
+      },
+      {
+        "type": "missing_flag",
+        "value": "campana_presidencial"
+      }
+    ],
+    "opciones": [
+      {
+        "id": "lanzar",
+        "label": "Lanzar la precandidatura",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -500000
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 18
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 18
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 10
+          },
+          {
+            "type": "add_flag",
+            "value": "precandidato_presidente"
+          },
+          {
+            "type": "add_flag",
+            "value": "campana_presidencial"
+          }
+        ]
+      },
+      {
+        "id": "esperar",
+        "label": "Esperar mejores encuestas",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 4
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": -3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_gob_debate_tv",
+    "titulo": "Debate en vivo",
+    "texto": "Luces, reloj y un moderador que odia los silencios. El rival te acusa de coimas. La gente en casa tiene el control remoto listo.",
+    "peso": 15,
+    "condiciones": [
+      {
+        "type": "job_id",
+        "value": "gobernador"
+      },
+      {
+        "type": "has_flag",
+        "value": "campana_presidencial"
+      }
+    ],
+    "opciones": [
+      {
+        "id": "duro",
+        "label": "Salir a matar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 14
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 16
+          },
+          {
+            "type": "add_flag",
+            "value": "debate_ganado"
+          },
+          {
+            "type": "risk",
+            "chance": 0.25,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "capital_social",
+                "amount": -8
+              },
+              {
+                "type": "add_flag",
+                "value": "debate_exceso"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "tecnico",
+        "label": "Ir técnico y aburrido",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 4
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 8
+          },
+          {
+            "type": "add_flag",
+            "value": "debate_tecnico"
+          }
+        ]
+      },
+      {
+        "id": "humano",
+        "label": "Contar el origen cartonero",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 14
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 10
+          },
+          {
+            "type": "add_flag",
+            "value": "debate_origen"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_gob_acusacion_fraude",
+    "titulo": "Acusación de fraude",
+    "texto": "Sale una denuncia: padrones hinchados, cajas negras, 'el gobernador que viene del barrio'. Puede ser operación... o tu historial.",
+    "peso": 15,
+    "condiciones": [
+      {
+        "type": "job_id",
+        "value": "gobernador"
+      },
+      {
+        "type": "has_flag",
+        "value": "campana_presidencial"
+      }
+    ],
+    "opciones": [
+      {
+        "id": "negar",
+        "label": "Negar y denunciar lawfare",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 18
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -6
+          },
+          {
+            "type": "add_flag",
+            "value": "denuncia_lawfare"
+          },
+          {
+            "type": "risk",
+            "chance": 0.3,
+            "effects": [
+              {
+                "type": "add_flag",
+                "value": "escandalo_mediatico"
+              }
+            ]
+          },
+          {
+            "type": "risk",
+            "chance": 0.15,
+            "effects": [
+              {
+                "type": "add_flag",
+                "value": "juicio_politico_inicio"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "limpiar",
+        "label": "Abrir tus cuentas y bancar el costo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -200000
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 10
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 14
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 5
+          },
+          {
+            "type": "add_flag",
+            "value": "transparencia_forzada"
+          },
+          {
+            "type": "risk",
+            "chance": 0.25,
+            "effects": [
+              {
+                "type": "remove_flag",
+                "value": "caja_campana_negra"
+              },
+              {
+                "type": "remove_flag",
+                "value": "padron_trucho"
+              },
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": -8
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "pacto",
+        "label": "Pactar silencio con la otra bancada",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -300000
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -10
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 12
+          },
+          {
+            "type": "add_flag",
+            "value": "pacto_silencio_fraude"
+          },
+          {
+            "type": "add_flag",
+            "value": "coimero"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_gob_pacto_oposicion",
+    "titulo": "Pacto con la oposición",
+    "texto": "Un operador de la otra vereda ofrece un acuerdo: ustedes no se pisan en tres provincias, y después 'se habla' de gabinete.",
+    "peso": 14,
+    "condiciones": [
+      {
+        "type": "job_id",
+        "value": "gobernador"
+      },
+      {
+        "type": "has_flag",
+        "value": "campana_presidencial"
+      }
+    ],
+    "opciones": [
+      {
+        "id": "pactar",
+        "label": "Cerrar el pacto",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 12
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -5
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 10
+          },
+          {
+            "type": "add_flag",
+            "value": "pacto_oposicion"
+          },
+          {
+            "type": "add_flag",
+            "value": "realpolitik"
+          }
+        ]
+      },
+      {
+        "id": "solo",
+        "label": "Ir solo hasta el final",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 4
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 12
+          },
+          {
+            "type": "add_flag",
+            "value": "campana_solitaria"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_gob_milei_ataque",
+    "titulo": "Milei te apunta",
+    "texto": "En un streaming, Milei te llama 'la casta reciclada'. El chat explota. Tus asesores piden respuesta o silencio estratégico.",
+    "peso": 14,
+    "condiciones": [
+      {
+        "type": "job_id",
+        "value": "gobernador"
+      },
+      {
+        "type": "has_flag",
+        "value": "campana_presidencial"
+      }
+    ],
+    "opciones": [
+      {
+        "id": "responder",
+        "label": "Responder con todo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 10
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 14
+          },
+          {
+            "type": "add_flag",
+            "value": "pelea_milei"
+          }
+        ]
+      },
+      {
+        "id": "silencio",
+        "label": "Silencio y gestión",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 4
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 3
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 5
+          },
+          {
+            "type": "add_flag",
+            "value": "perfil_estadista"
+          }
+        ]
+      },
+      {
+        "id": "humor",
+        "label": "Respuesta con humor de barrio",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 12
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 8
+          },
+          {
+            "type": "add_flag",
+            "value": "relato_origen"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_gob_noche_electoral",
+    "titulo": "Noche electoral",
+    "texto": "Boletines, café frío y un Excel que tiembla. A las 21:40 el escrutinio te pone al borde. Una provincia puede decidirlo todo.",
+    "peso": 18,
+    "condiciones": [
+      {
+        "type": "job_id",
+        "value": "gobernador"
+      },
+      {
+        "type": "has_flag",
+        "value": "campana_presidencial"
+      },
+      {
+        "type": "influencia_gte",
+        "value": 70
+      },
+      {
+        "type": "missing_flag",
+        "value": "victoria_electoral"
+      },
+      {
+        "type": "missing_flag",
+        "value": "derrota_electoral"
+      },
+      {
+        "type": "missing_flag",
+        "value": "derrota_digna"
+      }
+    ],
+    "opciones": [
+      {
+        "id": "esperar_limpio",
+        "label": "Esperar el escrutinio limpio",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 20
+          },
+          {
+            "type": "risk",
+            "chance": 0.48,
+            "effects": [
+              {
+                "type": "set_job",
+                "job_id": "presidente"
+              },
+              {
+                "type": "add_flag",
+                "value": "victoria_electoral"
+              },
+              {
+                "type": "add_flag",
+                "value": "asumio_presidencia"
+              },
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": 20
+              },
+              {
+                "type": "delta",
+                "metric": "capital_social",
+                "amount": 15
+              }
+            ]
+          },
+          {
+            "type": "risk",
+            "chance": 0.52,
+            "effects": [
+              {
+                "type": "add_flag",
+                "value": "derrota_electoral"
+              },
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": -12
+              },
+              {
+                "type": "delta",
+                "metric": "capital_social",
+                "amount": -8
+              },
+              {
+                "type": "delta",
+                "metric": "bienestar",
+                "amount": -10
+              },
+              {
+                "type": "delta",
+                "metric": "estres",
+                "amount": 10
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "operar",
+        "label": "Operar mesas dudosas",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 22
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -14
+          },
+          {
+            "type": "add_flag",
+            "value": "tranza_electoral"
+          },
+          {
+            "type": "risk",
+            "chance": 0.58,
+            "effects": [
+              {
+                "type": "set_job",
+                "job_id": "presidente"
+              },
+              {
+                "type": "add_flag",
+                "value": "victoria_electoral"
+              },
+              {
+                "type": "add_flag",
+                "value": "asumio_presidencia"
+              },
+              {
+                "type": "add_flag",
+                "value": "victoria_manchada"
+              },
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": 16
+              }
+            ]
+          },
+          {
+            "type": "risk",
+            "chance": 0.3,
+            "effects": [
+              {
+                "type": "add_flag",
+                "value": "fraude_descubierto"
+              },
+              {
+                "type": "add_flag",
+                "value": "juicio_politico_inicio"
+              },
+              {
+                "type": "add_flag",
+                "value": "derrota_electoral"
+              },
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": -20
+              },
+              {
+                "type": "delta",
+                "metric": "capital_social",
+                "amount": -18
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "conceder",
+        "label": "Conceder temprano y salir parado",
+        "efectos": [
+          {
+            "type": "add_flag",
+            "value": "derrota_digna"
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 10
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": -6
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": -8
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 6
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_gob_ballotage",
+    "titulo": "Balotaje",
+    "texto": "Nadie llegó al 45. Hay dos semanas de infierno: pactos, spots y tu cara en todos los colectivos del país.",
+    "peso": 17,
+    "condiciones": [
+      {
+        "type": "job_id",
+        "value": "gobernador"
+      },
+      {
+        "type": "has_flag",
+        "value": "campana_presidencial"
+      },
+      {
+        "type": "has_flag",
+        "value": "derrota_electoral"
+      },
+      {
+        "type": "missing_flag",
+        "value": "victoria_electoral"
+      },
+      {
+        "type": "missing_flag",
+        "value": "derrota_digna"
+      },
+      {
+        "type": "influencia_gte",
+        "value": 60
+      }
+    ],
+    "opciones": [
+      {
+        "id": "pactar_centro",
+        "label": "Pactar con el centro",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -200000
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 12
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 4
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 14
+          },
+          {
+            "type": "add_flag",
+            "value": "pacto_ballotage"
+          },
+          {
+            "type": "risk",
+            "chance": 0.55,
+            "effects": [
+              {
+                "type": "set_job",
+                "job_id": "presidente"
+              },
+              {
+                "type": "add_flag",
+                "value": "victoria_electoral"
+              },
+              {
+                "type": "add_flag",
+                "value": "asumio_presidencia"
+              }
+            ]
+          },
+          {
+            "type": "risk",
+            "chance": 0.45,
+            "effects": [
+              {
+                "type": "add_flag",
+                "value": "derrota_electoral"
+              },
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": -10
+              },
+              {
+                "type": "delta",
+                "metric": "bienestar",
+                "amount": -8
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "base",
+        "label": "Ir a fondo con tu base",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 12
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 16
+          },
+          {
+            "type": "add_flag",
+            "value": "ballotage_base"
+          },
+          {
+            "type": "risk",
+            "chance": 0.42,
+            "effects": [
+              {
+                "type": "set_job",
+                "job_id": "presidente"
+              },
+              {
+                "type": "add_flag",
+                "value": "victoria_electoral"
+              },
+              {
+                "type": "add_flag",
+                "value": "asumio_presidencia"
+              }
+            ]
+          },
+          {
+            "type": "risk",
+            "chance": 0.58,
+            "effects": [
+              {
+                "type": "add_flag",
+                "value": "derrota_electoral"
+              },
+              {
+                "type": "delta",
+                "metric": "capital_social",
+                "amount": -6
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_juicio_politico_cierre",
+    "titulo": "Juicio político",
+    "texto": "El Congreso avanza. Hay votos, traiciones y una sesión que dura toda la noche. Tu carrera puede terminar en un pasillo.",
+    "peso": 16,
+    "condiciones": [
+      {
+        "type": "has_flag",
+        "value": "juicio_politico_inicio"
+      },
+      {
+        "type": "missing_flag",
+        "value": "juicio_politico_perdido"
+      },
+      {
+        "type": "missing_flag",
+        "value": "sobrevivio_juicio"
+      },
+      {
+        "type": "missing_flag",
+        "value": "renuncia_forzada"
+      }
+    ],
+    "opciones": [
+      {
+        "id": "defender",
+        "label": "Defenderte hasta el final",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 22
+          },
+          {
+            "type": "risk",
+            "chance": 0.4,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": 8
+              },
+              {
+                "type": "delta",
+                "metric": "capital_social",
+                "amount": 5
+              },
+              {
+                "type": "add_flag",
+                "value": "sobrevivio_juicio"
+              },
+              {
+                "type": "remove_flag",
+                "value": "juicio_politico_inicio"
+              }
+            ]
+          },
+          {
+            "type": "risk",
+            "chance": 0.6,
+            "effects": [
+              {
+                "type": "add_flag",
+                "value": "juicio_politico_perdido"
+              },
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": -25
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "renunciar",
+        "label": "Renunciar y salvar algo",
+        "efectos": [
+          {
+            "type": "add_flag",
+            "value": "renuncia_forzada"
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -8
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": -15
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": -10
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": -6
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pol_fraude_caida",
+    "titulo": "El fraude sale a la luz",
+    "texto": "Una causa federal abre carpetas. Padrones, cajas y chats. El fiscal sonríe para la cámara. Vos tenés horas, no días.",
+    "peso": 15,
+    "condiciones": [
+      {
+        "type": "has_flag",
+        "value": "fraude_descubierto"
+      },
+      {
+        "type": "missing_flag",
+        "value": "fuga_exterior"
+      },
+      {
+        "type": "missing_flag",
+        "value": "juicio_politico_perdido"
+      }
+    ],
+    "opciones": [
+      {
+        "id": "bancarla",
+        "label": "Bancarla en el país",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 20
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -15
+          },
+          {
+            "type": "risk",
+            "chance": 0.55,
+            "effects": [
+              {
+                "type": "add_flag",
+                "value": "juicio_politico_perdido"
+              }
+            ]
+          },
+          {
+            "type": "risk",
+            "chance": 0.45,
+            "effects": [
+              {
+                "type": "add_flag",
+                "value": "sobrevivio_juicio"
+              },
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": -10
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "fuga",
+        "label": "Salir del país 'a dar una conferencia'",
+        "efectos": [
+          {
+            "type": "add_flag",
+            "value": "fuga_exterior"
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -500000
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": -20
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -20
           }
         ]
       }
