@@ -1,4 +1,5 @@
 import type { ChoiceEcho, Effect, MonthSnapshot, PlayerState } from "@/lib/types";
+import type { RiskRollResult } from "@/lib/effects";
 import { summarizeEffects } from "@/lib/effect-summary";
 
 export function takeMonthSnapshot(state: PlayerState): MonthSnapshot {
@@ -31,7 +32,32 @@ export function routePoliticaCashToNegro(effects: Effect[]): Effect[] {
   });
 }
 
-function inferEcoTone(effects: Effect[]): ChoiceEcho["tono"] {
+function inferEcoTone(
+  effects: Effect[],
+  risks?: RiskRollResult[],
+): ChoiceEcho["tono"] {
+  if (risks && risks.length > 0) {
+    const hit = risks.some((r) => r.hit);
+    const miss = risks.some((r) => !r.hit);
+    // Prefer tone from what actually landed
+    let score = 0;
+    for (const r of risks) {
+      if (!r.hit) continue;
+      for (const h of r.hints) {
+        const low = h.toLowerCase();
+        if (low.includes("sin cambios")) continue;
+        if (low.includes("estrés") && (h.includes("−") || h.includes("-"))) score += 1;
+        else if (low.includes("estrés")) score -= 1;
+        else if (h.startsWith("+")) score += 1;
+        else if (h.startsWith("−") || h.startsWith("-")) score -= 1;
+      }
+    }
+    if (score > 0) return "bueno";
+    if (score < 0) return "malo";
+    if (hit && !miss) return "bueno";
+    if (!hit) return "neutro";
+  }
+
   let score = 0;
   for (const effect of effects) {
     if (effect.type === "delta") {
@@ -61,19 +87,39 @@ function inferEcoTone(effects: Effect[]): ChoiceEcho["tono"] {
 export function buildChoiceEcho(
   eventTitulo: string,
   option: { label: string; eco?: string; efectos: Effect[] },
+  risks?: RiskRollResult[],
 ): ChoiceEcho {
+  const hitHints =
+    risks
+      ?.filter((r) => r.hit)
+      .flatMap((r) => r.hints)
+      .filter((h) => h !== "Sin cambios") ?? [];
+  const missNote =
+    risks && risks.length > 0 && risks.every((r) => !r.hit)
+      ? "La chance no salió."
+      : null;
+
   const hints = summarizeEffects(option.efectos).slice(0, 2).join(" · ");
   const texto =
     option.eco?.trim() ||
-    (hints && hints !== "Sin cambios"
-      ? `${option.label}. ${hints}.`
-      : option.label);
+    (hitHints.length
+      ? `${option.label}. Salió: ${hitHints.slice(0, 2).join(" · ")}.`
+      : missNote
+        ? `${option.label}. ${missNote}`
+        : hints && hints !== "Sin cambios"
+          ? `${option.label}. ${hints}.`
+          : option.label);
 
   return {
     event_titulo: eventTitulo,
     opcion_label: option.label,
     texto,
-    tono: inferEcoTone(option.efectos),
+    tono: inferEcoTone(option.efectos, risks),
+    risks: risks?.map((r) => ({
+      chance: r.chance,
+      hit: r.hit,
+      hints: r.hints,
+    })),
   };
 }
 

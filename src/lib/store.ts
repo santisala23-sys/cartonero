@@ -11,6 +11,7 @@ import {
   createInitialState,
   createProfile,
   dismissMonthSummary,
+  dismissRiskReveal as clearRiskReveal,
   normalizePlayerState,
   resolveBills,
   startCredential,
@@ -33,6 +34,7 @@ interface GameStore {
   choose: (optionId: string) => void;
   confirmBills: (decisions: Record<string, "pay" | "skip">) => void;
   dismissSummary: () => void;
+  dismissRiskReveal: () => void;
   chooseParty: (partidoId: PartidoId | "skip", nombrePropio?: string) => void;
   pickTraining: (credentialId: string | null) => void;
   pickJob: (jobId: string | null) => void;
@@ -90,6 +92,12 @@ export const useGameStore = create<GameStore>((set, get) => ({
   dismissSummary: () => {
     const { state, playerKey } = get();
     const next = dismissMonthSummary(state);
+    set({ state: commit(next, playerKey) });
+  },
+
+  dismissRiskReveal: () => {
+    const { state, playerKey } = get();
+    const next = clearRiskReveal(state);
     set({ state: commit(next, playerKey) });
   },
 

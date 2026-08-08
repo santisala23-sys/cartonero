@@ -2,7 +2,7 @@
 
 import {
   hintTone,
-  summarizeEffects,
+  summarizeOptionBranches,
   toneClass,
 } from "@/lib/effect-summary";
 import type { GameEvent } from "@/lib/types";
@@ -12,6 +12,28 @@ interface EventCardProps {
   onChoose: (optionId: string) => void;
   disabled?: boolean;
   dinero?: number;
+}
+
+function ChancePill({
+  hints,
+  chance,
+}: {
+  hints: string[];
+  chance: number;
+}) {
+  const label = hints[0] ?? "Sin cambios";
+  const tone = hintTone(label);
+  const pct = Math.round(chance * 100);
+  return (
+    <div
+      className={`flex w-full items-center justify-between gap-2 rounded-full px-3 py-2 text-[12px] font-semibold leading-snug ${toneClass(tone)}`}
+    >
+      <span className="min-w-0 truncate">{hints.join(" · ")}</span>
+      <span className="shrink-0 rounded-full bg-black/25 px-2 py-0.5 text-[11px] font-bold tabular-nums text-white/90">
+        {pct}%
+      </span>
+    </div>
+  );
 }
 
 export function EventCard({
@@ -39,7 +61,10 @@ export function EventCard({
         className={`mt-6 grid gap-3 ${twoCols ? "sm:grid-cols-2" : "grid-cols-1"}`}
       >
         {event.opciones.map((option) => {
-          const hints = summarizeEffects(option.efectos, dinero);
+          const { guaranteed, risks } = summarizeOptionBranches(
+            option.efectos,
+            dinero,
+          );
           return (
             <button
               key={option.id}
@@ -51,14 +76,21 @@ export function EventCard({
               <span className="block font-semibold text-white">
                 {option.label}
               </span>
-              <span className="mt-3 flex flex-wrap gap-1.5">
-                {hints.map((hint) => (
+              <span className="mt-3 flex flex-col gap-1.5">
+                {guaranteed.map((hint) => (
                   <span
                     key={hint}
-                    className={`inline-block rounded-full px-2 py-0.5 text-[11px] font-medium leading-snug ${toneClass(hintTone(hint))}`}
+                    className={`inline-flex w-fit rounded-full px-2.5 py-1 text-[11px] font-medium leading-snug ${toneClass(hintTone(hint))}`}
                   >
                     {hint}
                   </span>
+                ))}
+                {risks.map((risk, i) => (
+                  <ChancePill
+                    key={`${option.id}-risk-${i}`}
+                    hints={risk.hints}
+                    chance={risk.chance}
+                  />
                 ))}
               </span>
             </button>

@@ -206,6 +206,24 @@ export function MonthSummaryPanel({
                 >
                   {eco.texto}
                 </p>
+                {eco.risks && eco.risks.length > 0 ? (
+                  <div className="mt-2 space-y-1">
+                    {eco.risks.map((r, ri) => (
+                      <p
+                        key={`${eco.opcion_label}-r-${ri}`}
+                        className={`text-[11px] ${
+                          r.hit
+                            ? "font-semibold text-emerald-300"
+                            : "text-[#6a7b8c] line-through"
+                        }`}
+                      >
+                        {Math.round(r.chance * 100)}%{" "}
+                        {r.hints.join(" · ")}
+                        {r.hit ? " · salió" : ""}
+                      </p>
+                    ))}
+                  </div>
+                ) : null}
               </div>
             </li>
           ))}

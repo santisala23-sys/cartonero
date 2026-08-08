@@ -1,5 +1,6 @@
 import { DEBT_GAME_OVER, syncDebtFlags } from "@/lib/debt";
 import { evaluateDefeat, evaluateVictory } from "@/lib/endings";
+import { summarizeEffects } from "@/lib/effect-summary";
 import { getJobById, jobToTrabajoActual } from "@/lib/jobs";
 import type { Effect, MetricKey, PlayerState } from "@/lib/types";
 
@@ -185,6 +186,45 @@ export function applyEffect(state: PlayerState, effect: Effect): PlayerState {
   }
 }
 
+export type RiskRollResult = {
+  chance: number;
+  hit: boolean;
+  hints: string[];
+};
+
+function applyEffectLogged(
+  state: PlayerState,
+  effect: Effect,
+  rolls: RiskRollResult[],
+): PlayerState {
+  if (effect.type === "risk") {
+    const hit = Math.random() < effect.chance;
+    rolls.push({
+      chance: effect.chance,
+      hit,
+      hints: summarizeEffects(effect.effects),
+    });
+    if (hit) {
+      return applyEffectsLogged(state, effect.effects, rolls).state;
+    }
+    return state;
+  }
+  return applyEffect(state, effect);
+}
+
+/** Like applyEffects, but records each risk roll (hit / miss). */
+export function applyEffectsLogged(
+  state: PlayerState,
+  effects: Effect[],
+  rolls: RiskRollResult[] = [],
+): { state: PlayerState; risks: RiskRollResult[] } {
+  let next = state;
+  for (const effect of effects) {
+    next = applyEffectLogged(next, effect, rolls);
+  }
+  return { state: clampMetrics(next), risks: rolls };
+}
+
 export function applyEffects(
   state: PlayerState,
   effects: Effect[],
@@ -336,6 +376,7 @@ export function normalizePlayerState(
     last_month_ledger: raw.last_month_ledger ?? null,
     pending_bills: raw.pending_bills ?? null,
     pending_month_summary: Boolean(raw.pending_month_summary),
+    pending_risk_reveal: raw.pending_risk_reveal ?? null,
   });
 }
 

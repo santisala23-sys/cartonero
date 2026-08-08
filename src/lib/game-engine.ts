@@ -17,10 +17,12 @@ import {
   isCobranzaEvent,
 } from "@/lib/debt";
 import { tickBodyLimits } from "@/lib/endings";
+import { summarizeOptionBranches } from "@/lib/effect-summary";
 import { birthdayGiftFor } from "@/lib/identity";
 import { syncVivienda, tickViviendaMonth } from "@/lib/housing";
 import {
   applyEffects,
+  applyEffectsLogged,
   applyMoneySpend,
   checkGameOver,
   clampMetrics,
@@ -45,6 +47,8 @@ import {
 import {
   canCreateOrSwitchParty,
   canJoinParty,
+  applyPartidoKpis,
+  getPartidoDef,
   INFLUENCIA_CREAR_PARTIDO,
   INFLUENCIA_UNIRSE_PARTIDO,
   PARTIDOS,
@@ -105,6 +109,7 @@ export function createInitialState(): PlayerState {
     month_start_snapshot: null,
     pending_bills: null,
     pending_month_summary: false,
+    pending_risk_reveal: null,
     last_month_ledger: null,
   };
 }
@@ -413,6 +418,12 @@ export function advanceMonth(state: PlayerState): PlayerState {
     next = { ...next, influencia: next.influencia + influBump };
   }
 
+  // Drift mensual del partido (PJ suma barrio; LLA suma relato y quita CS…)
+  const partidoDef = getPartidoDef(next.partido);
+  if (partidoDef) {
+    next = applyPartidoKpis(next, partidoDef.mensual);
+  }
+
   return clampMetrics(next);
 }
 
@@ -578,17 +589,34 @@ export function applyChoice(
     : option.efectos;
 
   const beforeCash = cashTotal(state);
-  let next = applyEffects(state, effects);
-  const echo = buildChoiceEcho(event.titulo, {
-    label: option.label,
-    eco: option.eco,
-    efectos: effects,
-  });
+  const { state: rolled, risks } = applyEffectsLogged(state, effects);
+  let next = rolled;
+  const echo = buildChoiceEcho(
+    event.titulo,
+    {
+      label: option.label,
+      eco: option.eco,
+      efectos: effects,
+    },
+    risks,
+  );
+
+  const branches = summarizeOptionBranches(effects, state.dinero);
+  const reveal =
+    risks.length > 0
+      ? {
+          event_titulo: event.titulo,
+          opcion_label: option.label,
+          guaranteed: branches.guaranteed,
+          risks,
+        }
+      : null;
 
   next = {
     ...next,
     last_event_id: event.id,
     active_event_id: null,
+    pending_risk_reveal: reveal,
   };
   next = markActualidadSeen(next, event.id);
   next = enrichLedgerAfterChoice(next, beforeCash, echo);
@@ -599,6 +627,11 @@ export function applyChoice(
   };
 
   return checkGameOver(next);
+}
+
+export function dismissRiskReveal(state: PlayerState): PlayerState {
+  if (!state.pending_risk_reveal) return state;
+  return { ...state, pending_risk_reveal: null };
 }
 
 export function chooseParty(
@@ -635,17 +668,21 @@ export function chooseParty(
     const flags = state.flags.includes("partido_menu_50_visto")
       ? state.flags
       : [...state.flags, "partido_menu_50_visto"];
-    return clampMetrics({
-      ...state,
-      partido: "propio",
-      partido_nombre: nombre,
-      influencia: state.influencia + 3,
-      capital_social: state.capital_social + 2,
-      flags: flags.includes("partido_propio")
-        ? flags
-        : [...flags, "partido_propio"],
-      month_phase: "idle",
-    });
+    const def = getPartidoDef("propio")!;
+    return clampMetrics(
+      applyPartidoKpis(
+        {
+          ...state,
+          partido: "propio",
+          partido_nombre: nombre,
+          flags: flags.includes("partido_propio")
+            ? flags
+            : [...flags, "partido_propio"],
+          month_phase: "idle",
+        },
+        def.kpis,
+      ),
+    );
   }
 
   if (state.influencia < INFLUENCIA_UNIRSE_PARTIDO) {
@@ -665,15 +702,18 @@ export function chooseParty(
     ? flags
     : [...flags, `partido_${partidoId}`];
 
-  return clampMetrics({
-    ...state,
-    partido: partidoId,
-    partido_nombre: def.nombre,
-    influencia: state.influencia + 2,
-    capital_social: state.capital_social + 1,
-    flags,
-    month_phase: "idle",
-  });
+  return clampMetrics(
+    applyPartidoKpis(
+      {
+        ...state,
+        partido: partidoId,
+        partido_nombre: def.nombre,
+        flags,
+        month_phase: "idle",
+      },
+      def.kpis,
+    ),
+  );
 }
 
 export function partyOfferMode(

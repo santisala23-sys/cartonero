@@ -9,6 +9,7 @@ import { EventCard } from "@/components/EventCard";
 import { JobStep } from "@/components/JobStep";
 import { MonthSummaryPanel } from "@/components/MonthSummaryPanel";
 import { PartyPanel } from "@/components/PartyPanel";
+import { RiskRevealPanel } from "@/components/RiskRevealPanel";
 import { StartScreen } from "@/components/StartScreen";
 import { TrainingStep } from "@/components/TrainingStep";
 import { getActiveEvent, partyOfferMode } from "@/lib/game-engine";
@@ -23,6 +24,7 @@ export function GameShell() {
   const choose = useGameStore((s) => s.choose);
   const confirmBills = useGameStore((s) => s.confirmBills);
   const dismissSummary = useGameStore((s) => s.dismissSummary);
+  const dismissRiskReveal = useGameStore((s) => s.dismissRiskReveal);
   const pickTraining = useGameStore((s) => s.pickTraining);
   const pickJob = useGameStore((s) => s.pickJob);
   const chooseParty = useGameStore((s) => s.chooseParty);
@@ -74,10 +76,16 @@ export function GameShell() {
   const payingBills =
     phase === "cuentas" && Boolean(state.pending_bills?.length);
   const showingSummary = Boolean(state.pending_month_summary);
+  const showingRiskReveal = Boolean(state.pending_risk_reveal);
   const inParty = phase === "partido";
   const partyMode = inParty ? partyOfferMode(state) : "none";
   const midMonth =
-    inTraining || inJob || payingBills || showingSummary || inParty;
+    inTraining ||
+    inJob ||
+    payingBills ||
+    showingRiskReveal ||
+    showingSummary ||
+    inParty;
   const blocked = Boolean(activeEvent) || midMonth || state.game_over;
 
   function startNewGame() {
@@ -123,6 +131,12 @@ export function GameShell() {
               event={activeEvent}
               onChoose={choose}
               dinero={state.dinero}
+            />
+          ) : showingRiskReveal && state.pending_risk_reveal ? (
+            <RiskRevealPanel
+              key={`risk-${state.mes}-${state.last_event_id}`}
+              reveal={state.pending_risk_reveal}
+              onContinue={dismissRiskReveal}
             />
           ) : showingSummary ? (
             <MonthSummaryPanel

@@ -7,7 +7,7 @@ import {
   MESES_NOMBRE,
 } from "@/lib/identity";
 import { VIVIENDA_LABEL } from "@/lib/housing";
-import { partidoLabel } from "@/lib/partidos";
+import { formatPartidoKpis, getPartidoDef, partidoLabel } from "@/lib/partidos";
 import { isPoliticalCareer } from "@/lib/politica";
 import type { PlayerState } from "@/lib/types";
 
@@ -62,6 +62,10 @@ export function CareerDashboard({ state }: CareerDashboardProps) {
   const showNegro =
     isPoliticalCareer(state) || (state.dinero_negro ?? 0) > 0;
   const partido = partidoLabel(state.partido, state.partido_nombre);
+  const partidoMensual = getPartidoDef(state.partido)?.mensual;
+  const partidoChips = partidoMensual
+    ? formatPartidoKpis(partidoMensual)
+    : [];
 
   return (
     <section className="rounded-2xl bg-[#12161c] p-4 text-[#e8eef5] sm:p-5">
@@ -91,6 +95,11 @@ export function CareerDashboard({ state }: CareerDashboardProps) {
             {VIVIENDA_LABEL[state.vivienda]}
             {partido ? ` · ${partido}` : ""}
           </p>
+          {partidoChips.length > 0 ? (
+            <p className="mt-1 text-[10px] text-[#6a7b8c]">
+              Partido/mes: {partidoChips.map((c) => c.text).join(" · ")}
+            </p>
+          ) : null}
         </div>
       </div>
 

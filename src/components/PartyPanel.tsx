@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import {
+  formatPartidoKpis,
   INFLUENCIA_CREAR_PARTIDO,
   INFLUENCIA_UNIRSE_PARTIDO,
+  PARTIDO_PROPIO,
   PARTIDOS,
   type PartidoId,
 } from "@/lib/partidos";
@@ -15,6 +17,33 @@ interface PartyPanelProps {
   onChoose: (partidoId: PartidoId | "skip", nombrePropio?: string) => void;
 }
 
+function KpiChips({
+  kpis,
+}: {
+  kpis: Parameters<typeof formatPartidoKpis>[0];
+}) {
+  const chips = formatPartidoKpis(kpis);
+  if (!chips.length) return null;
+  return (
+    <div className="mt-2 flex flex-wrap gap-1.5">
+      {chips.map((c) => (
+        <span
+          key={c.text}
+          className={`rounded-md px-2 py-0.5 text-[11px] font-semibold ${
+            c.bueno === true
+              ? "bg-[#2f9e6b]/20 text-[#7dcea0]"
+              : c.bueno === false
+                ? "bg-[#c45c5c]/20 text-[#e57373]"
+                : "bg-white/5 text-[#9aabbc]"
+          }`}
+        >
+          {c.text}
+        </span>
+      ))}
+    </div>
+  );
+}
+
 export function PartyPanel({ state, mode, onChoose }: PartyPanelProps) {
   const [nombre, setNombre] = useState("");
   const canCreate = state.influencia >= INFLUENCIA_CREAR_PARTIDO;
@@ -24,7 +53,7 @@ export function PartyPanel({ state, mode, onChoose }: PartyPanelProps) {
       : "Ya tenés peso: armá tu espacio";
   const subtitle =
     mode === "join"
-      ? `Con ${INFLUENCIA_UNIRSE_PARTIDO}+ de influencia te abren la puerta de un partido. Elegí bandera.`
+      ? `Con ${INFLUENCIA_UNIRSE_PARTIDO}+ de influencia te abren la puerta de un partido. Cada bandera cambia tus KPIs.`
       : `Con ${INFLUENCIA_CREAR_PARTIDO}+ podés crear el tuyo o cambiar de estructura.`;
 
   return (
@@ -51,6 +80,13 @@ export function PartyPanel({ state, mode, onChoose }: PartyPanelProps) {
           >
             <p className="font-semibold text-white">{p.nombre}</p>
             <p className="mt-0.5 text-xs text-[#9aabbc]">{p.descripcion}</p>
+            <KpiChips kpis={p.kpis} />
+            <p className="mt-1.5 text-[10px] uppercase tracking-wide text-[#6a7b8c]">
+              Por mes:{" "}
+              {formatPartidoKpis(p.mensual)
+                .map((c) => c.text)
+                .join(" · ") || "—"}
+            </p>
           </button>
         ))}
       </div>
@@ -61,7 +97,14 @@ export function PartyPanel({ state, mode, onChoose }: PartyPanelProps) {
             Crear tu propio partido
           </p>
           <p className="mt-1 text-xs text-[#9aabbc]">
-            Nombre, color y narrativa: tu espacio. Las coimas van al negro.
+            {PARTIDO_PROPIO.descripcion}
+          </p>
+          <KpiChips kpis={PARTIDO_PROPIO.kpis} />
+          <p className="mt-1.5 text-[10px] uppercase tracking-wide text-[#6a7b8c]">
+            Por mes:{" "}
+            {formatPartidoKpis(PARTIDO_PROPIO.mensual)
+              .map((c) => c.text)
+              .join(" · ")}
           </p>
           <input
             type="text"

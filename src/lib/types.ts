@@ -170,6 +170,23 @@ export interface ChoiceEcho {
   opcion_label: string;
   texto: string;
   tono: "malo" | "bueno" | "neutro";
+  /** Tiradas de riesgo resueltas (para mostrar qué salió). */
+  risks?: {
+    chance: number;
+    hit: boolean;
+    hints: string[];
+  }[];
+}
+
+export interface RiskReveal {
+  event_titulo: string;
+  opcion_label: string;
+  guaranteed: string[];
+  risks: {
+    chance: number;
+    hit: boolean;
+    hints: string[];
+  }[];
 }
 
 export interface PlayerState {
@@ -224,6 +241,8 @@ export interface PlayerState {
     al_saltear: Partial<Record<MetricKey, number>>;
   }[] | null;
   pending_month_summary: boolean;
+  /** Tras elegir una opción con risk: mostrar qué tirada salió. */
+  pending_risk_reveal: RiskReveal | null;
   last_month_ledger: {
     sueldo: number;
     lines: {

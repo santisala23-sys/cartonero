@@ -104,16 +104,13 @@ function collectHints(
         );
         break;
       case "add_flag":
+        // No mostrar flags crudos en chips. Solo consecuencias legibles.
         if (effect.value === "curso_n8n") {
           into.push(`${riskPrefix}Desbloquea jobs tech`);
         } else if (effect.value === "canos_rotos") {
           into.push(`${riskPrefix}Caños rotos (bienestar baja cada mes)`);
         } else if (effect.value === "cobranza_fin") {
           into.push(`${riskPrefix}Fin: quedás en sus manos`);
-        } else if (effect.value.startsWith("worked_")) {
-          // skip
-        } else {
-          into.push(`${riskPrefix}Flag: ${effect.value.replaceAll("_", " ")}`);
         }
         break;
       case "remove_flag":
@@ -138,8 +135,9 @@ function collectHints(
         into.push(`${riskPrefix}+${effect.amount ?? 1} hijo/a`);
         break;
       case "risk": {
+        // Legacy flat list: keep for callers that only use summarizeEffects
         const pct = Math.round(effect.chance * 100);
-        collectHints(effect.effects, into, `${pct}% chance: `, cashOnHand);
+        collectHints(effect.effects, into, `${pct}%: `, cashOnHand);
         break;
       }
       default:
@@ -159,44 +157,80 @@ export function summarizeEffects(
   return hints.length > 0 ? hints : ["Sin cambios"];
 }
 
+export type EffectBranch = {
+  /** Guaranteed chips (no RNG). */
+  guaranteed: string[];
+  /** Risk branches with explicit %. */
+  risks: { chance: number; hints: string[] }[];
+};
+
+/** Separates sure effects from chance branches (El Ídolo style). */
+export function summarizeOptionBranches(
+  effects: Effect[],
+  cashOnHand?: number,
+): EffectBranch {
+  const guaranteed: string[] = [];
+  const risks: { chance: number; hints: string[] }[] = [];
+
+  for (const effect of effects) {
+    if (effect.type === "risk") {
+      const nested: string[] = [];
+      collectHints(effect.effects, nested, "", cashOnHand);
+      risks.push({
+        chance: effect.chance,
+        hints: nested.length > 0 ? nested : ["Sin cambios"],
+      });
+    } else {
+      collectHints([effect], guaranteed, "", cashOnHand);
+    }
+  }
+
+  if (guaranteed.length === 0 && risks.length === 0) {
+    return { guaranteed: ["Sin cambios"], risks: [] };
+  }
+  return { guaranteed, risks };
+}
+
 export function hintTone(hint: string): "good" | "bad" | "neutral" | "money" {
   const h = hint.toLowerCase();
   const trimmed = hint.trimStart();
+  // Strip leading "65%: " for tone
+  const core = trimmed.replace(/^\d+%\s*:\s*/, "");
+  const coreLower = core.toLowerCase();
   const hasMinus =
-    trimmed.startsWith("−") ||
-    trimmed.startsWith("-") ||
-    /[−-]\d/.test(hint);
-  const hasPlus = /\+\d/.test(hint) || trimmed.startsWith("+");
+    core.startsWith("−") ||
+    core.startsWith("-") ||
+    /[−-]\d/.test(core);
+  const hasPlus = /\+\d/.test(core) || core.startsWith("+");
 
   if (
-    h.startsWith("cuesta") ||
-    h.includes("gastás todo") ||
-    h.includes("endeudás")
+    coreLower.startsWith("cuesta") ||
+    coreLower.includes("gastás todo") ||
+    coreLower.includes("endeudás")
   ) {
     return "money";
   }
 
-  // Estrés: bajar es bueno (también con prefijo de chance)
-  if (h.includes("estrés") || h.includes("estres")) {
+  if (coreLower.includes("estrés") || coreLower.includes("estres")) {
     if (hasMinus) return "good";
     if (hasPlus) return "bad";
   }
 
-  // Deuda: bajar / pagar es bueno
-  if (h.includes("deuda")) {
-    if (hasMinus || h.includes("pagás")) return "good";
+  if (coreLower.includes("deuda")) {
+    if (hasMinus || coreLower.includes("pagás")) return "good";
     if (hasPlus) return "bad";
   }
 
-  if (hint.startsWith("+") && hint.includes("ARS")) return "good";
-  if (h.includes("% chance") || h.includes("fin:")) return "bad";
-  if (trimmed.startsWith("+")) return "good";
-  if (trimmed.startsWith("−") || trimmed.startsWith("-")) return "bad";
+  if (core.startsWith("+") && core.includes("ARS")) return "good";
+  if (coreLower.includes("fin:")) return "bad";
+  if (core.startsWith("+")) return "good";
+  if (core.startsWith("−") || core.startsWith("-")) return "bad";
   if (
-    h.includes("desbloquea") ||
-    h.includes("arregla") ||
-    h.includes("credencial") ||
-    h.includes("sin cambios")
+    coreLower.includes("desbloquea") ||
+    coreLower.includes("arregla") ||
+    coreLower.includes("credencial") ||
+    coreLower.includes("sin cambios") ||
+    coreLower.includes("cambia de trabajo")
   ) {
     return "good";
   }
