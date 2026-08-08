@@ -99,7 +99,7 @@ export function birthdayGiftFor(state: PlayerState): BirthdayGift {
       titulo: `Cumpleaños ${edad}`,
       texto: `Te armaron una fiesta. Regalos caros, abrazos y un poco de paz: con tu capital social, hasta el estrés afloja.`,
       dinero: 80000 + cs * 800,
-      deltas: { estres: -18, bienestar: 14, capital_social: 4, influencia: 3 },
+      deltas: { estres: -18, bienestar: 14, capital_social: 4, influencia: 1 },
     };
   }
   if (cs >= 40) {
@@ -107,7 +107,7 @@ export function birthdayGiftFor(state: PlayerState): BirthdayGift {
       titulo: `Cumpleaños ${edad}`,
       texto: `Asado con gente que te banca. No era un yate, pero te hicieron sentir alguien.`,
       dinero: 25000 + cs * 400,
-      deltas: { estres: -10, bienestar: 10, capital_social: 2, influencia: 2 },
+      deltas: { estres: -10, bienestar: 10, capital_social: 2, influencia: 1 },
     };
   }
   if (cs >= 20) {
@@ -115,7 +115,7 @@ export function birthdayGiftFor(state: PlayerState): BirthdayGift {
       titulo: `Cumpleaños ${edad}`,
       texto: `Un par de mensajes, una birra y un regalo chico. Alguien se acordó de vos.`,
       dinero: 8000,
-      deltas: { estres: -4, bienestar: 6, influencia: 1 },
+      deltas: { estres: -4, bienestar: 6 },
     };
   }
   return {

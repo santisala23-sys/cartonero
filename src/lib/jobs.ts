@@ -57,6 +57,10 @@ export function meetsJobRequirements(state: PlayerState, job: Job): boolean {
     return false;
   }
 
+  if (req.edad_min !== undefined && state.edad < req.edad_min) {
+    return false;
+  }
+
   if (req.flags_requeridos?.length) {
     for (const flag of req.flags_requeridos) {
       if (flag === "curso_n8n") {
@@ -99,6 +103,7 @@ export function describeJobRequirements(job: Job): string[] {
   }
   if (req.dinero_min) bits.push(`$${req.dinero_min}`);
   if (req.capital_social_min) bits.push(`CS ${req.capital_social_min}+`);
+  if (req.edad_min) bits.push(`${req.edad_min}+ años`);
   return bits;
 }
 

@@ -119,7 +119,7 @@ export function MonthSummaryPanel({
     <article className="mx-auto w-full max-w-xl animate-in rounded-2xl bg-[#1a222d] p-5 text-[#e8eef5]">
       <div className="h-1 w-full rounded-full bg-[#2f9e6b]" />
       <p className="mt-4 text-[11px] font-bold uppercase tracking-[0.22em] text-[#3d9b6a]">
-        Resumen · mes {state.mes}
+        Resumen · trimestre {state.mes}
       </p>
       <h2 className="mt-1 font-display text-3xl italic text-white">
         Lo que te dejó el mes
@@ -230,7 +230,7 @@ export function MonthSummaryPanel({
         </ul>
       ) : (
         <p className="mt-5 text-sm text-[#9aabbc]">
-          Este mes no hubo un evento decisivo — o se te escapó.
+        Este trimestre no hubo un evento decisivo — o se te escapó.
         </p>
       )}
 

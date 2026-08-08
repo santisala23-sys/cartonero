@@ -160,6 +160,13 @@ export function applyEffect(state: PlayerState, effect: Effect): PlayerState {
     case "set_job": {
       const job = getJobById(effect.job_id);
       if (!job) return state;
+      // Respetar edad mínima aunque venga de un evento (carrera creíble).
+      if (
+        job.requisitos.edad_min !== undefined &&
+        state.edad < job.requisitos.edad_min
+      ) {
+        return state;
+      }
       return {
         ...state,
         trabajo_actual: jobToTrabajoActual(job),

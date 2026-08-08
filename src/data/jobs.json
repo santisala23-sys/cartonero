@@ -68,7 +68,8 @@
     ],
     "requisitos": {
       "job_previo": null,
-      "capital_social_min": 15
+      "capital_social_min": 15,
+      "edad_min": 18
     },
     "descripcion": "Volanteás, armás ollas y conocés a todo el barrio."
   },
@@ -88,7 +89,8 @@
         "aptitud_gestion_territorial",
         "aptitud_oratoria"
       ],
-      "capital_social_min": 30
+      "capital_social_min": 30,
+      "edad_min": 22
     },
     "descripcion": "Armás listas, favores y el mapa humano del distrito."
   },
@@ -110,7 +112,8 @@
         "abogacia"
       ],
       "capital_social_min": 40,
-      "dinero_min": 100000
+      "dinero_min": 100000,
+      "edad_min": 25
     },
     "descripcion": "Bancas, comisiones y favores municipales."
   },
@@ -128,7 +131,8 @@
     "requisitos": {
       "job_previo": "concejal",
       "capital_social_min": 55,
-      "dinero_min": 300000
+      "dinero_min": 300000,
+      "edad_min": 30
     },
     "descripcion": "Gobernás el distrito. Cada bache tiene tu cara."
   },
@@ -151,7 +155,8 @@
         "administracion_empresas"
       ],
       "capital_social_min": 70,
-      "dinero_min": 800000
+      "dinero_min": 800000,
+      "edad_min": 35
     },
     "descripcion": "La provincia entera."
   },
@@ -169,7 +174,8 @@
     "requisitos": {
       "job_previo": "gobernador",
       "capital_social_min": 85,
-      "dinero_min": 2000000
+      "dinero_min": 2000000,
+      "edad_min": 35
     },
     "descripcion": "Casa Rosada. Historia. Insomnio."
   },

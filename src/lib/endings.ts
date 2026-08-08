@@ -67,7 +67,7 @@ export function evaluateVictory(state: PlayerState): EndingResult | null {
     hasJob(state, ["gobernador"]) &&
     state.flags.includes("derrota_electoral") &&
     !state.flags.includes("victoria_electoral") &&
-    state.mes >= 40 &&
+    state.mes >= 28 &&
     state.capital_social >= 65
   ) {
     return {
@@ -91,7 +91,7 @@ export function evaluateVictory(state: PlayerState): EndingResult | null {
   }
 
   if (
-    state.mes >= 48 &&
+    state.mes >= 16 &&
     state.deuda <= 0 &&
     state.estres < 55 &&
     state.salud >= 45 &&
@@ -108,7 +108,7 @@ export function evaluateVictory(state: PlayerState): EndingResult | null {
     hasJob(state, ["intendente", "gerente_general", "director_agencia"]) &&
     state.capital_social >= 70 &&
     state.deuda <= 50_000 &&
-    state.mes >= 24 &&
+    state.mes >= 12 &&
     !state.flags.includes("campana_gobernador")
   ) {
     return {

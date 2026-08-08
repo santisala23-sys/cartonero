@@ -173,10 +173,11 @@ export function GameShell() {
           ) : (
             <div className="mx-auto max-w-md rounded-2xl bg-[#1a222d] px-5 py-8 text-center text-[#e8eef5]">
               <p className="font-display text-xl text-white sm:text-2xl">
-                Otro mes, {state.nombre}
+                Otro trimestre, {state.nombre}
               </p>
               <p className="mt-2 text-sm text-[#9aabbc]">
-                Cobrá, capacitáte, mirá laburos y pagá las cuentas.
+                Cobrá, capacitáte, mirá laburos y pagá las cuentas. El calendario
+                avanza tres meses.
               </p>
               <div className="mt-8">
                 <AdvanceMonthButton

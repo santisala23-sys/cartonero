@@ -49,6 +49,8 @@ export interface JobRequisitos {
   capital_social_min?: number;
   flags_requeridos?: string[];
   salud_min?: number;
+  /** Edad mínima en años (carrera creíble). */
+  edad_min?: number;
   credenciales_requeridas?: string[];
   credenciales_algunas?: string[];
 }

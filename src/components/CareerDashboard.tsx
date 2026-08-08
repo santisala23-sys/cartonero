@@ -85,7 +85,7 @@ export function CareerDashboard({ state }: CareerDashboardProps) {
             {state.edad} AÑOS
           </p>
           <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-[#3d9b6a]">
-            {mesNombre} · mes de juego {state.mes}
+            {mesNombre} · trimestre {state.mes} · {state.edad} años
           </p>
           <p className="mt-1 text-[11px] text-[#8a9bac]">
             {state.genero === "mujer" ? "Mujer" : "Hombre"} ·{" "}
@@ -97,7 +97,7 @@ export function CareerDashboard({ state }: CareerDashboardProps) {
           </p>
           {partidoChips.length > 0 ? (
             <p className="mt-1 text-[10px] text-[#6a7b8c]">
-              Partido/mes: {partidoChips.map((c) => c.text).join(" · ")}
+            Partido/trimestre: {partidoChips.map((c) => c.text).join(" · ")}
             </p>
           ) : null}
         </div>

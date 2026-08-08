@@ -48,6 +48,8 @@ import {
   canCreateOrSwitchParty,
   canJoinParty,
   applyPartidoKpis,
+  EDAD_CREAR_PARTIDO,
+  EDAD_UNIRSE_PARTIDO,
   getPartidoDef,
   INFLUENCIA_CREAR_PARTIDO,
   INFLUENCIA_UNIRSE_PARTIDO,
@@ -327,11 +329,20 @@ export function advanceMonth(state: PlayerState): PlayerState {
   const snapshot = takeMonthSnapshot(state);
   const sueldo = state.trabajo_actual.sueldo;
 
-  let mesCal = state.mes_calendario + 1;
+  // Un turno = un trimestre en el calendario (la vida avanza más creíble).
+  const CALENDAR_MONTHS_PER_TURN = 3;
+  let mesCal = state.mes_calendario;
   let anio = state.anio_calendario;
-  if (mesCal > 12) {
-    mesCal = 1;
-    anio += 1;
+  let birthdayHits = 0;
+  for (let i = 0; i < CALENDAR_MONTHS_PER_TURN; i++) {
+    mesCal += 1;
+    if (mesCal > 12) {
+      mesCal = 1;
+      anio += 1;
+    }
+    if (mesCal === state.mes_nacimiento) {
+      birthdayHits += 1;
+    }
   }
 
   let next: PlayerState = {
@@ -373,13 +384,13 @@ export function advanceMonth(state: PlayerState): PlayerState {
 
   next = tickViviendaMonth(next);
 
-  // Birthday when calendar month hits birth month
-  if (mesCal === next.mes_nacimiento) {
+  // Cumpleaños si el trimestre cruzó el mes de nacimiento
+  if (birthdayHits > 0) {
     const gift = birthdayGiftFor(next);
     const giftCash = Math.max(0, gift.dinero);
     next = {
       ...next,
-      edad: next.edad + 1,
+      edad: next.edad + birthdayHits,
       dinero: next.dinero + giftCash,
       salud: next.salud + (gift.deltas.salud ?? 0),
       estres: next.estres + (gift.deltas.estres ?? 0),
@@ -392,10 +403,16 @@ export function advanceMonth(state: PlayerState): PlayerState {
           {
             bill_id: null,
             titulo: gift.titulo,
-            texto: gift.texto,
+            texto:
+              birthdayHits > 1
+                ? `${gift.texto} (el trimestre te hizo cumplir de más).`
+                : gift.texto,
             dinero: gift.dinero,
             deltas: gift.deltas,
-            tono: gift.dinero > 0 || (gift.deltas.bienestar ?? 0) > 0 ? "bueno" : "malo",
+            tono:
+              gift.dinero > 0 || (gift.deltas.bienestar ?? 0) > 0
+                ? "bueno"
+                : "malo",
           },
         ],
         balance_historias: gift.dinero,
@@ -408,17 +425,16 @@ export function advanceMonth(state: PlayerState): PlayerState {
     };
   }
 
-  // Soft influence drift from social capital / politics
+  // Soft influence drift — lento a propósito (la carrera lleva años)
   const job = getJobById(next.trabajo_actual.id);
   let influBump = 0;
-  if (job?.rama === "politica") influBump += 2;
-  if (next.capital_social >= 50) influBump += 1;
-  if (next.partido) influBump += 1;
+  if (job?.rama === "politica") influBump += 1;
+  if (next.capital_social >= 55) influBump += 1;
   if (influBump) {
     next = { ...next, influencia: next.influencia + influBump };
   }
 
-  // Drift mensual del partido (PJ suma barrio; LLA suma relato y quita CS…)
+  // Drift del partido (ya incluye influencia chica)
   const partidoDef = getPartidoDef(next.partido);
   if (partidoDef) {
     next = applyPartidoKpis(next, partidoDef.mensual);
@@ -526,9 +542,13 @@ export function resolveBills(
 
 function maybeEnterPartyPhase(state: PlayerState): PlayerState {
   if (state.game_over) return state;
-  const needsJoin = canJoinParty(state.influencia, state.partido);
+  const needsJoin = canJoinParty(
+    state.influencia,
+    state.partido,
+    state.edad,
+  );
   const canCreate =
-    state.influencia >= INFLUENCIA_CREAR_PARTIDO &&
+    canCreateOrSwitchParty(state.influencia, state.partido, state.edad) &&
     !state.flags.includes("partido_menu_50_visto") &&
     state.partido !== "propio";
 
@@ -661,7 +681,10 @@ export function chooseParty(
   }
 
   if (partidoId === "propio") {
-    if (state.influencia < INFLUENCIA_CREAR_PARTIDO) {
+    if (
+      state.influencia < INFLUENCIA_CREAR_PARTIDO ||
+      state.edad < EDAD_CREAR_PARTIDO
+    ) {
       return state;
     }
     const nombre = nombrePropio?.trim() || "Espacio propio";
@@ -685,7 +708,10 @@ export function chooseParty(
     );
   }
 
-  if (state.influencia < INFLUENCIA_UNIRSE_PARTIDO) {
+  if (
+    state.influencia < INFLUENCIA_UNIRSE_PARTIDO ||
+    state.edad < EDAD_UNIRSE_PARTIDO
+  ) {
     return state;
   }
 
@@ -723,9 +749,9 @@ export function partyOfferMode(
     if (!state.partido) return "join";
     return "create";
   }
-  if (canJoinParty(state.influencia, state.partido)) return "join";
+  if (canJoinParty(state.influencia, state.partido, state.edad)) return "join";
   if (
-    canCreateOrSwitchParty(state.influencia, state.partido) &&
+    canCreateOrSwitchParty(state.influencia, state.partido, state.edad) &&
     !state.flags.includes("partido_menu_50_visto")
   ) {
     return "create";

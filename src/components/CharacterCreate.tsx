@@ -23,8 +23,9 @@ export function CharacterCreate({ onConfirm }: CharacterCreateProps) {
         </p>
         <h1 className="mt-2 font-display text-4xl text-white">¿Quién sos?</h1>
         <p className="mt-2 text-sm text-[#9aabbc]">
-          Nombre, género y mes de cumpleaños. Arrancás cartonero, en la villa,
-          sin primaria.
+          Nombre, género y mes de cumpleaños. Arrancás cartonero a los 18, en la
+          villa. La política y los cargos llegan con los años — cada turno avanza
+          un trimestre.
         </p>
 
         <label className="mt-8 block text-[11px] font-semibold uppercase tracking-wider text-[#6b7c8f]">

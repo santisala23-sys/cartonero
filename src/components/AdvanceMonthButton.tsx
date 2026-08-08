@@ -19,7 +19,7 @@ export function AdvanceMonthButton({
         disabled={disabled}
         className="advance-btn"
       >
-        Avanzar Mes
+        Avanzar trimestre
       </button>
       {blockedByEvent ? (
         <p className="text-center text-xs text-stone-500">
