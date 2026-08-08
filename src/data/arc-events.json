@@ -1,0 +1,290 @@
+[
+  {
+    "id": "arc_roman_te_llama",
+    "titulo": "Te llama gente de Román",
+    "texto": "Un número desconocido. 'Román habló de vos'. Hay una reunión en el club: no es platea, es pasillo, planilla y lealtad. Si entrás, el fútbol te come el calendario.",
+    "peso": 18,
+    "condiciones": [
+      {
+        "type": "has_flags_any",
+        "values": ["saludo_roman", "contacto_boca", "operador_boca", "barra_boca"]
+      },
+      { "type": "missing_flag", "value": "empleado_club_boca" },
+      { "type": "edad_gte", "value": 21 },
+      { "type": "influencia_gte", "value": 18 }
+    ],
+    "opciones": [
+      {
+        "id": "entrar_club",
+        "label": "Entrar a laburar al club",
+        "efectos": [
+          { "type": "set_job", "job_id": "empleado_club_futbol" },
+          { "type": "add_flag", "value": "empleado_club_boca" },
+          { "type": "add_flag", "value": "arco_futbol" },
+          { "type": "delta", "metric": "influencia", "amount": 8 },
+          { "type": "delta", "metric": "capital_social", "amount": 6 },
+          { "type": "delta", "metric": "estres", "amount": 10 }
+        ],
+        "eco": "Entraste al club. Ahora el fútbol es tu laburo."
+      },
+      {
+        "id": "solo_asesorar",
+        "label": "Asesorar sin soltar tu laburo",
+        "efectos": [
+          { "type": "add_flag", "value": "asesor_club" },
+          { "type": "delta", "metric": "influencia", "amount": 5 },
+          { "type": "delta", "metric": "dinero", "amount": 40000 },
+          { "type": "delta", "metric": "estres", "amount": 6 }
+        ],
+        "eco": "Asesorás al club sin dejar lo tuyo."
+      },
+      {
+        "id": "no",
+        "label": "Agradecer y declinar",
+        "efectos": [
+          { "type": "delta", "metric": "bienestar", "amount": 3 },
+          { "type": "delta", "metric": "influencia", "amount": -2 }
+        ],
+        "eco": "Declinaste el llamado del club."
+      }
+    ]
+  },
+  {
+    "id": "arc_asamblea_club",
+    "titulo": "Asamblea caliente",
+    "texto": "El club debe luz, el técnico pide refuerzos y un socio grita 'dónde está la plata'. Vos tenés el micrófono y una deuda moral con la peña.",
+    "peso": 15,
+    "condiciones": [
+      {
+        "type": "has_flags_any",
+        "values": ["presidente_club_barrio", "dirigente_club", "empleado_club_boca", "asesor_club"]
+      }
+    ],
+    "opciones": [
+      {
+        "id": "poner_plata",
+        "label": "Poner de tu bolsillo",
+        "efectos": [
+          { "type": "delta", "metric": "dinero", "amount": -120000 },
+          { "type": "delta", "metric": "capital_social", "amount": 12 },
+          { "type": "delta", "metric": "influencia", "amount": 6 },
+          { "type": "delta", "metric": "estres", "amount": 8 }
+        ],
+        "eco": "Pusiste plata del club. La gente aplaude."
+      },
+      {
+        "id": "negociar_deuda",
+        "label": "Negociar con el municipio",
+        "efectos": [
+          { "type": "delta", "metric": "influencia", "amount": 8 },
+          { "type": "delta", "metric": "estres", "amount": 10 },
+          { "type": "risk", "chance": 0.45, "effects": [{ "type": "add_flag", "value": "club_acuerdo_municipio" }] },
+          { "type": "risk", "chance": 0.35, "effects": [{ "type": "delta", "metric": "capital_social", "amount": -8 }] }
+        ],
+        "eco": "Negociaste la deuda del club."
+      },
+      {
+        "id": "rajarte",
+        "label": "Rajarte de la asamblea",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": -10 },
+          { "type": "delta", "metric": "estres", "amount": -4 },
+          { "type": "delta", "metric": "influencia", "amount": -5 }
+        ],
+        "eco": "Te rajaste. El club no olvida."
+      }
+    ]
+  },
+  {
+    "id": "arc_pases_y_sobres",
+    "titulo": "Pases y sobres",
+    "texto": "Hay un refuerzo 'arreglado'. Un intermediario te ofrece un sobre si mirás para otro lado en la comisión de fútbol.",
+    "peso": 14,
+    "condiciones": [
+      {
+        "type": "has_flags_any",
+        "values": ["empleado_club_boca", "operador_boca", "dirigente_club", "presidente_club_barrio"]
+      },
+      { "type": "influencia_gte", "value": 20 }
+    ],
+    "opciones": [
+      {
+        "id": "sobre",
+        "label": "Aceptar el sobre",
+        "efectos": [
+          { "type": "delta", "metric": "dinero_negro", "amount": 180000 },
+          { "type": "delta", "metric": "estres", "amount": 14 },
+          { "type": "delta", "metric": "capital_social", "amount": -6 },
+          { "type": "add_flag", "value": "coima_futbol" },
+          { "type": "add_flag", "value": "coimero" }
+        ],
+        "eco": "Aceptaste el sobre del pase."
+      },
+      {
+        "id": "denunciar",
+        "label": "Grabar y denunciar",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": 8 },
+          { "type": "delta", "metric": "estres", "amount": 16 },
+          { "type": "add_flag", "value": "denunciante_futbol" },
+          {
+            "type": "risk",
+            "chance": 0.4,
+            "effects": [
+              { "type": "delta", "metric": "salud", "amount": -8 },
+              { "type": "add_flag", "value": "amenaza_barra" }
+            ]
+          }
+        ],
+        "eco": "Denunciaste la tranza de pases."
+      },
+      {
+        "id": "no",
+        "label": "Salir caminando",
+        "efectos": [
+          { "type": "delta", "metric": "bienestar", "amount": 2 },
+          { "type": "delta", "metric": "influencia", "amount": -2 }
+        ],
+        "eco": "No te metiste en el sobre."
+      }
+    ]
+  },
+  {
+    "id": "arc_oferta_dirigente",
+    "titulo": "Te tiran dirigente",
+    "texto": "La comisión te mide: si cerrás tres peñas y una deuda, vas a la lista de dirigentes. Es poder de cancha, no de Twitter.",
+    "peso": 16,
+    "condiciones": [
+      {
+        "type": "has_flags_any",
+        "values": ["empleado_club_boca", "asesor_club", "presidente_club_barrio", "operador_boca"]
+      },
+      { "type": "edad_gte", "value": 25 },
+      { "type": "influencia_gte", "value": 30 },
+      { "type": "missing_flag", "value": "dirigente_club" }
+    ],
+    "opciones": [
+      {
+        "id": "aceptar",
+        "label": "Aceptar y armar lista",
+        "efectos": [
+          { "type": "set_job", "job_id": "dirigente_club" },
+          { "type": "add_flag", "value": "dirigente_club" },
+          { "type": "delta", "metric": "influencia", "amount": 12 },
+          { "type": "delta", "metric": "capital_social", "amount": 8 },
+          { "type": "delta", "metric": "estres", "amount": 12 },
+          { "type": "delta", "metric": "dinero", "amount": -50000 }
+        ],
+        "eco": "Pasaste a dirigente de club."
+      },
+      {
+        "id": "no",
+        "label": "Quedarte en el segundo plano",
+        "efectos": [
+          { "type": "delta", "metric": "bienestar", "amount": 4 },
+          { "type": "delta", "metric": "influencia", "amount": -3 }
+        ],
+        "eco": "Preferiste el segundo plano."
+      }
+    ]
+  },
+  {
+    "id": "arc_beltran_agencia",
+    "titulo": "Beltrán te ofrece escritorio",
+    "texto": "Sale un audio de la academia: necesitan alguien que arme leads y no tenga miedo al cold call. Hay escritorio, café caro y la promesa de comisiones en dólares emocionales.",
+    "peso": 14,
+    "condiciones": [
+      { "type": "has_flag", "value": "alumno_beltran" },
+      { "type": "missing_flag", "value": "laburo_inmobiliario" },
+      { "type": "edad_gte", "value": 20 }
+    ],
+    "opciones": [
+      {
+        "id": "aceptar",
+        "label": "Aceptar el escritorio",
+        "efectos": [
+          { "type": "set_job", "job_id": "agente_inmobiliario" },
+          { "type": "add_flag", "value": "laburo_inmobiliario" },
+          { "type": "delta", "metric": "influencia", "amount": 4 },
+          { "type": "delta", "metric": "estres", "amount": 8 }
+        ],
+        "eco": "Entraste al rubro inmobiliario."
+      },
+      {
+        "id": "no",
+        "label": "Seguir por tu cuenta",
+        "efectos": [{ "type": "delta", "metric": "bienestar", "amount": 2 }],
+        "eco": "Seguiste por tu cuenta."
+      }
+    ]
+  },
+  {
+    "id": "arc_wanda_casting",
+    "titulo": "Casting de contenido",
+    "texto": "De la academia Wanda sale un casting para un reality light. Luces, contrato chico y la chance de que te cancelen en 48 horas.",
+    "peso": 13,
+    "condiciones": [
+      { "type": "has_flag", "value": "alumno_wanda" },
+      { "type": "missing_flag", "value": "reality_wanda" }
+    ],
+    "opciones": [
+      {
+        "id": "entrar",
+        "label": "Entrar al casting",
+        "efectos": [
+          { "type": "delta", "metric": "capital_social", "amount": 10 },
+          { "type": "delta", "metric": "influencia", "amount": 8 },
+          { "type": "delta", "metric": "estres", "amount": 12 },
+          { "type": "add_flag", "value": "reality_wanda" },
+          {
+            "type": "risk",
+            "chance": 0.35,
+            "effects": [
+              { "type": "delta", "metric": "capital_social", "amount": -12 },
+              { "type": "add_flag", "value": "cancelado_wanda" }
+            ]
+          }
+        ],
+        "eco": "Entraste al casting farandulero."
+      },
+      {
+        "id": "no",
+        "label": "Pasarla",
+        "efectos": [{ "type": "delta", "metric": "bienestar", "amount": 3 }],
+        "eco": "Pasaste el casting."
+      }
+    ]
+  },
+  {
+    "id": "arc_river_llamado",
+    "titulo": "Llamado desde Núñez",
+    "texto": "Alguien del Monumental te escribe: 'vimos que bancás'. Hay una changa en la estructura del club si sabés mover gente sin hacer ruido.",
+    "peso": 15,
+    "condiciones": [
+      { "type": "has_flags_any", "values": ["barra_river", "operador_river"] },
+      { "type": "missing_flag", "value": "empleado_club_river" },
+      { "type": "edad_gte", "value": 21 }
+    ],
+    "opciones": [
+      {
+        "id": "entrar",
+        "label": "Entrar a la estructura",
+        "efectos": [
+          { "type": "set_job", "job_id": "empleado_club_futbol" },
+          { "type": "add_flag", "value": "empleado_club_river" },
+          { "type": "add_flag", "value": "arco_futbol" },
+          { "type": "delta", "metric": "influencia", "amount": 7 },
+          { "type": "delta", "metric": "capital_social", "amount": 5 },
+          { "type": "delta", "metric": "estres", "amount": 9 }
+        ],
+        "eco": "Entraste a laburar en la órbita River."
+      },
+      {
+        "id": "no",
+        "label": "Quedarte de hincha",
+        "efectos": [{ "type": "delta", "metric": "bienestar", "amount": 3 }],
+        "eco": "Seguiste de hincha."
+      }
+    ]
+  }
+]

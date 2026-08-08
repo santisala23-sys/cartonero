@@ -1,0 +1,62 @@
+[
+  {
+    "id": "motosierra_iphone",
+    "texto": "Milei presenta la motosierra en el lanzamiento del iPhone frente al Obelisco. Hay gente aplaudiendo y un pibe filmando para TikTok.",
+    "pesos": { "lla": 3, "pro": 1, "ucr": -1, "pj": -2, "izquierda": -3 }
+  },
+  {
+    "id": "myriam_asado",
+    "texto": "Myriam Bregman arma un asado vegano anti-FMI en la 9 de Julio. Te ofrecen una bandeja y un panfleto de 14 páginas.",
+    "pesos": { "izquierda": 3, "pj": 1, "ucr": 0, "pro": -2, "lla": -3 }
+  },
+  {
+    "id": "cristina_tiktok",
+    "texto": "Cristina vuelve con un live de TikTok desde el Patria. El chat pide 'V' y un filtro de corona.",
+    "pesos": { "pj": 3, "izquierda": 1, "ucr": -1, "pro": -2, "lla": -3 }
+  },
+  {
+    "id": "bullrich_taser",
+    "texto": "Bullrich propone taser en el bondi para 'ordenar la convivencia'. El chofer ya tiene opinión.",
+    "pesos": { "pro": 2, "lla": 2, "ucr": 1, "pj": -2, "izquierda": -3 }
+  },
+  {
+    "id": "caputo_sticker",
+    "texto": "Caputo te manda un sticker de león por WhatsApp: 'ordená el relato del barrio o quedás afuera'.",
+    "pesos": { "lla": 3, "pro": 1, "ucr": -1, "pj": -2, "izquierda": -2 }
+  },
+  {
+    "id": "grabois_country",
+    "texto": "Grabois te invita a una toma simbólica de un country. Hay mate, drones y un abogado nervioso.",
+    "pesos": { "izquierda": 2, "pj": 2, "ucr": -1, "pro": -3, "lla": -3 }
+  },
+  {
+    "id": "larreta_bici",
+    "texto": "Larreta anuncia bici eléctrica obligatoria en la villa 'para la transición verde'. El changuito no entra en el carril.",
+    "pesos": { "pro": 3, "ucr": 1, "lla": 0, "pj": -2, "izquierda": -1 }
+  },
+  {
+    "id": "massa_blue",
+    "texto": "Massa dice en TV que el dólar blue es un constructo y que 'hay que mirar el agregado'. El kiosquero cambia el precio dos veces.",
+    "pesos": { "pj": 2, "ucr": 1, "pro": -1, "lla": -2, "izquierda": 0 }
+  },
+  {
+    "id": "scioli_sonrisa",
+    "texto": "Scioli sonríe 40 minutos sin parpadear en un acto. Alguien susurra 'esa es la política'.",
+    "pesos": { "pj": 2, "ucr": 1, "pro": 1, "lla": -1, "izquierda": -1 }
+  },
+  {
+    "id": "dolar_kiosco",
+    "texto": "Proponen pagar el café del kiosco en USDT. El almacenero pregunta si también acepta huevos.",
+    "pesos": { "lla": 3, "pro": 1, "ucr": -1, "pj": -2, "izquierda": -3 }
+  },
+  {
+    "id": "pena_lista",
+    "texto": "Una peña de fútbol decide la lista de concejales entre choripán y himno. La política entra por la cantina.",
+    "pesos": { "pj": 2, "izquierda": 1, "ucr": 1, "pro": 0, "lla": -1 }
+  },
+  {
+    "id": "impuesto_al_asado",
+    "texto": "Sale el rumor de un impuesto al asado 'para financiar la transición'. El vecino ya escondió la parrilla.",
+    "pesos": { "izquierda": 2, "pj": 1, "ucr": -1, "pro": -2, "lla": -3 }
+  }
+]

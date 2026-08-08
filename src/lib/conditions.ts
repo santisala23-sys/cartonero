@@ -29,6 +29,8 @@ export function evaluateCondition(
     }
     case "has_flag":
       return state.flags.includes(condition.value);
+    case "has_flags_any":
+      return condition.values.some((f) => state.flags.includes(f));
     case "missing_flag":
       return !state.flags.includes(condition.value);
     case "has_credential":

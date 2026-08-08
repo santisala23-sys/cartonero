@@ -51,6 +51,17 @@ export function PartyPanel({ state, mode, onChoose }: PartyPanelProps) {
   const canCreate =
     state.influencia >= INFLUENCIA_CREAR_PARTIDO &&
     state.edad >= EDAD_CREAR_PARTIDO;
+  const recommendedId = state.partido_afinidades
+    ? (Object.entries(state.partido_afinidades).sort(
+        (a, b) => b[1] - a[1],
+      )[0]?.[0] as PartidoId | undefined)
+    : undefined;
+  const sortedPartidos = recommendedId
+    ? [
+        ...PARTIDOS.filter((p) => p.id === recommendedId),
+        ...PARTIDOS.filter((p) => p.id !== recommendedId),
+      ]
+    : PARTIDOS;
   const title =
     mode === "join"
       ? "Entrás a la política de verdad"
@@ -73,16 +84,36 @@ export function PartyPanel({ state, mode, onChoose }: PartyPanelProps) {
           Ahora: {state.partido_nombre ?? state.partido}
         </p>
       ) : null}
+      {recommendedId && mode === "join" ? (
+        <p className="mt-2 text-xs text-[#5fd4a0]">
+          La brújula te acercó a{" "}
+          {PARTIDOS.find((p) => p.id === recommendedId)?.nombre ?? recommendedId}
+          .
+        </p>
+      ) : null}
 
       <div className="mt-5 space-y-2">
-        {PARTIDOS.map((p) => (
+        {sortedPartidos.map((p) => {
+          const isRec = p.id === recommendedId;
+          return (
           <button
             key={p.id}
             type="button"
-            className="w-full rounded-xl border border-white/10 bg-[#12161c] px-4 py-3 text-left transition hover:border-[#3d9b6a]/50 hover:bg-[#151b24]"
+            className={`w-full rounded-xl border px-4 py-3 text-left transition hover:border-[#3d9b6a]/50 hover:bg-[#151b24] ${
+              isRec
+                ? "border-[#3d9b6a]/60 bg-[#12161c] ring-1 ring-[#3d9b6a]/30"
+                : "border-white/10 bg-[#12161c]"
+            }`}
             onClick={() => onChoose(p.id)}
           >
-            <p className="font-semibold text-white">{p.nombre}</p>
+            <p className="font-semibold text-white">
+              {p.nombre}
+              {isRec ? (
+                <span className="ml-2 text-[10px] font-bold uppercase tracking-wide text-[#5fd4a0]">
+                  recomendado
+                </span>
+              ) : null}
+            </p>
             <p className="mt-0.5 text-xs text-[#9aabbc]">{p.descripcion}</p>
             <KpiChips kpis={p.kpis} />
             <p className="mt-1.5 text-[10px] uppercase tracking-wide text-[#6a7b8c]">
@@ -92,7 +123,8 @@ export function PartyPanel({ state, mode, onChoose }: PartyPanelProps) {
                 .join(" · ") || "—"}
             </p>
           </button>
-        ))}
+          );
+        })}
       </div>
 
       {canCreate ? (

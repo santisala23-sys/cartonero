@@ -1,6 +1,7 @@
 "use client";
 
 import { getCredentialById } from "@/lib/credentials";
+import { rumboLines } from "@/lib/life-arcs";
 import { isPoliticalCareer } from "@/lib/politica";
 import type { MetricKey, PlayerState } from "@/lib/types";
 
@@ -103,6 +104,7 @@ export function MonthSummaryPanel({
   if (!ledger) return null;
 
   const ecos = ledger.choice_ecos ?? [];
+  const rumbo = rumboLines(state);
   const deltas = ledger.metric_deltas ?? {};
   const ganado = ledger.dinero_ganado ?? ledger.sueldo;
   const perdido = ledger.dinero_perdido ?? ledger.total_gastos;
@@ -165,6 +167,19 @@ export function MonthSummaryPanel({
             <span className="text-amber-200/90">Negro {formatARS(totalNegro)}</span>
           </div>
         ) : null}
+      </div>
+
+      <div className="mt-5 rounded-xl border border-[#3d7ea6]/30 bg-[#12161c] px-4 py-3">
+        <p className="text-[11px] font-bold uppercase tracking-wider text-[#5b9fd4]">
+          Tu rumbo
+        </p>
+        <ul className="mt-2 space-y-1.5">
+          {rumbo.map((line) => (
+            <li key={line} className="text-sm leading-snug text-[#c5d0db]">
+              {line}
+            </li>
+          ))}
+        </ul>
       </div>
 
       <div className="mt-5 space-y-3">

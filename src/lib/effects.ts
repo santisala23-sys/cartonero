@@ -351,6 +351,7 @@ export function normalizePlayerState(
     partido: typeof raw.partido === "string" ? raw.partido : null,
     partido_nombre:
       typeof raw.partido_nombre === "string" ? raw.partido_nombre : null,
+    partido_afinidades: normalizeAfinidades(raw.partido_afinidades),
     trabajo_actual: raw.trabajo_actual,
     month_start_snapshot: raw.month_start_snapshot ?? null,
     mes: Number(raw.mes) || 1,
@@ -387,6 +388,20 @@ export function normalizePlayerState(
   });
 }
 
+function normalizeAfinidades(
+  raw: PlayerState["partido_afinidades"] | unknown,
+): PlayerState["partido_afinidades"] {
+  if (!raw || typeof raw !== "object") return null;
+  const o = raw as Record<string, unknown>;
+  return {
+    pj: Number(o.pj) || 0,
+    ucr: Number(o.ucr) || 0,
+    lla: Number(o.lla) || 0,
+    pro: Number(o.pro) || 0,
+    izquierda: Number(o.izquierda) || 0,
+  };
+}
+
 function normalizeMonthPhase(
   raw: Partial<PlayerState>,
 ): PlayerState["month_phase"] {
@@ -396,6 +411,7 @@ function normalizeMonthPhase(
     phase === "capacitacion" ||
     phase === "trabajo" ||
     phase === "cuentas" ||
+    phase === "brujula" ||
     phase === "partido"
   ) {
     return phase;

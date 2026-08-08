@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { AdvanceMonthButton } from "@/components/AdvanceMonthButton";
 import { BillsPanel } from "@/components/BillsPanel";
+import { BrujulaPanel } from "@/components/BrujulaPanel";
 import { CareerDashboard } from "@/components/CareerDashboard";
 import { CharacterCreate } from "@/components/CharacterCreate";
 import { EventCard } from "@/components/EventCard";
@@ -28,6 +29,7 @@ export function GameShell() {
   const pickTraining = useGameStore((s) => s.pickTraining);
   const pickJob = useGameStore((s) => s.pickJob);
   const chooseParty = useGameStore((s) => s.chooseParty);
+  const finishBrujula = useGameStore((s) => s.finishBrujula);
   const reset = useGameStore((s) => s.reset);
 
   const [showTitle, setShowTitle] = useState(true);
@@ -78,6 +80,7 @@ export function GameShell() {
   const showingSummary = Boolean(state.pending_month_summary);
   const showingRiskReveal = Boolean(state.pending_risk_reveal);
   const inParty = phase === "partido";
+  const inBrujula = phase === "brujula";
   const partyMode = inParty ? partyOfferMode(state) : "none";
   const midMonth =
     inTraining ||
@@ -85,6 +88,7 @@ export function GameShell() {
     payingBills ||
     showingRiskReveal ||
     showingSummary ||
+    inBrujula ||
     inParty;
   const blocked = Boolean(activeEvent) || midMonth || state.game_over;
 
@@ -143,6 +147,11 @@ export function GameShell() {
               key={`summary-${state.mes}`}
               state={state}
               onContinue={dismissSummary}
+            />
+          ) : inBrujula ? (
+            <BrujulaPanel
+              key={`brujula-${state.mes}`}
+              onFinish={finishBrujula}
             />
           ) : inParty && partyMode !== "none" ? (
             <PartyPanel

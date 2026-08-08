@@ -98,6 +98,7 @@ export type Condition =
   | { type: "job_tag"; value: string }
   | { type: "job_tags_any"; values: string[] }
   | { type: "has_flag"; value: string }
+  | { type: "has_flags_any"; values: string[] }
   | { type: "missing_flag"; value: string }
   | { type: "has_credential"; value: string }
   | { type: "missing_credential"; value: string }
@@ -154,6 +155,7 @@ export type MonthPhase =
   | "capacitacion"
   | "trabajo"
   | "cuentas"
+  | "brujula"
   | "partido";
 
 export interface MonthSnapshot {
@@ -217,6 +219,14 @@ export interface PlayerState {
   /** Partido político actual, si hay. */
   partido: string | null;
   partido_nombre: string | null;
+  /** Scores de la brújula absurda (La Nación-style). */
+  partido_afinidades: {
+    pj: number;
+    ucr: number;
+    lla: number;
+    pro: number;
+    izquierda: number;
+  } | null;
   trabajo_actual: TrabajoActual;
   mes: number;
   flags: string[];

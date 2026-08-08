@@ -385,6 +385,10 @@
           {
             "type": "add_flag",
             "value": "hincha_activo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
           }
         ],
         "eco": "Sumarte a la barra."
@@ -441,6 +445,10 @@
           {
             "type": "add_flag",
             "value": "hincha_activo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
           }
         ],
         "eco": "Entrar a la confianza."
@@ -469,7 +477,21 @@
     "titulo": "Aparece Román",
     "texto": "Juan Román Riquelme está en un asado de dirigentes. Te mira como si ya hubiera visto tu CV en 2001. Boca late en el living.",
     "peso": 10,
-    "condiciones": [],
+    "condiciones": [
+      {
+        "type": "has_flags_any",
+        "values": [
+          "barra_boca",
+          "pena_boca_pena",
+          "pena_boca_pena_bombo",
+          "hincha_activo"
+        ]
+      },
+      {
+        "type": "missing_flag",
+        "value": "saludo_roman"
+      }
+    ],
     "opciones": [
       {
         "id": "acercarte",
@@ -594,7 +616,32 @@
     "titulo": "Presidencia de un club de barrio",
     "texto": "Te ofrecen ser presidente de un club de barrio: cancha de tierra, deuda de luz y una elección con 40 votos. Es poder... de otro estilo.",
     "peso": 10,
-    "condiciones": [],
+    "condiciones": [
+      {
+        "type": "has_flags_any",
+        "values": [
+          "arco_futbol",
+          "hincha_activo",
+          "pena_boca_pena",
+          "pena_racing",
+          "pena_independiente",
+          "barra_boca",
+          "barra_river"
+        ]
+      },
+      {
+        "type": "edad_gte",
+        "value": 22
+      },
+      {
+        "type": "influencia_gte",
+        "value": 15
+      },
+      {
+        "type": "missing_flag",
+        "value": "presidente_club_barrio"
+      }
+    ],
     "opciones": [
       {
         "id": "aceptar",
@@ -623,9 +670,13 @@
           {
             "type": "add_flag",
             "value": "presidente_club_barrio"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
           }
         ],
-        "eco": "Aceptaste el chaleco. Arrancás la militancia de verdad."
+        "eco": "Aceptaste la presidencia del club de barrio."
       },
       {
         "id": "declinar",
@@ -646,7 +697,18 @@
     "titulo": "Interna en Boca",
     "texto": "Hay lista, hay WhatsApp y hay un asado donde se decide el futuro. Te piden que traigas gente.",
     "peso": 10,
-    "condiciones": [],
+    "condiciones": [
+      {
+        "type": "has_flags_any",
+        "values": [
+          "barra_boca",
+          "pena_boca_pena",
+          "contacto_boca",
+          "saludo_roman",
+          "operador_boca"
+        ]
+      }
+    ],
     "opciones": [
       {
         "id": "traer_gente",
@@ -1065,7 +1127,15 @@
     "titulo": "Elecciones en River",
     "texto": "Hay lista oficial, lista opositora y un grupo de WhatsApp que se prende fuego. Te piden que milites.",
     "peso": 10,
-    "condiciones": [],
+    "condiciones": [
+      {
+        "type": "has_flags_any",
+        "values": [
+          "barra_river",
+          "operador_river"
+        ]
+      }
+    ],
     "opciones": [
       {
         "id": "militar",
@@ -4071,6 +4141,14 @@
           {
             "type": "add_flag",
             "value": "pena_racing"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -4097,6 +4175,14 @@
           {
             "type": "add_flag",
             "value": "pena_racing_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -4144,6 +4230,14 @@
           {
             "type": "add_flag",
             "value": "pena_independiente"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -4170,6 +4264,14 @@
           {
             "type": "add_flag",
             "value": "pena_independiente_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -4217,6 +4319,14 @@
           {
             "type": "add_flag",
             "value": "pena_velez"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -4243,6 +4353,14 @@
           {
             "type": "add_flag",
             "value": "pena_velez_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -4290,6 +4408,14 @@
           {
             "type": "add_flag",
             "value": "pena_huracan"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -4316,6 +4442,14 @@
           {
             "type": "add_flag",
             "value": "pena_huracan_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -4363,6 +4497,14 @@
           {
             "type": "add_flag",
             "value": "pena_gimnasia_lp"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -4389,6 +4531,14 @@
           {
             "type": "add_flag",
             "value": "pena_gimnasia_lp_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -4436,6 +4586,14 @@
           {
             "type": "add_flag",
             "value": "pena_estudiantes_lp"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -4462,6 +4620,14 @@
           {
             "type": "add_flag",
             "value": "pena_estudiantes_lp_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -4509,6 +4675,14 @@
           {
             "type": "add_flag",
             "value": "pena_newells"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -4535,6 +4709,14 @@
           {
             "type": "add_flag",
             "value": "pena_newells_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -4582,6 +4764,14 @@
           {
             "type": "add_flag",
             "value": "pena_central"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -4608,6 +4798,14 @@
           {
             "type": "add_flag",
             "value": "pena_central_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -4655,6 +4853,14 @@
           {
             "type": "add_flag",
             "value": "pena_talleres"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -4681,6 +4887,14 @@
           {
             "type": "add_flag",
             "value": "pena_talleres_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -4728,6 +4942,14 @@
           {
             "type": "add_flag",
             "value": "pena_belgrano"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -4754,6 +4976,14 @@
           {
             "type": "add_flag",
             "value": "pena_belgrano_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -4801,6 +5031,14 @@
           {
             "type": "add_flag",
             "value": "pena_lanus"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -4827,6 +5065,14 @@
           {
             "type": "add_flag",
             "value": "pena_lanus_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -4874,6 +5120,14 @@
           {
             "type": "add_flag",
             "value": "pena_banfield"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -4900,6 +5154,14 @@
           {
             "type": "add_flag",
             "value": "pena_banfield_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -4947,6 +5209,14 @@
           {
             "type": "add_flag",
             "value": "pena_argentinos"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -4973,6 +5243,14 @@
           {
             "type": "add_flag",
             "value": "pena_argentinos_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -5020,6 +5298,14 @@
           {
             "type": "add_flag",
             "value": "pena_defensa"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -5046,6 +5332,14 @@
           {
             "type": "add_flag",
             "value": "pena_defensa_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -5093,6 +5387,14 @@
           {
             "type": "add_flag",
             "value": "pena_platense"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -5119,6 +5421,14 @@
           {
             "type": "add_flag",
             "value": "pena_platense_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -5166,6 +5476,14 @@
           {
             "type": "add_flag",
             "value": "pena_godoy_cruz"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -5192,6 +5510,14 @@
           {
             "type": "add_flag",
             "value": "pena_godoy_cruz_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -5239,6 +5565,14 @@
           {
             "type": "add_flag",
             "value": "pena_atletico_tucuman"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -5265,6 +5599,14 @@
           {
             "type": "add_flag",
             "value": "pena_atletico_tucuman_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -5312,6 +5654,14 @@
           {
             "type": "add_flag",
             "value": "pena_colon"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -5338,6 +5688,14 @@
           {
             "type": "add_flag",
             "value": "pena_colon_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -5385,6 +5743,14 @@
           {
             "type": "add_flag",
             "value": "pena_union"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -5411,6 +5777,14 @@
           {
             "type": "add_flag",
             "value": "pena_union_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -5458,6 +5832,14 @@
           {
             "type": "add_flag",
             "value": "pena_instituto"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -5484,6 +5866,14 @@
           {
             "type": "add_flag",
             "value": "pena_instituto_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -5531,6 +5921,14 @@
           {
             "type": "add_flag",
             "value": "pena_sarmiento"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -5557,6 +5955,14 @@
           {
             "type": "add_flag",
             "value": "pena_sarmiento_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -5604,6 +6010,14 @@
           {
             "type": "add_flag",
             "value": "pena_barracas"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -5630,6 +6044,14 @@
           {
             "type": "add_flag",
             "value": "pena_barracas_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -5677,6 +6099,14 @@
           {
             "type": "add_flag",
             "value": "pena_tigre"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -5703,6 +6133,14 @@
           {
             "type": "add_flag",
             "value": "pena_tigre_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -5750,6 +6188,14 @@
           {
             "type": "add_flag",
             "value": "pena_arsenal"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -5776,6 +6222,14 @@
           {
             "type": "add_flag",
             "value": "pena_arsenal_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -5823,6 +6277,14 @@
           {
             "type": "add_flag",
             "value": "pena_aldosivi"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -5849,6 +6311,14 @@
           {
             "type": "add_flag",
             "value": "pena_aldosivi_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -5896,6 +6366,14 @@
           {
             "type": "add_flag",
             "value": "pena_ferro"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -5922,6 +6400,14 @@
           {
             "type": "add_flag",
             "value": "pena_ferro_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -5969,6 +6455,14 @@
           {
             "type": "add_flag",
             "value": "pena_atlanta"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -5995,6 +6489,14 @@
           {
             "type": "add_flag",
             "value": "pena_atlanta_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -6042,6 +6544,14 @@
           {
             "type": "add_flag",
             "value": "pena_chacarita"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -6068,6 +6578,14 @@
           {
             "type": "add_flag",
             "value": "pena_chacarita_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -6115,6 +6633,14 @@
           {
             "type": "add_flag",
             "value": "pena_all_boys"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -6141,6 +6667,14 @@
           {
             "type": "add_flag",
             "value": "pena_all_boys_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -6188,6 +6722,14 @@
           {
             "type": "add_flag",
             "value": "pena_riestra"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -6214,6 +6756,14 @@
           {
             "type": "add_flag",
             "value": "pena_riestra_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -6261,6 +6811,14 @@
           {
             "type": "add_flag",
             "value": "pena_patronato"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -6287,6 +6845,14 @@
           {
             "type": "add_flag",
             "value": "pena_patronato_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -6334,6 +6900,14 @@
           {
             "type": "add_flag",
             "value": "pena_quilmes"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -6360,6 +6934,14 @@
           {
             "type": "add_flag",
             "value": "pena_quilmes_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -6407,6 +6989,14 @@
           {
             "type": "add_flag",
             "value": "pena_temperley"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -6433,6 +7023,14 @@
           {
             "type": "add_flag",
             "value": "pena_temperley_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -6480,6 +7078,14 @@
           {
             "type": "add_flag",
             "value": "pena_estudiantes_rc"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -6506,6 +7112,14 @@
           {
             "type": "add_flag",
             "value": "pena_estudiantes_rc_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -6553,6 +7167,14 @@
           {
             "type": "add_flag",
             "value": "pena_central_cordoba"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -6579,6 +7201,14 @@
           {
             "type": "add_flag",
             "value": "pena_central_cordoba_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -6626,6 +7256,14 @@
           {
             "type": "add_flag",
             "value": "pena_san_martin_tuc"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -6652,6 +7290,14 @@
           {
             "type": "add_flag",
             "value": "pena_san_martin_tuc_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -6699,6 +7345,14 @@
           {
             "type": "add_flag",
             "value": "pena_san_martin_sj"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -6725,6 +7379,14 @@
           {
             "type": "add_flag",
             "value": "pena_san_martin_sj_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -6772,6 +7434,14 @@
           {
             "type": "add_flag",
             "value": "pena_gimnasia_mza"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -6798,6 +7468,14 @@
           {
             "type": "add_flag",
             "value": "pena_gimnasia_mza_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -6845,6 +7523,14 @@
           {
             "type": "add_flag",
             "value": "pena_moron"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -6871,6 +7557,14 @@
           {
             "type": "add_flag",
             "value": "pena_moron_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -6918,6 +7612,14 @@
           {
             "type": "add_flag",
             "value": "pena_almagro"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -6944,6 +7646,14 @@
           {
             "type": "add_flag",
             "value": "pena_almagro_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -6991,6 +7701,14 @@
           {
             "type": "add_flag",
             "value": "pena_chicago"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -7017,6 +7735,14 @@
           {
             "type": "add_flag",
             "value": "pena_chicago_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -7064,6 +7790,14 @@
           {
             "type": "add_flag",
             "value": "pena_los_andes"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -7090,6 +7824,14 @@
           {
             "type": "add_flag",
             "value": "pena_los_andes_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -7137,6 +7879,14 @@
           {
             "type": "add_flag",
             "value": "pena_brown"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -7163,6 +7913,14 @@
           {
             "type": "add_flag",
             "value": "pena_brown_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -7210,6 +7968,14 @@
           {
             "type": "add_flag",
             "value": "pena_agropecuario"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -7236,6 +8002,14 @@
           {
             "type": "add_flag",
             "value": "pena_agropecuario_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -7283,6 +8057,14 @@
           {
             "type": "add_flag",
             "value": "pena_san_lorenzo_pena"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -7309,6 +8091,14 @@
           {
             "type": "add_flag",
             "value": "pena_san_lorenzo_pena_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -7356,6 +8146,14 @@
           {
             "type": "add_flag",
             "value": "pena_boca_pena"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -7382,6 +8180,14 @@
           {
             "type": "add_flag",
             "value": "pena_boca_pena_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -7429,6 +8235,14 @@
           {
             "type": "add_flag",
             "value": "pena_river_pena"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -7455,6 +8269,14 @@
           {
             "type": "add_flag",
             "value": "pena_river_pena_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -7502,6 +8324,14 @@
           {
             "type": "add_flag",
             "value": "pena_caacupe"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña y bancar."
@@ -7528,6 +8358,14 @@
           {
             "type": "add_flag",
             "value": "pena_caacupe_bombo"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Acercarte al bombo."
@@ -7575,6 +8413,14 @@
           {
             "type": "add_flag",
             "value": "pena_deportivo_espanol"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña."
@@ -7622,6 +8468,14 @@
           {
             "type": "add_flag",
             "value": "pena_estudiantes_ba"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña."
@@ -7669,6 +8523,14 @@
           {
             "type": "add_flag",
             "value": "pena_defensores_belgrano"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña."
@@ -7716,6 +8578,14 @@
           {
             "type": "add_flag",
             "value": "pena_talleres_re"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña."
@@ -7763,6 +8633,14 @@
           {
             "type": "add_flag",
             "value": "pena_excursionistas"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña."
@@ -7810,6 +8688,14 @@
           {
             "type": "add_flag",
             "value": "pena_comunicaciones"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña."
@@ -7857,6 +8743,14 @@
           {
             "type": "add_flag",
             "value": "pena_sacachispas"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña."
@@ -7904,6 +8798,14 @@
           {
             "type": "add_flag",
             "value": "pena_deportivo_laferrere"
+          },
+          {
+            "type": "add_flag",
+            "value": "arco_futbol"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
           }
         ],
         "eco": "Ir a la peña."

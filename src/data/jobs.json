@@ -1642,5 +1642,44 @@
       ]
     },
     "descripcion": "Cuadernos, reuniones de padres y poco sueño."
+  },
+  {
+    "id": "empleado_club_futbol",
+    "titulo": "Empleado de club",
+    "sueldo": 280000,
+    "nivel_estres_mensual": 20,
+    "rama": "servicios",
+    "tags": [
+      "futbol",
+      "club"
+    ],
+    "requisitos": {
+      "edad_min": 21,
+      "capital_social_min": 20,
+      "credenciales_algunas": [
+        "primaria",
+        "secundaria"
+      ]
+    },
+    "descripcion": "Pasillos, planillas, peñas y la cancha como oficina."
+  },
+  {
+    "id": "dirigente_club",
+    "titulo": "Dirigente de club",
+    "sueldo": 450000,
+    "nivel_estres_mensual": 26,
+    "rama": "servicios",
+    "tags": [
+      "futbol",
+      "club",
+      "dirigencia"
+    ],
+    "requisitos": {
+      "job_previo": "empleado_club_futbol",
+      "edad_min": 25,
+      "capital_social_min": 40,
+      "dinero_min": 100000
+    },
+    "descripcion": "Asamblea, deuda de luz y poder con olor a césped."
   }
 ]

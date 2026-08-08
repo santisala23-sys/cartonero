@@ -8,6 +8,7 @@ import {
 } from "@/lib/identity";
 import { VIVIENDA_LABEL } from "@/lib/housing";
 import { formatPartidoKpis, getPartidoDef, partidoLabel } from "@/lib/partidos";
+import { rumboHeadline } from "@/lib/life-arcs";
 import { isPoliticalCareer } from "@/lib/politica";
 import type { PlayerState } from "@/lib/types";
 
@@ -66,6 +67,7 @@ export function CareerDashboard({ state }: CareerDashboardProps) {
   const partidoChips = partidoMensual
     ? formatPartidoKpis(partidoMensual)
     : [];
+  const rumbo = rumboHeadline(state);
 
   return (
     <section className="rounded-2xl bg-[#12161c] p-4 text-[#e8eef5] sm:p-5">
@@ -95,6 +97,11 @@ export function CareerDashboard({ state }: CareerDashboardProps) {
             {VIVIENDA_LABEL[state.vivienda]}
             {partido ? ` · ${partido}` : ""}
           </p>
+          {rumbo ? (
+            <p className="mt-1 truncate text-[11px] font-medium text-[#c9a227]">
+              Rumbo: {rumbo}
+            </p>
+          ) : null}
           {partidoChips.length > 0 ? (
             <p className="mt-1 text-[10px] text-[#6a7b8c]">
             Partido/trimestre: {partidoChips.map((c) => c.text).join(" · ")}

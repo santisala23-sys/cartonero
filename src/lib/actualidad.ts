@@ -1,15 +1,20 @@
 import actualidadData from "@/data/actualidad-events.json";
+import arcData from "@/data/arc-events.json";
 import { evaluateConditions } from "@/lib/conditions";
 import type { GameEvent, PlayerState } from "@/lib/types";
 
 export const ACTUALIDAD_EVENTS: GameEvent[] = actualidadData as GameEvent[];
+export const ARC_EVENTS: GameEvent[] = arcData as GameEvent[];
 
 export function isActualidadMonth(mes: number): boolean {
   return mes >= 3 && mes % 3 === 0;
 }
 
 export function getActualidadEventById(id: string): GameEvent | undefined {
-  return ACTUALIDAD_EVENTS.find((e) => e.id === id);
+  return (
+    ACTUALIDAD_EVENTS.find((e) => e.id === id) ??
+    ARC_EVENTS.find((e) => e.id === id)
+  );
 }
 
 function pickWeighted(
@@ -38,7 +43,6 @@ export function pickActualidadEvent(
       e.id !== state.last_event_id &&
       !seen.has(e.id),
   );
-
   if (pool.length === 0) {
     pool = ACTUALIDAD_EVENTS.filter(
       (e) =>
@@ -46,13 +50,22 @@ export function pickActualidadEvent(
         e.id !== state.last_event_id,
     );
   }
+  return pickWeighted(pool, random);
+}
 
-  if (pool.length === 0) {
-    pool = ACTUALIDAD_EVENTS.filter((e) =>
-      evaluateConditions(state, e.condiciones),
-    );
-  }
-
+/**
+ * Continuaciones de arco (peña → Román → club, academia → laburo, etc.).
+ * Alta prioridad cuando hay seeds.
+ */
+export function pickArcEvent(
+  state: PlayerState,
+  random = Math.random,
+): GameEvent | null {
+  const pool = ARC_EVENTS.filter(
+    (e) =>
+      evaluateConditions(state, e.condiciones) &&
+      e.id !== state.last_event_id,
+  );
   return pickWeighted(pool, random);
 }
 

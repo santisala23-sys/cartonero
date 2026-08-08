@@ -12,12 +12,14 @@ import {
   createProfile,
   dismissMonthSummary,
   dismissRiskReveal as clearRiskReveal,
+  finishBrujula,
   normalizePlayerState,
   resolveBills,
   startCredential,
 } from "@/lib/game-engine";
 import type { Genero, PlayerState } from "@/lib/types";
 import type { PartidoId } from "@/lib/partidos";
+import type { PartidoAfinidades } from "@/lib/brujula";
 import {
   getOrCreatePlayerKey,
   loadLocalState,
@@ -36,6 +38,10 @@ interface GameStore {
   dismissSummary: () => void;
   dismissRiskReveal: () => void;
   chooseParty: (partidoId: PartidoId | "skip", nombrePropio?: string) => void;
+  finishBrujula: (
+    scores: PartidoAfinidades,
+    joinPartidoId: PartidoId | "skip",
+  ) => void;
   pickTraining: (credentialId: string | null) => void;
   pickJob: (jobId: string | null) => void;
   reset: () => void;
@@ -104,6 +110,12 @@ export const useGameStore = create<GameStore>((set, get) => ({
   chooseParty: (partidoId, nombrePropio) => {
     const { state, playerKey } = get();
     const next = chooseParty(state, partidoId, nombrePropio);
+    set({ state: commit(next, playerKey) });
+  },
+
+  finishBrujula: (scores, joinPartidoId) => {
+    const { state, playerKey } = get();
+    const next = finishBrujula(state, scores, joinPartidoId);
     set({ state: commit(next, playerKey) });
   },
 

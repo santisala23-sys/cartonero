@@ -3,6 +3,7 @@ import {
   isActualidadMonth,
   markActualidadSeen,
   pickActualidadEvent,
+  pickArcEvent,
 } from "@/lib/actualidad";
 import { evaluateConditions } from "@/lib/conditions";
 import {
@@ -16,8 +17,10 @@ import {
   applyDebtInterest,
   isCobranzaEvent,
 } from "@/lib/debt";
-import { tickBodyLimits } from "@/lib/endings";
+import { shouldOfferBrujula } from "@/lib/brujula";
+import type { PartidoAfinidades } from "@/lib/brujula";
 import { summarizeOptionBranches } from "@/lib/effect-summary";
+import { tickBodyLimits } from "@/lib/endings";
 import { birthdayGiftFor } from "@/lib/identity";
 import { syncVivienda, tickViviendaMonth } from "@/lib/housing";
 import {
@@ -93,6 +96,7 @@ export function createInitialState(): PlayerState {
     capital_social: 10,
     partido: null,
     partido_nombre: null,
+    partido_afinidades: null,
     trabajo_actual: createInitialTrabajo(),
     mes: 1,
     flags: ["worked_cartonero", "sin_prepaga", "vivienda_villa", "luz_colgada"],
@@ -264,7 +268,13 @@ export function pickWeightedEvent(
 }
 
 function pickEventForState(state: PlayerState): GameEvent | null {
-  // Cada 3 meses desde el mes 3: beat de actualidad / farándula / fútbol
+  // Continuaciones de arco (peña→Román→club, academia→laburo…): alta prioridad
+  if (Math.random() < 0.55) {
+    const arc = pickArcEvent(state);
+    if (arc) return arc;
+  }
+
+  // Cada 3 turnos desde el 3: beat de actualidad / farándula / fútbol
   if (isActualidadMonth(state.mes)) {
     const actualidad = pickActualidadEvent(state);
     if (actualidad) return actualidad;
@@ -275,6 +285,10 @@ function pickEventForState(state: PlayerState): GameEvent | null {
     const pol = pickPoliticaEvent(state);
     if (pol) return pol;
   }
+
+  // Segundo intento de arco si no hubo nada temático
+  const arc2 = pickArcEvent(state);
+  if (arc2 && Math.random() < 0.35) return arc2;
 
   let eligible = getEligibleEvents(state);
   if (eligible.length === 0) {
@@ -542,6 +556,12 @@ export function resolveBills(
 
 function maybeEnterPartyPhase(state: PlayerState): PlayerState {
   if (state.game_over) return state;
+
+  // Primero la brújula absurda (una sola vez) cuando ya podés entrar a un partido
+  if (shouldOfferBrujula(state)) {
+    return { ...state, month_phase: "brujula" };
+  }
+
   const needsJoin = canJoinParty(
     state.influencia,
     state.partido,
@@ -556,6 +576,44 @@ function maybeEnterPartyPhase(state: PlayerState): PlayerState {
     return { ...state, month_phase: "partido" };
   }
   return { ...state, month_phase: "idle" };
+}
+
+/** Cierra la brújula: guarda afinidades y opcionalmente afilia al top. */
+export function finishBrujula(
+  state: PlayerState,
+  scores: PartidoAfinidades,
+  joinPartidoId: PartidoId | "skip",
+): PlayerState {
+  if (state.game_over || state.month_phase !== "brujula") {
+    return state;
+  }
+
+  const flags = state.flags.includes("brujula_completa")
+    ? state.flags
+    : [...state.flags, "brujula_completa"];
+
+  let next: PlayerState = {
+    ...state,
+    partido_afinidades: scores,
+    flags,
+    month_phase: "idle",
+  };
+
+  if (joinPartidoId !== "skip") {
+    next = {
+      ...next,
+      month_phase: "partido",
+    };
+    // Afiliar directo al recomendado
+    next = chooseParty(
+      { ...next, month_phase: "partido" },
+      joinPartidoId,
+    );
+    return next;
+  }
+
+  // Ver todos → panel de partidos
+  return { ...next, month_phase: "partido" };
 }
 
 /** Close the month résumé; offer party join/create when thresholds hit. */
