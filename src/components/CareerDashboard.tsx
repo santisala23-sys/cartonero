@@ -7,6 +7,8 @@ import {
   MESES_NOMBRE,
 } from "@/lib/identity";
 import { VIVIENDA_LABEL } from "@/lib/housing";
+import { partidoLabel } from "@/lib/partidos";
+import { isPoliticalCareer } from "@/lib/politica";
 import type { PlayerState } from "@/lib/types";
 
 interface CareerDashboardProps {
@@ -57,6 +59,9 @@ export function CareerDashboard({ state }: CareerDashboardProps) {
   const influ = influenciaProgress(state.influencia);
   const mesNombre = MESES_NOMBRE[state.mes_calendario - 1] ?? "";
   const showAcv = state.estres >= 100 || hadRecentAcv(state);
+  const showNegro =
+    isPoliticalCareer(state) || (state.dinero_negro ?? 0) > 0;
+  const partido = partidoLabel(state.partido, state.partido_nombre);
 
   return (
     <section className="rounded-2xl bg-[#12161c] p-4 text-[#e8eef5] sm:p-5">
@@ -84,20 +89,47 @@ export function CareerDashboard({ state }: CareerDashboardProps) {
             {state.hijos > 0 ? ` · ${state.hijos} hijo${state.hijos > 1 ? "s" : ""}` : ""}
             {" · "}
             {VIVIENDA_LABEL[state.vivienda]}
+            {partido ? ` · ${partido}` : ""}
           </p>
         </div>
       </div>
 
       <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
-        <StatTile label="Dinero" value={formatARS(state.dinero)} accent="text-[#5b9fd4]" />
         <StatTile
-          label="Deuda"
-          value={formatARS(state.deuda)}
-          accent={state.deuda > 0 ? "text-[#e2b04a]" : "text-white"}
+          label={showNegro ? "Blanco" : "Dinero"}
+          value={formatARS(state.dinero)}
+          accent="text-[#5b9fd4]"
         />
+        {showNegro ? (
+          <StatTile
+            label="Negro"
+            value={formatARS(state.dinero_negro ?? 0)}
+            accent="text-amber-300"
+          />
+        ) : (
+          <StatTile
+            label="Deuda"
+            value={formatARS(state.deuda)}
+            accent={state.deuda > 0 ? "text-[#e2b04a]" : "text-white"}
+          />
+        )}
         <StatTile label="Sueldo" value={formatARS(state.trabajo_actual.sueldo)} />
         <StatTile label="Influencia" value={Math.round(state.influencia)} accent="text-[#3d9b6a]" />
       </div>
+      {showNegro ? (
+        <div className="mt-2 grid grid-cols-2 gap-2">
+          <StatTile
+            label="Deuda"
+            value={formatARS(state.deuda)}
+            accent={state.deuda > 0 ? "text-[#e2b04a]" : "text-white"}
+          />
+          <StatTile
+            label="Total"
+            value={formatARS(state.dinero + (state.dinero_negro ?? 0))}
+            accent="text-[#5fd4a0]"
+          />
+        </div>
+      ) : null}
 
       <div
         className={`mt-3 grid gap-2 ${

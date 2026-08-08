@@ -5,6 +5,7 @@ import {
   advanceMonth,
   applyChoice,
   changeJob,
+  chooseParty,
   continueFromJob,
   continueFromTraining,
   createInitialState,
@@ -15,6 +16,7 @@ import {
   startCredential,
 } from "@/lib/game-engine";
 import type { Genero, PlayerState } from "@/lib/types";
+import type { PartidoId } from "@/lib/partidos";
 import {
   getOrCreatePlayerKey,
   loadLocalState,
@@ -31,6 +33,7 @@ interface GameStore {
   choose: (optionId: string) => void;
   confirmBills: (decisions: Record<string, "pay" | "skip">) => void;
   dismissSummary: () => void;
+  chooseParty: (partidoId: PartidoId | "skip", nombrePropio?: string) => void;
   pickTraining: (credentialId: string | null) => void;
   pickJob: (jobId: string | null) => void;
   reset: () => void;
@@ -87,6 +90,12 @@ export const useGameStore = create<GameStore>((set, get) => ({
   dismissSummary: () => {
     const { state, playerKey } = get();
     const next = dismissMonthSummary(state);
+    set({ state: commit(next, playerKey) });
+  },
+
+  chooseParty: (partidoId, nombrePropio) => {
+    const { state, playerKey } = get();
+    const next = chooseParty(state, partidoId, nombrePropio);
     set({ state: commit(next, playerKey) });
   },
 

@@ -117,7 +117,7 @@ export type Condition =
 export type Effect =
   | {
       type: "delta";
-      metric: MetricKey | "dinero" | "deuda";
+      metric: MetricKey | "dinero" | "deuda" | "dinero_negro";
       amount: number;
     }
   | { type: "set_metric"; metric: MetricKey; value: number }
@@ -134,6 +134,8 @@ export interface EventOption {
   id: string;
   label: string;
   efectos: Effect[];
+  /** Short consequence line for the month summary (El Ídolo style). */
+  eco?: string;
 }
 
 export interface GameEvent {
@@ -145,7 +147,30 @@ export interface GameEvent {
   opciones: EventOption[];
 }
 
-export type MonthPhase = "idle" | "capacitacion" | "trabajo" | "cuentas";
+export type MonthPhase =
+  | "idle"
+  | "capacitacion"
+  | "trabajo"
+  | "cuentas"
+  | "partido";
+
+export interface MonthSnapshot {
+  dinero: number;
+  dinero_negro: number;
+  deuda: number;
+  salud: number;
+  estres: number;
+  bienestar: number;
+  capital_social: number;
+  influencia: number;
+}
+
+export interface ChoiceEcho {
+  event_titulo: string;
+  opcion_label: string;
+  texto: string;
+  tono: "malo" | "bueno" | "neutro";
+}
 
 export interface PlayerState {
   nombre: string;
@@ -161,12 +186,18 @@ export interface PlayerState {
   vivienda: Vivienda;
   /** Months living with stolen electricity in the villa. */
   meses_luz_colgada: number;
+  /** Plata en blanco (sueldo, formal). */
   dinero: number;
+  /** Plata en negro (coimas, sobres) — solo relevante en política. */
+  dinero_negro: number;
   deuda: number;
   salud: number;
   estres: number;
   bienestar: number;
   capital_social: number;
+  /** Partido político actual, si hay. */
+  partido: string | null;
+  partido_nombre: string | null;
   trabajo_actual: TrabajoActual;
   mes: number;
   flags: string[];
@@ -183,6 +214,8 @@ export interface PlayerState {
   month_phase: MonthPhase;
   /** IDs of actualidad/media events already shown (cycle resets when full). */
   actualidad_seen_ids: string[];
+  /** Snapshot at month start for KPI bars. */
+  month_start_snapshot: MonthSnapshot | null;
   pending_bills: {
     id: string;
     label: string;
@@ -212,6 +245,13 @@ export interface PlayerState {
       deltas: Partial<Record<MetricKey, number>>;
       tono: "malo" | "bueno" | "neutro";
     }[];
+    choice_ecos?: ChoiceEcho[];
+    metric_deltas?: Partial<
+      Record<MetricKey | "dinero" | "dinero_negro" | "deuda", number>
+    >;
+    dinero_ganado?: number;
+    dinero_perdido?: number;
+    margen?: number;
     estudios_completados?: string[];
     interes_deuda?: number;
     pago_deuda?: number;

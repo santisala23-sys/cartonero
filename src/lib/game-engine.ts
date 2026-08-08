@@ -35,6 +35,22 @@ import {
   monthlyJobCapitalSocial,
 } from "@/lib/jobs";
 import {
+  buildChoiceEcho,
+  cashTotal,
+  enrichLedgerAfterChoice,
+  enrichLedgerWithoutChoice,
+  routePoliticaCashToNegro,
+  takeMonthSnapshot,
+} from "@/lib/month-ledger";
+import {
+  canCreateOrSwitchParty,
+  canJoinParty,
+  INFLUENCIA_CREAR_PARTIDO,
+  INFLUENCIA_UNIRSE_PARTIDO,
+  PARTIDOS,
+  type PartidoId,
+} from "@/lib/partidos";
+import {
   getPoliticaEventById,
   isPoliticalCareer,
   pickPoliticaEvent,
@@ -63,11 +79,14 @@ export function createInitialState(): PlayerState {
     vivienda: "villa",
     meses_luz_colgada: 0,
     dinero: 0,
+    dinero_negro: 0,
     deuda: 0,
     salud: 80,
     estres: 20,
     bienestar: 50,
     capital_social: 10,
+    partido: null,
+    partido_nombre: null,
     trabajo_actual: createInitialTrabajo(),
     mes: 1,
     flags: ["worked_cartonero", "sin_prepaga", "vivienda_villa", "luz_colgada"],
@@ -83,6 +102,7 @@ export function createInitialState(): PlayerState {
     meses_bienestar_roto: 0,
     month_phase: "idle",
     actualidad_seen_ids: [],
+    month_start_snapshot: null,
     pending_bills: null,
     pending_month_summary: false,
     last_month_ledger: null,
@@ -299,6 +319,7 @@ export function advanceMonth(state: PlayerState): PlayerState {
     return state;
   }
 
+  const snapshot = takeMonthSnapshot(state);
   const sueldo = state.trabajo_actual.sueldo;
 
   let mesCal = state.mes_calendario + 1;
@@ -317,6 +338,7 @@ export function advanceMonth(state: PlayerState): PlayerState {
     anio_calendario: anio,
     month_phase: "capacitacion",
     pending_bills: null,
+    month_start_snapshot: snapshot,
     last_month_ledger: {
       sueldo,
       lines: [],
@@ -328,6 +350,10 @@ export function advanceMonth(state: PlayerState): PlayerState {
       interes_deuda: 0,
       pago_deuda: 0,
       balance_historias: 0,
+      choice_ecos: [],
+      dinero_ganado: sueldo,
+      dinero_perdido: 0,
+      margen: sueldo,
     },
   };
 
@@ -345,10 +371,11 @@ export function advanceMonth(state: PlayerState): PlayerState {
   // Birthday when calendar month hits birth month
   if (mesCal === next.mes_nacimiento) {
     const gift = birthdayGiftFor(next);
+    const giftCash = Math.max(0, gift.dinero);
     next = {
       ...next,
       edad: next.edad + 1,
-      dinero: next.dinero + Math.max(0, gift.dinero),
+      dinero: next.dinero + giftCash,
       salud: next.salud + (gift.deltas.salud ?? 0),
       estres: next.estres + (gift.deltas.estres ?? 0),
       bienestar: next.bienestar + (gift.deltas.bienestar ?? 0),
@@ -367,6 +394,11 @@ export function advanceMonth(state: PlayerState): PlayerState {
           },
         ],
         balance_historias: gift.dinero,
+        dinero_ganado: (next.last_month_ledger!.dinero_ganado ?? sueldo) + giftCash,
+        margen:
+          (next.last_month_ledger!.dinero_ganado ?? sueldo) +
+          giftCash -
+          (next.last_month_ledger!.dinero_perdido ?? 0),
       },
     };
   }
@@ -376,6 +408,7 @@ export function advanceMonth(state: PlayerState): PlayerState {
   let influBump = 0;
   if (job?.rama === "politica") influBump += 2;
   if (next.capital_social >= 50) influBump += 1;
+  if (next.partido) influBump += 1;
   if (influBump) {
     next = { ...next, influencia: next.influencia + influBump };
   }
@@ -404,7 +437,7 @@ export function continueFromJob(state: PlayerState): PlayerState {
   };
 }
 
-/** After the player chooses pay/skip for each bill, finish the month and show summary. */
+/** After bills: roll the month event first; summary comes after the choice. */
 export function resolveBills(
   state: PlayerState,
   decisions: Record<string, "pay" | "skip">,
@@ -424,6 +457,13 @@ export function resolveBills(
   let next = applyPassiveEffects(afterStudies);
   const interes = Math.max(0, next.deuda - deudaBefore);
 
+  const storyGain = Math.max(0, ledger.balance_historias);
+  const storyLoss = Math.max(0, -ledger.balance_historias);
+  const dinero_ganado =
+    (state.last_month_ledger?.dinero_ganado ?? ledger.sueldo) + storyGain;
+  const dinero_perdido =
+    ledger.total_gastos + (ledger.pago_deuda ?? 0) + storyLoss;
+
   const enrichedLedger = {
     ...ledger,
     estudios_completados: completed,
@@ -433,23 +473,61 @@ export function resolveBills(
       ledger.total_gastos +
       ledger.balance_historias -
       (ledger.pago_deuda ?? 0),
+    choice_ecos: state.last_month_ledger?.choice_ecos ?? [],
+    dinero_ganado,
+    dinero_perdido,
+    margen: dinero_ganado - dinero_perdido,
   };
 
   next = {
     ...next,
     last_month_ledger: enrichedLedger,
-    pending_month_summary: true,
+    pending_bills: null,
     month_phase: "idle",
   };
 
   const body = tickBodyLimits(next);
   next = body.state;
-
   next = clampMetrics(next);
-  return checkGameOver(next);
+  next = checkGameOver(next);
+  if (next.game_over) {
+    return enrichLedgerWithoutChoice({
+      ...next,
+      pending_month_summary: true,
+    });
+  }
+
+  const event = pickEventForState(next);
+  if (event) {
+    return {
+      ...next,
+      active_event_id: event.id,
+      pending_month_summary: false,
+    };
+  }
+
+  // No event this month → go straight to summary with KPI bars
+  return {
+    ...enrichLedgerWithoutChoice(next),
+    pending_month_summary: true,
+  };
 }
 
-/** Close the month résumé and roll the random event. */
+function maybeEnterPartyPhase(state: PlayerState): PlayerState {
+  if (state.game_over) return state;
+  const needsJoin = canJoinParty(state.influencia, state.partido);
+  const canCreate =
+    state.influencia >= INFLUENCIA_CREAR_PARTIDO &&
+    !state.flags.includes("partido_menu_50_visto") &&
+    state.partido !== "propio";
+
+  if (needsJoin || canCreate) {
+    return { ...state, month_phase: "partido" };
+  }
+  return { ...state, month_phase: "idle" };
+}
+
+/** Close the month résumé; offer party join/create when thresholds hit. */
 export function dismissMonthSummary(state: PlayerState): PlayerState {
   if (!state.pending_month_summary) {
     return state;
@@ -465,22 +543,19 @@ export function dismissMonthSummary(state: PlayerState): PlayerState {
     return next;
   }
 
-  const event = pickEventForState(next);
-  if (event) {
-    next = {
-      ...next,
-      active_event_id: event.id,
-    };
-  }
-
-  return checkGameOver(next);
+  return maybeEnterPartyPhase(next);
 }
 
 export function applyChoice(
   state: PlayerState,
   optionId: string,
 ): PlayerState {
-  if (state.game_over || !state.active_event_id || state.pending_bills || state.pending_month_summary) {
+  if (
+    state.game_over ||
+    !state.active_event_id ||
+    state.pending_bills ||
+    state.pending_month_summary
+  ) {
     return state;
   }
 
@@ -497,15 +572,125 @@ export function applyChoice(
     return state;
   }
 
-  let next = applyEffects(state, option.efectos);
+  const isPolitica = Boolean(getPoliticaEventById(event.id));
+  const effects = isPolitica
+    ? routePoliticaCashToNegro(option.efectos)
+    : option.efectos;
+
+  const beforeCash = cashTotal(state);
+  let next = applyEffects(state, effects);
+  const echo = buildChoiceEcho(event.titulo, {
+    label: option.label,
+    eco: option.eco,
+    efectos: effects,
+  });
+
   next = {
     ...next,
     last_event_id: event.id,
     active_event_id: null,
   };
   next = markActualidadSeen(next, event.id);
+  next = enrichLedgerAfterChoice(next, beforeCash, echo);
+  next = {
+    ...next,
+    pending_month_summary: true,
+    month_phase: "idle",
+  };
 
   return checkGameOver(next);
+}
+
+export function chooseParty(
+  state: PlayerState,
+  partidoId: PartidoId | "skip",
+  nombrePropio?: string,
+): PlayerState {
+  if (state.game_over || state.month_phase !== "partido") {
+    return state;
+  }
+
+  if (partidoId === "skip") {
+    const flags = state.flags.includes("pospuso_partido")
+      ? state.flags
+      : [...state.flags, "pospuso_partido"];
+    let nextFlags = flags;
+    if (state.influencia >= INFLUENCIA_CREAR_PARTIDO) {
+      nextFlags = nextFlags.includes("partido_menu_50_visto")
+        ? nextFlags
+        : [...nextFlags, "partido_menu_50_visto"];
+    }
+    return {
+      ...state,
+      flags: nextFlags,
+      month_phase: "idle",
+    };
+  }
+
+  if (partidoId === "propio") {
+    if (state.influencia < INFLUENCIA_CREAR_PARTIDO) {
+      return state;
+    }
+    const nombre = nombrePropio?.trim() || "Espacio propio";
+    const flags = state.flags.includes("partido_menu_50_visto")
+      ? state.flags
+      : [...state.flags, "partido_menu_50_visto"];
+    return clampMetrics({
+      ...state,
+      partido: "propio",
+      partido_nombre: nombre,
+      influencia: state.influencia + 3,
+      capital_social: state.capital_social + 2,
+      flags: flags.includes("partido_propio")
+        ? flags
+        : [...flags, "partido_propio"],
+      month_phase: "idle",
+    });
+  }
+
+  if (state.influencia < INFLUENCIA_UNIRSE_PARTIDO) {
+    return state;
+  }
+
+  const def = PARTIDOS.find((p) => p.id === partidoId);
+  if (!def) return state;
+
+  let flags = state.flags.filter((f) => f !== "pospuso_partido");
+  if (state.influencia >= INFLUENCIA_CREAR_PARTIDO) {
+    flags = flags.includes("partido_menu_50_visto")
+      ? flags
+      : [...flags, "partido_menu_50_visto"];
+  }
+  flags = flags.includes(`partido_${partidoId}`)
+    ? flags
+    : [...flags, `partido_${partidoId}`];
+
+  return clampMetrics({
+    ...state,
+    partido: partidoId,
+    partido_nombre: def.nombre,
+    influencia: state.influencia + 2,
+    capital_social: state.capital_social + 1,
+    flags,
+    month_phase: "idle",
+  });
+}
+
+export function partyOfferMode(
+  state: PlayerState,
+): "join" | "create" | "none" {
+  if (state.month_phase === "partido") {
+    if (!state.partido) return "join";
+    return "create";
+  }
+  if (canJoinParty(state.influencia, state.partido)) return "join";
+  if (
+    canCreateOrSwitchParty(state.influencia, state.partido) &&
+    !state.flags.includes("partido_menu_50_visto")
+  ) {
+    return "create";
+  }
+  return "none";
 }
 
 export function changeJob(state: PlayerState, jobId: string): PlayerState {

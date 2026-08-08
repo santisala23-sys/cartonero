@@ -2,6 +2,7 @@ import type { Effect, MetricKey } from "@/lib/types";
 
 const METRIC_LABELS: Record<string, string> = {
   dinero: "Dinero",
+  dinero_negro: "En negro",
   deuda: "Deuda",
   salud: "Salud",
   estres: "Estrés",
@@ -30,6 +31,11 @@ export function metricDeltaTone(
     if (amount > 0) return "good";
     return "neutral";
   }
+  if (metric === "dinero_negro") {
+    if (amount > 0) return "money";
+    if (amount < 0) return "good";
+    return "neutral";
+  }
   if (amount === 0) return "neutral";
   if (LOWER_IS_GOOD.has(metric)) {
     return amount < 0 ? "good" : "bad";
@@ -55,6 +61,11 @@ function formatDelta(
     }
     if (amount > 0) return `+${formatARS(amount)}`;
     return "Dinero sin cambio";
+  }
+  if (metric === "dinero_negro") {
+    if (amount > 0) return `+${formatARS(amount)} en negro`;
+    if (amount < 0) return `−${formatARS(amount)} en negro`;
+    return "Negro sin cambio";
   }
   if (metric === "deuda") {
     if (amount < 0) return `−${formatARS(amount)} deuda`;

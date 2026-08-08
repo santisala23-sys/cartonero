@@ -19,6 +19,7 @@ export function clampMetrics(state: PlayerState): PlayerState {
   const next = {
     ...state,
     dinero: Math.max(0, state.dinero),
+    dinero_negro: Math.max(0, state.dinero_negro ?? 0),
     deuda: Math.max(0, Math.round(state.deuda)),
     salud: clamp(state.salud, 0, 100),
     estres: clamp(state.estres, 0, 100),
@@ -29,6 +30,9 @@ export function clampMetrics(state: PlayerState): PlayerState {
     hijos: Math.max(0, Math.round(state.hijos ?? 0)),
     mes_nacimiento: clamp(state.mes_nacimiento || 1, 1, 12),
     mes_calendario: clamp(state.mes_calendario || 1, 1, 12),
+    partido: typeof state.partido === "string" ? state.partido : null,
+    partido_nombre:
+      typeof state.partido_nombre === "string" ? state.partido_nombre : null,
   };
   return syncDebtFlags(next);
 }
@@ -109,6 +113,24 @@ export function applyEffect(state: PlayerState, effect: Effect): PlayerState {
           return applyMoneySpend(state, Math.abs(effect.amount));
         }
         return applyMoneyGain(state, effect.amount);
+      }
+      if (effect.metric === "dinero_negro") {
+        if (effect.amount < 0) {
+          const cost = Math.abs(effect.amount);
+          const negro = state.dinero_negro ?? 0;
+          if (negro >= cost) {
+            return { ...state, dinero_negro: negro - cost };
+          }
+          // Si no alcanza el negro, el resto sale del blanco / deuda
+          return applyMoneySpend(
+            { ...state, dinero_negro: 0 },
+            cost - negro,
+          );
+        }
+        return {
+          ...state,
+          dinero_negro: (state.dinero_negro ?? 0) + Math.max(0, Math.round(effect.amount)),
+        };
       }
       if (effect.metric === "deuda") {
         return {
@@ -273,12 +295,17 @@ export function normalizePlayerState(
         : "villa",
     meses_luz_colgada: Number(raw.meses_luz_colgada) || 0,
     dinero: Number(raw.dinero) || 0,
+    dinero_negro: Number(raw.dinero_negro) || 0,
     deuda: Number(raw.deuda) || 0,
     salud: Number(raw.salud) || 0,
     estres: Number(raw.estres) || 0,
     bienestar: Number(raw.bienestar) || 0,
     capital_social: Number(raw.capital_social) || 0,
+    partido: typeof raw.partido === "string" ? raw.partido : null,
+    partido_nombre:
+      typeof raw.partido_nombre === "string" ? raw.partido_nombre : null,
     trabajo_actual: raw.trabajo_actual,
+    month_start_snapshot: raw.month_start_snapshot ?? null,
     mes: Number(raw.mes) || 1,
     flags: Array.isArray(raw.flags) ? raw.flags : [],
     credenciales: Array.isArray(raw.credenciales)
@@ -320,7 +347,8 @@ function normalizeMonthPhase(
     phase === "idle" ||
     phase === "capacitacion" ||
     phase === "trabajo" ||
-    phase === "cuentas"
+    phase === "cuentas" ||
+    phase === "partido"
   ) {
     return phase;
   }

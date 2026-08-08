@@ -8,9 +8,10 @@ import { CharacterCreate } from "@/components/CharacterCreate";
 import { EventCard } from "@/components/EventCard";
 import { JobStep } from "@/components/JobStep";
 import { MonthSummaryPanel } from "@/components/MonthSummaryPanel";
+import { PartyPanel } from "@/components/PartyPanel";
 import { StartScreen } from "@/components/StartScreen";
 import { TrainingStep } from "@/components/TrainingStep";
-import { getActiveEvent } from "@/lib/game-engine";
+import { getActiveEvent, partyOfferMode } from "@/lib/game-engine";
 import { useGameStore } from "@/lib/store";
 
 export function GameShell() {
@@ -24,6 +25,7 @@ export function GameShell() {
   const dismissSummary = useGameStore((s) => s.dismissSummary);
   const pickTraining = useGameStore((s) => s.pickTraining);
   const pickJob = useGameStore((s) => s.pickJob);
+  const chooseParty = useGameStore((s) => s.chooseParty);
   const reset = useGameStore((s) => s.reset);
 
   const [showTitle, setShowTitle] = useState(true);
@@ -72,7 +74,10 @@ export function GameShell() {
   const payingBills =
     phase === "cuentas" && Boolean(state.pending_bills?.length);
   const showingSummary = Boolean(state.pending_month_summary);
-  const midMonth = inTraining || inJob || payingBills || showingSummary;
+  const inParty = phase === "partido";
+  const partyMode = inParty ? partyOfferMode(state) : "none";
+  const midMonth =
+    inTraining || inJob || payingBills || showingSummary || inParty;
   const blocked = Boolean(activeEvent) || midMonth || state.game_over;
 
   function startNewGame() {
@@ -113,11 +118,24 @@ export function GameShell() {
               state={state}
               onConfirm={confirmBills}
             />
+          ) : activeEvent ? (
+            <EventCard
+              event={activeEvent}
+              onChoose={choose}
+              dinero={state.dinero}
+            />
           ) : showingSummary ? (
             <MonthSummaryPanel
               key={`summary-${state.mes}`}
               state={state}
               onContinue={dismissSummary}
+            />
+          ) : inParty && partyMode !== "none" ? (
+            <PartyPanel
+              key={`party-${state.mes}`}
+              state={state}
+              mode={partyMode}
+              onChoose={chooseParty}
             />
           ) : state.game_over ? (
             <div className="mx-auto max-w-xl rounded-2xl bg-[#1a222d] px-5 py-8 text-center text-[#e8eef5]">
@@ -138,12 +156,6 @@ export function GameShell() {
                 {state.acv_count > 0 ? ` · ACVs ${state.acv_count}/4` : ""}
               </p>
             </div>
-          ) : activeEvent ? (
-            <EventCard
-              event={activeEvent}
-              onChoose={choose}
-              dinero={state.dinero}
-            />
           ) : (
             <div className="mx-auto max-w-md rounded-2xl bg-[#1a222d] px-5 py-8 text-center text-[#e8eef5]">
               <p className="font-display text-xl text-white sm:text-2xl">
