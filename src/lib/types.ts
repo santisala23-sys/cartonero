@@ -179,6 +179,8 @@ export interface PlayerState {
   acv_count: number;
   meses_bienestar_roto: number;
   month_phase: MonthPhase;
+  /** IDs of actualidad/media events already shown (cycle resets when full). */
+  actualidad_seen_ids: string[];
   pending_bills: {
     id: string;
     label: string;

@@ -303,6 +303,9 @@ export function normalizePlayerState(
     acv_count: Number(raw.acv_count) || 0,
     meses_bienestar_roto: Number(raw.meses_bienestar_roto) || 0,
     month_phase: normalizeMonthPhase(raw),
+    actualidad_seen_ids: Array.isArray(raw.actualidad_seen_ids)
+      ? raw.actualidad_seen_ids.filter((id): id is string => typeof id === "string")
+      : [],
     last_month_ledger: raw.last_month_ledger ?? null,
     pending_bills: raw.pending_bills ?? null,
     pending_month_summary: Boolean(raw.pending_month_summary),

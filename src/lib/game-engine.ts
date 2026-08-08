@@ -1,3 +1,9 @@
+import {
+  getActualidadEventById,
+  isActualidadMonth,
+  markActualidadSeen,
+  pickActualidadEvent,
+} from "@/lib/actualidad";
 import { evaluateConditions } from "@/lib/conditions";
 import {
   getCredentialById,
@@ -71,6 +77,7 @@ export function createInitialState(): PlayerState {
     acv_count: 0,
     meses_bienestar_roto: 0,
     month_phase: "idle",
+    actualidad_seen_ids: [],
     pending_bills: null,
     pending_month_summary: false,
     last_month_ledger: null,
@@ -225,6 +232,12 @@ export function pickWeightedEvent(
 }
 
 function pickEventForState(state: PlayerState): GameEvent | null {
+  // Cada 3 meses desde el mes 3: beat de actualidad / farándula / fútbol
+  if (isActualidadMonth(state.mes)) {
+    const actualidad = pickActualidadEvent(state);
+    if (actualidad) return actualidad;
+  }
+
   let eligible = getEligibleEvents(state);
   if (eligible.length === 0) {
     eligible = EVENTS.filter((event) =>
@@ -460,7 +473,7 @@ export function applyChoice(
     return state;
   }
 
-  const event = getEventById(state.active_event_id);
+  const event = getEventById(state.active_event_id) ?? getActualidadEventById(state.active_event_id);
   if (!event) {
     return { ...state, active_event_id: null };
   }
@@ -476,6 +489,7 @@ export function applyChoice(
     last_event_id: event.id,
     active_event_id: null,
   };
+  next = markActualidadSeen(next, event.id);
 
   return checkGameOver(next);
 }
@@ -511,5 +525,9 @@ export function changeJob(state: PlayerState, jobId: string): PlayerState {
 
 export function getActiveEvent(state: PlayerState): GameEvent | null {
   if (!state.active_event_id) return null;
-  return getEventById(state.active_event_id) ?? null;
+  return (
+    getEventById(state.active_event_id) ??
+    getActualidadEventById(state.active_event_id) ??
+    null
+  );
 }

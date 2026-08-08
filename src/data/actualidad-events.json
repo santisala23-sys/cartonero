@@ -1,0 +1,7628 @@
+[
+  {
+    "id": "act_beltran_briones",
+    "titulo": "Capacitación express: Beltrán Briones",
+    "texto": "Beltrán Briones da una capacitación de dos semanas sobre Negocios Inmobiliarios Digitales. Zoom, leads y la promesa de vender depas sin salir del living. Cupos limitados y un precio que duele.",
+    "peso": 12,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "anotarse",
+        "label": "Anotarte (cuesta plata y nervios)",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -45000
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 10
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 3
+          },
+          {
+            "type": "add_credential",
+            "value": "curso_inmobiliario_digital"
+          },
+          {
+            "type": "add_flag",
+            "value": "alumno_beltran"
+          }
+        ]
+      },
+      {
+        "id": "mirar_desde_afuera",
+        "label": "Seguir scrolleando",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_wanda_academia",
+    "titulo": "Academia Wanda",
+    "texto": "Wanda Nara abre su academia de influencers digitales. Filtros, personal branding y la teoría del contenido que convierte. Hay fila de pibes con ring light.",
+    "peso": 12,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "inscribirse",
+        "label": "Inscribirte",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -60000
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 10
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 5
+          },
+          {
+            "type": "add_credential",
+            "value": "academia_influencers_wanda"
+          },
+          {
+            "type": "add_flag",
+            "value": "alumno_wanda"
+          }
+        ]
+      },
+      {
+        "id": "bardear",
+        "label": "Bardear en stories anónimas",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -4
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 3
+          },
+          {
+            "type": "risk",
+            "chance": 0.3,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": -5
+              },
+              {
+                "type": "add_flag",
+                "value": "cancelado_wanda"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_guido_changuito",
+    "titulo": "Por el changuito",
+    "texto": "Te anotás al programa de Guido Kaczka. Hay changuito, preguntas boludas y la chance de llevarte un plasma o volver con un mate listo y la vergüenza.",
+    "peso": 11,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "jugar",
+        "label": "Jugar en vivo",
+        "efectos": [
+          {
+            "type": "risk",
+            "chance": 0.45,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "dinero",
+                "amount": 180000
+              },
+              {
+                "type": "delta",
+                "metric": "capital_social",
+                "amount": 12
+              },
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": 6
+              },
+              {
+                "type": "add_flag",
+                "value": "gano_changuito"
+              }
+            ]
+          },
+          {
+            "type": "risk",
+            "chance": 0.55,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "capital_social",
+                "amount": 4
+              },
+              {
+                "type": "delta",
+                "metric": "estres",
+                "amount": 8
+              },
+              {
+                "type": "delta",
+                "metric": "bienestar",
+                "amount": -4
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "no_da",
+        "label": "Rajás antes de salir al aire",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": -3
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_ivan_de_pineda",
+    "titulo": "Iván de Pineda en el boliche",
+    "texto": "Te cruzás a Iván de Pineda en el boliche y pegan onda. Habla bajito, sonríe de comercial y el DJ pone algo que no es cumbia. Tenés una ventana de 40 segundos.",
+    "peso": 14,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ocho_escalones",
+        "label": "Pedirle entrar a Los 8 Escalones",
+        "efectos": [
+          {
+            "type": "risk",
+            "chance": 0.4,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "capital_social",
+                "amount": 14
+              },
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": 8
+              },
+              {
+                "type": "delta",
+                "metric": "estres",
+                "amount": 6
+              },
+              {
+                "type": "add_flag",
+                "value": "candidato_8_escalones"
+              }
+            ]
+          },
+          {
+            "type": "risk",
+            "chance": 0.6,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "capital_social",
+                "amount": 3
+              },
+              {
+                "type": "delta",
+                "metric": "bienestar",
+                "amount": -4
+              },
+              {
+                "type": "delta",
+                "metric": "estres",
+                "amount": 5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "pedir_mangos",
+        "label": "Pedirle unos mangos: estás complicado",
+        "efectos": [
+          {
+            "type": "risk",
+            "chance": 0.35,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "dinero",
+                "amount": 80000
+              },
+              {
+                "type": "delta",
+                "metric": "capital_social",
+                "amount": 2
+              },
+              {
+                "type": "delta",
+                "metric": "bienestar",
+                "amount": -2
+              }
+            ]
+          },
+          {
+            "type": "risk",
+            "chance": 0.65,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "capital_social",
+                "amount": -8
+              },
+              {
+                "type": "delta",
+                "metric": "estres",
+                "amount": 10
+              },
+              {
+                "type": "delta",
+                "metric": "bienestar",
+                "amount": -6
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "politica_irlandesa",
+        "label": "No pedirle nada: hablan de política irlandesa toda la noche",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 15
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 4
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": -4
+          },
+          {
+            "type": "add_flag",
+            "value": "amigo_ivan_pineda"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_barra_boca",
+    "titulo": "La 12 te mira",
+    "texto": "En la Bombonera alguien te pasa una remera y te pregunta si vas a bancar de verdad o sos turista del Twitter.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "sumarte",
+        "label": "Sumarte a la barra",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 12
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -4
+          },
+          {
+            "type": "add_flag",
+            "value": "barra_boca"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
+          }
+        ]
+      },
+      {
+        "id": "solo_alentar",
+        "label": "Alentar desde el popular y chau",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 3
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 4
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_barra_river",
+    "titulo": "El Monumental vibra",
+    "texto": "Los borrachos del Monumental te ofrecen un lugar en la fila. Huele a bengala y a decisión irreversible.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "entrar",
+        "label": "Entrar a la confianza",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 11
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -3
+          },
+          {
+            "type": "add_flag",
+            "value": "barra_river"
+          },
+          {
+            "type": "add_flag",
+            "value": "hincha_activo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Decir que tu vieja te espera",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_roman_riquelme",
+    "titulo": "Aparece Román",
+    "texto": "Juan Román Riquelme está en un asado de dirigentes. Te mira como si ya hubiera visto tu CV en 2001. Boca late en el living.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "acercarte",
+        "label": "Acercarte con respeto",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 10
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 8
+          },
+          {
+            "type": "add_flag",
+            "value": "saludo_roman"
+          }
+        ]
+      },
+      {
+        "id": "pedir_laburo",
+        "label": "Tirar que buscás laburo en el club",
+        "efectos": [
+          {
+            "type": "risk",
+            "chance": 0.4,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": 12
+              },
+              {
+                "type": "delta",
+                "metric": "capital_social",
+                "amount": 6
+              },
+              {
+                "type": "add_flag",
+                "value": "contacto_boca"
+              }
+            ]
+          },
+          {
+            "type": "risk",
+            "chance": 0.6,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "capital_social",
+                "amount": -5
+              },
+              {
+                "type": "delta",
+                "metric": "estres",
+                "amount": 6
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_san_lorenzo_boedo",
+    "titulo": "San Lorenzo y los cuervos",
+    "texto": "En un local de Boedo hablan de refundar el club, de la cancha y de un Román que entiende el barrio. Hay vino tinto y proyectos en servilletas.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "militar_cuervo",
+        "label": "Militar la lista barrial",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 7
+          },
+          {
+            "type": "add_flag",
+            "value": "militante_san_lorenzo"
+          }
+        ]
+      },
+      {
+        "id": "escuchar",
+        "label": "Escuchar y no firmar nada",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 3
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_presidencia_club_chico",
+    "titulo": "Presidencia de un club de barrio",
+    "texto": "Te ofrecen ser presidente de un club de barrio: cancha de tierra, deuda de luz y una elección con 40 votos. Es poder... de otro estilo.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "aceptar",
+        "label": "Aceptar la presidencia",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 10
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 12
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 14
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -30000
+          },
+          {
+            "type": "add_flag",
+            "value": "presidente_club_barrio"
+          }
+        ]
+      },
+      {
+        "id": "declinar",
+        "label": "Declinar con elegancia",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_elecciones_boca",
+    "titulo": "Interna en Boca",
+    "texto": "Hay lista, hay WhatsApp y hay un asado donde se decide el futuro. Te piden que traigas gente.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "traer_gente",
+        "label": "Traer un bondi de votantes",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 10
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -20000
+          },
+          {
+            "type": "add_flag",
+            "value": "operador_boca"
+          }
+        ]
+      },
+      {
+        "id": "no_te_metas",
+        "label": "No te metas en esa",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 4
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": -2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_scaloni_charla",
+    "titulo": "Charla de Scaloni",
+    "texto": "Te cuelas a una charla motivacional donde Scaloni habla del grupo y de no vender humo. Hasta el utilero llora.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "tomar_nota",
+        "label": "Tomar nota como si fuera un MBA",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 10
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": -8
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 5
+          },
+          {
+            "type": "add_flag",
+            "value": "motivado_scaloni"
+          }
+        ]
+      },
+      {
+        "id": "selfi",
+        "label": "Selfie y story",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_messi_intermiami",
+    "titulo": "Fiebre Inter Miami",
+    "texto": "Todo el mundo habla de Messi en Miami. Un amigo te ofrece un viaje trucho a verlo. Hay cuotas y un PDF sospechoso.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "viajar",
+        "label": "Comprar el paquete",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -220000
+          },
+          {
+            "type": "risk",
+            "chance": 0.5,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "capital_social",
+                "amount": 15
+              },
+              {
+                "type": "delta",
+                "metric": "bienestar",
+                "amount": 12
+              },
+              {
+                "type": "add_flag",
+                "value": "vio_messi_miami"
+              }
+            ]
+          },
+          {
+            "type": "risk",
+            "chance": 0.5,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "capital_social",
+                "amount": -6
+              },
+              {
+                "type": "delta",
+                "metric": "estres",
+                "amount": 12
+              },
+              {
+                "type": "delta",
+                "metric": "bienestar",
+                "amount": -8
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ver_por_tv",
+        "label": "Verlo por TV con birra",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_maradona_aniversario",
+    "titulo": "Aniversario Diego",
+    "texto": "Hay murales, banderas y un asado en honor a Maradona. Te piden una palabra en el micrófono.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "hablar",
+        "label": "Hablar desde el corazón",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 11
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 4
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 6
+          }
+        ]
+      },
+      {
+        "id": "callado",
+        "label": "Quedarte callado y brindar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 4
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_noche_libertadores",
+    "titulo": "Noche de Libertadores",
+    "texto": "La tele tiembla, el vecino grita y vos tenés que decidir si vas a la cancha o te quedás a no dormir igual.",
+    "peso": 13,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "cancha",
+        "label": "Ir a la cancha cueste lo que cueste",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -35000
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 15
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 12
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -5
+          },
+          {
+            "type": "add_flag",
+            "value": "noche_libertadores"
+          }
+        ]
+      },
+      {
+        "id": "living",
+        "label": "Verlo en el living con pizza",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -8000
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_hacerse_socio",
+    "titulo": "Hacerse socio",
+    "texto": "El club te ofrece cuota, carnet y la promesa de platea en 2031. La fila es eterna y el PDF de beneficios es un ensayo.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "socio",
+        "label": "Sacarte el carnet",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -25000
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 3
+          },
+          {
+            "type": "add_flag",
+            "value": "socio_club"
+          }
+        ]
+      },
+      {
+        "id": "despues",
+        "label": "Decir que volvés el mes que viene",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_fantasy_plantel",
+    "titulo": "Fantasy de la fecha",
+    "texto": "Armás el plantel del fantasy y tu cuñado te bardea porque pusiste al arquero del Ascenso.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "allin",
+        "label": "All-in en el 9 caliente",
+        "efectos": [
+          {
+            "type": "risk",
+            "chance": 0.4,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "dinero",
+                "amount": 40000
+              },
+              {
+                "type": "delta",
+                "metric": "capital_social",
+                "amount": 6
+              },
+              {
+                "type": "add_flag",
+                "value": "rey_fantasy"
+              }
+            ]
+          },
+          {
+            "type": "risk",
+            "chance": 0.6,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "dinero",
+                "amount": -15000
+              },
+              {
+                "type": "delta",
+                "metric": "estres",
+                "amount": 7
+              },
+              {
+                "type": "delta",
+                "metric": "bienestar",
+                "amount": -3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "conservador",
+        "label": "Armar seguro y dormir",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 3
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": -2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_elecciones_river",
+    "titulo": "Elecciones en River",
+    "texto": "Hay lista oficial, lista opositora y un grupo de WhatsApp que se prende fuego. Te piden que milites.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "militar",
+        "label": "Militar con remera y termo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 9
+          },
+          {
+            "type": "add_flag",
+            "value": "operador_river"
+          }
+        ]
+      },
+      {
+        "id": "neutral",
+        "label": "Quedarte en el medio",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_lali_show",
+    "titulo": "Lali en el Movistar",
+    "texto": "Hay entradas a precio de riñón. Tu grupo insiste: es cultural. El QR parpadea como amenaza.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "comprar",
+        "label": "Comprar la entrada",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -90000
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 12
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 8
+          },
+          {
+            "type": "add_flag",
+            "value": "fue_a_lali"
+          }
+        ]
+      },
+      {
+        "id": "stream",
+        "label": "Ver el aftermovie en Instagram",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_bizarrap_session",
+    "titulo": "Rumores de Bzrp",
+    "texto": "Circula que Bizarrap graba sesión con alguien imposible. Un amigo sweare que tiene el dato.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "filtrar",
+        "label": "Difundir el rumor",
+        "efectos": [
+          {
+            "type": "risk",
+            "chance": 0.5,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": 8
+              },
+              {
+                "type": "delta",
+                "metric": "capital_social",
+                "amount": 5
+              },
+              {
+                "type": "add_flag",
+                "value": "filtrador_bzrp"
+              }
+            ]
+          },
+          {
+            "type": "risk",
+            "chance": 0.5,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": -6
+              },
+              {
+                "type": "delta",
+                "metric": "estres",
+                "amount": 8
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "callar",
+        "label": "Guardarte el dato",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_duki_estadio",
+    "titulo": "Duki llena todo",
+    "texto": "Te ofrecen ir al show de Duki con una entrada de un primo. Suena a trucho y a épica.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir igual",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -55000
+          },
+          {
+            "type": "risk",
+            "chance": 0.6,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "bienestar",
+                "amount": 14
+              },
+              {
+                "type": "delta",
+                "metric": "capital_social",
+                "amount": 10
+              },
+              {
+                "type": "add_flag",
+                "value": "fue_a_duki"
+              }
+            ]
+          },
+          {
+            "type": "risk",
+            "chance": 0.4,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "estres",
+                "amount": 12
+              },
+              {
+                "type": "delta",
+                "metric": "bienestar",
+                "amount": -6
+              },
+              {
+                "type": "delta",
+                "metric": "dinero",
+                "amount": -10000
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Quedarte a escuchar el álbum",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_tini_after",
+    "titulo": "After de Tini",
+    "texto": "Alguien dice que hay after de Tini y que conoce a alguien. La noche se estira.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "after",
+        "label": "Ir al after",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -40000
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -4
+          },
+          {
+            "type": "risk",
+            "chance": 0.35,
+            "effects": [
+              {
+                "type": "add_flag",
+                "value": "foto_con_tini"
+              },
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": 6
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "casa",
+        "label": "Casa y té",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 4
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": -3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_malba_domingo",
+    "titulo": "Domingo en el MALBA",
+    "texto": "Hay muestra nueva, cola de influencers y un café a precio de obra. Te sentís culto por 40 minutos.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "entrar",
+        "label": "Entrar a la muestra",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -12000
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 3
+          },
+          {
+            "type": "add_flag",
+            "value": "visitante_malba"
+          }
+        ]
+      },
+      {
+        "id": "selfie_afuera",
+        "label": "Selfie en la escalera y chau",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 4
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_teatro_corrientes",
+    "titulo": "Teatro por Corrientes",
+    "texto": "Hay 2x1 y una obra que todo el mundo vio. Tu ex está en la fila. El destino es un productor chanta.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "obra",
+        "label": "Ver la obra",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -18000
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 4
+          },
+          {
+            "type": "risk",
+            "chance": 0.3,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "estres",
+                "amount": 8
+              },
+              {
+                "type": "add_flag",
+                "value": "cruzaste_ex_teatro"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "bar",
+        "label": "Bar de la esquina",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 4
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -6000
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_folklore",
+    "titulo": "Peña folklórica",
+    "texto": "Guitarra, vino y alguien que pide zamba. Te ofrecen el micrófono aunque no sepas la letra.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "cantar",
+        "label": "Cantar igual",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 5
+          },
+          {
+            "type": "add_flag",
+            "value": "canto_en_pena"
+          }
+        ]
+      },
+      {
+        "id": "aplaudir",
+        "label": "Aplaudir con alma",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 4
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_bailanta_cumbia",
+    "titulo": "Noche de cumbia",
+    "texto": "La bailanta está a full. Huele a perfume barato y a decisión. El DJ mira como un juez.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "bailar",
+        "label": "Bailar hasta que duela",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 10
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -3
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -15000
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 6
+          }
+        ]
+      },
+      {
+        "id": "borde",
+        "label": "Quedarte en el borde con una birra",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 3
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_mirtha_almuerzo",
+    "titulo": "Almuerzo con Mirtha",
+    "texto": "Te invitan de público al almuerzo de Mirtha. Hay mesaza, tensioncita y la chance de salir en cámara comiendo pan.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir de público",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 10
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 5
+          },
+          {
+            "type": "risk",
+            "chance": 0.2,
+            "effects": [
+              {
+                "type": "add_flag",
+                "value": "saliste_en_mirtha"
+              },
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": 8
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ver_tv",
+        "label": "Verlo por TV con ensalada",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_tinelli_casting",
+    "titulo": "Casting de Tinelli",
+    "texto": "Hay casting para un segmento imposible. Te piden bailar, llorar y tener historia.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "casting",
+        "label": "Anotar al casting",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 12
+          },
+          {
+            "type": "risk",
+            "chance": 0.35,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "capital_social",
+                "amount": 14
+              },
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": 10
+              },
+              {
+                "type": "delta",
+                "metric": "dinero",
+                "amount": 50000
+              },
+              {
+                "type": "add_flag",
+                "value": "paso_tinelli"
+              }
+            ]
+          },
+          {
+            "type": "risk",
+            "chance": 0.65,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "bienestar",
+                "amount": -6
+              },
+              {
+                "type": "delta",
+                "metric": "capital_social",
+                "amount": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "No es lo tuyo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_susana_entrevista",
+    "titulo": "Susana te apunta",
+    "texto": "En un evento Susana Giménez pasa cerca. El micrófono parece un arma y alguien te empuja.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "hablar",
+        "label": "Decir algo memorable",
+        "efectos": [
+          {
+            "type": "risk",
+            "chance": 0.4,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": 12
+              },
+              {
+                "type": "delta",
+                "metric": "capital_social",
+                "amount": 8
+              },
+              {
+                "type": "add_flag",
+                "value": "mencion_susana"
+              }
+            ]
+          },
+          {
+            "type": "risk",
+            "chance": 0.6,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "capital_social",
+                "amount": -5
+              },
+              {
+                "type": "delta",
+                "metric": "estres",
+                "amount": 10
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sonreir",
+        "label": "Sonreír y no existir",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_fantino_radio",
+    "titulo": "Fantino al aire",
+    "texto": "En la radio Fantino pide opiniones de oyentes. Tu dedo tiembla sobre el botón de WhatsApp.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "audios",
+        "label": "Mandar un audio largo",
+        "efectos": [
+          {
+            "type": "risk",
+            "chance": 0.45,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": 7
+              },
+              {
+                "type": "delta",
+                "metric": "capital_social",
+                "amount": 6
+              },
+              {
+                "type": "add_flag",
+                "value": "salio_en_fantino"
+              }
+            ]
+          },
+          {
+            "type": "risk",
+            "chance": 0.55,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "estres",
+                "amount": 8
+              },
+              {
+                "type": "delta",
+                "metric": "bienestar",
+                "amount": -3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "escuchar",
+        "label": "Solo escuchar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_wanda_icardi_trend",
+    "titulo": "Wanda vs Icardi trending",
+    "texto": "Twitter arde. Te piden take caliente. El algoritmo sonríe con sangre.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "take",
+        "label": "Subir un take picante",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 4
+          },
+          {
+            "type": "risk",
+            "chance": 0.4,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "estres",
+                "amount": 10
+              },
+              {
+                "type": "add_flag",
+                "value": "cancelado_wanda_icardi"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "mute",
+        "label": "Mutear el trend",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": -5
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 4
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_streamer_collab",
+    "titulo": "Collab con streamer",
+    "texto": "Un streamer mediano te invita a una partida. Hay 800 viewers y tu micrófono suena a mate.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "aceptar",
+        "label": "Entrar al stream",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 7
+          },
+          {
+            "type": "risk",
+            "chance": 0.3,
+            "effects": [
+              {
+                "type": "add_flag",
+                "value": "clip_viral"
+              },
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": 8
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "declinar",
+        "label": "Declinar por laburo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_dolar_blue_esquina",
+    "titulo": "El blue en la esquina",
+    "texto": "Hay cueva, cola y un tipo que dice el número como si rezara. Tu bolsillo tiembla.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "cambiar",
+        "label": "Cambiar un poco",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -50000
+          },
+          {
+            "type": "risk",
+            "chance": 0.55,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "dinero",
+                "amount": 58000
+              },
+              {
+                "type": "delta",
+                "metric": "estres",
+                "amount": 6
+              }
+            ]
+          },
+          {
+            "type": "risk",
+            "chance": 0.45,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "estres",
+                "amount": 12
+              },
+              {
+                "type": "delta",
+                "metric": "bienestar",
+                "amount": -5
+              },
+              {
+                "type": "add_flag",
+                "value": "mala_cueva"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Seguir con los pesos",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_prepag_aumento",
+    "titulo": "Aumento de prepaga",
+    "texto": "Llega el mail: tu prepaga aumentó otra vez. El PDF explica contexto macro con cariño corporativo.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "pagar",
+        "label": "Pagar apretando los dientes",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -40000
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": 2
+          }
+        ]
+      },
+      {
+        "id": "cambiar",
+        "label": "Pasarte al plan más barato",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -15000
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "add_flag",
+            "value": "prepaga_barata"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_copa_america_banderazo",
+    "titulo": "Banderazo de selección",
+    "texto": "Hay banderazo en el Obelisco. Alguien te pasa una bandera más grande que tu depto.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir al banderazo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 10
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -3
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 5
+          },
+          {
+            "type": "add_flag",
+            "value": "banderazo_seleccion"
+          }
+        ]
+      },
+      {
+        "id": "tv",
+        "label": "Verlo por TV",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 4
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_crypto_amigo",
+    "titulo": "El amigo crypto",
+    "texto": "Un amigo te explica un token que recién empieza. Tiene gráfico de colores y fe de carbonero.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "meter",
+        "label": "Meter una moneda",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -30000
+          },
+          {
+            "type": "risk",
+            "chance": 0.3,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "dinero",
+                "amount": 90000
+              },
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": 4
+              },
+              {
+                "type": "add_flag",
+                "value": "crypto_win"
+              }
+            ]
+          },
+          {
+            "type": "risk",
+            "chance": 0.7,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "estres",
+                "amount": 12
+              },
+              {
+                "type": "delta",
+                "metric": "bienestar",
+                "amount": -6
+              },
+              {
+                "type": "add_flag",
+                "value": "crypto_rekt"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Decir que no entendés",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_whatsapp_tia",
+    "titulo": "Cadena de la tía",
+    "texto": "Tu tía manda un audio de 7 minutos sobre política, fútbol y una crema milagrosa.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "contestar",
+        "label": "Contestar con cariño",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 4
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 3
+          }
+        ]
+      },
+      {
+        "id": "audios",
+        "label": "Dejar en visto",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_subte_paro",
+    "titulo": "Paro de subte",
+    "texto": "Hay paro, combo y un colectivo que no frena. Llegás tarde o no llegás.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "uber",
+        "label": "Pedir Uber con dolor",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -9000
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": -2
+          }
+        ]
+      },
+      {
+        "id": "caminar",
+        "label": "Caminar 40 cuadras",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": 3
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": -3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_inflacion_super",
+    "titulo": "Supermercado surreal",
+    "texto": "El precio cambió entre la góndola y la caja. El cajero se encoge de hombros con empatía nacional.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "pagar",
+        "label": "Pagar igual",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -22000
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": -3
+          }
+        ]
+      },
+      {
+        "id": "dejar",
+        "label": "Dejar el carrito y rajarte",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_delivery_moto",
+    "titulo": "Delivery a 3 AM",
+    "texto": "Pedís una hamburguesa a las 3 AM. El repartidor es filósofo y te deja pensando.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "propina",
+        "label": "Dejar buena propina",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -12000
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 3
+          }
+        ]
+      },
+      {
+        "id": "minima",
+        "label": "Propina mínima y culpa",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -7000
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_maria_becerra",
+    "titulo": "María Becerra en streaming",
+    "texto": "Sale tema nuevo y el grupo de WhatsApp explota. Te piden reacción en stories YA.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "story",
+        "label": "Subir story con baile",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 4
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 3
+          }
+        ]
+      },
+      {
+        "id": "escuchar",
+        "label": "Escuchar en silencio",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 4
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_nicki_nicole",
+    "titulo": "Nicki Nicole downtown",
+    "texto": "Circula que Nicki Nicole está en un bar. Tu amiga ya está en camino con el celular cargado.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a intentar el cruce",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -20000
+          },
+          {
+            "type": "risk",
+            "chance": 0.25,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "capital_social",
+                "amount": 12
+              },
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": 5
+              },
+              {
+                "type": "add_flag",
+                "value": "foto_nicki"
+              }
+            ]
+          },
+          {
+            "type": "risk",
+            "chance": 0.75,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "estres",
+                "amount": 6
+              },
+              {
+                "type": "delta",
+                "metric": "bienestar",
+                "amount": -2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Quedarte en casa",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_trueno_plaza",
+    "titulo": "Trueno en la plaza",
+    "texto": "Hay freestyle improvisado y un pibe que dice que Trueno pasó por acá. La plaza vibra.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "freestyle",
+        "label": "Tirar unas líneas",
+        "efectos": [
+          {
+            "type": "risk",
+            "chance": 0.4,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "capital_social",
+                "amount": 10
+              },
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": 4
+              },
+              {
+                "type": "add_flag",
+                "value": "gano_freestyle"
+              }
+            ]
+          },
+          {
+            "type": "risk",
+            "chance": 0.6,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "capital_social",
+                "amount": -3
+              },
+              {
+                "type": "delta",
+                "metric": "estres",
+                "amount": 5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "mirar",
+        "label": "Mirar desde el banco",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_coscu_army",
+    "titulo": "Coscu Army vibes",
+    "texto": "Hay evento de la Coscu Army. Te ofrecen remera, fila y la chance de salir en un highlight.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir al evento",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -25000
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "add_flag",
+            "value": "coscu_army"
+          }
+        ]
+      },
+      {
+        "id": "ver_stream",
+        "label": "Verlo por stream",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_ole_tapa",
+    "titulo": "Casi tapa de Olé",
+    "texto": "Sacás una foto en la cancha que casi es tapa. Un editor te pide cesión de derechos por dos medialunas.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ceder",
+        "label": "Ceder la foto",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 3
+          },
+          {
+            "type": "add_flag",
+            "value": "foto_ole"
+          }
+        ]
+      },
+      {
+        "id": "cobrar",
+        "label": "Pedir plata",
+        "efectos": [
+          {
+            "type": "risk",
+            "chance": 0.4,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "dinero",
+                "amount": 30000
+              },
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": 4
+              }
+            ]
+          },
+          {
+            "type": "risk",
+            "chance": 0.6,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": -3
+              },
+              {
+                "type": "delta",
+                "metric": "estres",
+                "amount": 4
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_podcast_invitado",
+    "titulo": "Invitado al podcast",
+    "texto": "Un podcast chico te invita. Hay micrófono malo y preguntas buenas. Puede salir clip.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir al podcast",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 5
+          },
+          {
+            "type": "risk",
+            "chance": 0.3,
+            "effects": [
+              {
+                "type": "add_flag",
+                "value": "clip_podcast"
+              },
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": 6
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Declinar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_feria_matreros",
+    "titulo": "Feria de Mataderos",
+    "texto": "Domingo de feria: folklore, choripán y un poncho que te mira. La ciudad se siente otra.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "feria",
+        "label": "Perderte en la feria",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -15000
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 4
+          }
+        ]
+      },
+      {
+        "id": "rapido",
+        "label": "Choripán y chau",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 4
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_costanera_mate",
+    "titulo": "Mate en la Costanera",
+    "texto": "Hay sol, río y alguien que pide fuego para el asado improvisado. Te sumás o seguís.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "sumarte",
+        "label": "Sumarte al asado",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -6000
+          }
+        ]
+      },
+      {
+        "id": "solo",
+        "label": "Mate solo mirando el río",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": -4
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_villa_carlos_paz",
+    "titulo": "Temporada en Carlos Paz",
+    "texto": "Te ofrecen laburo de temporada en Carlos Paz: teatro, turistas y calor. Es un portal.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "aceptar",
+        "label": "Aceptar la temporada",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": 80000
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 12
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -4
+          },
+          {
+            "type": "add_flag",
+            "value": "temporada_carlos_paz"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Quedarte en Buenos Aires",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_cordoba_cuarteto",
+    "titulo": "Noche de cuarteto",
+    "texto": "En Córdoba el cuarteto no es música: es clima. Te tiran a la pista sin pedir permiso.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "bailar",
+        "label": "Bailar hasta el amanecer",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 12
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -4
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -18000
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "add_flag",
+            "value": "bailo_cuarteto"
+          }
+        ]
+      },
+      {
+        "id": "borde",
+        "label": "Borde con fernet",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -8000
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_deuda_amigo",
+    "titulo": "El amigo que debe",
+    "texto": "Un amigo te debe hace meses. Te escribe el mes que viene con un sticker de corazón.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "perdonar",
+        "label": "Perdonar la deuda",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -20000
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          },
+          {
+            "type": "remove_flag",
+            "value": "cobrando_deuda_amigo"
+          }
+        ]
+      },
+      {
+        "id": "cobrar",
+        "label": "Cobrar con firmeza",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": 20000
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": -5
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "cobrando_deuda_amigo"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_curso_ia",
+    "titulo": "Curso de IA milagrosa",
+    "texto": "Un aviso promete que con prompts vas a facturar en dólares. Hay Zoom y un PDF de 80 páginas.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "curso",
+        "label": "Comprar el curso",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -55000
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 6
+          },
+          {
+            "type": "risk",
+            "chance": 0.4,
+            "effects": [
+              {
+                "type": "add_credential",
+                "value": "curso_ia_prompts"
+              },
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": 4
+              }
+            ]
+          },
+          {
+            "type": "risk",
+            "chance": 0.6,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "bienestar",
+                "amount": -5
+              },
+              {
+                "type": "delta",
+                "metric": "estres",
+                "amount": 8
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "youtube",
+        "label": "Aprender por YouTube",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_asamblea_consorcio",
+    "titulo": "Asamblea de consorcio",
+    "texto": "Hay asamblea: filtraciones, expensas y un vecino que habla 40 minutos. Es el Congreso del edificio.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "hablar",
+        "label": "Hablar con datos",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "referente_consorcio"
+          }
+        ]
+      },
+      {
+        "id": "callar",
+        "label": "Callar y sufrir",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": -3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_perro_callejero",
+    "titulo": "Perro en la esquina",
+    "texto": "Un perro te sigue tres cuadras. Parece decidir tu futuro emocional.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "adoptar",
+        "label": "Adoptarlo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -15000
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 12
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "adopte_perro"
+          }
+        ]
+      },
+      {
+        "id": "comida",
+        "label": "Darle de comer y seguir",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -2000
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 4
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_blackout_barrio",
+    "titulo": "Corte de luz",
+    "texto": "Se corta la luz en todo el barrio. Hay velas, vecinos y una guitarra que aparece de la nada.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "guitarra",
+        "label": "Sumarte a la guitarra",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": -3
+          }
+        ]
+      },
+      {
+        "id": "dormir",
+        "label": "Dormir temprano",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": 4
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_fito_aniversario",
+    "titulo": "Fito Páez suena",
+    "texto": "En un bar ponen Fito y alguien llora con 11 y 6. Te ofrecen un shot por la Patria Rock.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "shot",
+        "label": "Brindar y cantar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          }
+        ]
+      },
+      {
+        "id": "mate",
+        "label": "Pedir un mate en vez de shot",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_charly_vinilo",
+    "titulo": "Vinilo de Charly",
+    "texto": "En una feria encontrás un vinilo de Charly a precio dudoso. El vendedor jura autenticidad.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "comprar",
+        "label": "Comprar el vinilo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -35000
+          },
+          {
+            "type": "risk",
+            "chance": 0.5,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "bienestar",
+                "amount": 10
+              },
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": 3
+              },
+              {
+                "type": "add_flag",
+                "value": "vinilo_charly"
+              }
+            ]
+          },
+          {
+            "type": "risk",
+            "chance": 0.5,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "estres",
+                "amount": 6
+              },
+              {
+                "type": "delta",
+                "metric": "bienestar",
+                "amount": -4
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "pasar",
+        "label": "Seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_cronica_vivo",
+    "titulo": "Crónica TV en vivo",
+    "texto": "Hay móvil de Crónica a dos cuadras. El reportero busca vecino impactado.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "vecino",
+        "label": "Hacerte el vecino impactado",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 4
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "salio_cronica"
+          }
+        ]
+      },
+      {
+        "id": "esquivar",
+        "label": "Esquivar la cámara",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_intratables_opinion",
+    "titulo": "Intratables te cita",
+    "texto": "Un productor te pide una frase para el móvil. Tenés 8 segundos de fama potencial.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "frase",
+        "label": "Mandar la frase",
+        "efectos": [
+          {
+            "type": "risk",
+            "chance": 0.5,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": 9
+              },
+              {
+                "type": "delta",
+                "metric": "capital_social",
+                "amount": 6
+              },
+              {
+                "type": "add_flag",
+                "value": "salio_intratables"
+              }
+            ]
+          },
+          {
+            "type": "risk",
+            "chance": 0.5,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "estres",
+                "amount": 7
+              },
+              {
+                "type": "delta",
+                "metric": "bienestar",
+                "amount": -3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "No contestar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": -2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_entradas_reventa",
+    "titulo": "Reventa de entradas",
+    "texto": "Necesitás entradas. Mercado Libre sonríe. Tu dignidad negocia.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "reventa",
+        "label": "Comprar en reventa",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -120000
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 10
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 6
+          },
+          {
+            "type": "risk",
+            "chance": 0.25,
+            "effects": [
+              {
+                "type": "add_flag",
+                "value": "entrada_trucha"
+              },
+              {
+                "type": "delta",
+                "metric": "estres",
+                "amount": 15
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "no_ir",
+        "label": "Aceptar que no vas",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": -4
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_gimnasio_influencer",
+    "titulo": "Gimnasio de influencers",
+    "texto": "El gym está lleno de ring lights. Te piden que no pases por el fondo del video.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "entrenar",
+        "label": "Entrenar igual",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 3
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -10000
+          },
+          {
+            "type": "risk",
+            "chance": 0.2,
+            "effects": [
+              {
+                "type": "add_flag",
+                "value": "saliste_en_reel_ajeno"
+              },
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "irse",
+        "label": "Irte a correr a la plaza",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": 4
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_elecciones_pas",
+    "titulo": "Domingo de PASO",
+    "texto": "Hay elección, boleta y un tío que te explica todo mal. La escuela es un sauna cívico.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "votar",
+        "label": "Ir a votar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 3
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "voto_paso"
+          }
+        ]
+      },
+      {
+        "id": "fiscal",
+        "label": "Anotar como fiscal",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 10
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": 15000
+          },
+          {
+            "type": "add_flag",
+            "value": "fiscal_electoral"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_mendoza_vendimia",
+    "titulo": "Eco de Vendimia",
+    "texto": "Hay eco de Vendimia y un amigo mendocino te invita. Vino, luces y la promesa de una noche.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "viajar",
+        "label": "Viajar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -70000
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 11
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "add_flag",
+            "value": "fue_vendimia"
+          }
+        ]
+      },
+      {
+        "id": "vino_local",
+        "label": "Comprar un vino y fingir",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -8000
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 4
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_rosario_nocturna",
+    "titulo": "Noche en Rosario",
+    "texto": "Rosario de noche: bares, fútbol y un amigo que dice que conoce a alguien del Central.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "salir",
+        "label": "Salir hasta tarde",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -25000
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -3
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 6
+          }
+        ]
+      },
+      {
+        "id": "temprano",
+        "label": "Volver temprano",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 3
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": -2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_lluvia_flood",
+    "titulo": "Lluvia porteña",
+    "texto": "Llueve como si la ciudad debiera algo. El subte es un acuario y tu paraguas traiciona.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "remis",
+        "label": "Pedir remís",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -11000
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": 1
+          }
+        ]
+      },
+      {
+        "id": "mojado",
+        "label": "Llegar mojado",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -3
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": -2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_polÃ©mica_panel",
+    "titulo": "Panel de chimentos",
+    "texto": "Te invitan a un panel de cable a las 2 AM. Hay café malo y opiniones peores.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "panel",
+        "label": "Sentarte al panel",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 11
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 5
+          },
+          {
+            "type": "risk",
+            "chance": 0.35,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "capital_social",
+                "amount": -8
+              },
+              {
+                "type": "add_flag",
+                "value": "panelista_cancelado"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Dormir como persona",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_tyc_previa",
+    "titulo": "Previa TyC",
+    "texto": "Te cuelas a una previa de TyC Sports. Hay pantallas, café y un panelista que no mira a nadie.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "opinar",
+        "label": "Tirar una opinión al aire",
+        "efectos": [
+          {
+            "type": "risk",
+            "chance": 0.4,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "influencia",
+                "amount": 8
+              },
+              {
+                "type": "delta",
+                "metric": "capital_social",
+                "amount": 5
+              }
+            ]
+          },
+          {
+            "type": "risk",
+            "chance": 0.6,
+            "effects": [
+              {
+                "type": "delta",
+                "metric": "capital_social",
+                "amount": -4
+              },
+              {
+                "type": "delta",
+                "metric": "estres",
+                "amount": 6
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "callado",
+        "label": "Quedarte callado",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_momo_twitch",
+    "titulo": "Noche de Momo",
+    "texto": "El chat pide que dones. Tu dedo duda entre 500 y mejor no.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "donar",
+        "label": "Donar un poco",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -8000
+          },
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 4
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 3
+          }
+        ]
+      },
+      {
+        "id": "lurk",
+        "label": "Lurkear en silencio",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_onlyfans_rumor",
+    "titulo": "Rumor de contenido",
+    "texto": "Alguien sugiere que hay que diversificar ingresos con un tono sospechoso. El WiFi tiembla.",
+    "peso": 10,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "pensar",
+        "label": "Pensarlo en serio",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 8
+          },
+          {
+            "type": "delta",
+            "metric": "influencia",
+            "amount": 2
+          },
+          {
+            "type": "add_flag",
+            "value": "considero_contenido"
+          }
+        ]
+      },
+      {
+        "id": "cambiar",
+        "label": "Cambiar de tema al asado",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_racing",
+    "titulo": "Peña Racing",
+    "texto": "En Avellaneda arman peña de Racing (La Academia). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_racing"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_racing_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_independiente",
+    "titulo": "Peña Independiente",
+    "texto": "En Avellaneda arman peña de Independiente (El Rojo). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_independiente"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_independiente_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_velez",
+    "titulo": "Peña Vélez",
+    "texto": "En Liniers arman peña de Vélez (El Fortín). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_velez"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_velez_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_huracan",
+    "titulo": "Peña Huracán",
+    "texto": "En Parque Patricios arman peña de Huracán (Los Quemeros). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_huracan"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_huracan_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_gimnasia_lp",
+    "titulo": "Peña Gimnasia",
+    "texto": "En La Plata arman peña de Gimnasia (El Lobo). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_gimnasia_lp"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_gimnasia_lp_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_estudiantes_lp",
+    "titulo": "Peña Estudiantes",
+    "texto": "En La Plata arman peña de Estudiantes (El Pincha). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_estudiantes_lp"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_estudiantes_lp_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_newells",
+    "titulo": "Peña Newell's",
+    "texto": "En Rosario arman peña de Newell's (La Lepra). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_newells"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_newells_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_central",
+    "titulo": "Peña Rosario Central",
+    "texto": "En Rosario arman peña de Rosario Central (El Canalla). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_central"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_central_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_talleres",
+    "titulo": "Peña Talleres",
+    "texto": "En Córdoba arman peña de Talleres (La T). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_talleres"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_talleres_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_belgrano",
+    "titulo": "Peña Belgrano",
+    "texto": "En Córdoba arman peña de Belgrano (El Pirata). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_belgrano"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_belgrano_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_lanus",
+    "titulo": "Peña Lanús",
+    "texto": "En Lanús arman peña de Lanús (El Granate). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_lanus"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_lanus_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_banfield",
+    "titulo": "Peña Banfield",
+    "texto": "En Banfield arman peña de Banfield (El Taladro). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_banfield"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_banfield_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_argentinos",
+    "titulo": "Peña Argentinos Juniors",
+    "texto": "En La Paternal arman peña de Argentinos Juniors (El Bicho). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_argentinos"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_argentinos_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_defensa",
+    "titulo": "Peña Defensa y Justicia",
+    "texto": "En Varela arman peña de Defensa y Justicia (El Halcón). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_defensa"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_defensa_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_platense",
+    "titulo": "Peña Platense",
+    "texto": "En Vicente López arman peña de Platense (El Calamar). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_platense"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_platense_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_godoy_cruz",
+    "titulo": "Peña Godoy Cruz",
+    "texto": "En Mendoza arman peña de Godoy Cruz (El Tomba). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_godoy_cruz"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_godoy_cruz_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_atletico_tucuman",
+    "titulo": "Peña Atlético Tucumán",
+    "texto": "En Tucumán arman peña de Atlético Tucumán (El Decano). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_atletico_tucuman"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_atletico_tucuman_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_colon",
+    "titulo": "Peña Colón",
+    "texto": "En Santa Fe arman peña de Colón (El Sabalero). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_colon"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_colon_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_union",
+    "titulo": "Peña Unión",
+    "texto": "En Santa Fe arman peña de Unión (El Tatengue). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_union"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_union_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_instituto",
+    "titulo": "Peña Instituto",
+    "texto": "En Córdoba arman peña de Instituto (La Gloria). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_instituto"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_instituto_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_sarmiento",
+    "titulo": "Peña Sarmiento",
+    "texto": "En Junín arman peña de Sarmiento (El Verde). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_sarmiento"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_sarmiento_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_barracas",
+    "titulo": "Peña Barracas Central",
+    "texto": "En Barracas arman peña de Barracas Central (El Guapo). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_barracas"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_barracas_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_tigre",
+    "titulo": "Peña Tigre",
+    "texto": "En Victoria arman peña de Tigre (El Matador). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_tigre"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_tigre_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_arsenal",
+    "titulo": "Peña Arsenal",
+    "texto": "En Sarandí arman peña de Arsenal (El Viaducto). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_arsenal"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_arsenal_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_aldosivi",
+    "titulo": "Peña Aldosivi",
+    "texto": "En Mar del Plata arman peña de Aldosivi (El Tiburón). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_aldosivi"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_aldosivi_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_ferro",
+    "titulo": "Peña Ferro",
+    "texto": "En Caballito arman peña de Ferro (El Verdolaga). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_ferro"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_ferro_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_atlanta",
+    "titulo": "Peña Atlanta",
+    "texto": "En Villa Crespo arman peña de Atlanta (El Bohemio). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_atlanta"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_atlanta_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_chacarita",
+    "titulo": "Peña Chacarita",
+    "texto": "En San Martín arman peña de Chacarita (El Funebrero). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_chacarita"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_chacarita_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_all_boys",
+    "titulo": "Peña All Boys",
+    "texto": "En Floresta arman peña de All Boys (El Albo). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_all_boys"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_all_boys_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_riestra",
+    "titulo": "Peña Deportivo Riestra",
+    "texto": "En Buenos Aires arman peña de Deportivo Riestra (El Blanquinegro). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_riestra"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_riestra_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_patronato",
+    "titulo": "Peña Patronato",
+    "texto": "En Paraná arman peña de Patronato (El Patrón). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_patronato"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_patronato_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_quilmes",
+    "titulo": "Peña Quilmes",
+    "texto": "En Quilmes arman peña de Quilmes (El Cervecero). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_quilmes"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_quilmes_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_temperley",
+    "titulo": "Peña Temperley",
+    "texto": "En Temperley arman peña de Temperley (El Gasolero). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_temperley"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_temperley_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_estudiantes_rc",
+    "titulo": "Peña Estudiantes RC",
+    "texto": "En Río Cuarto arman peña de Estudiantes RC (El Pincha). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_estudiantes_rc"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_estudiantes_rc_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_central_cordoba",
+    "titulo": "Peña Central Córdoba",
+    "texto": "En Santiago del Estero arman peña de Central Córdoba (El Ferroviario). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_central_cordoba"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_central_cordoba_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_san_martin_tuc",
+    "titulo": "Peña San Martín Tucumán",
+    "texto": "En Tucumán arman peña de San Martín Tucumán (El Ciruja). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_san_martin_tuc"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_san_martin_tuc_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_san_martin_sj",
+    "titulo": "Peña San Martín SJ",
+    "texto": "En San Juan arman peña de San Martín SJ (El Verdinegro). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_san_martin_sj"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_san_martin_sj_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_gimnasia_mza",
+    "titulo": "Peña Gimnasia Mendoza",
+    "texto": "En Mendoza arman peña de Gimnasia Mendoza (El Lobo mendocino). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_gimnasia_mza"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_gimnasia_mza_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_moron",
+    "titulo": "Peña Deportivo Morón",
+    "texto": "En Morón arman peña de Deportivo Morón (El Gallo). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_moron"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_moron_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_almagro",
+    "titulo": "Peña Almagro",
+    "texto": "En José Ingenieros arman peña de Almagro (El Tricolor). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_almagro"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_almagro_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_chicago",
+    "titulo": "Peña Nueva Chicago",
+    "texto": "En Mataderos arman peña de Nueva Chicago (El Torito). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_chicago"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_chicago_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_los_andes",
+    "titulo": "Peña Los Andes",
+    "texto": "En Lomas de Zamora arman peña de Los Andes (El Milrayitas). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_los_andes"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_los_andes_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_brown",
+    "titulo": "Peña Brown de Adrogué",
+    "texto": "En Adrogué arman peña de Brown de Adrogué (El Tricolor). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_brown"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_brown_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_agropecuario",
+    "titulo": "Peña Agropecuario",
+    "texto": "En Carlos Casares arman peña de Agropecuario (El Sojero). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_agropecuario"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_agropecuario_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_san_lorenzo_pena",
+    "titulo": "Peña San Lorenzo",
+    "texto": "En Boedo arman peña de San Lorenzo (El Cuervo). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_san_lorenzo_pena"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_san_lorenzo_pena_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_boca_pena",
+    "titulo": "Peña Boca",
+    "texto": "En La Boca arman peña de Boca (Xeneize de peña). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_boca_pena"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_boca_pena_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_river_pena",
+    "titulo": "Peña River",
+    "texto": "En Núñez arman peña de River (Millonario de peña). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_river_pena"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_river_pena_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_caacupe",
+    "titulo": "Peña Club de barrio",
+    "texto": "En una esquina arman peña de Club de barrio (Peña improvisada). Hay mate, himno, choripán y alguien que jura que este año toca. Te ofrecen un lugar cerca del bombo.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña y bancar",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 7
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 5
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -5000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_caacupe"
+          }
+        ]
+      },
+      {
+        "id": "bombo",
+        "label": "Acercarte al bombo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 9
+          },
+          {
+            "type": "delta",
+            "metric": "salud",
+            "amount": -2
+          },
+          {
+            "type": "delta",
+            "metric": "estres",
+            "amount": 4
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_caacupe_bombo"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Saludar y seguir de largo",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_deportivo_espanol",
+    "titulo": "Peña Deportivo Español",
+    "texto": "En el Bajo Flores late una peña del Español. Hay nostalgia, tortilla y un himno que no se rinde.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 4
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -4000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_deportivo_espanol"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Quedarte en casa",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_estudiantes_ba",
+    "titulo": "Peña Estudiantes Caseros",
+    "texto": "Estudiantes de Buenos Aires arma previa. Hay bombo, medialunas y un relato de Ascenso.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 4
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -4000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_estudiantes_ba"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Quedarte en casa",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_defensores_belgrano",
+    "titulo": "Peña Defensores de Belgrano",
+    "texto": "En Nuñez (el otro) arman peña. Hay mate y orgullo de barrio que no pide permiso.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 4
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -4000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_defensores_belgrano"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Quedarte en casa",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_talleres_re",
+    "titulo": "Peña Talleres RE",
+    "texto": "Talleres de Remediós de Escalada canta. Te ofrecen una remera que pesa historia.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 4
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -4000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_talleres_re"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Quedarte en casa",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_excursionistas",
+    "titulo": "Peña Excursionistas",
+    "texto": "Los Villeros arman peña en Belgrano R. Hay cumbia suave y fútbol duro.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 4
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -4000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_excursionistas"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Quedarte en casa",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_comunicaciones",
+    "titulo": "Peña Comunicaciones",
+    "texto": "Comunicaciones junta gente. Hay previa, termo colectivo y un DJ improvisado.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 4
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -4000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_comunicaciones"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Quedarte en casa",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_sacachispas",
+    "titulo": "Peña Sacachispas",
+    "texto": "En Villa Soldati late Sacachispas. Te miran si bancás de verdad.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 4
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -4000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_sacachispas"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Quedarte en casa",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "act_pena_deportivo_laferrere",
+    "titulo": "Peña Deportivo Laferrere",
+    "texto": "El Lobo de Laffe arma peña. Hay asado, oeste y decisión.",
+    "peso": 8,
+    "condiciones": [],
+    "opciones": [
+      {
+        "id": "ir",
+        "label": "Ir a la peña",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "capital_social",
+            "amount": 6
+          },
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 4
+          },
+          {
+            "type": "delta",
+            "metric": "dinero",
+            "amount": -4000
+          },
+          {
+            "type": "add_flag",
+            "value": "pena_deportivo_laferrere"
+          }
+        ]
+      },
+      {
+        "id": "no",
+        "label": "Quedarte en casa",
+        "efectos": [
+          {
+            "type": "delta",
+            "metric": "bienestar",
+            "amount": 2
+          }
+        ]
+      }
+    ]
+  }
+]
