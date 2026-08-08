@@ -47,7 +47,8 @@
             "type": "set_job",
             "job_id": "militante_barrial"
           }
-        ]
+        ],
+        "eco": "Aceptaste el chaleco. Arrancás la militancia de verdad."
       },
       {
         "id": "mitad",
@@ -72,7 +73,8 @@
             "type": "add_flag",
             "value": "militancia_parcial"
           }
-        ]
+        ],
+        "eco": "Ayudás sin soltar el laburo. Mitad y mitad."
       },
       {
         "id": "no",
@@ -83,7 +85,8 @@
             "metric": "bienestar",
             "amount": 2
           }
-        ]
+        ],
+        "eco": "Seguiste por tu lado. La política espera."
       }
     ]
   },
@@ -105,7 +108,7 @@
         "efectos": [
           {
             "type": "delta",
-            "metric": "dinero",
+            "metric": "dinero_negro",
             "amount": 45000
           },
           {
@@ -131,7 +134,8 @@
             "type": "add_flag",
             "value": "tranza_electoral"
           }
-        ]
+        ],
+        "eco": "Aceptaste el chaleco. Arrancás la militancia de verdad."
       },
       {
         "id": "rechazar",
@@ -152,7 +156,8 @@
             "metric": "bienestar",
             "amount": 2
           }
-        ]
+        ],
+        "eco": "Rechazar."
       }
     ]
   },
@@ -199,7 +204,8 @@
             "type": "add_flag",
             "value": "olla_real"
           }
-        ]
+        ],
+        "eco": "Olla posta para el barrio."
       },
       {
         "id": "staging",
@@ -207,7 +213,7 @@
         "efectos": [
           {
             "type": "delta",
-            "metric": "dinero",
+            "metric": "dinero_negro",
             "amount": 20000
           },
           {
@@ -229,7 +235,8 @@
             "type": "add_flag",
             "value": "militancia_de_foto"
           }
-        ]
+        ],
+        "eco": "Staging para la cámara."
       }
     ]
   },
@@ -264,7 +271,8 @@
             "metric": "estres",
             "amount": 4
           }
-        ]
+        ],
+        "eco": "Mate y persuasión."
       },
       {
         "id": "presion",
@@ -272,7 +280,7 @@
         "efectos": [
           {
             "type": "delta",
-            "metric": "dinero",
+            "metric": "dinero_negro",
             "amount": 25000
           },
           {
@@ -294,7 +302,8 @@
             "type": "add_flag",
             "value": "metodo_pesado"
           }
-        ]
+        ],
+        "eco": "Presión con gente."
       }
     ]
   },
@@ -316,7 +325,7 @@
         "efectos": [
           {
             "type": "delta",
-            "metric": "dinero",
+            "metric": "dinero_negro",
             "amount": 55000
           },
           {
@@ -338,7 +347,8 @@
             "type": "add_flag",
             "value": "padron_trucho"
           }
-        ]
+        ],
+        "eco": "Hinchar el padrón."
       },
       {
         "id": "limpio",
@@ -359,7 +369,8 @@
             "metric": "estres",
             "amount": 4
           }
-        ]
+        ],
+        "eco": "Padrón limpio."
       }
     ]
   },
@@ -384,7 +395,7 @@
         "efectos": [
           {
             "type": "delta",
-            "metric": "dinero",
+            "metric": "dinero_negro",
             "amount": 35000
           },
           {
@@ -406,7 +417,8 @@
             "type": "add_flag",
             "value": "lleno_plaza"
           }
-        ]
+        ],
+        "eco": "Llenar la plaza."
       },
       {
         "id": "fallar",
@@ -427,7 +439,8 @@
             "metric": "bienestar",
             "amount": 2
           }
-        ]
+        ],
+        "eco": "Fallar a propósito."
       }
     ]
   },
@@ -481,7 +494,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Volantear hasta que no quede papel."
       },
       {
         "id": "zafarte",
@@ -489,7 +503,7 @@
         "efectos": [
           {
             "type": "delta",
-            "metric": "dinero",
+            "metric": "dinero_negro",
             "amount": 8000
           },
           {
@@ -506,7 +520,8 @@
             "type": "add_flag",
             "value": "militancia_vaga"
           }
-        ]
+        ],
+        "eco": "Distribuir la mitad y decir que listo."
       }
     ]
   },
@@ -560,7 +575,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Repartir todo al barrio."
       },
       {
         "id": "entender",
@@ -568,7 +584,7 @@
         "efectos": [
           {
             "type": "delta",
-            "metric": "dinero",
+            "metric": "dinero_negro",
             "amount": 40000
           },
           {
@@ -594,7 +610,8 @@
             "type": "add_flag",
             "value": "tranza_social"
           }
-        ]
+        ],
+        "eco": "Entender el sistema."
       }
     ]
   },
@@ -633,7 +650,8 @@
             "type": "add_flag",
             "value": "pacto_unidades"
           }
-        ]
+        ],
+        "eco": "Negociar turno y cartel compartido."
       },
       {
         "id": "quedarse",
@@ -669,7 +687,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Quedarte el local a la fuerza."
       }
     ]
   },
@@ -718,7 +737,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Discurso y mate en la esquina."
       },
       {
         "id": "plata",
@@ -748,7 +768,8 @@
             "type": "add_flag",
             "value": "clientelismo_activo"
           }
-        ]
+        ],
+        "eco": "Prometer changas y un mango."
       }
     ]
   },
@@ -777,7 +798,7 @@
         "efectos": [
           {
             "type": "delta",
-            "metric": "dinero",
+            "metric": "dinero_negro",
             "amount": 80000
           },
           {
@@ -809,7 +830,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Resolver las manzanas."
       },
       {
         "id": "no",
@@ -825,7 +847,8 @@
             "metric": "influencia",
             "amount": -4
           }
-        ]
+        ],
+        "eco": "Seguiste por tu lado. La política espera."
       }
     ]
   },
@@ -874,7 +897,8 @@
             "type": "add_flag",
             "value": "movimiento_grabois"
           }
-        ]
+        ],
+        "eco": "Militar en serio."
       },
       {
         "id": "foto",
@@ -895,7 +919,8 @@
             "metric": "bienestar",
             "amount": 2
           }
-        ]
+        ],
+        "eco": "Solo la marcha y la foto."
       }
     ]
   },
@@ -936,14 +961,15 @@
           },
           {
             "type": "delta",
-            "metric": "dinero",
+            "metric": "dinero_negro",
             "amount": 30000
           },
           {
             "type": "add_flag",
             "value": "orbita_macri"
           }
-        ]
+        ],
+        "eco": "Entrar a la órbita."
       },
       {
         "id": "no",
@@ -954,7 +980,8 @@
             "metric": "bienestar",
             "amount": 2
           }
-        ]
+        ],
+        "eco": "Seguiste por tu lado. La política espera."
       }
     ]
   },
@@ -976,7 +1003,7 @@
         "efectos": [
           {
             "type": "delta",
-            "metric": "dinero",
+            "metric": "dinero_negro",
             "amount": 50000
           },
           {
@@ -998,7 +1025,8 @@
             "type": "add_flag",
             "value": "relato_seguridad"
           }
-        ]
+        ],
+        "eco": "Entregar el relato picante."
       },
       {
         "id": "verdad",
@@ -1019,7 +1047,8 @@
             "metric": "bienestar",
             "amount": 2
           }
-        ]
+        ],
+        "eco": "Contar la verdad noma."
       }
     ]
   },
@@ -1045,7 +1074,7 @@
         "efectos": [
           {
             "type": "delta",
-            "metric": "dinero",
+            "metric": "dinero_negro",
             "amount": 70000
           },
           {
@@ -1067,7 +1096,8 @@
             "type": "add_flag",
             "value": "gestion_pba"
           }
-        ]
+        ],
+        "eco": "Aceptaste el chaleco. Arrancás la militancia de verdad."
       },
       {
         "id": "no",
@@ -1078,7 +1108,8 @@
             "metric": "capital_social",
             "amount": 2
           }
-        ]
+        ],
+        "eco": "Seguiste por tu lado. La política espera."
       }
     ]
   },
@@ -1115,14 +1146,15 @@
           },
           {
             "type": "delta",
-            "metric": "dinero",
+            "metric": "dinero_negro",
             "amount": 20000
           },
           {
             "type": "add_flag",
             "value": "orbita_larreta"
           }
-        ]
+        ],
+        "eco": "Sumar voluntarios."
       },
       {
         "id": "pasarla",
@@ -1138,7 +1170,8 @@
             "metric": "capital_social",
             "amount": 2
           }
-        ]
+        ],
+        "eco": "Solo comer canapés."
       }
     ]
   },
@@ -1177,7 +1210,8 @@
             "type": "add_flag",
             "value": "cristinista"
           }
-        ]
+        ],
+        "eco": "Bancarla a muerte."
       },
       {
         "id": "critico",
@@ -1213,7 +1247,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Militar con matices."
       }
     ]
   },
@@ -1239,7 +1274,7 @@
         "efectos": [
           {
             "type": "delta",
-            "metric": "dinero",
+            "metric": "dinero_negro",
             "amount": 60000
           },
           {
@@ -1265,7 +1300,8 @@
             "type": "add_flag",
             "value": "orbita_caputo"
           }
-        ]
+        ],
+        "eco": "Ordenar el relato."
       },
       {
         "id": "no",
@@ -1281,7 +1317,8 @@
             "metric": "estres",
             "amount": -4
           }
-        ]
+        ],
+        "eco": "Seguiste por tu lado. La política espera."
       }
     ]
   },
@@ -1324,7 +1361,8 @@
             "type": "add_flag",
             "value": "circulo_karina"
           }
-        ]
+        ],
+        "eco": "Perfil bajo y útil."
       },
       {
         "id": "lucirte",
@@ -1370,7 +1408,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Intentar lucirte."
       }
     ]
   },
@@ -1436,7 +1475,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Ir de lobo con motosierra."
       },
       {
         "id": "serio",
@@ -1461,7 +1501,8 @@
             "type": "add_flag",
             "value": "evento_milei_elon"
           }
-        ]
+        ],
+        "eco": "Ir de traje normal (aburrido)."
       },
       {
         "id": "rajarse",
@@ -1477,7 +1518,8 @@
             "metric": "bienestar",
             "amount": 3
           }
-        ]
+        ],
+        "eco": "Inventar una gastroenteritis."
       }
     ]
   },
@@ -1535,7 +1577,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Ir al living de Susana."
       },
       {
         "id": "no",
@@ -1556,7 +1599,8 @@
             "metric": "capital_social",
             "amount": 2
           }
-        ]
+        ],
+        "eco": "Seguiste por tu lado. La política espera."
       }
     ]
   },
@@ -1583,7 +1627,7 @@
           },
           {
             "type": "delta",
-            "metric": "dinero",
+            "metric": "dinero_negro",
             "amount": 40000
           },
           {
@@ -1595,7 +1639,8 @@
             "type": "add_flag",
             "value": "favor_scioli"
           }
-        ]
+        ],
+        "eco": "Hacer el favor."
       },
       {
         "id": "sonreir",
@@ -1611,7 +1656,8 @@
             "metric": "bienestar",
             "amount": 2
           }
-        ]
+        ],
+        "eco": "Sonreír y no comprometerte."
       }
     ]
   },
@@ -1654,7 +1700,8 @@
             "type": "add_flag",
             "value": "realpolitik"
           }
-        ]
+        ],
+        "eco": "Anotar y aplicar."
       },
       {
         "id": "idealista",
@@ -1675,7 +1722,8 @@
             "metric": "bienestar",
             "amount": 3
           }
-        ]
+        ],
+        "eco": "Quedarte idealista."
       }
     ]
   },
@@ -1718,7 +1766,8 @@
             "type": "add_flag",
             "value": "unidad_maximo"
           }
-        ]
+        ],
+        "eco": "Bajar el conflicto."
       },
       {
         "id": "inventar",
@@ -1743,7 +1792,8 @@
             "type": "add_flag",
             "value": "operacion_interna"
           }
-        ]
+        ],
+        "eco": "Inventar el rival perfecto."
       }
     ]
   },
@@ -1769,7 +1819,7 @@
         "efectos": [
           {
             "type": "delta",
-            "metric": "dinero",
+            "metric": "dinero_negro",
             "amount": 55000
           },
           {
@@ -1791,7 +1841,8 @@
             "type": "add_flag",
             "value": "red_interior"
           }
-        ]
+        ],
+        "eco": "Armar la red."
       },
       {
         "id": "no",
@@ -1802,7 +1853,8 @@
             "metric": "bienestar",
             "amount": 2
           }
-        ]
+        ],
+        "eco": "Seguiste por tu lado. La política espera."
       }
     ]
   },
@@ -1845,7 +1897,8 @@
             "type": "add_flag",
             "value": "orbita_villarruel"
           }
-        ]
+        ],
+        "eco": "Bancarla sin fisuras."
       },
       {
         "id": "dudar",
@@ -1866,7 +1919,8 @@
             "metric": "bienestar",
             "amount": 2
           }
-        ]
+        ],
+        "eco": "Pedir matices."
       }
     ]
   },
@@ -1919,7 +1973,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Leer el presupuesto en voz alta."
       },
       {
         "id": "pasarla",
@@ -1935,7 +1990,8 @@
             "metric": "influencia",
             "amount": -1
           }
-        ]
+        ],
+        "eco": "Asentir y mirar el reloj."
       }
     ]
   },
@@ -1977,7 +2033,8 @@
             "type": "add_flag",
             "value": "gestion_mayra"
           }
-        ]
+        ],
+        "eco": "Mostrar el centro como está."
       },
       {
         "id": "maquillar",
@@ -1985,7 +2042,7 @@
         "efectos": [
           {
             "type": "delta",
-            "metric": "dinero",
+            "metric": "dinero_negro",
             "amount": 45000
           },
           {
@@ -2007,7 +2064,8 @@
             "type": "add_flag",
             "value": "numeros_truchos"
           }
-        ]
+        ],
+        "eco": "Maquillar asistencia."
       }
     ]
   },
@@ -2043,7 +2101,7 @@
           },
           {
             "type": "delta",
-            "metric": "dinero",
+            "metric": "dinero_negro",
             "amount": 25000
           },
           {
@@ -2055,7 +2113,8 @@
             "type": "add_flag",
             "value": "orbita_lousteau"
           }
-        ]
+        ],
+        "eco": "Sonreír y sumarte."
       },
       {
         "id": "no",
@@ -2071,7 +2130,8 @@
             "metric": "influencia",
             "amount": -2
           }
-        ]
+        ],
+        "eco": "Seguiste por tu lado. La política espera."
       }
     ]
   },
@@ -2097,7 +2157,7 @@
         "efectos": [
           {
             "type": "delta",
-            "metric": "dinero",
+            "metric": "dinero_negro",
             "amount": 200000
           },
           {
@@ -2123,7 +2183,8 @@
             "type": "add_flag",
             "value": "coimero"
           }
-        ]
+        ],
+        "eco": "Hacer de puente."
       },
       {
         "id": "denunciar",
@@ -2163,7 +2224,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Grabar y denunciar."
       },
       {
         "id": "no",
@@ -2179,7 +2241,8 @@
             "metric": "influencia",
             "amount": -2
           }
-        ]
+        ],
+        "eco": "Seguiste por tu lado. La política espera."
       }
     ]
   },
@@ -2205,7 +2268,7 @@
         "efectos": [
           {
             "type": "delta",
-            "metric": "dinero",
+            "metric": "dinero_negro",
             "amount": 90000
           },
           {
@@ -2227,7 +2290,8 @@
             "type": "add_flag",
             "value": "pacto_gremial"
           }
-        ]
+        ],
+        "eco": "Cerrar la tranza."
       },
       {
         "id": "pelear",
@@ -2252,7 +2316,8 @@
             "type": "add_flag",
             "value": "guerra_gremial"
           }
-        ]
+        ],
+        "eco": "Pelear la calle."
       }
     ]
   },
@@ -2278,7 +2343,7 @@
         "efectos": [
           {
             "type": "delta",
-            "metric": "dinero",
+            "metric": "dinero_negro",
             "amount": 150000
           },
           {
@@ -2300,7 +2365,8 @@
             "type": "add_flag",
             "value": "testaferro"
           }
-        ]
+        ],
+        "eco": "Aceptaste el chaleco. Arrancás la militancia de verdad."
       },
       {
         "id": "lugar_real",
@@ -2342,7 +2408,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Pedir lugar real o nada."
       }
     ]
   },
@@ -2397,7 +2464,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Seguir igual."
       },
       {
         "id": "bajar",
@@ -2418,7 +2486,8 @@
             "metric": "bienestar",
             "amount": 4
           }
-        ]
+        ],
+        "eco": "Bajar un cambio."
       },
       {
         "id": "denunciar",
@@ -2438,7 +2507,8 @@
             "type": "add_flag",
             "value": "denuncia_amenaza"
           }
-        ]
+        ],
+        "eco": "Denunciar."
       }
     ]
   },
@@ -2486,7 +2556,8 @@
             "type": "add_flag",
             "value": "pacto_prensa"
           }
-        ]
+        ],
+        "eco": "Dar la exclusiva amable."
       },
       {
         "id": "negar",
@@ -2527,7 +2598,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Negar todo y bancar el temporal."
       },
       {
         "id": "coima_silencio",
@@ -2556,7 +2628,8 @@
             "type": "add_flag",
             "value": "coimero"
           }
-        ]
+        ],
+        "eco": "Comprar silencio."
       }
     ]
   },
@@ -2582,7 +2655,7 @@
         "efectos": [
           {
             "type": "delta",
-            "metric": "dinero",
+            "metric": "dinero_negro",
             "amount": 100000
           },
           {
@@ -2614,7 +2687,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Cerrar las tranzas."
       },
       {
         "id": "no",
@@ -2630,7 +2704,8 @@
             "metric": "influencia",
             "amount": -3
           }
-        ]
+        ],
+        "eco": "Seguiste por tu lado. La política espera."
       }
     ]
   },
@@ -2669,7 +2744,8 @@
             "type": "add_flag",
             "value": "lista_limpia"
           }
-        ]
+        ],
+        "eco": "Priorizar a los que laburan."
       },
       {
         "id": "equilibrio",
@@ -2694,7 +2770,8 @@
             "type": "add_flag",
             "value": "lista_equilibrada"
           }
-        ]
+        ],
+        "eco": "Equilibrar favores y mérito."
       },
       {
         "id": "vender",
@@ -2702,7 +2779,7 @@
         "efectos": [
           {
             "type": "delta",
-            "metric": "dinero",
+            "metric": "dinero_negro",
             "amount": 220000
           },
           {
@@ -2728,7 +2805,8 @@
             "type": "add_flag",
             "value": "coimero"
           }
-        ]
+        ],
+        "eco": "Vender lugares al mejor postor."
       }
     ]
   },
@@ -2754,7 +2832,7 @@
         "efectos": [
           {
             "type": "delta",
-            "metric": "dinero",
+            "metric": "dinero_negro",
             "amount": 120000
           },
           {
@@ -2780,7 +2858,8 @@
             "type": "add_flag",
             "value": "tranza_electoral"
           }
-        ]
+        ],
+        "eco": "Mover la plata."
       },
       {
         "id": "no",
@@ -2796,7 +2875,8 @@
             "metric": "influencia",
             "amount": -4
           }
-        ]
+        ],
+        "eco": "Seguiste por tu lado. La política espera."
       }
     ]
   },
@@ -2850,7 +2930,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Infiltrar y grabar."
       },
       {
         "id": "rechazar",
@@ -2866,7 +2947,8 @@
             "metric": "influencia",
             "amount": -3
           }
-        ]
+        ],
+        "eco": "Rechazar el método."
       }
     ]
   },
@@ -2914,7 +2996,8 @@
             "type": "add_flag",
             "value": "media_training"
           }
-        ]
+        ],
+        "eco": "Bancarte el entrenamiento."
       },
       {
         "id": "improvisar",
@@ -2936,7 +3019,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Improvisar siempre."
       }
     ]
   },
@@ -2980,7 +3064,8 @@
             "type": "add_flag",
             "value": "pacto_religioso"
           }
-        ]
+        ],
+        "eco": "Cerrar el pacto."
       },
       {
         "id": "no",
@@ -2996,7 +3081,8 @@
             "metric": "influencia",
             "amount": -3
           }
-        ]
+        ],
+        "eco": "Seguiste por tu lado. La política espera."
       }
     ]
   },
@@ -3058,7 +3144,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Traer las unidades."
       },
       {
         "id": "atajo",
@@ -3093,7 +3180,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Comprar adhesiones."
       }
     ]
   },
@@ -3115,7 +3203,7 @@
         "efectos": [
           {
             "type": "delta",
-            "metric": "dinero",
+            "metric": "dinero_negro",
             "amount": 280000
           },
           {
@@ -3141,7 +3229,8 @@
             "type": "add_flag",
             "value": "coimero"
           }
-        ]
+        ],
+        "eco": "Aceptar el sobre."
       },
       {
         "id": "rechazar",
@@ -3166,7 +3255,8 @@
             "type": "add_flag",
             "value": "concejal_intachable"
           }
-        ]
+        ],
+        "eco": "Rechazar y pedir expediente limpio."
       },
       {
         "id": "grabar",
@@ -3196,7 +3286,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Grabar y guardar."
       }
     ]
   },
@@ -3235,7 +3326,8 @@
             "type": "add_flag",
             "value": "showman_recinto"
           }
-        ]
+        ],
+        "eco": "Hacer el show."
       },
       {
         "id": "bajar",
@@ -3260,7 +3352,8 @@
             "type": "add_flag",
             "value": "negociador_bloque"
           }
-        ]
+        ],
+        "eco": "Bajar el tono y negociar."
       }
     ]
   },
@@ -3299,7 +3392,8 @@
             "type": "add_flag",
             "value": "demanda_prensa"
           }
-        ]
+        ],
+        "eco": "Demandar al medio."
       },
       {
         "id": "explicar",
@@ -3330,7 +3424,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Explicar en redes."
       },
       {
         "id": "silencio",
@@ -3351,7 +3446,8 @@
             "metric": "bienestar",
             "amount": 3
           }
-        ]
+        ],
+        "eco": "Perfil bajo una semana."
       }
     ]
   },
@@ -3390,7 +3486,8 @@
             "type": "add_flag",
             "value": "soldado_bloque"
           }
-        ]
+        ],
+        "eco": "Ser soldado tres meses."
       },
       {
         "id": "candidato",
@@ -3431,7 +3528,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Negociar tu propio proyecto."
       }
     ]
   },
@@ -3493,7 +3591,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Lanzar la campaña."
       },
       {
         "id": "tranza",
@@ -3551,7 +3650,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Campana con plata negra."
       },
       {
         "id": "esperar",
@@ -3567,7 +3667,8 @@
             "metric": "influencia",
             "amount": -2
           }
-        ]
+        ],
+        "eco": "Esperar otro turno."
       }
     ]
   },
@@ -3594,7 +3695,7 @@
           },
           {
             "type": "delta",
-            "metric": "dinero",
+            "metric": "dinero_negro",
             "amount": 60000
           },
           {
@@ -3611,7 +3712,8 @@
             "type": "add_flag",
             "value": "voto_fantasma"
           }
-        ]
+        ],
+        "eco": "Votar por disciplina."
       },
       {
         "id": "pedir",
@@ -3636,7 +3738,8 @@
             "type": "add_flag",
             "value": "fiscalizador"
           }
-        ]
+        ],
+        "eco": "Pedir informes."
       }
     ]
   },
@@ -3695,7 +3798,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Hacer la obra igual."
       },
       {
         "id": "modesta",
@@ -3720,7 +3824,8 @@
             "type": "add_flag",
             "value": "gestion_austeridad"
           }
-        ]
+        ],
+        "eco": "Obra modesta y contable."
       }
     ]
   },
@@ -3764,7 +3869,8 @@
             "type": "add_flag",
             "value": "pacto_basura"
           }
-        ]
+        ],
+        "eco": "Cerrar con el gremio."
       },
       {
         "id": "pelear",
@@ -3804,7 +3910,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Bancarte el conflicto."
       }
     ]
   },
@@ -3848,7 +3955,8 @@
             "type": "add_flag",
             "value": "policia_municipal"
           }
-        ]
+        ],
+        "eco": "Armar la fuerza."
       },
       {
         "id": "no",
@@ -3869,7 +3977,8 @@
             "metric": "bienestar",
             "amount": 3
           }
-        ]
+        ],
+        "eco": "Seguiste por tu lado. La política espera."
       }
     ]
   },
@@ -3896,7 +4005,7 @@
           },
           {
             "type": "delta",
-            "metric": "dinero",
+            "metric": "dinero_negro",
             "amount": 90000
           },
           {
@@ -3917,7 +4026,8 @@
             "type": "add_flag",
             "value": "coimero"
           }
-        ]
+        ],
+        "eco": "Acomodar a los amigos."
       },
       {
         "id": "concurso",
@@ -3942,7 +4052,8 @@
             "type": "add_flag",
             "value": "concurso_limpio"
           }
-        ]
+        ],
+        "eco": "Concurso público de verdad."
       }
     ]
   },
@@ -3985,7 +4096,8 @@
             "type": "add_flag",
             "value": "padron_trucho"
           }
-        ]
+        ],
+        "eco": "Facilitar el padrón."
       },
       {
         "id": "solo_foto",
@@ -4006,7 +4118,8 @@
             "metric": "bienestar",
             "amount": 2
           }
-        ]
+        ],
+        "eco": "Solo la foto y el café."
       }
     ]
   },
@@ -4068,7 +4181,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Saltar a gobernador."
       },
       {
         "id": "sucio",
@@ -4135,7 +4249,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Campaña con caja negra y padrones."
       },
       {
         "id": "rey",
@@ -4155,7 +4270,8 @@
             "type": "add_flag",
             "value": "rey_distrito"
           }
-        ]
+        ],
+        "eco": "Quedarte rey del distrito."
       }
     ]
   },
@@ -4194,7 +4310,8 @@
             "type": "add_flag",
             "value": "gobernador_ajuste"
           }
-        ]
+        ],
+        "eco": "Ajuste con relato duro."
       },
       {
         "id": "gasto",
@@ -4224,7 +4341,8 @@
             "type": "add_flag",
             "value": "gobernador_gasto"
           }
-        ]
+        ],
+        "eco": "Gasto y presencia territorial."
       }
     ]
   },
@@ -4263,7 +4381,8 @@
             "type": "add_flag",
             "value": "pelea_nacion"
           }
-        ]
+        ],
+        "eco": "Pelear en vivo."
       },
       {
         "id": "negociar",
@@ -4271,7 +4390,7 @@
         "efectos": [
           {
             "type": "delta",
-            "metric": "dinero",
+            "metric": "dinero_negro",
             "amount": 180000
           },
           {
@@ -4293,7 +4412,8 @@
             "type": "add_flag",
             "value": "pacto_nacion"
           }
-        ]
+        ],
+        "eco": "Negociar en silencio."
       }
     ]
   },
@@ -4353,7 +4473,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Enfrentar la carpeta."
       },
       {
         "id": "elogios",
@@ -4378,7 +4499,8 @@
             "type": "add_flag",
             "value": "honeymoon_medios"
           }
-        ]
+        ],
+        "eco": "Bancarte el ciclo amable."
       }
     ]
   },
@@ -4434,7 +4556,8 @@
             "type": "add_flag",
             "value": "campana_presidencial"
           }
-        ]
+        ],
+        "eco": "Lanzar la precandidatura."
       },
       {
         "id": "esperar",
@@ -4450,7 +4573,8 @@
             "metric": "influencia",
             "amount": -3
           }
-        ]
+        ],
+        "eco": "Esperar mejores encuestas."
       }
     ]
   },
@@ -4508,7 +4632,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Salir a matar."
       },
       {
         "id": "tecnico",
@@ -4533,7 +4658,8 @@
             "type": "add_flag",
             "value": "debate_tecnico"
           }
-        ]
+        ],
+        "eco": "Ir técnico y aburrido."
       },
       {
         "id": "humano",
@@ -4558,7 +4684,8 @@
             "type": "add_flag",
             "value": "debate_origen"
           }
-        ]
+        ],
+        "eco": "Contar el origen cartonero."
       }
     ]
   },
@@ -4621,7 +4748,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Negar y denunciar lawfare."
       },
       {
         "id": "limpiar",
@@ -4670,7 +4798,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Abrir tus cuentas y bancar el costo."
       },
       {
         "id": "pacto",
@@ -4704,7 +4833,8 @@
             "type": "add_flag",
             "value": "coimero"
           }
-        ]
+        ],
+        "eco": "Pactar silencio con la otra bancada."
       }
     ]
   },
@@ -4751,7 +4881,8 @@
             "type": "add_flag",
             "value": "realpolitik"
           }
-        ]
+        ],
+        "eco": "Cerrar el pacto."
       },
       {
         "id": "solo",
@@ -4776,7 +4907,8 @@
             "type": "add_flag",
             "value": "campana_solitaria"
           }
-        ]
+        ],
+        "eco": "Ir solo hasta el final."
       }
     ]
   },
@@ -4819,7 +4951,8 @@
             "type": "add_flag",
             "value": "pelea_milei"
           }
-        ]
+        ],
+        "eco": "Responder con todo."
       },
       {
         "id": "silencio",
@@ -4844,7 +4977,8 @@
             "type": "add_flag",
             "value": "perfil_estadista"
           }
-        ]
+        ],
+        "eco": "Silencio y gestión."
       },
       {
         "id": "humor",
@@ -4869,7 +5003,8 @@
             "type": "add_flag",
             "value": "relato_origen"
           }
-        ]
+        ],
+        "eco": "Respuesta con humor de barrio."
       }
     ]
   },
@@ -4972,7 +5107,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Esperar el escrutinio limpio."
       },
       {
         "id": "operar",
@@ -5047,7 +5183,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Operar mesas dudosas."
       },
       {
         "id": "conceder",
@@ -5077,7 +5214,8 @@
             "metric": "bienestar",
             "amount": 6
           }
-        ]
+        ],
+        "eco": "Conceder temprano y salir parado."
       }
     ]
   },
@@ -5179,7 +5317,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Pactar con el centro."
       },
       {
         "id": "base",
@@ -5237,7 +5376,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Ir a fondo con tu base."
       }
     ]
   },
@@ -5313,7 +5453,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Defenderte hasta el final."
       },
       {
         "id": "renunciar",
@@ -5343,7 +5484,8 @@
             "metric": "bienestar",
             "amount": -6
           }
-        ]
+        ],
+        "eco": "Renunciar y salvar algo."
       }
     ]
   },
@@ -5406,7 +5548,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Bancarla en el país."
       },
       {
         "id": "fuga",
@@ -5431,7 +5574,8 @@
             "metric": "capital_social",
             "amount": -20
           }
-        ]
+        ],
+        "eco": "Salir del país 'a dar una conferencia'."
       }
     ]
   }

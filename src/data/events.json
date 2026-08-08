@@ -25,7 +25,8 @@
             "metric": "bienestar",
             "amount": -20
           }
-        ]
+        ],
+        "eco": "Pagaste con todo. Quedaste en cero pero vivo."
       },
       {
         "id": "escapar",
@@ -46,7 +47,8 @@
             "metric": "bienestar",
             "amount": -15
           }
-        ]
+        ],
+        "eco": "Escapaste. El barrio no te va a olvidar."
       },
       {
         "id": "enfrentar",
@@ -67,7 +69,8 @@
             "metric": "capital_social",
             "amount": 5
           }
-        ]
+        ],
+        "eco": "Los enfrentaste. La salud te cobró la cuenta."
       }
     ]
   },
@@ -103,7 +106,8 @@
             "metric": "bienestar",
             "amount": 25
           }
-        ]
+        ],
+        "eco": "Taller de meditación neuroacústica (8 Hz)."
       },
       {
         "id": "helado_series",
@@ -124,7 +128,8 @@
             "metric": "bienestar",
             "amount": 5
           }
-        ]
+        ],
+        "eco": "Cuarto de helado y series."
       },
       {
         "id": "seguir_adelante",
@@ -156,7 +161,8 @@
             "metric": "estres",
             "amount": 8
           }
-        ]
+        ],
+        "eco": "Seguir dándole para adelante."
       }
     ]
   },
@@ -168,7 +174,11 @@
     "condiciones": [
       {
         "type": "viviendas_any",
-        "values": ["pieza", "alquiler", "barrio_cerrado"]
+        "values": [
+          "pieza",
+          "alquiler",
+          "barrio_cerrado"
+        ]
       },
       {
         "type": "has_flag",
@@ -198,7 +208,8 @@
             "type": "add_flag",
             "value": "canos_arreglados"
           }
-        ]
+        ],
+        "eco": "Hacerlo vos."
       },
       {
         "id": "plomero",
@@ -222,7 +233,8 @@
             "type": "add_flag",
             "value": "canos_arreglados"
           }
-        ]
+        ],
+        "eco": "Pagarle a un profesional."
       },
       {
         "id": "dejarlo",
@@ -242,7 +254,8 @@
             "metric": "estres",
             "amount": 5
           }
-        ]
+        ],
+        "eco": "Dejarlo así."
       }
     ]
   },
@@ -286,7 +299,8 @@
             "metric": "estres",
             "amount": 12
           }
-        ]
+        ],
+        "eco": "Aceptaste el chaleco. Arrancás la militancia de verdad."
       },
       {
         "id": "rechazar",
@@ -312,7 +326,8 @@
             "metric": "estres",
             "amount": 8
           }
-        ]
+        ],
+        "eco": "Rechazar y bancártela solo."
       },
       {
         "id": "denunciar",
@@ -337,7 +352,8 @@
             "type": "add_flag",
             "value": "enemigo_empresario"
           }
-        ]
+        ],
+        "eco": "Denunciar y filtrar a la prensa."
       }
     ]
   },
@@ -376,7 +392,8 @@
             "metric": "estres",
             "amount": 5
           }
-        ]
+        ],
+        "eco": "Comprarlo."
       },
       {
         "id": "ignorar",
@@ -387,12 +404,14 @@
             "metric": "bienestar",
             "amount": -2
           }
-        ]
+        ],
+        "eco": "Ignorarlo."
       },
       {
         "id": "seguir_scrolleando",
         "label": "Seguir scrolleando",
-        "efectos": []
+        "efectos": [],
+        "eco": "Seguir scrolleando."
       }
     ]
   },
@@ -422,7 +441,8 @@
             "metric": "estres",
             "amount": 8
           }
-        ]
+        ],
+        "eco": "Comprar igual y bancarte el golpe."
       },
       {
         "id": "solo_arroz",
@@ -443,7 +463,8 @@
             "metric": "bienestar",
             "amount": -6
           }
-        ]
+        ],
+        "eco": "Llevar solo arroz y mate."
       },
       {
         "id": "fiado",
@@ -463,7 +484,8 @@
             "type": "add_flag",
             "value": "deuda_almacen"
           }
-        ]
+        ],
+        "eco": "Pedir fiado y prometer 'la semana que viene'."
       }
     ]
   },
@@ -493,7 +515,8 @@
             "metric": "bienestar",
             "amount": 8
           }
-        ]
+        ],
+        "eco": "Alquilar un generador al cuñado del consorcio."
       },
       {
         "id": "ir_plaza",
@@ -514,7 +537,8 @@
             "metric": "dinero",
             "amount": -2000
           }
-        ]
+        ],
+        "eco": "Ir a la plaza a cargar el celu y socializar."
       },
       {
         "id": "aguantar_oscuridad",
@@ -540,7 +564,8 @@
             "metric": "salud",
             "amount": -5
           }
-        ]
+        ],
+        "eco": "Aguantar en la oscuridad y podrirse la comida."
       }
     ]
   },
@@ -575,7 +600,8 @@
             "metric": "capital_social",
             "amount": 5
           }
-        ]
+        ],
+        "eco": "Pagar y no pelear."
       },
       {
         "id": "armar_quilombo",
@@ -596,7 +622,8 @@
             "metric": "bienestar",
             "amount": -8
           }
-        ]
+        ],
+        "eco": "Armar quilombo con planilla de Excel."
       },
       {
         "id": "no_ir",
@@ -617,7 +644,8 @@
             "metric": "bienestar",
             "amount": -4
           }
-        ]
+        ],
+        "eco": "No ir y que te cobren igual."
       }
     ]
   },
@@ -653,7 +681,8 @@
             "metric": "estres",
             "amount": -8
           }
-        ]
+        ],
+        "eco": "Ir a una clínica particular."
       },
       {
         "id": "farmacia",
@@ -680,7 +709,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Automedicarte en la farmacia."
       },
       {
         "id": "laburar_igual",
@@ -701,7 +731,8 @@
             "metric": "dinero",
             "amount": 10000
           }
-        ]
+        ],
+        "eco": "Laburar igual 'porque si no, no como'."
       }
     ]
   },
@@ -736,7 +767,8 @@
             "metric": "estres",
             "amount": 5
           }
-        ]
+        ],
+        "eco": "Ir y llevar un vino decente."
       },
       {
         "id": "ir_vacio",
@@ -757,7 +789,8 @@
             "metric": "bienestar",
             "amount": 3
           }
-        ]
+        ],
+        "eco": "Ir con las manos vacías y bancarte el chisme."
       },
       {
         "id": "inventar_excusa",
@@ -778,7 +811,8 @@
             "metric": "estres",
             "amount": -5
           }
-        ]
+        ],
+        "eco": "Inventar que estás enfermo."
       }
     ]
   },
@@ -812,7 +846,8 @@
             "type": "add_flag",
             "value": "estafado_whatsapp"
           }
-        ]
+        ],
+        "eco": "Entrar al link 'por las dudas'."
       },
       {
         "id": "bloquear",
@@ -828,7 +863,8 @@
             "metric": "bienestar",
             "amount": 2
           }
-        ]
+        ],
+        "eco": "Bloquear y seguir con tu vida."
       },
       {
         "id": "avisar_familia",
@@ -849,7 +885,8 @@
             "metric": "estres",
             "amount": 4
           }
-        ]
+        ],
+        "eco": "Avisar a toda la familia en el grupo."
       }
     ]
   },
@@ -884,7 +921,8 @@
             "metric": "estres",
             "amount": 15
           }
-        ]
+        ],
+        "eco": "Seguir igual, plata es plata."
       },
       {
         "id": "buscar_techo",
@@ -905,7 +943,8 @@
             "metric": "bienestar",
             "amount": -4
           }
-        ]
+        ],
+        "eco": "Meterte bajo un techo y esperar."
       },
       {
         "id": "vender_mojado",
@@ -926,7 +965,8 @@
             "metric": "estres",
             "amount": 8
           }
-        ]
+        ],
+        "eco": "Vender el cartón mojado a mitad de precio."
       }
     ]
   },
@@ -961,7 +1001,8 @@
             "metric": "estres",
             "amount": 10
           }
-        ]
+        ],
+        "eco": "Reponer de tu bolsillo y callar."
       },
       {
         "id": "echar_sospechosos",
@@ -982,7 +1023,8 @@
             "metric": "bienestar",
             "amount": -8
           }
-        ]
+        ],
+        "eco": "Echar a dos por sospecha."
       },
       {
         "id": "denuncia_policial",
@@ -1003,7 +1045,8 @@
             "metric": "capital_social",
             "amount": 5
           }
-        ]
+        ],
+        "eco": "Hacer la denuncia y comprar un candado nuevo."
       }
     ]
   },
@@ -1043,7 +1086,8 @@
             "metric": "dinero",
             "amount": 25000
           }
-        ]
+        ],
+        "eco": "Quedarte hasta las 11 arreglándolo."
       },
       {
         "id": "escalar",
@@ -1064,7 +1108,8 @@
             "metric": "bienestar",
             "amount": 4
           }
-        ]
+        ],
+        "eco": "Escalarlo y documentar que no era tu culpa."
       },
       {
         "id": "reiniciar_todo",
@@ -1096,7 +1141,8 @@
             "metric": "bienestar",
             "amount": -3
           }
-        ]
+        ],
+        "eco": "Reiniciar todo y rezar."
       }
     ]
   },
@@ -1131,7 +1177,8 @@
             "metric": "bienestar",
             "amount": 8
           }
-        ]
+        ],
+        "eco": "Poner plata de tu campaña."
       },
       {
         "id": "poner_el_cuerpo",
@@ -1157,7 +1204,8 @@
             "metric": "bienestar",
             "amount": 12
           }
-        ]
+        ],
+        "eco": "Ir a cocinar y servir."
       },
       {
         "id": "mandar_foto",
@@ -1182,7 +1230,8 @@
             "type": "add_flag",
             "value": "militancia_de_foto"
           }
-        ]
+        ],
+        "eco": "Mandar una caja y pedirle a alguien que suba fotos."
       }
     ]
   },
@@ -1223,7 +1272,8 @@
             "metric": "estres",
             "amount": 10
           }
-        ]
+        ],
+        "eco": "Comprar todo lo que puedas."
       },
       {
         "id": "comprar_poco",
@@ -1244,7 +1294,8 @@
             "metric": "bienestar",
             "amount": 3
           }
-        ]
+        ],
+        "eco": "Comprar una banda chica."
       },
       {
         "id": "pasar",
@@ -1260,7 +1311,8 @@
             "metric": "estres",
             "amount": 6
           }
-        ]
+        ],
+        "eco": "Pasar y quedarte en pesos."
       }
     ]
   },
@@ -1300,7 +1352,8 @@
             "metric": "capital_social",
             "amount": 6
           }
-        ]
+        ],
+        "eco": "Bancarte la noche completa."
       },
       {
         "id": "dos_birras",
@@ -1321,7 +1374,8 @@
             "metric": "estres",
             "amount": -6
           }
-        ]
+        ],
+        "eco": "Tomarte dos y volverte temprano."
       },
       {
         "id": "quedarte_casa",
@@ -1342,7 +1396,8 @@
             "metric": "capital_social",
             "amount": -4
           }
-        ]
+        ],
+        "eco": "Cancelar y mirar el techo."
       }
     ]
   },
@@ -1362,7 +1417,11 @@
       },
       {
         "type": "job_tags_any",
-        "values": ["tech", "oficina", "comercio"]
+        "values": [
+          "tech",
+          "oficina",
+          "comercio"
+        ]
       }
     ],
     "opciones": [
@@ -1393,7 +1452,8 @@
             "type": "add_flag",
             "value": "worked_soporte_it"
           }
-        ]
+        ],
+        "eco": "Comprar un café, estudiar y presentarte."
       },
       {
         "id": "mentir_cv",
@@ -1439,7 +1499,8 @@
             "type": "add_flag",
             "value": "entrevista_tech_hecha"
           }
-        ]
+        ],
+        "eco": "Inflar el CV y rezar."
       },
       {
         "id": "ghostear",
@@ -1454,7 +1515,8 @@
             "type": "add_flag",
             "value": "entrevista_tech_hecha"
           }
-        ]
+        ],
+        "eco": "Ghostearlos."
       }
     ]
   },
@@ -1488,7 +1550,8 @@
             "metric": "bienestar",
             "amount": 4
           }
-        ]
+        ],
+        "eco": "Sumarte un rato y charlar."
       },
       {
         "id": "dar_vuelta",
@@ -1509,7 +1572,8 @@
             "metric": "dinero",
             "amount": -3000
           }
-        ]
+        ],
+        "eco": "Dar la vuelta caminando una hora."
       },
       {
         "id": "puteada_silenciosa",
@@ -1525,7 +1589,8 @@
             "metric": "bienestar",
             "amount": -8
           }
-        ]
+        ],
+        "eco": "Puteada silenciosa y quedarte trabado."
       }
     ]
   },
@@ -1560,7 +1625,8 @@
             "metric": "bienestar",
             "amount": 10
           }
-        ]
+        ],
+        "eco": "Dentista de urgencia."
       },
       {
         "id": "ibuprofeno",
@@ -1586,7 +1652,8 @@
             "metric": "bienestar",
             "amount": -12
           }
-        ]
+        ],
+        "eco": "Ibuprofeno y aguantar."
       },
       {
         "id": "facultad_odontologia",
@@ -1612,7 +1679,8 @@
             "metric": "bienestar",
             "amount": -5
           }
-        ]
+        ],
+        "eco": "Ir a la facultad de odontología."
       }
     ]
   },
@@ -1642,7 +1710,8 @@
             "metric": "dinero",
             "amount": -800
           }
-        ]
+        ],
+        "eco": "Empujar y entrar igual."
       },
       {
         "id": "uber",
@@ -1663,7 +1732,8 @@
             "metric": "bienestar",
             "amount": 4
           }
-        ]
+        ],
+        "eco": "Pedir un Uber resignado."
       },
       {
         "id": "caminar",
@@ -1684,7 +1754,8 @@
             "metric": "bienestar",
             "amount": -6
           }
-        ]
+        ],
+        "eco": "Caminar 40 cuadras."
       }
     ]
   },
@@ -1718,7 +1789,8 @@
             "type": "add_flag",
             "value": "tiene_perro"
           }
-        ]
+        ],
+        "eco": "Adoptarlo."
       },
       {
         "id": "darle_comida",
@@ -1739,7 +1811,8 @@
             "metric": "capital_social",
             "amount": 3
           }
-        ]
+        ],
+        "eco": "Comprarle un kilo de comida y seguir."
       },
       {
         "id": "ignorar_perro",
@@ -1755,7 +1828,8 @@
             "metric": "estres",
             "amount": 5
           }
-        ]
+        ],
+        "eco": "Ignorarlo y sentir culpa."
       }
     ]
   },
@@ -1785,7 +1859,8 @@
             "metric": "salud",
             "amount": -3
           }
-        ]
+        ],
+        "eco": "Stalkear tres horas."
       },
       {
         "id": "bloquear_ex",
@@ -1806,7 +1881,8 @@
             "metric": "salud",
             "amount": 3
           }
-        ]
+        ],
+        "eco": "Bloquear y salir a caminar."
       },
       {
         "id": "mensaje_borracho",
@@ -1827,7 +1903,8 @@
             "metric": "estres",
             "amount": 20
           }
-        ]
+        ],
+        "eco": "Mandar un audio a las 2 AM."
       }
     ]
   },
@@ -1866,7 +1943,8 @@
             "type": "remove_flag",
             "value": "sin_prepaga"
           }
-        ]
+        ],
+        "eco": "Pagar y bufar."
       },
       {
         "id": "bajar_plan",
@@ -1887,7 +1965,8 @@
             "metric": "bienestar",
             "amount": -6
           }
-        ]
+        ],
+        "eco": "Bajar de plan."
       },
       {
         "id": "pasar_publico",
@@ -1912,7 +1991,8 @@
             "type": "add_flag",
             "value": "sin_prepaga"
           }
-        ]
+        ],
+        "eco": "Pasarte al sistema público."
       }
     ]
   },
@@ -1924,7 +2004,11 @@
     "condiciones": [
       {
         "type": "viviendas_any",
-        "values": ["pieza", "alquiler", "barrio_cerrado"]
+        "values": [
+          "pieza",
+          "alquiler",
+          "barrio_cerrado"
+        ]
       }
     ],
     "opciones": [
@@ -1947,7 +2031,8 @@
             "metric": "bienestar",
             "amount": -5
           }
-        ]
+        ],
+        "eco": "Bajar a pelear."
       },
       {
         "id": "tapones",
@@ -1968,7 +2053,8 @@
             "metric": "salud",
             "amount": -4
           }
-        ]
+        ],
+        "eco": "Comprar tapones y resignarte."
       },
       {
         "id": "cafe_vecino",
@@ -1989,7 +2075,8 @@
             "metric": "estres",
             "amount": -6
           }
-        ]
+        ],
+        "eco": "Invitarlo un café y negociar horarios."
       }
     ]
   },
@@ -2027,7 +2114,8 @@
             "metric": "estres",
             "amount": -20
           }
-        ]
+        ],
+        "eco": "Escape barato a la costa."
       },
       {
         "id": "laburar_feriado",
@@ -2048,7 +2136,8 @@
             "metric": "bienestar",
             "amount": -10
           }
-        ]
+        ],
+        "eco": "Laburar igual por unas horas extra."
       },
       {
         "id": "siesta_patria",
@@ -2069,7 +2158,8 @@
             "metric": "salud",
             "amount": 4
           }
-        ]
+        ],
+        "eco": "Siesta patriótica en el sillón."
       }
     ]
   },
@@ -2099,7 +2189,8 @@
             "metric": "bienestar",
             "amount": 6
           }
-        ]
+        ],
+        "eco": "Cambiar la pantalla en el once."
       },
       {
         "id": "usado_duda",
@@ -2131,7 +2222,8 @@
             "metric": "bienestar",
             "amount": 4
           }
-        ]
+        ],
+        "eco": "Comprar un usado dudoso."
       },
       {
         "id": "vivir_sin",
@@ -2152,7 +2244,8 @@
             "metric": "bienestar",
             "amount": 5
           }
-        ]
+        ],
+        "eco": "Vivir una semana sin celular."
       }
     ]
   },
@@ -2182,7 +2275,8 @@
             "metric": "bienestar",
             "amount": -5
           }
-        ]
+        ],
+        "eco": "Alquilar una bomba de agua."
       },
       {
         "id": "ayudar_vecinos",
@@ -2208,7 +2302,8 @@
             "metric": "bienestar",
             "amount": 8
           }
-        ]
+        ],
+        "eco": "Ayudar a los vecinos con baldes."
       },
       {
         "id": "subir_cosas",
@@ -2229,7 +2324,8 @@
             "metric": "dinero",
             "amount": -15000
           }
-        ]
+        ],
+        "eco": "Subir lo importante al primer piso y esperar."
       }
     ]
   },
@@ -2264,7 +2360,8 @@
             "metric": "estres",
             "amount": 6
           }
-        ]
+        ],
+        "eco": "Ir con regalo decente."
       },
       {
         "id": "solo_sobre",
@@ -2285,7 +2382,8 @@
             "metric": "bienestar",
             "amount": 2
           }
-        ]
+        ],
+        "eco": "Mandar un sobre y no ir."
       },
       {
         "id": "excusa_laburo",
@@ -2306,7 +2404,8 @@
             "metric": "bienestar",
             "amount": -3
           }
-        ]
+        ],
+        "eco": "Inventar que tenés laburo."
       }
     ]
   },
@@ -2340,7 +2439,8 @@
             "type": "add_flag",
             "value": "gym_member"
           }
-        ]
+        ],
+        "eco": "Anotarte."
       },
       {
         "id": "correr_plaza",
@@ -2361,7 +2461,8 @@
             "metric": "estres",
             "amount": -5
           }
-        ]
+        ],
+        "eco": "Correr gratis en la plaza."
       },
       {
         "id": "seguir_sofa",
@@ -2382,7 +2483,8 @@
             "metric": "estres",
             "amount": 3
           }
-        ]
+        ],
+        "eco": "Seguir en el sillón."
       }
     ]
   },
@@ -2417,7 +2519,8 @@
             "metric": "capital_social",
             "amount": 4
           }
-        ]
+        ],
+        "eco": "Dejar propina generosa."
       },
       {
         "id": "propina_minima",
@@ -2433,7 +2536,8 @@
             "metric": "bienestar",
             "amount": -2
           }
-        ]
+        ],
+        "eco": "Dejar lo mínimo."
       },
       {
         "id": "sin_propina",
@@ -2449,7 +2553,8 @@
             "metric": "estres",
             "amount": 4
           }
-        ]
+        ],
+        "eco": "No dejar nada y sentir el juicio."
       }
     ]
   },
@@ -2488,7 +2593,8 @@
             "type": "add_flag",
             "value": "coima_municipal"
           }
-        ]
+        ],
+        "eco": "Aceitar la situación."
       },
       {
         "id": "pagar_multa",
@@ -2509,7 +2615,8 @@
             "metric": "estres",
             "amount": 8
           }
-        ]
+        ],
+        "eco": "Pagar la multa en regla."
       },
       {
         "id": "llamar_concejal",
@@ -2529,7 +2636,8 @@
             "type": "add_flag",
             "value": "favor_politico"
           }
-        ]
+        ],
+        "eco": "Llamar a un contacto político."
       }
     ]
   },
@@ -2570,7 +2678,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Apagar cámara y fingir atención."
       },
       {
         "id": "hablar_mucho",
@@ -2591,7 +2700,8 @@
             "metric": "bienestar",
             "amount": -5
           }
-        ]
+        ],
+        "eco": "Hablar mucho para quedar bien."
       },
       {
         "id": "proponer_async",
@@ -2612,7 +2722,8 @@
             "metric": "bienestar",
             "amount": 4
           }
-        ]
+        ],
+        "eco": "Proponer pasar todo a async."
       }
     ]
   },
@@ -2652,7 +2763,8 @@
             "metric": "bienestar",
             "amount": 6
           }
-        ]
+        ],
+        "eco": "Aguantar mates y escuchar."
       },
       {
         "id": "volante_rapido",
@@ -2673,7 +2785,8 @@
             "metric": "bienestar",
             "amount": -3
           }
-        ]
+        ],
+        "eco": "Dejar volante y salir corriendo."
       },
       {
         "id": "pagar_pibes",
@@ -2694,7 +2807,8 @@
             "metric": "bienestar",
             "amount": -5
           }
-        ]
+        ],
+        "eco": "Pagarle a dos pibes para que lo hagan."
       }
     ]
   },
@@ -2729,7 +2843,8 @@
             "metric": "salud",
             "amount": -5
           }
-        ]
+        ],
+        "eco": "Vender todo al galpón."
       },
       {
         "id": "guardar_microondas",
@@ -2750,7 +2865,8 @@
             "metric": "estres",
             "amount": 3
           }
-        ]
+        ],
+        "eco": "Quedarte el microondas."
       },
       {
         "id": "compartir_hallazgo",
@@ -2771,7 +2887,8 @@
             "metric": "bienestar",
             "amount": 8
           }
-        ]
+        ],
+        "eco": "Compartir el hallazgo con otro cartonero."
       }
     ]
   },
@@ -2810,7 +2927,8 @@
             "metric": "estres",
             "amount": -8
           }
-        ]
+        ],
+        "eco": "Pagar todo el fiado."
       },
       {
         "id": "pagar_parcial",
@@ -2831,7 +2949,8 @@
             "metric": "capital_social",
             "amount": -4
           }
-        ]
+        ],
+        "eco": "Pagar una parte y prometer."
       },
       {
         "id": "cambiar_almacen",
@@ -2856,7 +2975,8 @@
             "metric": "estres",
             "amount": 10
           }
-        ]
+        ],
+        "eco": "Cambiar de almacén para siempre."
       }
     ]
   },
@@ -2891,7 +3011,8 @@
             "metric": "estres",
             "amount": -5
           }
-        ]
+        ],
+        "eco": "Hacerle todos los estudios."
       },
       {
         "id": "vet_basico",
@@ -2912,7 +3033,8 @@
             "metric": "estres",
             "amount": 8
           }
-        ]
+        ],
+        "eco": "Tratamiento básico."
       },
       {
         "id": "remedio_casa",
@@ -2944,7 +3066,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Remedio casero y rezar."
       }
     ]
   },
@@ -3001,7 +3124,8 @@
             "metric": "estres",
             "amount": 8
           }
-        ]
+        ],
+        "eco": "Pedir aumento en firme."
       },
       {
         "id": "aceptar_bonus",
@@ -3022,7 +3146,8 @@
             "metric": "estres",
             "amount": 3
           }
-        ]
+        ],
+        "eco": "Aceptar un bonus único."
       },
       {
         "id": "callarte",
@@ -3043,7 +3168,8 @@
             "metric": "capital_social",
             "amount": 3
           }
-        ]
+        ],
+        "eco": "Callarte y actualizar LinkedIn."
       }
     ]
   },
@@ -3083,7 +3209,8 @@
             "metric": "dinero",
             "amount": -20000
           }
-        ]
+        ],
+        "eco": "Disculpa pública en cámara."
       },
       {
         "id": "ignorar_haters",
@@ -3104,7 +3231,8 @@
             "metric": "bienestar",
             "amount": -5
           }
-        ]
+        ],
+        "eco": "Ignorar y seguir la agenda."
       },
       {
         "id": "contraataque",
@@ -3129,7 +3257,8 @@
             "type": "add_flag",
             "value": "guerra_redes"
           }
-        ]
+        ],
+        "eco": "Contraatacar con otro audio."
       }
     ]
   },
@@ -3167,7 +3296,8 @@
             "metric": "bienestar",
             "amount": 3
           }
-        ]
+        ],
+        "eco": "Ir a un café con WiFi."
       },
       {
         "id": "datos_moviles",
@@ -3188,7 +3318,8 @@
             "metric": "salud",
             "amount": -2
           }
-        ]
+        ],
+        "eco": "Quemar datos móviles."
       },
       {
         "id": "dia_libre_forzado",
@@ -3209,7 +3340,8 @@
             "metric": "estres",
             "amount": -8
           }
-        ]
+        ],
+        "eco": "Declarar día perdido y descansar."
       }
     ]
   },
@@ -3239,7 +3371,8 @@
             "metric": "dinero",
             "amount": -5000
           }
-        ]
+        ],
+        "eco": "Renunciar a tu parte por paz."
       },
       {
         "id": "pelear_abogado",
@@ -3271,7 +3404,8 @@
             "metric": "capital_social",
             "amount": -15
           }
-        ]
+        ],
+        "eco": "Pelear con abogado."
       },
       {
         "id": "quedarte_tv",
@@ -3292,7 +3426,8 @@
             "metric": "estres",
             "amount": 8
           }
-        ]
+        ],
+        "eco": "Quedarte el TV y cortar relación."
       }
     ]
   },
@@ -3322,7 +3457,8 @@
             "metric": "estres",
             "amount": 8
           }
-        ]
+        ],
+        "eco": "Ir a guardia."
       },
       {
         "id": "suero_casa",
@@ -3343,7 +3479,8 @@
             "metric": "estres",
             "amount": 10
           }
-        ]
+        ],
+        "eco": "Suero casero y ayuno."
       },
       {
         "id": "reclamar_app",
@@ -3364,7 +3501,8 @@
             "metric": "salud",
             "amount": -6
           }
-        ]
+        ],
+        "eco": "Reclamar en la app hasta obtener reintegro."
       }
     ]
   },
@@ -3409,7 +3547,8 @@
             "type": "add_flag",
             "value": "cripto_bagholder"
           }
-        ]
+        ],
+        "eco": "Meter una buena parte."
       },
       {
         "id": "plata_juego",
@@ -3430,7 +3569,8 @@
             "metric": "bienestar",
             "amount": 2
           }
-        ]
+        ],
+        "eco": "Meter solo plata de juego."
       },
       {
         "id": "decir_no",
@@ -3451,7 +3591,8 @@
             "metric": "estres",
             "amount": -2
           }
-        ]
+        ],
+        "eco": "Decirle que no y cambiar de tema."
       }
     ]
   },
@@ -3487,7 +3628,8 @@
             "metric": "estres",
             "amount": -8
           }
-        ]
+        ],
+        "eco": "Llamar a un amigo de verdad."
       },
       {
         "id": "terapia",
@@ -3512,7 +3654,8 @@
             "type": "add_flag",
             "value": "en_terapia"
           }
-        ]
+        ],
+        "eco": "Sacar turno con psicólogo."
       },
       {
         "id": "scroll_infinito",
@@ -3533,7 +3676,8 @@
             "metric": "salud",
             "amount": -4
           }
-        ]
+        ],
+        "eco": "Scroll infinito hasta dormirte."
       }
     ]
   },
@@ -3563,7 +3707,8 @@
             "metric": "estres",
             "amount": -5
           }
-        ]
+        ],
+        "eco": "Pagar con descuento."
       },
       {
         "id": "impugnar",
@@ -3590,7 +3735,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Impugnar por deporte."
       },
       {
         "id": "ignorar_multa",
@@ -3610,7 +3756,8 @@
             "metric": "bienestar",
             "amount": -4
           }
-        ]
+        ],
+        "eco": "Ignorarla hasta que duela más."
       }
     ]
   },
@@ -3644,7 +3791,8 @@
             "metric": "estres",
             "amount": -10
           }
-        ]
+        ],
+        "eco": "Pagar de una."
       },
       {
         "id": "plan_cuotas",
@@ -3668,7 +3816,8 @@
             "metric": "estres",
             "amount": 5
           }
-        ]
+        ],
+        "eco": "Plan de pagos en 6 cuotas."
       },
       {
         "id": "seguir_debiendo",
@@ -3689,7 +3838,8 @@
             "metric": "capital_social",
             "amount": -5
           }
-        ]
+        ],
+        "eco": "Seguir debiendo."
       }
     ]
   },
@@ -3725,7 +3875,8 @@
             "metric": "salud",
             "amount": 4
           }
-        ]
+        ],
+        "eco": "Comprar melatonina en la 24hs."
       },
       {
         "id": "series_otra_vez",
@@ -3746,7 +3897,8 @@
             "metric": "bienestar",
             "amount": -4
           }
-        ]
+        ],
+        "eco": "Otra temporada entera."
       },
       {
         "id": "anotar_preocupaciones",
@@ -3762,7 +3914,8 @@
             "metric": "bienestar",
             "amount": 6
           }
-        ]
+        ],
+        "eco": "Anotar preocupaciones en un papel."
       }
     ]
   },
@@ -3792,7 +3945,8 @@
             "metric": "bienestar",
             "amount": 5
           }
-        ]
+        ],
+        "eco": "Pagar un gestor."
       },
       {
         "id": "aguantar_fila",
@@ -3824,7 +3978,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Aguantar la fila como un adulto."
       },
       {
         "id": "abandonar_tramite",
@@ -3845,7 +4000,8 @@
             "metric": "dinero",
             "amount": -5000
           }
-        ]
+        ],
+        "eco": "Abandonar el trámite."
       }
     ]
   },
@@ -3884,7 +4040,8 @@
             "type": "add_flag",
             "value": "prestamo_amigo"
           }
-        ]
+        ],
+        "eco": "Prestarle."
       },
       {
         "id": "prestar_poco",
@@ -3905,7 +4062,8 @@
             "metric": "estres",
             "amount": 4
           }
-        ]
+        ],
+        "eco": "Prestarle la mitad."
       },
       {
         "id": "no_prestar",
@@ -3926,7 +4084,8 @@
             "metric": "estres",
             "amount": 5
           }
-        ]
+        ],
+        "eco": "Decirle que no podés."
       }
     ]
   },
@@ -3965,7 +4124,8 @@
             "metric": "bienestar",
             "amount": 10
           }
-        ]
+        ],
+        "eco": "Aceptar la plata."
       },
       {
         "id": "perdonar_deuda",
@@ -3985,7 +4145,8 @@
             "metric": "bienestar",
             "amount": 12
           }
-        ]
+        ],
+        "eco": "Decirle que se la quede."
       },
       {
         "id": "invitar_cerveza",
@@ -4010,7 +4171,8 @@
             "metric": "capital_social",
             "amount": 8
           }
-        ]
+        ],
+        "eco": "Cobrarle e invitar cerveza."
       }
     ]
   },
@@ -4022,7 +4184,11 @@
     "condiciones": [
       {
         "type": "viviendas_any",
-        "values": ["pieza", "alquiler", "barrio_cerrado"]
+        "values": [
+          "pieza",
+          "alquiler",
+          "barrio_cerrado"
+        ]
       }
     ],
     "opciones": [
@@ -4049,7 +4215,8 @@
             "type": "add_flag",
             "value": "tiene_aire"
           }
-        ]
+        ],
+        "eco": "Comprar un aire usado."
       },
       {
         "id": "pileta_club",
@@ -4070,7 +4237,8 @@
             "metric": "salud",
             "amount": 4
           }
-        ]
+        ],
+        "eco": "Día de pileta en un club."
       },
       {
         "id": "duchas_frias",
@@ -4091,7 +4259,8 @@
             "metric": "bienestar",
             "amount": -10
           }
-        ]
+        ],
+        "eco": "Duchas frías y sobrevivir."
       }
     ]
   },
@@ -4126,7 +4295,8 @@
             "metric": "bienestar",
             "amount": -10
           }
-        ]
+        ],
+        "eco": "Contestar ya."
       },
       {
         "id": "lunes",
@@ -4147,7 +4317,8 @@
             "metric": "estres",
             "amount": 4
           }
-        ]
+        ],
+        "eco": "Responder que lo ves el lunes."
       },
       {
         "id": "silenciar",
@@ -4174,7 +4345,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Silenciar y fingir que no viste."
       }
     ]
   },
@@ -4219,7 +4391,8 @@
             "metric": "dinero",
             "amount": -8000
           }
-        ]
+        ],
+        "eco": "Ir y aplaudir."
       },
       {
         "id": "mandar_asesor",
@@ -4240,7 +4413,8 @@
             "metric": "bienestar",
             "amount": 4
           }
-        ]
+        ],
+        "eco": "Mandar a un asesor en tu lugar."
       },
       {
         "id": "no_ir_congreso",
@@ -4256,7 +4430,8 @@
             "metric": "estres",
             "amount": 10
           }
-        ]
+        ],
+        "eco": "No ir y bancarte el corte."
       }
     ]
   },
@@ -4291,7 +4466,8 @@
             "metric": "estres",
             "amount": -5
           }
-        ]
+        ],
+        "eco": "Seguir yendo."
       },
       {
         "id": "cortar_terapia",
@@ -4311,7 +4487,8 @@
             "metric": "estres",
             "amount": 8
           }
-        ]
+        ],
+        "eco": "Cortar la terapia."
       },
       {
         "id": "espaciar",
@@ -4327,7 +4504,8 @@
             "metric": "bienestar",
             "amount": 2
           }
-        ]
+        ],
+        "eco": "Espaciar a una vez por mes."
       }
     ]
   },
@@ -4365,7 +4543,8 @@
             "metric": "bienestar",
             "amount": 4
           }
-        ]
+        ],
+        "eco": "Transferir todo lo que tengas a cuenta."
       },
       {
         "id": "prometer_cuota",
@@ -4386,7 +4565,8 @@
             "metric": "capital_social",
             "amount": -6
           }
-        ]
+        ],
+        "eco": "Prometer una cuota y pedir tiempo."
       },
       {
         "id": "ignorar_cobranza",
@@ -4412,7 +4592,8 @@
             "metric": "capital_social",
             "amount": -8
           }
-        ]
+        ],
+        "eco": "Ignorarlos y cambiar el chip."
       }
     ]
   },
@@ -4450,7 +4631,8 @@
             "metric": "bienestar",
             "amount": -4
           }
-        ]
+        ],
+        "eco": "Pagar una parte gorda ya."
       },
       {
         "id": "denunciar_policia",
@@ -4480,7 +4662,8 @@
             "type": "add_flag",
             "value": "denuncio_cobradores"
           }
-        ]
+        ],
+        "eco": "Ir a denunciar."
       },
       {
         "id": "esconder_familia",
@@ -4506,7 +4689,8 @@
             "metric": "capital_social",
             "amount": 4
           }
-        ]
+        ],
+        "eco": "Mudar a tu familia una temporada."
       }
     ]
   },
@@ -4549,7 +4733,8 @@
             "metric": "salud",
             "amount": -5
           }
-        ]
+        ],
+        "eco": "Entregarles toda la plata de la casa."
       },
       {
         "id": "pelear_visita",
@@ -4575,7 +4760,8 @@
             "metric": "capital_social",
             "amount": -5
           }
-        ]
+        ],
+        "eco": "Bancártela a los golpes."
       },
       {
         "id": "firmar_pagare",
@@ -4600,7 +4786,8 @@
             "type": "add_flag",
             "value": "pagare_cobradores"
           }
-        ]
+        ],
+        "eco": "Firmar un pagaré más grande."
       }
     ]
   },
@@ -4652,7 +4839,8 @@
             "type": "add_flag",
             "value": "familia_secuestrada_resuelta"
           }
-        ]
+        ],
+        "eco": "Vaciarte por el rescate."
       },
       {
         "id": "negociar_plazo",
@@ -4678,7 +4866,8 @@
             "metric": "salud",
             "amount": -10
           }
-        ]
+        ],
+        "eco": "Negociar 72 horas más."
       },
       {
         "id": "buscar_ayuda_barrio",
@@ -4731,7 +4920,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Pedir ayuda al barrio / milicos / quien sea."
       }
     ]
   },
@@ -4774,7 +4964,8 @@
             "metric": "bienestar",
             "amount": -30
           }
-        ]
+        ],
+        "eco": "Aguantar y prometer pago total."
       },
       {
         "id": "venderte",
@@ -4804,7 +4995,8 @@
             "type": "add_flag",
             "value": "muleto_cobradores"
           }
-        ]
+        ],
+        "eco": "Ofrecerte como mano de obra para ellos."
       },
       {
         "id": "resistir_galpon",
@@ -4836,7 +5028,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Resistirte y buscar una salida."
       }
     ]
   },
@@ -4884,7 +5077,8 @@
             "type": "add_flag",
             "value": "muleto_cobradores"
           }
-        ]
+        ],
+        "eco": "Obedecer y bajar deuda con sangre ajena."
       },
       {
         "id": "huir_pais",
@@ -4937,7 +5131,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Intentar fugarte del país."
       },
       {
         "id": "entregarte_fin",
@@ -4957,7 +5152,8 @@
             "metric": "salud",
             "amount": -15
           }
-        ]
+        ],
+        "eco": "Entregarte del todo."
       }
     ]
   },
@@ -5011,7 +5207,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Último intento de pago total."
       },
       {
         "id": "sacrificio",
@@ -5036,7 +5233,8 @@
             "metric": "deuda",
             "amount": -1000000
           }
-        ]
+        ],
+        "eco": "Sacrificarte para que suelten a los tuyos."
       },
       {
         "id": "guerra_total",
@@ -5088,7 +5286,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Ir a la guerra total contra ellos."
       }
     ]
   },
@@ -5100,7 +5299,10 @@
     "condiciones": [
       {
         "type": "viviendas_any",
-        "values": ["villa", "pieza"]
+        "values": [
+          "villa",
+          "pieza"
+        ]
       }
     ],
     "opciones": [
@@ -5123,7 +5325,8 @@
             "metric": "salud",
             "amount": -3
           }
-        ]
+        ],
+        "eco": "Quedarte en el piso hasta que pase."
       },
       {
         "id": "salir_corriendo",
@@ -5150,7 +5353,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Salir corriendo entre los tiros."
       },
       {
         "id": "filmar_todo",
@@ -5175,7 +5379,8 @@
             "type": "add_flag",
             "value": "filmo_balacera"
           }
-        ]
+        ],
+        "eco": "Filmar y subir a redes."
       }
     ]
   },
@@ -5209,7 +5414,8 @@
             "type": "add_flag",
             "value": "laburo_negro"
           }
-        ]
+        ],
+        "eco": "Aceptar y cobrar en negro."
       },
       {
         "id": "pedir_blanco",
@@ -5241,7 +5447,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Pedir que te anoten en blanco."
       },
       {
         "id": "rechazar_negro",
@@ -5262,7 +5469,8 @@
             "metric": "estres",
             "amount": 4
           }
-        ]
+        ],
+        "eco": "Rechazar y seguir tu camino."
       }
     ]
   },
@@ -5301,7 +5509,8 @@
             "type": "add_flag",
             "value": "paga_proteccion"
           }
-        ]
+        ],
+        "eco": "Pagar la protección."
       },
       {
         "id": "plantarte",
@@ -5327,7 +5536,8 @@
             "metric": "bienestar",
             "amount": -8
           }
-        ]
+        ],
+        "eco": "Plantarte y decir que no."
       },
       {
         "id": "avisar_policia_local",
@@ -5352,7 +5562,8 @@
             "type": "add_flag",
             "value": "enemigo_esquina"
           }
-        ]
+        ],
+        "eco": "Avisar a la comisaría."
       }
     ]
   },
@@ -5386,7 +5597,8 @@
             "type": "add_flag",
             "value": "coima_policial"
           }
-        ]
+        ],
+        "eco": "Aceitar y salir."
       },
       {
         "id": "gritar_inocente",
@@ -5412,7 +5624,8 @@
             "metric": "dinero",
             "amount": -20000
           }
-        ]
+        ],
+        "eco": "Gritar que es un armado."
       },
       {
         "id": "llamar_abogado_ya",
@@ -5438,7 +5651,8 @@
             "metric": "bienestar",
             "amount": -8
           }
-        ]
+        ],
+        "eco": "Pedir un abogado ya."
       }
     ]
   },
@@ -5489,7 +5703,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Llevarlo a la comisaría."
       },
       {
         "id": "vender_partes",
@@ -5514,7 +5729,8 @@
             "type": "add_flag",
             "value": "vende_robado"
           }
-        ]
+        ],
+        "eco": "Vender el celular por partes."
       },
       {
         "id": "dejarlo_ahi",
@@ -5530,7 +5746,8 @@
             "metric": "bienestar",
             "amount": -6
           }
-        ]
+        ],
+        "eco": "Dejarlo y olvidarte."
       }
     ]
   },
@@ -5569,7 +5786,8 @@
             "type": "add_flag",
             "value": "denuncio_acoso"
           }
-        ]
+        ],
+        "eco": "Plantarte y denunciar a RR.HH."
       },
       {
         "id": "irse_laburo",
@@ -5595,7 +5813,8 @@
             "metric": "capital_social",
             "amount": -5
           }
-        ]
+        ],
+        "eco": "Renunciar esa misma noche."
       },
       {
         "id": "aguantar_asco",
@@ -5621,7 +5840,8 @@
             "metric": "dinero",
             "amount": 30000
           }
-        ]
+        ],
+        "eco": "Aguantar el asco por el sueldo."
       }
     ]
   },
@@ -5651,7 +5871,8 @@
             "metric": "bienestar",
             "amount": -5
           }
-        ]
+        ],
+        "eco": "Levantarte e irte."
       },
       {
         "id": "escuchar_monto",
@@ -5671,7 +5892,8 @@
             "type": "add_flag",
             "value": "hablo_con_traficante"
           }
-        ]
+        ],
+        "eco": "Preguntar el monto 'por curiosidad'."
       },
       {
         "id": "denunciar_anonimo",
@@ -5692,7 +5914,8 @@
             "metric": "bienestar",
             "amount": 2
           }
-        ]
+        ],
+        "eco": "Denunciar anónimo después."
       }
     ]
   },
@@ -5727,7 +5950,8 @@
             "metric": "dinero",
             "amount": -10000
           }
-        ]
+        ],
+        "eco": "Salir a preguntar casa por casa."
       },
       {
         "id": "ayudar_familia",
@@ -5753,7 +5977,8 @@
             "metric": "bienestar",
             "amount": 4
           }
-        ]
+        ],
+        "eco": "Ayudar a la familia con plata y trámites."
       },
       {
         "id": "cerrar_ojos",
@@ -5774,7 +5999,8 @@
             "metric": "capital_social",
             "amount": -10
           }
-        ]
+        ],
+        "eco": "Cerrar los ojos y seguir."
       }
     ]
   },
@@ -5813,7 +6039,8 @@
             "type": "add_flag",
             "value": "fraude_obra"
           }
-        ]
+        ],
+        "eco": "Entrar y cobrar tu parte."
       },
       {
         "id": "filtrar_prensa",
@@ -5838,7 +6065,8 @@
             "type": "add_flag",
             "value": "enemigo_partido"
           }
-        ]
+        ],
+        "eco": "Filtrar todo a la prensa."
       },
       {
         "id": "salir_silencio",
@@ -5859,7 +6087,8 @@
             "metric": "capital_social",
             "amount": -5
           }
-        ]
+        ],
+        "eco": "Salir sin firmar y fingir demencia."
       }
     ]
   },
@@ -5898,7 +6127,8 @@
             "type": "add_flag",
             "value": "filtro_datos"
           }
-        ]
+        ],
+        "eco": "Vender la base."
       },
       {
         "id": "reportar_interno",
@@ -5930,7 +6160,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Reportarlo por canales internos."
       },
       {
         "id": "borrar_chat",
@@ -5946,7 +6177,8 @@
             "metric": "bienestar",
             "amount": -8
           }
-        ]
+        ],
+        "eco": "Borrar el chat y fingir que no viste."
       }
     ]
   },
@@ -5981,7 +6213,8 @@
             "metric": "bienestar",
             "amount": 4
           }
-        ]
+        ],
+        "eco": "Intervenir y gritar."
       },
       {
         "id": "llamar_bomberos",
@@ -6002,7 +6235,8 @@
             "metric": "bienestar",
             "amount": 2
           }
-        ]
+        ],
+        "eco": "Llamar bomberos desde lejos."
       },
       {
         "id": "subir_y_callar",
@@ -6023,7 +6257,8 @@
             "metric": "capital_social",
             "amount": -6
           }
-        ]
+        ],
+        "eco": "Subir y cerrar la puerta con llave."
       }
     ]
   },
@@ -6053,7 +6288,8 @@
             "metric": "estres",
             "amount": 6
           }
-        ]
+        ],
+        "eco": "Bloquear y denunciar el número."
       },
       {
         "id": "avisar_amigues",
@@ -6074,7 +6310,8 @@
             "metric": "bienestar",
             "amount": 5
           }
-        ]
+        ],
+        "eco": "Pasar el aviso a grupos para que nadie caiga."
       },
       {
         "id": "responder_sarcasmo",
@@ -6090,7 +6327,8 @@
             "metric": "bienestar",
             "amount": -2
           }
-        ]
+        ],
+        "eco": "Responder con sarcasmo y seguir."
       }
     ]
   },
@@ -6125,7 +6363,8 @@
             "metric": "capital_social",
             "amount": 5
           }
-        ]
+        ],
+        "eco": "Devolverla y no preguntar."
       },
       {
         "id": "quedarte_parte",
@@ -6155,7 +6394,8 @@
             "type": "add_flag",
             "value": "robo_caja_negra"
           }
-        ]
+        ],
+        "eco": "Quedarte una parte 'por el susto'."
       },
       {
         "id": "denunciar_todo",
@@ -6181,7 +6421,8 @@
             "metric": "bienestar",
             "amount": -5
           }
-        ]
+        ],
+        "eco": "Denunciar todo."
       }
     ]
   },
@@ -6222,7 +6463,8 @@
             "metric": "estres",
             "amount": 8
           }
-        ]
+        ],
+        "eco": "Ceder tu lugar."
       },
       {
         "id": "quedarte_turno",
@@ -6248,7 +6490,8 @@
             "metric": "estres",
             "amount": 10
           }
-        ]
+        ],
+        "eco": "Quedarte el turno igual."
       },
       {
         "id": "pagar_particular_ya",
@@ -6274,7 +6517,8 @@
             "metric": "bienestar",
             "amount": -4
           }
-        ]
+        ],
+        "eco": "Irte a una clínica particular."
       }
     ]
   },
@@ -6320,7 +6564,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Pagar para que las borren."
       },
       {
         "id": "exponerlos",
@@ -6346,7 +6591,8 @@
             "metric": "capital_social",
             "amount": 6
           }
-        ]
+        ],
+        "eco": "Exponer el chantaje públicamente."
       },
       {
         "id": "ignorar_chantaje",
@@ -6367,7 +6613,8 @@
             "metric": "capital_social",
             "amount": -6
           }
-        ]
+        ],
+        "eco": "Ignorar y endurecerte."
       }
     ]
   },
@@ -6406,7 +6653,8 @@
             "type": "add_flag",
             "value": "compra_votos"
           }
-        ]
+        ],
+        "eco": "Distribuir los bolsones."
       },
       {
         "id": "devolver_bolsones",
@@ -6427,7 +6675,8 @@
             "metric": "estres",
             "amount": 14
           }
-        ]
+        ],
+        "eco": "Devolver todo y plantarte."
       },
       {
         "id": "quedarte_bolson_vos",
@@ -6453,7 +6702,8 @@
             "metric": "bienestar",
             "amount": -6
           }
-        ]
+        ],
+        "eco": "Quedarte un bolsón y desaparecer."
       }
     ]
   },
@@ -6492,7 +6742,8 @@
             "type": "add_flag",
             "value": "tapo_accidente"
           }
-        ]
+        ],
+        "eco": "Firmar la mentira."
       },
       {
         "id": "decir_verdad",
@@ -6518,7 +6769,8 @@
             "metric": "dinero",
             "amount": -20000
           }
-        ]
+        ],
+        "eco": "Decir la verdad."
       },
       {
         "id": "ayudar_herido",
@@ -6544,7 +6796,8 @@
             "metric": "salud",
             "amount": -5
           }
-        ]
+        ],
+        "eco": "Priorizar al herido y bancarte el quilombo."
       }
     ]
   },
@@ -6591,7 +6844,8 @@
             "type": "add_flag",
             "value": "tiene_pareja"
           }
-        ]
+        ],
+        "eco": "Aceptar y ver qué pasa."
       },
       {
         "id": "modo_gatero",
@@ -6615,7 +6869,8 @@
             "metric": "capital_social",
             "amount": -3
           }
-        ]
+        ],
+        "eco": "Decir que no te atás a nadie."
       },
       {
         "id": "rechazar_suave",
@@ -6631,7 +6886,8 @@
             "metric": "bienestar",
             "amount": -2
           }
-        ]
+        ],
+        "eco": "Inventar una excusa y seguir solo."
       }
     ]
   },
@@ -6686,7 +6942,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Salir hasta que amanezca."
       },
       {
         "id": "una_salida",
@@ -6707,7 +6964,8 @@
             "metric": "bienestar",
             "amount": 4
           }
-        ]
+        ],
+        "eco": "Una salida corta y a casa."
       },
       {
         "id": "quedarte",
@@ -6723,7 +6981,8 @@
             "metric": "bienestar",
             "amount": -3
           }
-        ]
+        ],
+        "eco": "Quedarte y dormir."
       }
     ]
   },
@@ -6778,7 +7037,8 @@
             "metric": "bienestar",
             "amount": -6
           }
-        ]
+        ],
+        "eco": "Apostar fuerte."
       },
       {
         "id": "ficha_chica",
@@ -6805,7 +7065,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Jugar poco 'por diversión'."
       },
       {
         "id": "no_entrar",
@@ -6821,7 +7082,8 @@
             "metric": "capital_social",
             "amount": -2
           }
-        ]
+        ],
+        "eco": "No entrar."
       }
     ]
   },
@@ -6873,7 +7135,8 @@
             "type": "add_flag",
             "value": "casado"
           }
-        ]
+        ],
+        "eco": "Casarte."
       },
       {
         "id": "seguir_novios",
@@ -6889,7 +7152,8 @@
             "metric": "estres",
             "amount": 6
           }
-        ]
+        ],
+        "eco": "Seguir de novios un tiempo más."
       },
       {
         "id": "cortar",
@@ -6918,7 +7182,8 @@
             "metric": "capital_social",
             "amount": -5
           }
-        ]
+        ],
+        "eco": "Cortar: no estás para eso."
       }
     ]
   },
@@ -6981,7 +7246,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Entrar en el juego."
       },
       {
         "id": "confesar_pareja",
@@ -7002,7 +7268,8 @@
             "metric": "capital_social",
             "amount": 3
           }
-        ]
+        ],
+        "eco": "Contárselo a tu pareja y bancártela."
       },
       {
         "id": "cortar_tentacion",
@@ -7018,7 +7285,8 @@
             "metric": "estres",
             "amount": 6
           }
-        ]
+        ],
+        "eco": "Bloquear y olvidarte."
       }
     ]
   },
@@ -7074,7 +7342,8 @@
             "type": "add_flag",
             "value": "padre_madre"
           }
-        ]
+        ],
+        "eco": "Tener el hijo y bancar."
       },
       {
         "id": "esperar_hablar",
@@ -7090,7 +7359,8 @@
             "metric": "bienestar",
             "amount": -6
           }
-        ]
+        ],
+        "eco": "Hablarlo con miedo y tiempo."
       },
       {
         "id": "negarse_hijo",
@@ -7125,7 +7395,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Decir que no estás listo."
       }
     ]
   },
@@ -7180,7 +7451,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Aceptar la noche."
       },
       {
         "id": "parar_gatero",
@@ -7204,7 +7476,8 @@
             "metric": "estres",
             "amount": 4
           }
-        ]
+        ],
+        "eco": "Cortar el ciclo y buscar algo serio."
       },
       {
         "id": "irse_solo",
@@ -7220,7 +7493,8 @@
             "metric": "salud",
             "amount": 3
           }
-        ]
+        ],
+        "eco": "Irte solo a casa."
       }
     ]
   },
@@ -7263,7 +7537,8 @@
             "type": "add_flag",
             "value": "pago_chantaje_politico"
           }
-        ]
+        ],
+        "eco": "Pagar por silencio."
       },
       {
         "id": "denunciar_amenaza",
@@ -7299,7 +7574,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Denunciar y endurecerte."
       },
       {
         "id": "proteger_familia",
@@ -7325,7 +7601,8 @@
             "metric": "influencia",
             "amount": 2
           }
-        ]
+        ],
+        "eco": "Esconder a la familia y aguantar."
       }
     ]
   },
@@ -7365,7 +7642,8 @@
             "metric": "capital_social",
             "amount": 3
           }
-        ]
+        ],
+        "eco": "Comprar todo lo que pide."
       },
       {
         "id": "comprar_basico",
@@ -7386,7 +7664,8 @@
             "metric": "estres",
             "amount": 4
           }
-        ]
+        ],
+        "eco": "Solo lo básico."
       },
       {
         "id": "postergar_hijo",
@@ -7407,7 +7686,8 @@
             "metric": "capital_social",
             "amount": -4
           }
-        ]
+        ],
+        "eco": "Postergar y inventar una excusa."
       }
     ]
   },
@@ -7456,7 +7736,8 @@
             "type": "add_flag",
             "value": "favor_oscuro"
           }
-        ]
+        ],
+        "eco": "Hacer el favor."
       },
       {
         "id": "cobrar_caro",
@@ -7482,7 +7763,8 @@
             "metric": "estres",
             "amount": 8
           }
-        ]
+        ],
+        "eco": "Cobrar caro y quedarte a mitad."
       },
       {
         "id": "rechazar_favor",
@@ -7503,7 +7785,8 @@
             "metric": "estres",
             "amount": 6
           }
-        ]
+        ],
+        "eco": "Rechazar."
       }
     ]
   },
@@ -7550,7 +7833,8 @@
             "metric": "salud",
             "amount": -6
           }
-        ]
+        ],
+        "eco": "Bancártela a oscuras."
       },
       {
         "id": "laburar_por_cable",
@@ -7588,7 +7872,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Pedirle al vecino que te vuelva a colgar."
       }
     ]
   },
@@ -7632,7 +7917,8 @@
             "type": "add_flag",
             "value": "militancia_radical"
           }
-        ]
+        ],
+        "eco": "Ir y presentarte."
       },
       {
         "id": "no_ir",
@@ -7643,7 +7929,8 @@
             "metric": "bienestar",
             "amount": 2
           }
-        ]
+        ],
+        "eco": "No ir."
       }
     ]
   },
@@ -7691,7 +7978,8 @@
             "type": "add_flag",
             "value": "coimero"
           }
-        ]
+        ],
+        "eco": "Aceptar el arreglo."
       },
       {
         "id": "rechazar_sobre",
@@ -7716,7 +8004,8 @@
             "type": "add_flag",
             "value": "limpio_gremio"
           }
-        ]
+        ],
+        "eco": "Rechazar y bancártela."
       }
     ]
   },
@@ -7772,7 +8061,8 @@
             "metric": "estres",
             "amount": 16
           }
-        ]
+        ],
+        "eco": "Armar tu espacio."
       },
       {
         "id": "quedarse",
@@ -7788,7 +8078,8 @@
             "metric": "estres",
             "amount": -2
           }
-        ]
+        ],
+        "eco": "Seguir en la estructura."
       }
     ]
   },
@@ -7836,7 +8127,8 @@
             "type": "add_flag",
             "value": "hermano_rehab"
           }
-        ]
+        ],
+        "eco": "Acompañarlo y poner plata."
       },
       {
         "id": "no_puedo",
@@ -7857,7 +8149,8 @@
             "metric": "capital_social",
             "amount": -10
           }
-        ]
+        ],
+        "eco": "Decir que no podés."
       }
     ]
   },
@@ -7897,7 +8190,8 @@
             "metric": "influencia",
             "amount": 4
           }
-        ]
+        ],
+        "eco": "Sacar al pibe."
       },
       {
         "id": "esconderse",
@@ -7918,7 +8212,8 @@
             "metric": "capital_social",
             "amount": -4
           }
-        ]
+        ],
+        "eco": "Esconderte."
       }
     ]
   },
@@ -7973,7 +8268,8 @@
               }
             ]
           }
-        ]
+        ],
+        "eco": "Ofrecer una coima."
       },
       {
         "id": "bancarsela",
@@ -7998,7 +8294,8 @@
             "type": "add_flag",
             "value": "multa_alcoholemia"
           }
-        ]
+        ],
+        "eco": "Bancártela limpio."
       }
     ]
   },
@@ -8041,7 +8338,8 @@
             "type": "add_flag",
             "value": "escandalo_mediatico"
           }
-        ]
+        ],
+        "eco": "Pasarte de copas."
       },
       {
         "id": "perfil_bajo",
@@ -8062,7 +8360,8 @@
             "metric": "estres",
             "amount": 4
           }
-        ]
+        ],
+        "eco": "Perfil bajo y networking."
       }
     ]
   },
@@ -8116,7 +8415,8 @@
             "type": "add_flag",
             "value": "conocio_messi"
           }
-        ]
+        ],
+        "eco": "Ir al asado."
       },
       {
         "id": "no_ir_asado",
@@ -8132,7 +8432,8 @@
             "metric": "capital_social",
             "amount": -4
           }
-        ]
+        ],
+        "eco": "Declinar (¿en serio?)."
       }
     ]
   },
@@ -8181,7 +8482,8 @@
             "type": "add_flag",
             "value": "laburo_puntero"
           }
-        ]
+        ],
+        "eco": "Armar la cola."
       },
       {
         "id": "no_puntero",
@@ -8202,7 +8504,8 @@
             "metric": "bienestar",
             "amount": 3
           }
-        ]
+        ],
+        "eco": "Mandarlo a freír churros."
       }
     ]
   }
