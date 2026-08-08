@@ -1350,6 +1350,10 @@
       {
         "type": "dinero_gte",
         "value": 30000
+      },
+      {
+        "type": "has_credential",
+        "value": "primaria"
       }
     ],
     "opciones": [
@@ -1468,7 +1472,7 @@
           },
           {
             "type": "add_flag",
-            "value": "worked_militante_barrial"
+            "value": "interes_militancia"
           },
           {
             "type": "delta",
@@ -1980,7 +1984,15 @@
     "titulo": "Feriado puente",
     "texto": "El país se para. Vos no. O sí. Depende si te dan el día o te hacen laburar 'remoto' con Slack en rojo.",
     "peso": 9,
-    "condiciones": [],
+    "condiciones": [
+      {
+        "type": "job_tags_any",
+        "values": [
+          "tech",
+          "oficina"
+        ]
+      }
+    ],
     "opciones": [
       {
         "id": "escapada",
@@ -3112,7 +3124,15 @@
     "titulo": "Se cae internet del edificio",
     "texto": "El router parpadea rojo. El proveedor dice 'incidente masivo'. Tu laburo remoto se convierte en laburo imaginario.",
     "peso": 10,
-    "condiciones": [],
+    "condiciones": [
+      {
+        "type": "job_tags_any",
+        "values": [
+          "tech",
+          "oficina"
+        ]
+      }
+    ],
     "opciones": [
       {
         "id": "cafe_wifi",

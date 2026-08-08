@@ -1,8 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { hintTone, toneClassLight } from "@/lib/effect-summary";
-import { formatMetricDelta } from "@/lib/monthly-costs";
 import type { PlayerState } from "@/lib/types";
 
 interface BillsPanelProps {
@@ -18,165 +16,190 @@ function formatARS(value: number): string {
   }).format(value);
 }
 
+function buildAffordablePlan(
+  bills: NonNullable<PlayerState["pending_bills"]>,
+  dinero: number,
+  deuda: number,
+  preferDebt: boolean,
+): Record<string, "pay" | "skip"> {
+  const map: Record<string, "pay" | "skip"> = {};
+  let remaining = dinero;
+  for (const bill of bills) {
+    if (bill.id === "pago_deuda") {
+      map[bill.id] = preferDebt && remaining > 0 && deuda > 0 ? "pay" : "skip";
+      continue;
+    }
+    if (remaining >= bill.amount) {
+      map[bill.id] = "pay";
+      remaining -= bill.amount;
+    } else {
+      map[bill.id] = "skip";
+    }
+  }
+  return map;
+}
+
 export function BillsPanel({ state, onConfirm }: BillsPanelProps) {
   const bills = state.pending_bills ?? [];
+  const [abonarDeuda, setAbonarDeuda] = useState(false);
+  const [modoDetalle, setModoDetalle] = useState(false);
 
-  const initial = useMemo(() => {
-    const map: Record<string, "pay" | "skip"> = {};
-    let remaining = state.dinero;
-    for (const bill of bills) {
-      if (bill.id === "pago_deuda") {
-        // Opt-in: debt payment is a conscious choice.
-        map[bill.id] = "skip";
-        continue;
-      }
-      if (remaining >= bill.amount) {
-        map[bill.id] = "pay";
-        remaining -= bill.amount;
-      } else {
-        map[bill.id] = "skip";
-      }
-    }
-    return map;
-  }, [bills, state.dinero]);
+  const plan = useMemo(
+    () => buildAffordablePlan(bills, state.dinero, state.deuda, abonarDeuda),
+    [bills, state.dinero, state.deuda, abonarDeuda],
+  );
 
-  const [decisions, setDecisions] = useState(initial);
+  const [decisions, setDecisions] = useState(plan);
+
+  // Keep decisions in sync when debt toggle changes (unless user is in detail mode tweaking)
+  const active = modoDetalle ? decisions : plan;
 
   const serviceBills = bills.filter((b) => b.id !== "pago_deuda");
   const debtBill = bills.find((b) => b.id === "pago_deuda");
-
-  const servicesPayTotal = serviceBills
-    .filter((b) => decisions[b.id] === "pay")
-    .reduce((sum, b) => sum + b.amount, 0);
-  const paidAnyServicePreview = serviceBills.some(
-    (b) => decisions[b.id] === "pay",
-  );
-
-  const payingDebt = debtBill ? decisions[debtBill.id] === "pay" : false;
-  const cashAfterServices = Math.max(0, state.dinero - servicesPayTotal);
-  const debtPaymentPreview = payingDebt
-    ? Math.min(state.deuda, Math.max(0, state.dinero - Math.min(servicesPayTotal, state.dinero)))
-    : 0;
-
-  // Services shortfall can create more debt; debt payment never does.
-  const servicesShortfall = Math.max(0, servicesPayTotal - state.dinero);
-  const cashAfterAllServices = Math.max(0, state.dinero - servicesPayTotal);
-  const autoSurplusToDebt =
-    paidAnyServicePreview && state.deuda > 0 && !payingDebt
-      ? Math.min(state.deuda, cashAfterAllServices)
-      : payingDebt
-        ? Math.min(
-            Math.max(0, state.deuda - debtPaymentPreview),
-            Math.max(0, cashAfterAllServices - debtPaymentPreview),
-          )
-        : 0;
+  const aPagar = serviceBills.filter((b) => active[b.id] === "pay");
+  const noAlcanza = serviceBills.filter((b) => active[b.id] !== "pay");
+  const totalPay = aPagar.reduce((s, b) => s + b.amount, 0);
+  const payingDebt = debtBill ? active[debtBill.id] === "pay" : false;
+  const leftover = Math.max(0, state.dinero - totalPay);
+  const debtPreview = payingDebt
+    ? Math.min(state.deuda, leftover)
+    : !payingDebt && aPagar.length > 0 && state.deuda > 0
+      ? Math.min(state.deuda, leftover)
+      : 0;
 
   function setChoice(id: string, choice: "pay" | "skip") {
+    setModoDetalle(true);
     setDecisions((prev) => ({ ...prev, [id]: choice }));
   }
 
-  function payAllAffordable() {
-    const map: Record<string, "pay" | "skip"> = {};
-    let remaining = state.dinero;
-    for (const bill of bills) {
-      if (bill.id === "pago_deuda") {
-        map[bill.id] = remaining > 0 && state.deuda > 0 ? "pay" : "skip";
-        continue;
-      }
-      if (remaining >= bill.amount) {
-        map[bill.id] = "pay";
-        remaining -= bill.amount;
-      } else {
-        map[bill.id] = "skip";
-      }
-    }
-    setDecisions(map);
-  }
-
-  function skipAll() {
-    const map: Record<string, "pay" | "skip"> = {};
-    for (const bill of bills) map[bill.id] = "skip";
-    setDecisions(map);
+  function usePlan(preferDebt: boolean) {
+    const next = buildAffordablePlan(
+      bills,
+      state.dinero,
+      state.deuda,
+      preferDebt,
+    );
+    setAbonarDeuda(preferDebt);
+    setDecisions(next);
+    setModoDetalle(false);
   }
 
   return (
-    <article className="event-card animate-in mx-auto w-full max-w-xl">
-      <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-teal-900/70">
-        Paso 3 · Cuentas
+    <article className="mx-auto w-full max-w-xl animate-in rounded-2xl bg-[#1a222d] p-5 text-[#e8eef5]">
+      <div className="h-1 w-full rounded-full bg-[#2f9e6b]" />
+      <p className="mt-4 text-[11px] font-bold uppercase tracking-[0.22em] text-[#3d9b6a]">
+        Cuentas
       </p>
-      <h2 className="font-display text-2xl leading-tight text-stone-950 sm:text-3xl">
-        ¿Qué pagás este mes?
-      </h2>
-      <p className="mt-3 text-sm text-stone-600">
-        Cobró el sueldo. Elegí qué servicios cubrís. Si no pagás nada, te
-        quedás la plata (duele en salud/estrés) y la deuda no se cobra sola. Si
-        pagás algo y te sobra, el sobrante baja la deuda. También podés elegir
-        abonar la deuda a propósito.
+      <h2 className="mt-1 font-display text-3xl text-white">Este mes</h2>
+      <p className="mt-2 font-mono text-sm text-[#9aabbc]">
+        Disponible {formatARS(state.dinero)}
+        {state.deuda > 0 ? ` · Deuda ${formatARS(state.deuda)}` : ""}
       </p>
-      <p className="mt-2 font-mono text-sm text-stone-800">
-        Disponible: {formatARS(state.dinero)}
-        {state.deuda > 0 ? (
-          <span className="ml-2 text-red-700">
-            · Deuda {formatARS(state.deuda)}
-          </span>
+
+      <div className="mt-5 rounded-2xl border border-white/10 bg-[#12161c] p-4">
+        {aPagar.length > 0 ? (
+          <p className="text-sm leading-relaxed text-[#c5d0dc]">
+            Con lo que tenés{" "}
+            <span className="font-semibold text-emerald-300">alcanzás</span> a
+            pagar:{" "}
+            <span className="text-white">
+              {aPagar.map((b) => b.label).join(", ")}
+            </span>
+            <span className="text-[#7a8b9c]"> ({formatARS(totalPay)})</span>
+          </p>
+        ) : (
+          <p className="text-sm text-rose-300">
+            No te alcanza para ninguna cuenta este mes.
+          </p>
+        )}
+        {noAlcanza.length > 0 ? (
+          <p className="mt-3 text-sm leading-relaxed text-[#c5d0dc]">
+            <span className="font-semibold text-amber-300">No vas a poder</span>{" "}
+            pagar:{" "}
+            <span className="text-white">
+              {noAlcanza.map((b) => b.label).join(", ")}
+            </span>
+            . Duele en el cuerpo y en las oportunidades.
+          </p>
+        ) : (
+          <p className="mt-3 text-sm text-emerald-300/90">
+            Cubís lo esencial. Bien.
+          </p>
+        )}
+        {debtPreview > 0 ? (
+          <p className="mt-3 text-sm text-teal-300">
+            {payingDebt ? "Abonás a la deuda" : "Sobrante → deuda"}: −
+            {formatARS(debtPreview)}
+          </p>
         ) : null}
-      </p>
+      </div>
 
       <div className="mt-4 flex flex-wrap gap-2">
         <button
           type="button"
-          className="job-btn text-xs"
-          onClick={payAllAffordable}
+          onClick={() => usePlan(false)}
+          className="rounded-xl bg-[#2f9e6b] px-4 py-2.5 text-xs font-bold uppercase tracking-wide text-white"
         >
           Pagar lo que alcanza
         </button>
-        <button type="button" className="job-btn text-xs" onClick={skipAll}>
+        <button
+          type="button"
+          onClick={() => {
+            const map: Record<string, "pay" | "skip"> = {};
+            for (const b of bills) map[b.id] = "skip";
+            setDecisions(map);
+            setModoDetalle(true);
+            setAbonarDeuda(false);
+          }}
+          className="rounded-xl border border-white/15 px-4 py-2.5 text-xs font-bold uppercase tracking-wide text-[#9aabbc]"
+        >
           No pagar nada
         </button>
+        {state.deuda > 0 ? (
+          <button
+            type="button"
+            onClick={() => usePlan(true)}
+            className="rounded-xl border border-amber-500/40 px-4 py-2.5 text-xs font-bold uppercase tracking-wide text-amber-200"
+          >
+            Priorizar deuda
+          </button>
+        ) : null}
       </div>
 
-      <ul className="mt-5 flex flex-col gap-3">
-        {bills.map((bill) => {
-          const choice = decisions[bill.id] ?? "pay";
-          const paying = choice === "pay";
-          const isDebt = bill.id === "pago_deuda";
-          const hints = isDebt
-            ? paying
-              ? [
-                  cashAfterServices >= state.deuda
-                    ? `−${formatARS(state.deuda)} deuda`
-                    : `Se descuenta todo (${formatARS(cashAfterServices)})`,
-                  "−Estrés",
-                ]
-              : ["Sin pago este mes", "Te quedás la plata"]
-            : formatMetricDelta(paying ? bill.al_pagar : bill.al_saltear);
+      <button
+        type="button"
+        onClick={() => {
+          if (!modoDetalle) setDecisions(plan);
+          setModoDetalle((v) => !v);
+        }}
+        className="mt-4 text-xs text-[#6b7c8f] underline-offset-2 hover:text-[#9aabbc] hover:underline"
+      >
+        {modoDetalle ? "Ocultar detalle" : "Ajustar cuenta por cuenta"}
+      </button>
 
-          return (
-            <li
-              key={bill.id}
-              className={`border px-3 py-3 ${
-                isDebt
-                  ? "border-amber-800/20 bg-amber-50/70"
-                  : "border-stone-800/10 bg-white/50"
-              }`}
-            >
-              <div className="flex flex-wrap items-start justify-between gap-2">
+      {modoDetalle ? (
+        <ul className="mt-4 space-y-2">
+          {bills.map((bill) => {
+            const paying = active[bill.id] === "pay";
+            return (
+              <li
+                key={bill.id}
+                className="flex items-center justify-between gap-3 rounded-xl border border-white/10 px-3 py-2"
+              >
                 <div>
-                  <p className="font-medium text-stone-900">{bill.label}</p>
-                  <p className="font-mono text-xs text-stone-500">
-                    {isDebt
-                      ? `Debés ${formatARS(bill.amount)}`
-                      : formatARS(bill.amount)}
+                  <p className="text-sm text-white">{bill.label}</p>
+                  <p className="font-mono text-[11px] text-[#7a8b9c]">
+                    {formatARS(bill.amount)}
                   </p>
                 </div>
-                <div className="flex gap-1.5">
+                <div className="flex gap-1">
                   <button
                     type="button"
                     onClick={() => setChoice(bill.id, "pay")}
-                    className={`px-2.5 py-1 text-xs font-semibold ${
+                    className={`rounded-lg px-2.5 py-1 text-[11px] font-semibold ${
                       paying
-                        ? "bg-stone-900 text-white"
-                        : "bg-stone-200/80 text-stone-600"
+                        ? "bg-emerald-500/20 text-emerald-300"
+                        : "bg-white/5 text-[#7a8b9c]"
                     }`}
                   >
                     Pagar
@@ -184,78 +207,27 @@ export function BillsPanel({ state, onConfirm }: BillsPanelProps) {
                   <button
                     type="button"
                     onClick={() => setChoice(bill.id, "skip")}
-                    className={`px-2.5 py-1 text-xs font-semibold ${
+                    className={`rounded-lg px-2.5 py-1 text-[11px] font-semibold ${
                       !paying
-                        ? "bg-red-800 text-white"
-                        : "bg-stone-200/80 text-stone-600"
+                        ? "bg-rose-500/20 text-rose-300"
+                        : "bg-white/5 text-[#7a8b9c]"
                     }`}
                   >
-                    No pagar
+                    No
                   </button>
                 </div>
-              </div>
-              <div className="mt-2 flex flex-wrap gap-1.5">
-                {hints.map((hint) => (
-                  <span
-                    key={hint}
-                    className={`rounded-sm px-1.5 py-0.5 text-[11px] font-medium ${toneClassLight(hintTone(hint))}`}
-                  >
-                    {hint}
-                  </span>
-                ))}
-                {!isDebt && paying && bill.amount > state.dinero ? (
-                  <span className="rounded-sm bg-amber-100/90 px-1.5 py-0.5 text-[11px] font-medium text-amber-950">
-                    Si no alcanza, te endeudás
-                  </span>
-                ) : null}
-                {isDebt && paying && state.deuda > cashAfterServices ? (
-                  <span className="rounded-sm bg-emerald-100/90 px-1.5 py-0.5 text-[11px] font-medium text-emerald-900">
-                    No te alcanza el total: se usa toda tu plata
-                  </span>
-                ) : null}
-              </div>
-            </li>
-          );
-        })}
-      </ul>
-
-      <div className="mt-5 border-t border-stone-800/10 pt-4 text-sm text-stone-700">
-        <p>
-          Servicios:{" "}
-          <span className="font-mono font-semibold">
-            {formatARS(servicesPayTotal)}
-          </span>
-          {servicesShortfall > 0 ? (
-            <span className="ml-2 text-red-700">
-              (te faltan {formatARS(servicesShortfall)} → más deuda)
-            </span>
-          ) : null}
-        </p>
-        {payingDebt ? (
-          <p className="mt-1 text-teal-800">
-            A la deuda: −{formatARS(debtPaymentPreview)}
-            {debtPaymentPreview < state.deuda
-              ? ` (queda ${formatARS(state.deuda - debtPaymentPreview)})`
-              : " (la saldás)"}
-          </p>
-        ) : null}
-        {autoSurplusToDebt > 0 ? (
-          <p className="mt-1 text-teal-800">
-            Sobrante → deuda: −{formatARS(autoSurplusToDebt)}
-          </p>
-        ) : state.deuda > 0 && !payingDebt && cashAfterAllServices === 0 ? (
-          <p className="mt-1 text-stone-500">
-            Sin sobrante: la deuda sigue (y suma intereses).
-          </p>
-        ) : null}
-      </div>
+              </li>
+            );
+          })}
+        </ul>
+      ) : null}
 
       <button
         type="button"
-        className="advance-btn mt-5 w-full"
-        onClick={() => onConfirm(decisions)}
+        className="mt-6 w-full rounded-xl bg-[#2f9e6b] px-4 py-3.5 text-sm font-black uppercase tracking-wide text-white"
+        onClick={() => onConfirm(modoDetalle ? decisions : plan)}
       >
-        Confirmar cuentas
+        Confirmar y seguir
       </button>
     </article>
   );

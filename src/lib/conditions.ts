@@ -22,6 +22,11 @@ export function evaluateCondition(
       const job = getJobById(state.trabajo_actual.id);
       return job?.tags.includes(condition.value) ?? false;
     }
+    case "job_tags_any": {
+      const job = getJobById(state.trabajo_actual.id);
+      if (!job) return false;
+      return condition.values.some((t) => job.tags.includes(t));
+    }
     case "has_flag":
       return state.flags.includes(condition.value);
     case "missing_flag":

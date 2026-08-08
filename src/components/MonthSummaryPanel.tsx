@@ -1,8 +1,6 @@
 "use client";
 
 import { getCredentialById } from "@/lib/credentials";
-import { hintTone, toneClassLight } from "@/lib/effect-summary";
-import { formatMetricDelta } from "@/lib/monthly-costs";
 import type { PlayerState } from "@/lib/types";
 
 interface MonthSummaryPanelProps {
@@ -28,55 +26,48 @@ export function MonthSummaryPanel({
   const historias = ledger.historias ?? [];
   const malas = historias.filter((h) => h.tono === "malo");
   const buenas = historias.filter((h) => h.tono === "bueno");
+  const highlight =
+    malas[0] ?? buenas[0] ?? null;
   const estudios = ledger.estudios_completados ?? [];
   const interes = ledger.interes_deuda ?? 0;
   const pagoDeuda = ledger.pago_deuda ?? 0;
+  const pagadas = (ledger.lines ?? []).filter((l) => l.pagado);
+  const salteadas = (ledger.lines ?? []).filter((l) => !l.pagado);
 
   return (
-    <div className="mx-auto w-full max-w-xl">
-      <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-stone-500">
-        Resumen del mes {state.mes}
+    <article className="mx-auto w-full max-w-xl animate-in rounded-2xl bg-[#1a222d] p-5 text-[#e8eef5]">
+      <div className="h-1 w-full rounded-full bg-[#2f9e6b]" />
+      <p className="mt-4 text-[11px] font-bold uppercase tracking-[0.22em] text-[#3d9b6a]">
+        Resumen · mes {state.mes}
       </p>
-      <h2 className="mt-1 font-display text-3xl text-stone-950 sm:text-4xl">
+      <h2 className="mt-1 font-display text-3xl text-white">
         Lo que te dejó el mes
       </h2>
-      <p className="mt-2 text-sm text-stone-600">
-        No es solo el sueldo: lo que pagás —o no— cambia oportunidades, puertas y
-        reputación.
-      </p>
 
-      <div className="mt-6 grid grid-cols-2 gap-3 text-sm sm:grid-cols-4">
-        <div className="rounded-sm border border-stone-800/10 bg-white/60 px-3 py-2">
-          <p className="text-[10px] uppercase tracking-wider text-stone-500">
+      <div className="mt-5 grid grid-cols-3 gap-2 text-center">
+        <div className="rounded-xl bg-[#12161c] px-2 py-3">
+          <p className="text-[10px] uppercase tracking-wider text-[#7a8b9c]">
             Sueldo
           </p>
-          <p className="font-mono font-semibold text-emerald-800">
+          <p className="mt-1 font-mono text-sm font-semibold text-emerald-300">
             +{formatARS(ledger.sueldo)}
           </p>
         </div>
-        <div className="rounded-sm border border-stone-800/10 bg-white/60 px-3 py-2">
-          <p className="text-[10px] uppercase tracking-wider text-stone-500">
+        <div className="rounded-xl bg-[#12161c] px-2 py-3">
+          <p className="text-[10px] uppercase tracking-wider text-[#7a8b9c]">
             Pagaste
           </p>
-          <p className="font-mono font-semibold text-stone-800">
+          <p className="mt-1 font-mono text-sm font-semibold text-white">
             −{formatARS(ledger.total_gastos)}
           </p>
         </div>
-        <div className="rounded-sm border border-stone-800/10 bg-white/60 px-3 py-2">
-          <p className="text-[10px] uppercase tracking-wider text-stone-500">
-            Salteaste
-          </p>
-          <p className="font-mono font-semibold text-amber-800">
-            {formatARS(ledger.total_salteado ?? 0)}
-          </p>
-        </div>
-        <div className="rounded-sm border border-stone-800/10 bg-white/60 px-3 py-2">
-          <p className="text-[10px] uppercase tracking-wider text-stone-500">
+        <div className="rounded-xl bg-[#12161c] px-2 py-3">
+          <p className="text-[10px] uppercase tracking-wider text-[#7a8b9c]">
             Neto
           </p>
           <p
-            className={`font-mono font-semibold ${
-              ledger.neto >= 0 ? "text-emerald-800" : "text-red-800"
+            className={`mt-1 font-mono text-sm font-semibold ${
+              ledger.neto >= 0 ? "text-emerald-300" : "text-rose-300"
             }`}
           >
             {formatARS(ledger.neto)}
@@ -84,126 +75,75 @@ export function MonthSummaryPanel({
         </div>
       </div>
 
-      <ul className="mt-5 space-y-1.5 border-l border-stone-300 pl-3 text-sm text-stone-700">
-        {ledger.lines.map((line) => (
-          <li key={line.id} className="flex justify-between gap-4">
-            <span>
-              {line.label}
-              {!line.pagado ? (
-                <span className="ml-1 text-red-700">(no pagado)</span>
-              ) : null}
-            </span>
-            <span className="font-mono tabular-nums text-stone-500">
-              {line.pagado ? `−${formatARS(line.amount)}` : "—"}
-            </span>
-          </li>
-        ))}
-      </ul>
-
-      {malas.length > 0 ? (
-        <section className="mt-6 space-y-3">
-          <h3 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-red-800/80">
-            Consecuencias
-          </h3>
-          {malas.map((beat, i) => (
-            <article
-              key={`${beat.bill_id}-malo-${i}`}
-              className="border border-red-900/15 bg-red-50/70 px-4 py-3"
-            >
-              <h4 className="font-medium text-red-950">{beat.titulo}</h4>
-              <p className="mt-1 text-sm leading-relaxed text-stone-700">
-                {beat.texto}
-              </p>
-              <p className="mt-2 flex flex-wrap gap-2 font-mono text-[11px]">
-                {beat.dinero !== 0 ? (
-                  <span className="text-red-800">{formatARS(beat.dinero)}</span>
-                ) : null}
-                {formatMetricDelta(beat.deltas).map((chip) => (
-                  <span
-                    key={chip}
-                    className={`rounded-sm px-1.5 py-0.5 ${toneClassLight(hintTone(chip))}`}
-                  >
-                    {chip}
-                  </span>
-                ))}
-              </p>
-            </article>
-          ))}
-        </section>
-      ) : (
-        <p className="mt-6 text-sm text-emerald-800">
-          Pagaste lo crítico: este mes no se te escapó ninguna oportunidad por
-          cuentas.
-        </p>
-      )}
-
-      {buenas.length > 0 ? (
-        <section className="mt-5 space-y-3">
-          <h3 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-teal-800/80">
-            Oportunidades que sí agarraste
-          </h3>
-          {buenas.map((beat, i) => (
-            <article
-              key={`${beat.bill_id}-bueno-${i}`}
-              className="border border-teal-900/15 bg-teal-50/60 px-4 py-3"
-            >
-              <h4 className="font-medium text-teal-950">{beat.titulo}</h4>
-              <p className="mt-1 text-sm leading-relaxed text-stone-700">
-                {beat.texto}
-              </p>
-              <p className="mt-2 flex flex-wrap gap-2 font-mono text-[11px]">
-                {beat.dinero !== 0 ? (
-                  <span className="text-teal-800">+{formatARS(beat.dinero)}</span>
-                ) : null}
-                {formatMetricDelta(beat.deltas).map((chip) => (
-                  <span
-                    key={chip}
-                    className={`rounded-sm px-1.5 py-0.5 ${toneClassLight(hintTone(chip))}`}
-                  >
-                    {chip}
-                  </span>
-                ))}
-              </p>
-            </article>
-          ))}
-        </section>
-      ) : null}
-
-      {estudios.length > 0 ? (
-        <p className="mt-5 text-sm text-stone-700">
-          Completaste:{" "}
-          <span className="font-medium text-stone-900">
+      <div className="mt-5 space-y-2 text-sm leading-relaxed text-[#b0bec8]">
+        {pagadas.length > 0 ? (
+          <p>
+            <span className="text-emerald-300">Pagaste</span>{" "}
+            {pagadas.map((l) => l.label).join(", ")}.
+          </p>
+        ) : (
+          <p className="text-amber-200">No pagaste ninguna cuenta.</p>
+        )}
+        {salteadas.length > 0 ? (
+          <p>
+            <span className="text-amber-300">Quedó pendiente</span>{" "}
+            {salteadas.map((l) => l.label).join(", ")}.
+          </p>
+        ) : (
+          <p className="text-emerald-300/90">Cubristes lo esencial.</p>
+        )}
+        {pagoDeuda > 0 ? (
+          <p className="text-teal-300">
+            Abono a deuda −{formatARS(pagoDeuda)}
+            {state.deuda > 0 ? ` · sigue ${formatARS(state.deuda)}` : " · cero"}
+          </p>
+        ) : null}
+        {interes > 0 ? (
+          <p className="text-rose-300">Intereses +{formatARS(interes)}</p>
+        ) : null}
+        {estudios.length > 0 ? (
+          <p>
+            Completaste{" "}
             {estudios
               .map((id) => getCredentialById(id)?.nombre ?? id)
               .join(", ")}
-          </span>
+            .
+          </p>
+        ) : null}
+      </div>
+
+      {highlight ? (
+        <div
+          className={`mt-5 rounded-xl border px-4 py-3 ${
+            highlight.tono === "malo"
+              ? "border-rose-500/30 bg-rose-500/10"
+              : "border-emerald-500/30 bg-emerald-500/10"
+          }`}
+        >
+          <p className="text-[11px] font-bold uppercase tracking-wider text-[#9aabbc]">
+            {highlight.tono === "malo" ? "Lo más jodido" : "Lo mejor"}
+            {malas.length + buenas.length > 1
+              ? ` · +${malas.length + buenas.length - 1} más`
+              : ""}
+          </p>
+          <p className="mt-1 font-semibold text-white">{highlight.titulo}</p>
+          <p className="mt-1 text-sm text-[#b0bec8] line-clamp-3">
+            {highlight.texto}
+          </p>
+        </div>
+      ) : malas.length === 0 ? (
+        <p className="mt-5 text-sm text-emerald-300">
+          Mes prolijo: no se te escapó nada crítico por las cuentas.
         </p>
       ) : null}
 
-      {pagoDeuda > 0 ? (
-        <p className="mt-3 text-sm font-medium text-teal-800">
-          Abonaste a la deuda: −{formatARS(pagoDeuda)}
-          {state.deuda > 0 ? (
-            <span className="ml-1 font-normal text-stone-600">
-              (sigue debiendo {formatARS(state.deuda)})
-            </span>
-          ) : (
-            <span className="ml-1 font-normal text-stone-600">
-              (deuda en cero)
-            </span>
-          )}
-        </p>
-      ) : null}
-
-      {interes > 0 ? (
-        <p className="mt-3 text-sm font-medium text-red-800">
-          Intereses de deuda: +{formatARS(interes)}
-        </p>
-      ) : null}
-
-      <button type="button" className="advance-btn mt-8 w-full" onClick={onContinue}>
+      <button
+        type="button"
+        className="mt-6 w-full rounded-xl bg-[#2f9e6b] px-4 py-3.5 text-sm font-black uppercase tracking-wide text-white"
+        onClick={onContinue}
+      >
         {state.game_over ? "Ver el final" : "Seguir"}
       </button>
-    </div>
+    </article>
   );
 }

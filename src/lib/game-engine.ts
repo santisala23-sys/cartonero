@@ -35,6 +35,11 @@ import {
   monthlyJobCapitalSocial,
 } from "@/lib/jobs";
 import {
+  getPoliticaEventById,
+  isPoliticalCareer,
+  pickPoliticaEvent,
+} from "@/lib/politica";
+import {
   estimateMonthlyCosts,
   listMonthlyCosts,
   resolveMonthlyBills,
@@ -236,6 +241,12 @@ function pickEventForState(state: PlayerState): GameEvent | null {
   if (isActualidadMonth(state.mes)) {
     const actualidad = pickActualidadEvent(state);
     if (actualidad) return actualidad;
+  }
+
+  // Carrera política / militancia: misiones y tranzas con más peso
+  if (isPoliticalCareer(state) && Math.random() < 0.62) {
+    const pol = pickPoliticaEvent(state);
+    if (pol) return pol;
   }
 
   let eligible = getEligibleEvents(state);
@@ -473,7 +484,10 @@ export function applyChoice(
     return state;
   }
 
-  const event = getEventById(state.active_event_id) ?? getActualidadEventById(state.active_event_id);
+  const event =
+    getEventById(state.active_event_id) ??
+    getActualidadEventById(state.active_event_id) ??
+    getPoliticaEventById(state.active_event_id);
   if (!event) {
     return { ...state, active_event_id: null };
   }
@@ -528,6 +542,7 @@ export function getActiveEvent(state: PlayerState): GameEvent | null {
   return (
     getEventById(state.active_event_id) ??
     getActualidadEventById(state.active_event_id) ??
+    getPoliticaEventById(state.active_event_id) ??
     null
   );
 }

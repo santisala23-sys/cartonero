@@ -94,6 +94,7 @@ export type Condition =
   | { type: "metric_lte"; metric: MetricKey; value: number }
   | { type: "job_id"; value: string }
   | { type: "job_tag"; value: string }
+  | { type: "job_tags_any"; values: string[] }
   | { type: "has_flag"; value: string }
   | { type: "missing_flag"; value: string }
   | { type: "has_credential"; value: string }
